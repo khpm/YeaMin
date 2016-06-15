@@ -8,3 +8,12 @@ http://www.agoda.com/
 http://www.boxyapp.com/design/templates/adminlte-free-bootstrap-3-admin-template/#prettyPhoto
 
 GitHub : https://www.youtube.com/watch?v=r5C6yXNaSGo
+
+http://stackoverflow.com/questions/30308737/mutliple-business-hours-in-full-calendar-with-two-shifts-each-day
+getBusinessHoursEvents
+
+
+
+
+
+http://stackoverflow.com/questions/30977505/how-to-add-multiple-business-hours-in-fullcalendar
