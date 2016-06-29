@@ -47,7 +47,7 @@
 	  	</init-param>
   -->
   <servlet>
-  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-name>web</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param>
   		<param-name>contextConfigLocation</param-name>
@@ -58,12 +58,12 @@
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-name>web</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
-  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-name>web</servlet-name>
   	<url-pattern>*.json</url-pattern>
   </servlet-mapping>
 </web-app>
