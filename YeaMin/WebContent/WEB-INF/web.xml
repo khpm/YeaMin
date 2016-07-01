@@ -48,7 +48,7 @@
   	* 만약에 Spring Framework가 읽어들이는 경로와 파일명을 지정하려면 아래와 같이 추가하여 설정한다.
 	  	<init-param>
 	  		<param-name>contextConfigLocation</param-name>
-	  		<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+	  		<param-value>/WEB-INF/web-servlet.xml</param-value>
 	  	</init-param>
   -->
   <servlet>
