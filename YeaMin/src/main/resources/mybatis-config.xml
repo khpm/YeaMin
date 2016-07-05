@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
+	<typeAliases>
+		<typeAlias alias="BoardDto" type="com.yeamin.dto.BoardDto"/>
+		<typeAlias alias="ProductCategoryDto" type="com.yeamin.dto.ProductCategoryDto"/>
+		<typeAlias alias="ProductDto" type="com.yeamin.dto.ProductDto"/>
+		<typeAlias alias="ReservationDto" type="com.yeamin.dto.ReservationDto"/>
+		<typeAlias alias="ReservationProductDto" type="com.yeamin.dto.ReservationProductDto"/>
+		<typeAlias alias="ReviewDto" type="com.yeamin.dto.ReviewDto"/>
+		<typeAlias alias="StoreDto" type="com.yeamin.dto.StoreDto"/>
+		<typeAlias alias="StoreImgDto" type="com.yeamin.dto.StoreImgDto"/>
+		<typeAlias alias="UserDto" type="com.yeamin.dto.UserDto"/>
+	</typeAliases>
 </configuration>
