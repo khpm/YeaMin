@@ -9,15 +9,19 @@ public class ReviewDto {
 	private String review_content;
 
 	private Timestamp review_reg_time;
+	
+	private Integer review_re_ref;
+	
+	private Integer review_re_step;
+	
+	private Integer review_re_level;
 
 	private Integer user_no;
-
-	private Integer review_upper_no;
 
 	public ReviewDto() {
 		
 	}
-	
+
 	public Integer getReview_no() {
 		return review_no;
 	}
@@ -42,20 +46,36 @@ public class ReviewDto {
 		this.review_reg_time = review_reg_time;
 	}
 
+	public Integer getReview_re_ref() {
+		return review_re_ref;
+	}
+
+	public void setReview_re_ref(Integer review_re_ref) {
+		this.review_re_ref = review_re_ref;
+	}
+
+	public Integer getReview_re_step() {
+		return review_re_step;
+	}
+
+	public void setReview_re_step(Integer review_re_step) {
+		this.review_re_step = review_re_step;
+	}
+
+	public Integer getReview_re_level() {
+		return review_re_level;
+	}
+
+	public void setReview_re_level(Integer review_re_level) {
+		this.review_re_level = review_re_level;
+	}
+
 	public Integer getUser_no() {
 		return user_no;
 	}
 
 	public void setUser_no(Integer user_no) {
 		this.user_no = user_no;
-	}
-
-	public Integer getReview_upper_no() {
-		return review_upper_no;
-	}
-
-	public void setReview_upper_no(Integer review_upper_no) {
-		this.review_upper_no = review_upper_no;
 	}
 	
 }
