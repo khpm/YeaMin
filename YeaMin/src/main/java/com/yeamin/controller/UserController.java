@@ -18,15 +18,4 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
-	@RequestMapping("/main.do")
-	public ModelAndView aaa() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("contentViewName", "/WEB-INF/jsp/main.jsp");
-		mav.setViewName(AppConstants.TEMPLATE_VIEW_PATH);
-		
-		log.info("회원 수 : " + userDao.userCount());
-		
-		return mav;
-	}
-	
 }
