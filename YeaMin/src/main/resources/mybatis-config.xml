@@ -3,9 +3,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="BoardDto" type="com.yeamin.dto.BoardDto"/>
-		<typeAlias alias="PossibleTimePeopleDto" type="com.yeamin.dto.PossibleTimePeopleDto"/>
 		<typeAlias alias="ProductCategoryDto" type="com.yeamin.dto.ProductCategoryDto"/>
 		<typeAlias alias="ProductDto" type="com.yeamin.dto.ProductDto"/>
+		<typeAlias alias="ReservationCapacityDto" type="com.yeamin.dto.ReservationCapacityDto"/>
 		<typeAlias alias="ReservationDto" type="com.yeamin.dto.ReservationDto"/>
 		<typeAlias alias="ReservationProductDto" type="com.yeamin.dto.ReservationProductDto"/>
 		<typeAlias alias="ReviewDto" type="com.yeamin.dto.ReviewDto"/>
