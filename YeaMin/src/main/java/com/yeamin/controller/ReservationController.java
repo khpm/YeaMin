@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.yeamin.dao.ReservationDao;
+import com.yeamin.dao.StatsDao;
 
 @Controller
 public class ReservationController {
@@ -14,6 +15,9 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationDao reservationDao;
+	
+	@Autowired
+	private StatsDao statsDao;
 	
 	public ReservationController() {
 		
