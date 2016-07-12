@@ -1,8 +1,3 @@
-/**
- * Barracks-2 v0.2
- * 2014.12.26 tom : mobile > ax-scroll-top 추가
- */
-
 var topMenu_data = [
     {_id: "m01", label: "대시보드", url: "index.html"},
     {

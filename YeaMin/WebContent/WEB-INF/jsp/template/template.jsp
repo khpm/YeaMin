@@ -15,7 +15,7 @@
 		<link rel="shortcut icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
 		<link rel="icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
 	
-		<link rel="stylesheet" type="text/css" href="http://cdno.axisj.com/axicon/axicon.min.css" />
+		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css" />
 		<link rel="stylesheet" type="text/css" href="http://cdno.axisj.com/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj" />
 	
 		<script type="text/javascript" src="http://cdno.axisj.com/axisj/jquery/jquery.min.js"></script>
