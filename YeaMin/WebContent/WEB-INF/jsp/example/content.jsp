@@ -196,11 +196,13 @@
                     }
                 });
 
+                /* 
                 this.target.setList({
                     ajaxUrl:"data/loadGrid.php", ajaxPars:"param1=1&param2=2", onLoad:function(){
                         //trace(this);
                     }
                 });
+                 */
             }
         },
         modal: {
