@@ -2,7 +2,7 @@ var topMenu_data = [
     {_id: "m01", label: "대시보드", url: "index.html"},
     {
         _id: "m02", label: "가게 관리", url: "content.html", cn: [
-	        {_id: "m0201", label: "상가게 정보 관리", url: "#ax"},
+	        {_id: "m0201", label: "가게 정보 관리", url: "#ax"},
 	        {_id: "m0202", label: "상품 카테고리 정보 관리", url: "#ax"},
 	        {_id: "m0203", label: "상품 정보 관리", url: "#ax"}
 	    ]
