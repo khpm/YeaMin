@@ -30,10 +30,34 @@ public class MainController {
 		
 	}
 	
-	@RequestMapping("/main.do")
-	public ModelAndView aaa() {
+	@RequestMapping("/index.do")
+	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("contentViewName", "/WEB-INF/jsp/main.jsp");
+		mav.addObject("contentViewName", "/WEB-INF/jsp/index.jsp");
+		mav.setViewName(AppConstants.TEMPLATE_VIEW_PATH);
+		return mav;
+	}
+	
+	@RequestMapping("/content.do")
+	public ModelAndView content() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("contentViewName", "/WEB-INF/jsp/content.jsp");
+		mav.setViewName(AppConstants.TEMPLATE_VIEW_PATH);
+		return mav;
+	}
+	
+	@RequestMapping("/content-1.do")
+	public ModelAndView content1() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("contentViewName", "/WEB-INF/jsp/content-1.jsp");
+		mav.setViewName(AppConstants.TEMPLATE_VIEW_PATH);
+		return mav;
+	}
+	
+	@RequestMapping("/content-2.do")
+	public ModelAndView content2() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("contentViewName", "/WEB-INF/jsp/content-2.jsp");
 		mav.setViewName(AppConstants.TEMPLATE_VIEW_PATH);
 		return mav;
 	}

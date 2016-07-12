@@ -12,21 +12,38 @@
 		
 		<title>${title}</title>
 		
-		<!-- css -->
-		<link rel="stylesheet" href="/YeaMin/css/bootstrap.css">
-		<link rel="stylesheet" href="/YeaMin/css/yeamin.css">
-		
-		<!-- js -->
-		<script type="text/javascript" src="/YeaMin/js/jquery-2.2.4.js"></script>
-		<script type="text/javascript" src="/YeaMin/js/bootstrap.js"></script>
-		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
+		<link rel="shortcut icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
+		<link rel="icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
+	
+		<link rel="stylesheet" type="text/css" href="http://cdno.axisj.com/axicon/axicon.min.css" />
+		<link rel="stylesheet" type="text/css" href="http://cdno.axisj.com/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj" />
+	
+		<script type="text/javascript" src="http://cdno.axisj.com/axisj/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="http://cdno.axisj.com/axisj/dist/AXJ.min.js"></script>
+	
+		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
+		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
+	
+	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
+		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
 	</head>
 	<body>
-		<!-- header -->
-		<jsp:include page="/WEB-INF/jsp/template/header.jsp"/>
-		<!-- container -->
-		<jsp:include page="${contentViewName}"/>
-		<!-- footer -->
-		<jsp:include page="/WEB-INF/jsp/template/footer.jsp"/>
+		<div id="AXPage">
+			<!-- header start -->
+			<jsp:include page="/WEB-INF/jsp/template/header.jsp"/>
+			<!-- header end -->
+			
+			<!-- content start -->
+			<jsp:include page="${contentViewName}"/>
+			<!-- content end -->
+			
+			<!-- aside start -->
+			<jsp:include page="/WEB-INF/jsp/template/aside.jsp"/>
+			<!-- aside end -->
+			
+			<!-- footer start -->
+			<jsp:include page="/WEB-INF/jsp/template/footer.jsp"/>
+			<!-- footer end -->
+		</div>
 	</body>
 </html>

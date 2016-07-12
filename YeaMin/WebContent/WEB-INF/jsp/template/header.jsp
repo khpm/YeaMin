@@ -1,38 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="navbar-wrapper">
-  <div class="container">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+<div class="ax-header">
+    <div class="ax-wrap">
+        <div class="ax-layer">
+            <div class="ax-col-12">
+                <div class="ax-unit">
+                    <div class="ax-logo">
+                     <a href="index.html"><span class="logo-img"><i class="axi axi-axisj"></i></span><span class="logo-txt">AXU4J@AXISJ</span></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
+        <div class="ax-layer">
+            <div class="ax-col-8">
+                <div class="ax-unit">
+                    <!-- 상단 top-down-menu 표시 영역 : s-->
+                    <div id="ax-top-menu" class="ax-top-menu AXMenuBox"></div>
+                    <!-- e : 상단 top-down-menu 표시 영역 -->
+                    <div class="mx-top-menu"><a id="mx-top-menu-handle" class="mx-menu-button"><i class="axi axi-th"></i></a></div>
+                </div>
+            </div>
+            <div class="ax-col-4">
+                <div class="ax-unit">
+                    <ul class="ax-loginfo" id="ax-loginfo">
+                        <li class="profile"><div class="photo"></div></li>
+                        <li class="account"><a href="#ax">aliswel@aliswel.com</a></li>
+                        <li class="btns"><a href="#ax" class="AXButton" onclick="location.href = 'login.html';"><i class="axi axi-power-off"></i> 로그아웃</a></li>
+                        <!--li class="lang"><a href="#ax"><i class="axi axi-keyboard-o"></i> 한국어</a></li-->
+                    </ul>
+                    <div class="mx-loginfo"><a id="mx-loginfo-handle" class="mx-menu-button"><i class="axi axi-bars"></i></a></div>
+                </div>
+            </div>
+            <div class="ax-clear"></div>
         </div>
-      </div>
-    </nav>
-  </div>
+    </div>
 </div>
+<div class="H60"></div>
