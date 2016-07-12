@@ -1,39 +1,20 @@
 var topMenu_data = [
     {_id: "m01", label: "대시보드", url: "index.html"},
     {
-        _id: "m02", label: "<span>상품관리</span>", url: "content.html", cn: [
-        {_id: "m0201", label: "상품관리 서브 A", url: "#ax"},
-        {
-            _id: "m0202", label: "<span>상품관리 서브 B</span>", url: "#ax", cn: [
-            {_id: "m020201", label: "상품관리 서브 B > A", url: "content.html"},
-            {_id: "m020202", label: "상품관리 서브 B > B", url: "content.html"},
-            {_id: "m020201", label: "상품관리 서브 B > C", url: "content.html"},
-            {_id: "m020202", label: "상품관리 서브 B > D", url: "content.html"},
-            {_id: "m020203", label: "상품관리 서브 B > E", url: "content.html"}
-        ]
-        },
-        {_id: "m0203", label: "상품관리 서브 C", url: "content.html"}
-    ]
+        _id: "m02", label: "가게 관리", url: "content.html", cn: [
+	        {_id: "m0201", label: "상가게 정보 관리", url: "#ax"},
+	        {_id: "m0202", label: "상품 카테고리 정보 관리", url: "#ax"},
+	        {_id: "m0203", label: "상품 정보 관리", url: "#ax"}
+	    ]
     },
     {
-        _id: "m03", label: "주문/배송관리", url: "content-1.html", cn: [
-        {_id: "m0301", label: "주문관리 서브 A", url: "#ax"},
-        {_id: "m0302", label: "주문관리 서브 B", url: "#ax"},
-        {
-            _id: "m0303", label: "배송관리 서브 A", url: "content-1.html", cn: [
-            {_id: "m030301", label: "배송관리 서브 A > A", url: "content-1.html"},
-            {_id: "m030302", label: "배송관리 서브 A > B", url: "content-1.html"},
-            {_id: "m030301", label: "배송관리 서브 A > C", url: "content-1.html"},
-            {_id: "m030302", label: "배송관리 서브 A > D", url: "content-1.html"},
-            {_id: "m030303", label: "배송관리 서브 A > E", url: "content-1.html"}
-        ]
-        }
-    ]
+        _id: "m03", label: "예약 관리", url: "content-1.html", cn: [
+	        {_id: "m0301", label: "예약 현황 및 이력", url: "#ax"},
+	        {_id: "m0302", label: "통계", url: "#ax"},
+	        {_id: "m0302", label: "예약 시간 관리", url: "#ax"},
+	    ]
     },
-    {_id: "m04", label: "정산관리", url: "content-2.html"},
-    {_id: "m05", label: "판매자 정보 관리", url: "content.html"},
-    {_id: "m06", label: "공지사항", url: "content.html"},
-    {_id: "m07", label: "통계", url: "content.html"}
+    {_id: "m04", label: "회원 관리", url: "content-2.html"}
 ];
 
 var sideMenu_data = [
