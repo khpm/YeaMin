@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css" />
 		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/arongi/AXJ.min.css" id="axu-theme-axisj" />
 	
-		<script type="text/javascript" src="http://cdno.axisj.com/axisj/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/axisj/dist/AXJ.min.js"></script>
 	
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
