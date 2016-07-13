@@ -18,34 +18,36 @@
 						<div class="ax-col-12">
 							<div class="ax-unit">
 								<div class="ax-box">
-
-                                       <div class="ax-search" id="page-search-box"></div>
-                                       <div class="ax-button-group">
-                                           <div class="left">
-                                               <button type="button" class="AXButton Blue" id="ax-grid-btn-regist">등록</button>
-                                               <button type="button" class="AXButton" id="ax-grid-btn-remove">삭제</button>
-                                           </div>
-                                           <div class="right">
-                                               <button type="button" class="AXButton Blue" id="ax-search-btn-search">검색</button>
-                                           </div>
-                                           <div class="ax-clear"></div>
-                                       </div>
-                                       <div class="ax-grid" id="page-grid-box"></div>
-                                       <div class="ax-button-group">
-                                           <div class="ax-align-center">
-                                               <button type="button" class="AXButtonLarge W50 Blue" id="ax-grid-btn-regist">
-                                                   <i class="axi axi-plus-circle"></i> 등록
-                                               </button>
-                                               <button type="button" class="AXButtonLarge W50" id="ax-grid-btn-remove">
-                                                   <i class="axi axi-minus-circle"></i>
-                                                   삭제</button>
-                                           </div>
-                                       </div>
+										<!-- 검색 조건 영역 -->
+										<div class="ax-search" id="page-search-box"></div>
+										<!-- 컨트롤 버튼 영역 -->
+										<div class="ax-button-group">
+											<div class="left">
+												<button type="button" class="AXButton Blue" id="ax-search-btn-search">
+													<i class="axi axi-search"></i> 검색
+												</button>
+											</div>
+											<div class="right">
+												<button type="button" class="AXButton Blue" id="ax-grid-btn-regist">
+													<i class="axi axi-add"></i> 등록
+												</button>
+												<button type="button" class="AXButton Blue" id="ax-grid-btn-update">
+													<i class="axi axi-refresh"></i> 수정
+												</button>
+												<button type="button" class="AXButton Blue" id="ax-grid-btn-remove">
+													<i class="axi axi-minus"></i> 삭제
+												</button>
+											</div>
+											<div class="ax-clear"></div>
+										</div>
+										<!-- 검색 조건 영역 -->
+										<div class="ax-grid" id="page-grid-box"></div>
+								
 								</div>
 							</div>
 						</div>
-                           <div class="ax-clear"></div>
-                       </div>
+							<div class="ax-clear"></div>
+					</div>
 				</div>
 				<!-- e.CXPage -->					
 					
@@ -54,12 +56,14 @@
 		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
-    var page_menu_id = "m03"; // admin.js > topMenu_data 에 정의된 id
+    var page_menu_id = "m0301"; // admin.js > topMenu_data 에 정의된 id
 </script>
+
 <script type="text/javascript">
     var fnObj = {
-        pageStart: function(){
+		pageStart: function(){
             this.search.bind();
             this.grid.bind();
             this.modal.bind();
@@ -78,14 +82,15 @@
                 var _this = this;
                 this.target.setConfig({
                     targetID:"page-search-box",
-                    theme : "AXSearch",
+                    theme: "AXSearch",
                     mediaQuery: {
                         mx:{min:0, max:767}, dx:{min:767}
                     },
                     onsubmit: function(){
+                    	console.log("search.onsubmit()");
                         // 버튼이 선언되지 않았거나 submit 개체가 있는 경우 발동 합니다.
                     },
-                    rows:[
+                    rows: [
                         {display:true, addClass:"gray", style:"", list:[
                             {label:"채널", labelWidth:"100", type:"link", width:"", key:"openType", addClass:"", valueBoxStyle:"", value:"open",
                                 options:[
@@ -161,38 +166,19 @@
             target: new AXGrid(),
             get: function(){ return this.target },
             bind: function(){
-
                 this.target.setConfig({
-                    targetID : "page-grid-box",
-                    theme : "AXGrid",
+                    targetID: "page-grid-box",
+                    theme: "AXGrid",
                     mediaQuery: {
                         mx:{min:0, max:767}, dx:{min:767}
                     },
-                    fixedColSeq: 5,
-                    colGroup : [
-                        {key:"no", label:"", width:"30", align:"center", formatter:"checkbox"},
-                        {key:"odate", label:"주문일", width:"80", align:"center"},
-                        {key:"ddate", label:"배송지입력일", width:"80"},
-                        {key:"channel", label:"채널", width:"60", align:"center"},
-                        {key:"orderno", label:"주문번호", width:"100", align:"center"},
-                        {key:"productnm", label:"상품명", width:"150"},
-                        {key:"optionnm", label:"옵션명", width:"100"},
-                        {key:"modelnm", label:"모델명", width:"80"},
-                        {key:"productno", label:"상품번호", width:"60"},
-                        {key:"sellerproductno", label:"판매자 상품번호", width:"60"},
-                        {key:"brand", label:"브랜드", width:"60"},
-                        {key:"cost", label:"판매가", width:"70", formatter:"money", align:"right"},
-                        {key:"amount", label:"수량", width:"50", formatter:"money", align:"right"},
-                        {key:"ordercost", label:"주문금액", width:"70", formatter:"money", align:"right"},
-                        {key:"receiver", label:"수령인명", width:"60"},
-                        {key:"r_phone1", label:"수령인 연락처1", width:"80"},
-                        {key:"r_phone2", label:"수령인 연락처2", width:"80"},
-                        {key:"ostat", label:"주문상태", width:"60"},
-                        {key:"delevery_type", label:"배송비 형태", width:"70"},
-                        {key:"delevery_cost", label:"배송비", width:"60"},
-                        {key:"delevery_msg", label:"배송메세지", width:"100"}
+                    colGroup: [
+                        {key:"reservation_capacity_no", label:"예약 수용 번호", width:"30", align:"center", formatter:"checkbox"},
+                        {key:"reservation_capacity_dw", label:"예약 수용 요일", width:"200", align:"center"},
+                        {key:"reservation_capacity_time", label:"예약 수용 시간", width:"200", align:"center"},
+                        {key:"reservation_capacity_people", label:"예약 수용 인원 수", width:"200", align:"center"}
                     ],
-                    body : {
+                    body: {
                         onclick: function(){
                             //toast.push(Object.toJSON({index:this.index, item:this.item}));
                             //alert(this.list);
@@ -200,7 +186,7 @@
                             fnObj.modal.open("gridView", this.item);
                         }
                     },
-                    page:{
+                    page: {
                         paging:true,
                         pageNo:1,
                         pageSize:100,
