@@ -1,3 +1,7 @@
+AXConfig.AXGrid.emptyListMSG = "조회된 결과가 없습니다.";
+AXConfig.AXGrid.listCountMSG = "<b>{listCount}</b> count(s)",
+AXConfig.AXGrid.pageCountMSG = "page(s)"
+
 var topMenu_data = [
     {_id: "m01", label: "대시보드", url: "index.html"},
     {
