@@ -1,6 +1,7 @@
 package com.yeamin.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,8 +26,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 	
 	@Override
-	public List<ReservationCapacityDto> selectReservationCapacityList() {
-		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_CAPACITY_LIST);
+	public List<ReservationCapacityDto> selectReservationCapacityList(Map<String, Object> paramMap) {
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_CAPACITY_LIST, paramMap);
 	}
 
 }

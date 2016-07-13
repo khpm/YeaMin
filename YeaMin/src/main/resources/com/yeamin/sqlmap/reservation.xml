@@ -3,8 +3,19 @@
 <mapper namespace="reservation">
 	<select id="QID_SELECT_RESERVATION_CAPACITY_LIST" resultType="ReservationCapacityDto">
 		SELECT
-			*
+			reservation_capacity_no,
+			CASE reservation_capacity_dw
+				WHEN 'D' THEN '평일'
+				WHEN 'W' THEN '주말'
+			END reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
 		FROM
 			ym_reservation_capacity
+		<where>
+			<if test="reservation_capacity_dw != 'all'">
+				AND reservation_capacity_dw = #{reservation_capacity_dw}
+			</if>
+		</where>
 	</select>
 </mapper>

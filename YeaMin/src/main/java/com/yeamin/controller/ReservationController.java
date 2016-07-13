@@ -8,7 +8,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,22 +49,9 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/selectReservationCapacityList.json")
-	@ResponseBody
-	public Map<String, Object> selectReservationCapacityList() {
-		List<ReservationCapacityDto> list = reservationDao.selectReservationCapacityList();
-		
-		Map<String, Object> page = new HashMap<String, Object>();
-		page.put("pageNo", 1);
-		page.put("pageCount", 1);
-		page.put("listCount", 20);
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("result", "ok");
-		result.put("list", list);
-		result.put("page", page);
-		result.put("msg", "");
-		
-		return result;
+	public @ResponseBody Map<String, Object> selectReservationCapacityList(@RequestParam Map<String, Object> paramMap) {
+		List<ReservationCapacityDto> list = reservationDao.selectReservationCapacityList(paramMap);
+		return getSelectListResult(paramMap, list);
 	}
 	
 	@RequestMapping("/selectReservationCapacity.json")
@@ -83,6 +72,32 @@ public class ReservationController {
 	@RequestMapping("/deleteReservationCapacity.json")
 	public void deleteReservationCapacity() {
 		log.info("requset");
+	}
+	
+	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
+		int listCount = list.size();
+		int pageCount = 0; // 전체 페이지 개수
+		int pageSize = 100; // 한 페이지에 들어갈 개수
+		int mok = listCount / pageSize;
+		int nmg = listCount % pageSize;
+		
+		if(nmg == 0) {
+			pageCount = mok;
+		} else if(nmg > 0) {
+			pageCount = mok + 1;
+		}
+		
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("pageNo", paramMap.get("pageNo"));
+		page.put("pageCount", pageCount);
+		page.put("listCount", listCount);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", "ok");
+		result.put("list", list);
+		result.put("page", page);
+		result.put("msg", "");
+		return result;
 	}
 	
 }

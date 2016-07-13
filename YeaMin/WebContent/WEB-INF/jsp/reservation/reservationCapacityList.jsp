@@ -34,16 +34,16 @@
 													<i class="axi axi-add"></i> 등록
 												</button>
 												<button type="button" class="AXButton Blue" id="btn-update">
-													<i class="axi axi-refresh"></i> 수정
+													<i class="axi axi-edit"></i> 수정
 												</button>
 												<button type="button" class="AXButton Blue" id="btn-delete">
-													<i class="axi axi-minus"></i> 삭제
+													<i class="axi axi-remove"></i> 삭제
 												</button>
 											</div>
 											<div class="ax-clear"></div>
 										</div>
 										
-										<!-- 검색 조건 영역 -->
+										<!-- 검색 결과 영역 -->
 										<div class="ax-grid" id="page-grid-box"></div>
 								
 								</div>
@@ -97,15 +97,16 @@
             // 수정
             axdom("#btn-update").bind("click", function(){
             	var gridTarget = fnObj.grid.target;
-            	
-            	if(gridTarget.item == undefined) {
-            		dialog.push({
+				var selectedItem = gridTarget.getSelectedItem();
+				
+				if(selectedItem.hasOwnProperty("error")) {
+					dialog.push({
             			top: "350",
             			title: "항목 미선택",
-            			body:"<b>경고</b> - 수정할 항목을 선택해 주세요.",
-            			type:"Caution"
+            			body: "<b>경고</b> - 삭제할 항목을 선택해 주세요.",
+            			type: "Caution"
             		});
-            	} else {
+				} else {
             		fnObj.modal.open("update", null);
             	}
             });
@@ -115,18 +116,16 @@
 				var gridTarget = fnObj.grid.target;
 				var selectedItem = gridTarget.getSelectedItem();
 				
-				trace(selectedItem);
-            	
-            	if(gridTarget.item == undefined) {
-            		dialog.push({
+				if(selectedItem.hasOwnProperty("error")) {
+					dialog.push({
             			top: "350",
             			title: "항목 미선택",
-            			body:"<b>경고</b> - 삭제할 항목을 선택해 주세요.",
-            			type:"Caution"
+            			body: "<b>경고</b> - 삭제할 항목을 선택해 주세요.",
+            			type: "Caution"
             		});
-            	} else {
-            		
-            	}
+				} else {
+					
+				}
             });
         },
         search: {
@@ -190,10 +189,7 @@
                         }
                     },
                     page: {
-                        paging:true,
-                        pageNo:1,
-                        pageSize:100,
-                        status:{formatter: null}
+                        paging: false
                     }
                 });
             }
