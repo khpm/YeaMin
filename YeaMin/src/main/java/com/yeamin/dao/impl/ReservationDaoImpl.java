@@ -1,12 +1,16 @@
 package com.yeamin.dao.impl;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yeamin.constants.QueryConstants;
 import com.yeamin.dao.ReservationDao;
+import com.yeamin.dto.ReservationCapacityDto;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
@@ -20,4 +24,9 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 	}
 	
+	@Override
+	public List<ReservationCapacityDto> selectReservationCapacityList() {
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_CAPACITY_LIST);
+	}
+
 }

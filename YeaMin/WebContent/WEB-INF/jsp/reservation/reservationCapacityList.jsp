@@ -71,8 +71,55 @@
         },
         bindEvent: function(){
             var _this = this;
+            // 검색
             axdom("#ax-search-btn-search").bind("click", function(){
-                _this.search.submit();
+            	var searchTarget = _this.search.target;
+            	var gridTarget = _this.grid.target;
+
+            	gridTarget.setList({
+				    ajaxUrl: "selectReservationCapacityList.json",
+				    ajaxPars: searchTarget.getParam(),
+				    onLoad: function(){
+				        trace(this);
+				    }
+				});
+            });
+            
+            // 등록
+            axdom("#ax-grid-btn-regist").bind("click", function(){
+            	fnObj.modal.open("regist", null);
+            });
+            
+            // 수정
+            axdom("#ax-grid-btn-update").bind("click", function(){
+            	var gridTarget = _this.grid.target;
+            	
+            	if(gridTarget.item == undefined) {
+            		dialog.push({
+            			top: "350",
+            			title: "항목 미선택",
+            			body:"<b>경고</b> - 수정할 항목을 선택해 주세요.",
+            			type:"Caution"
+            		});
+            	} else {
+            		fnObj.modal.open("update", null);
+            	}
+            });
+            
+            // 삭제
+            axdom("#ax-grid-btn-remove").bind("click", function(){
+				var gridTarget = _this.grid.target;
+            	
+            	if(gridTarget.item == undefined) {
+            		dialog.push({
+            			top: "350",
+            			title: "항목 미선택",
+            			body:"<b>경고</b> - 삭제할 항목을 선택해 주세요.",
+            			type:"Caution"
+            		});
+            	} else {
+            		
+            	}
             });
         },
         search: {
@@ -109,12 +156,12 @@
                                 }
                             }
                         ]},
-                        {display:true, addClass:"gray", style:"", list:[
+                        {display:true, addClass:"", style:"", list:[
                             {label:"브랜드", labelWidth:"100", type:"inputText", width:"150", key:"inputText2", addClass:"", valueBoxStyle:"", value:""},
                             {label:"결제번호", labelWidth:"100", type:"inputText", width:"150", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""},
                             {label:"주문번호", labelWidth:"100", type:"inputText", width:"150", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""}
                         ]},
-                        {display:true, addClass:"", style:"", list:[
+                        {display:true, addClass:"gray", style:"", list:[
                             {label:"상태", labelWidth:"100", type:"selectBox", width:"", key:"selectbox", addClass:"", valueBoxStyle:"", value:"close",
                                 options:[{optionValue:"all", optionText:"전체보기"}, {optionValue:"open", optionText:"공개"}, {optionValue:"close", optionText:"비공개"}],
                                 AXBind:{
@@ -155,11 +202,6 @@
                         ]}
                     ]
                 });
-            },
-            submit: function(){
-                var pars = this.target.getParam();
-                toast.push("콘솔창에 파라미터 정보를 출력하였습니다.");
-                trace(pars);
             }
         },
         grid: {
@@ -173,7 +215,7 @@
                         mx:{min:0, max:767}, dx:{min:767}
                     },
                     colGroup: [
-                        {key:"reservation_capacity_no", label:"예약 수용 번호", width:"30", align:"center", formatter:"checkbox"},
+                        {key:"reservation_capacity_no", label:"예약 수용 번호", width:"200", align:"center"},
                         {key:"reservation_capacity_dw", label:"예약 수용 요일", width:"200", align:"center"},
                         {key:"reservation_capacity_time", label:"예약 수용 시간", width:"200", align:"center"},
                         {key:"reservation_capacity_people", label:"예약 수용 인원 수", width:"200", align:"center"}
@@ -193,14 +235,6 @@
                         status:{formatter: null}
                     }
                 });
-
-                /* 
-                this.target.setList({
-                    ajaxUrl:"data/loadGrid-1.php", ajaxPars:"param1=1&param2=2", onLoad:function(){
-                        //trace(this);
-                    }
-                });
-                 */
             }
         },
         modal: {
