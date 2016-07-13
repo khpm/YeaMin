@@ -22,7 +22,9 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes" value="application/x-www-form-urlencoded; charset=UTF-8"/>
+				</bean>
 			</list>
 		</property>
 	</bean>
