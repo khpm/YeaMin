@@ -4,8 +4,8 @@
 	<div class="ax-wrap">
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
-				<h1>주문/배송관리</h1>
-				<p class="desc">주문관리</p>
+				<h1>예약 시간 관리</h1>
+				<p class="desc">예약할 때 필요한 정보인 예약 수용 정보를 관리합니다.</p>
 			</div>
 			<div class="ax-clear"></div>
 		</div>
@@ -18,28 +18,31 @@
 						<div class="ax-col-12">
 							<div class="ax-unit">
 								<div class="ax-box">
+								
 										<!-- 검색 조건 영역 -->
 										<div class="ax-search" id="page-search-box"></div>
+										
 										<!-- 컨트롤 버튼 영역 -->
 										<div class="ax-button-group">
 											<div class="left">
-												<button type="button" class="AXButton Blue" id="ax-search-btn-search">
+												<button type="button" class="AXButton Blue" id="btn-search">
 													<i class="axi axi-search"></i> 검색
 												</button>
 											</div>
 											<div class="right">
-												<button type="button" class="AXButton Blue" id="ax-grid-btn-regist">
+												<button type="button" class="AXButton Blue" id="btn-insert">
 													<i class="axi axi-add"></i> 등록
 												</button>
-												<button type="button" class="AXButton Blue" id="ax-grid-btn-update">
+												<button type="button" class="AXButton Blue" id="btn-update">
 													<i class="axi axi-refresh"></i> 수정
 												</button>
-												<button type="button" class="AXButton Blue" id="ax-grid-btn-remove">
+												<button type="button" class="AXButton Blue" id="btn-delete">
 													<i class="axi axi-minus"></i> 삭제
 												</button>
 											</div>
 											<div class="ax-clear"></div>
 										</div>
+										
 										<!-- 검색 조건 영역 -->
 										<div class="ax-grid" id="page-grid-box"></div>
 								
@@ -70,29 +73,30 @@
             this.bindEvent();
         },
         bindEvent: function(){
-            var _this = this;
             // 검색
-            axdom("#ax-search-btn-search").bind("click", function(){
-            	var searchTarget = _this.search.target;
-            	var gridTarget = _this.grid.target;
-
+            axdom("#btn-search").bind("click", function(){
+            	var searchTarget = fnObj.search.target;
+            	var gridTarget = fnObj.grid.target;
+            	
+            	// trace(searchTarget.getParam());
+            	
             	gridTarget.setList({
 				    ajaxUrl: "selectReservationCapacityList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
-				        trace(this);
+				        // trace(this);
 				    }
 				});
             });
             
             // 등록
-            axdom("#ax-grid-btn-regist").bind("click", function(){
-            	fnObj.modal.open("regist", null);
+            axdom("#btn-insert").bind("click", function(){
+            	fnObj.modal.open("insert", null);
             });
             
             // 수정
-            axdom("#ax-grid-btn-update").bind("click", function(){
-            	var gridTarget = _this.grid.target;
+            axdom("#btn-update").bind("click", function(){
+            	var gridTarget = fnObj.grid.target;
             	
             	if(gridTarget.item == undefined) {
             		dialog.push({
@@ -107,8 +111,11 @@
             });
             
             // 삭제
-            axdom("#ax-grid-btn-remove").bind("click", function(){
-				var gridTarget = _this.grid.target;
+            axdom("#btn-delete").bind("click", function(){
+				var gridTarget = fnObj.grid.target;
+				var selectedItem = gridTarget.getSelectedItem();
+				
+				trace(selectedItem);
             	
             	if(gridTarget.item == undefined) {
             		dialog.push({
@@ -126,7 +133,6 @@
             target: new AXSearch(),
             get: function(){ return this.target },
             bind: function(){
-                var _this = this;
                 this.target.setConfig({
                     targetID:"page-search-box",
                     theme: "AXSearch",
@@ -139,66 +145,20 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"채널", labelWidth:"100", type:"link", width:"", key:"openType", addClass:"", valueBoxStyle:"", value:"open",
+                            {label:"예약 수용 요일", labelWidth:"100", type:"selectBox", width:"", key:"reservation_capacity_dw", addClass:"", valueBoxStyle:"", value:"all",
                                 options:[
-                                    {optionValue:"all", optionText:"전체보기"},
-                                    {optionValue:"open", optionText:"공개"},
-                                    {optionValue:"close", optionText:"채널기본"},
-                                    {optionValue:"close2", optionText:"채널선택", display:false},
-                                    {optionValue:"close3", optionText:"채널A", display:false},
-                                    {optionValue:"close4", optionText:"채널B", display:false}
-                                ],
-                                onChange: function(selectedObject, value){
-                                    //아래 3개의 값을 사용 하실 수 있습니다.
-                                    //dialog.push(Object.toJSON(this));
-                                    //dialog.push(Object.toJSON(selectedObject));
-                                    //dialog.push(value);
-                                }
-                            }
-                        ]},
-                        {display:true, addClass:"", style:"", list:[
-                            {label:"브랜드", labelWidth:"100", type:"inputText", width:"150", key:"inputText2", addClass:"", valueBoxStyle:"", value:""},
-                            {label:"결제번호", labelWidth:"100", type:"inputText", width:"150", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""},
-                            {label:"주문번호", labelWidth:"100", type:"inputText", width:"150", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""}
-                        ]},
-                        {display:true, addClass:"gray", style:"", list:[
-                            {label:"상태", labelWidth:"100", type:"selectBox", width:"", key:"selectbox", addClass:"", valueBoxStyle:"", value:"close",
-                                options:[{optionValue:"all", optionText:"전체보기"}, {optionValue:"open", optionText:"공개"}, {optionValue:"close", optionText:"비공개"}],
+									{optionValue:"all", optionText:"전체"},
+									{optionValue:"D", optionText:"평일"},
+									{optionValue:"W", optionText:"주말"}
+								],
                                 AXBind:{
                                     type:"select", config:{
                                         onChange:function(){
-                                            //toast.push(Object.toJSON(this));
-
+                                        	// trace(this);
                                         }
                                     }
                                 }
-                            },
-                            {label:"일자", labelWidth:"", type:"inputText", width:"70", key:"inputText1", addClass:"secondItem", valueBoxStyle:"", value:"",
-                                onChange: function(){}
-                            },
-                            {label:"", labelWidth:"", type:"inputText", width:"90", key:"inputText2", addClass:"secondItem", valueBoxStyle:"padding-left:0px;", value:"",
-                                AXBind:{
-                                    type:"twinDate", config:{
-                                        align:"right", valign:"top", startTargetID:"inputText1",
-                                        onChange:function(){
-                                            toast.push(Object.toJSON(this));
-                                        }
-                                    }
-                                }
-                            },
-                        ]},
-                        {display:true, addClass:"gray", style:"", list:[
-                            {label:"구매자 이메일", labelWidth:"100", type:"inputText", width:"200", key:"inputText2", addClass:"", valueBoxStyle:"", value:""},
-                            {label:"구매자 전화번", labelWidth:"100", type:"inputText", width:"", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""}
-                        ]},
-                        {display:false, addClass:"", style:"", list:[
-                            {label:"마스터아이디", labelWidth:"100", type:"inputText", width:"", key:"inputText2", addClass:"", valueBoxStyle:"", value:""},
-                            {label:"채널아이디", labelWidth:"100", type:"inputText", width:"", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""}
-                        ]},
-                        {display:false, addClass:"gray", style:"", list:[
-                            {label:"상품명", labelWidth:"100", type:"inputText", width:"", key:"inputText2", addClass:"", valueBoxStyle:"", value:""},
-                            {label:"모델명", labelWidth:"100", type:"inputText", width:"", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""},
-                            {label:"브랜드명", labelWidth:"100", type:"inputText", width:"", key:"inputText3", addClass:"secondItem", valueBoxStyle:"", value:""}
+                            }
                         ]}
                     ]
                 });
@@ -221,10 +181,11 @@
                         {key:"reservation_capacity_people", label:"예약 수용 인원 수", width:"200", align:"center"}
                     ],
                     body: {
-                        onclick: function(){
-                            //toast.push(Object.toJSON({index:this.index, item:this.item}));
-                            //alert(this.list);
-                            //alert(this.page);
+                        ondblclick: function(){
+                        	// trace(this.index);
+                        	// trace(this.item);
+                        	// trace(this.list);
+                        	// trace(this.page);
                             fnObj.modal.open("gridView", this.item);
                         }
                     },
