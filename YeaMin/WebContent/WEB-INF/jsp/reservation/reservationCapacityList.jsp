@@ -126,7 +126,27 @@
             			type: "Caution"
             		});
 				} else {
-					
+					/* $.ajax({
+				        url : "/Yeamin/deleteReservationCapacity.json",
+				        type: "get",
+				        data : { "id" : $("#id").val() },
+				        success : function(responseData){
+				            $("#ajax").remove();
+				            var data = JSON.parse(responseData);
+				            if(!data){
+				                alert("존재하지 않는 ID입니다");
+				                return false;
+				            }
+				            var html = '';
+				            html += '<form class="form-signin" action="" id="ajax">';
+				            html += '이름<input type="text" class="form-control"  name="name" value="'+data.name+'">';
+				            html += '아이디<input type="text" class="form-control" name=id" value="'+data.id+'">';
+				            html += '이메일<input type="text" class="form-control"  name="email" value="'+data.email+'">';
+				            html += '비밀번호<input type="text" class="form-control" name="password" value="'+data.password+'">';
+				            html += '</form>';
+				            $("#container").after(html);
+				        }
+				    }); */
 				}
             });
         },
@@ -184,10 +204,10 @@
                     body: {
                         ondblclick: function(){
                         	// trace(this.index);
-                        	trace(this.item);
+                        	// trace(this.item);
                         	// trace(this.list);
                         	// trace(this.page);
-                            fnObj.modal.open("update", this.item);
+                            fnObj.modal.open("UPDATE", this.item);
                         }
                     },
                     page: {
