@@ -66,6 +66,7 @@
 
 <script type="text/javascript">
     var fnObj = {
+    	primaryKey: "reservation_capacity_no",
 		pageStart: function(){
             this.search.bind();
             this.grid.bind();
@@ -115,10 +116,13 @@
             			type: "Caution"
             		});
 				} else {
+					var data = new Object();
+					data[fnObj.primaryKey] = selectedItem.item[fnObj.primaryKey];
+					
 					$.ajax({
 				        url: "/YeaMin/deleteReservationCapacity.json",
 				        type: "post",
-				        data: { "reservation_capacity_no" : selectedItem.item.reservation_capacity_no },
+				        data: data,
 				        success: function(data) {
 				        	var ret = JSON.parse(data);
 				        	
@@ -227,7 +231,7 @@
             	var pars = "modalType=" + modalType;
             	
             	if(modalType === "UPDATE") {
-            		pars += ("&reservation_capacity_no=" + item.reservation_capacity_no);
+            		pars += ("&" + fnObj.primaryKey + "=" + item[fnObj.primaryKey]);
             	}
             	
                 this.target.open({
