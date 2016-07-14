@@ -18,4 +18,16 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_CAPACITY" resultType="ReservationCapacityDto">
+		SELECT
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
+		FROM
+			ym_reservation_capacity
+		WHERE
+			reservation_capacity_no = #{reservation_capacity_no}
+	</select>
 </mapper>
