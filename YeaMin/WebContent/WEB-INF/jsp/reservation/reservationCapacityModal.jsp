@@ -31,24 +31,52 @@
 			var fnObj = {
 				pageStart: function(){
 					$("#reservation_capacity_people").bindNumber({
-						min:1,
-						onChange : function(){
+						min: 1,
+						onChange: function(){
 							// trace(this);
 						}
 					});
 					
-					$("#reservation_capacity_time").bindDateTime();
+					// $("#reservation_capacity_time").bindDateTime();
 				},
 		        pageResize: function(){
 		            parent.myModal.resize();
 		        },
 		        insert: function() {
+		        	var data = $("#form").serialize();
+		        	
+		        	$.ajax({
+				        url: "/YeaMin/insertReservationCapacity.json",
+				        type: "post",
+				        data: data,
+				        success: function(data) {
+							var ret = JSON.parse(data);
+				        	
+				        	if(ret.result === "ok") {
+				        		parent.fnObj.search.submit();
+				        		fnObj.close();
+				        	}
+				        }
+				    });
 		        	
 		        	fnObj.close();
 		        },
 		        update: function() {
-
-		        	fnObj.close();
+					var data = $("#form").serialize();
+		        	
+		        	$.ajax({
+				        url: "/YeaMin/updateReservationCapacity.json",
+				        type: "post",
+				        data: data,
+				        success: function(data) {
+				        	var ret = JSON.parse(data);
+				        	
+				        	if(ret.result === "ok") {
+				        		parent.fnObj.search.submit();
+				        		fnObj.close();
+				        	}
+				        }
+				    });
 		        },
 		        close: function() {
 		        	parent.myModal.close();
@@ -76,7 +104,7 @@
 		            <div class="ax-layer">
 		                <div class="ax-col-12">
 		
-		                    <form name="table-form" method="get" onsubmit="return false;">
+		                    <form id="form" method="get" onsubmit="return false;">
 		                        <div class="ax-rwd-table">
 		                            <div class="item-group" style="">
 		                                <div class="item">
@@ -84,7 +112,7 @@
 		                                        <span class="th" style="min-width:100px;">예약 수용 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	${dto.reservation_capacity_no}
-		                                        	<input type="hidden" value="${dto.reservation_capacity_no}"/>
+		                                        	<input type="hidden" name="reservation_capacity_no" value="${dto.reservation_capacity_no}"/>
 		                                        </span>
 		                                    </label>
 		                                </div>

@@ -30,4 +30,35 @@
 		WHERE
 			reservation_capacity_no = #{reservation_capacity_no}
 	</select>
+	
+	<insert id="QID_INSERT_RESERVATION_CAPACITY">
+		INSERT INTO ym_reservation_capacity (
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
+		) VALUES (
+			ym_reservation_capacity_no_seq.nextval,
+			#{reservation_capacity_dw},
+			#{reservation_capacity_time},
+			#{reservation_capacity_people}
+		)
+	</insert>
+	
+	<update id="QID_UPDATE_RESERVATION_CAPACITY">
+		UPDATE ym_reservation_capacity
+		SET
+			reservation_capacity_dw = #{reservation_capacity_dw},
+			reservation_capacity_time = #{reservation_capacity_time},
+			reservation_capacity_people = #{reservation_capacity_people}
+		WHERE
+			reservation_capacity_no = #{reservation_capacity_no}
+	</update>
+	
+	<delete id="QID_DELETE_RESERVATION_CAPACITY">
+		DELETE
+			ym_reservation_capacity
+		WHERE
+			reservation_capacity_no = #{reservation_capacity_no}
+	</delete>
 </mapper>

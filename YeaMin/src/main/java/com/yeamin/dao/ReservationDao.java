@@ -11,4 +11,10 @@ public interface ReservationDao {
 	
 	public ReservationCapacityDto selectReservationCapacity(Map<String, Object> paramMap);
 	
+	public Integer insertReservationCapacity(Map<String, Object> paramMap);
+	
+	public Integer updateReservationCapacity(Map<String, Object> paramMap);
+	
+	public Integer deleteReservationCapacity(Map<String, Object> paramMap);
+	
 }

@@ -60,24 +60,37 @@ public class ReservationController {
 		return getSelectListResult(paramMap, list);
 	}
 	
-	@RequestMapping("/selectReservationCapacity.json")
-	public void selectReservationCapacity() {
-		log.info("requset");
-	}
-	
 	@RequestMapping("/insertReservationCapacity.json")
-	public void insertReservationCapacity() {
-		log.info("requset");
+	public @ResponseBody Map<String, Object> insertReservationCapacity(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = reservationDao.insertReservationCapacity(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("msg", "정한영 바보");
+		
+		return ret;
 	}
 	
 	@RequestMapping("/updateReservationCapacity.json")
-	public void updateReservationCapacity() {
-		log.info("requset");
+	public @ResponseBody Map<String, Object> updateReservationCapacity(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = reservationDao.updateReservationCapacity(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("msg", "한영아 힘드니? 어려운거 있으면 편하게 말해 ㅋ");
+		
+		return ret;
 	}
 
 	@RequestMapping("/deleteReservationCapacity.json")
-	public void deleteReservationCapacity() {
-		log.info("requset");
+	public @ResponseBody Map<String, Object> deleteReservationCapacity(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = reservationDao.deleteReservationCapacity(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("msg", "음... 뭐라고 쓰지? 내일 보자 ㅋ");
+		
+		return ret;
 	}
 	
 	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
@@ -98,12 +111,12 @@ public class ReservationController {
 		page.put("pageCount", pageCount);
 		page.put("listCount", listCount);
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("result", "ok");
-		result.put("list", list);
-		result.put("page", page);
-		result.put("msg", "");
-		return result;
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("list", list);
+		ret.put("page", page);
+		ret.put("msg", "");
+		return ret;
 	}
 	
 }

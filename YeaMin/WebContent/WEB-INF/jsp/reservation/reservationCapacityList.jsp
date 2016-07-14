@@ -75,18 +75,7 @@
         bindEvent: function(){
             // 검색
             axdom("#btn-search").bind("click", function(){
-            	var searchTarget = fnObj.search.target;
-            	var gridTarget = fnObj.grid.target;
-            	
-            	// trace(searchTarget.getParam());
-            	
-            	gridTarget.setList({
-				    ajaxUrl: "selectReservationCapacityList.json",
-				    ajaxPars: searchTarget.getParam(),
-				    onLoad: function(){
-				        // trace(this);
-				    }
-				});
+            	fnObj.search.submit();
             });
             
             // 등록
@@ -126,27 +115,18 @@
             			type: "Caution"
             		});
 				} else {
-					/* $.ajax({
-				        url : "/Yeamin/deleteReservationCapacity.json",
-				        type: "get",
-				        data : { "id" : $("#id").val() },
-				        success : function(responseData){
-				            $("#ajax").remove();
-				            var data = JSON.parse(responseData);
-				            if(!data){
-				                alert("존재하지 않는 ID입니다");
-				                return false;
-				            }
-				            var html = '';
-				            html += '<form class="form-signin" action="" id="ajax">';
-				            html += '이름<input type="text" class="form-control"  name="name" value="'+data.name+'">';
-				            html += '아이디<input type="text" class="form-control" name=id" value="'+data.id+'">';
-				            html += '이메일<input type="text" class="form-control"  name="email" value="'+data.email+'">';
-				            html += '비밀번호<input type="text" class="form-control" name="password" value="'+data.password+'">';
-				            html += '</form>';
-				            $("#container").after(html);
+					$.ajax({
+				        url: "/YeaMin/deleteReservationCapacity.json",
+				        type: "post",
+				        data: { "reservation_capacity_no" : selectedItem.item.reservation_capacity_no },
+				        success: function(data) {
+				        	var ret = JSON.parse(data);
+				        	
+				        	if(ret.result === "ok") {
+				        		fnObj.search.submit();
+				        	}
 				        }
-				    }); */
+				    });
 				}
             });
         },
@@ -183,6 +163,20 @@
                         ]}
                     ]
                 });
+            },
+            submit: function(){
+            	var searchTarget = fnObj.search.target;
+            	var gridTarget = fnObj.grid.target;
+            	
+            	// trace(searchTarget.getParam());
+            	
+            	gridTarget.setList({
+				    ajaxUrl: "selectReservationCapacityList.json",
+				    ajaxPars: searchTarget.getParam(),
+				    onLoad: function(){
+				        // trace(this);
+				    }
+				});
             }
         },
         grid: {
