@@ -29,5 +29,10 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<ReservationCapacityDto> selectReservationCapacityList(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_CAPACITY_LIST, paramMap);
 	}
-
+	
+	@Override
+	public ReservationCapacityDto selectReservationCapacity(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_RESERVATION_CAPACITY, paramMap);
+	}
+	
 }

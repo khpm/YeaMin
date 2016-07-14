@@ -41,10 +41,16 @@ public class ReservationController {
 		return mav;
 	}
 	
-	@RequestMapping("/reservationCapacityPopup.do")
-	public ModelAndView reservationCapacityPopup() {
-		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationCapacityPopup.jsp");
+	@RequestMapping("/reservationCapacityModal.do")
+	public ModelAndView reservationCapacityModal(@RequestParam Map<String, Object> paramMap) {
+//		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+//		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationCapacityModal.jsp");
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/reservation/reservationCapacityModal.jsp");
+		mav.addObject("modalType", paramMap.get("modalType"));
+		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
+			ReservationCapacityDto dto = reservationDao.selectReservationCapacity(paramMap);
+			mav.addObject("dto", dto);
+		}
 		return mav;
 	}
 	

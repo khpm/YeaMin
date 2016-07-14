@@ -91,7 +91,7 @@
             
             // 등록
             axdom("#btn-insert").bind("click", function(){
-            	fnObj.modal.open("insert", null);
+            	fnObj.modal.open("INSERT", null);
             });
             
             // 수정
@@ -99,15 +99,17 @@
             	var gridTarget = fnObj.grid.target;
 				var selectedItem = gridTarget.getSelectedItem();
 				
+				// trace(selectedItem);
+				
 				if(selectedItem.hasOwnProperty("error")) {
 					dialog.push({
             			top: "350",
             			title: "항목 미선택",
-            			body: "<b>경고</b> - 삭제할 항목을 선택해 주세요.",
+            			body: "<b>경고</b> - 수정할 항목을 선택해 주세요.",
             			type: "Caution"
             		});
 				} else {
-            		fnObj.modal.open("update", null);
+            		fnObj.modal.open("UPDATE", selectedItem.item);
             	}
             });
             
@@ -182,10 +184,10 @@
                     body: {
                         ondblclick: function(){
                         	// trace(this.index);
-                        	// trace(this.item);
+                        	trace(this.item);
                         	// trace(this.list);
                         	// trace(this.page);
-                            fnObj.modal.open("gridView", this.item);
+                            fnObj.modal.open("update", this.item);
                         }
                     },
                     page: {
@@ -207,10 +209,16 @@
                     displayLoading:true
                 });
             },
-            open: function(type, item){
+            open: function(modalType, item){
+            	var pars = "modalType=" + modalType;
+            	
+            	if(modalType === "UPDATE") {
+            		pars += ("&reservation_capacity_no=" + item.reservation_capacity_no);
+            	}
+            	
                 this.target.open({
-                    url:"modal.php",
-                    pars:"a=1&b=2&c=3".queryToObject(),
+                    url:"/YeaMin/reservationCapacityModal.do",
+                    pars: pars.queryToObject(),
                     top:100, width:600,
                     closeByEscKey:true
                 });

@@ -9,4 +9,6 @@ public interface ReservationDao {
 	
 	public List<ReservationCapacityDto> selectReservationCapacityList(Map<String, Object> paramMap);
 	
+	public ReservationCapacityDto selectReservationCapacity(Map<String, Object> paramMap);
+	
 }
