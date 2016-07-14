@@ -21,8 +21,4 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	public int userCount() {
-		return sqlSession.selectOne(QueryConstants.QID_SELECT_USER_COUNT);
-	}
-	
 }
