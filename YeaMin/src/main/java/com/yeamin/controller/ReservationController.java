@@ -34,10 +34,10 @@ public class ReservationController {
 		
 	}
 	
-	@RequestMapping("/reservationCapacityList.do")
-	public ModelAndView reservationCapacityList() {
+	@RequestMapping("/reservationCapacityContents.do")
+	public ModelAndView reservationCapacityContents() {
 		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationCapacityList.jsp");
+		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationCapacityContents.jsp");
 		return mav;
 	}
 	
