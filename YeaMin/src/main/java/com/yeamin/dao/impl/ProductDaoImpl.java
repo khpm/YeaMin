@@ -1,5 +1,6 @@
 package com.yeamin.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +32,17 @@ public class ProductDaoImpl implements ProductDao {
 			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE, paramMap);
 		}else if(paramMap.get("inputText2")!=""){
 			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2, paramMap);
+		}else{
+			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
+		}
+	}
+	
+	@Override
+	public List<ProductCategoryDto> deleteproductCategoryList(Map<String,Object> paramMap) {
+		int result=sqlSession.delete(QueryConstants.QID_DELETE_PRODUCT_CATEGORY, paramMap);
+		if(result==0){
+			System.out.println("삭제 실패");
+			return new ArrayList<ProductCategoryDto>();
 		}else{
 			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
 		}

@@ -35,7 +35,7 @@
 								            <button class="AXButton red" >
 								                <i class="axi axi-refresh">&nbsp;수정</i>
 								            </button>
-								            <button class="AXButton red" >
+								            <button class="AXButton red"  id="btn-delete">
 								                <i class="axi axi-minus">&nbsp;삭제</i>
 								            </button>
 							            </div>
@@ -78,6 +78,23 @@
 				    }
             	});
 			});
+			
+			//삭제
+			axdom("#btn-delete").bind("click",function(){
+				var searchTarget = fnObj.search.target;
+            	var gridTarget = fnObj.grid.target;
+            	//var checked=eval(Object.toJSON(gridTarget.getCheckedParams(0)));
+            	console.log(Object.toJSON(gridTarget.getCheckedParams(0)));
+            	//dialog.push(checked[0].value); //선택된 카테고리 번호 출력됨
+
+            	gridTarget.setList({
+            		ajaxUrl: "deleteproductCategoryList.json",
+				    ajaxPars: "no="+checked[0].value,
+				    onLoad: function(){
+				    	
+				    }
+            	});
+			});
 		},
 		search :{
 			target: new AXSearch(), //객체 생성
@@ -89,7 +106,7 @@
 	                mediaQuery: {
 	                    mx:{min:0, max:767}, dx:{min:767}
 	                },
-					onsubmit: function(){// 버튼을 눌렀을 경우 실행되는 함수
+					onsubmit: function(){
 						fnObj.submit();
 					},
 					rows:[
@@ -204,7 +221,7 @@
                         mx:{min:0, max:767}, dx:{min:767}
                     },
                     colGroup: [
-                        {key:"product_category_no", label:"번호", width:"30", align:"center", formatter:"checkbox"},
+                        {key:["product_category_no","product_category_cnt"], label:"번호", width:"30", align:"center", formatter:"checkbox"},
                         {key:"product_category_no", label:"카테고리 번호", width:"120", align:"center"},
                         {key:"product_category_name", label:"카테고리 이름", width:"200", align:"center"},
                         {key:"product_category_order_by", label:"카테고리 순서", width:"120", align:"center"},
