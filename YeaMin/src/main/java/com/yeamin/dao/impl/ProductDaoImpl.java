@@ -48,4 +48,19 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 	
+	@Override
+	public ProductCategoryDto selectProductCategory(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_DELETE_PRODUCT_CATEGORY_MODEL,paramMap);
+	}
+	
+	@Override
+	public Integer insertProductCategory(Map<String, Object> paramMap){
+		Integer result=sqlSession.insert(QueryConstants.QID_INSERT_PRODUCT_CATEGORY,paramMap);
+		if(result==0){
+			System.out.println("등록 실패");
+		}else{
+		}
+		return result;
+	}
+	
 }

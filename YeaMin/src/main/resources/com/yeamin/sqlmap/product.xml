@@ -37,6 +37,15 @@
 		y.PRODUCT_CATEGORY_NO=(SELECT m2.PRODUCT_CATEGORY_NO FROM YM_PRODUCT m2 WHERE m2.PRODUCT_NAME=#{inputText2})
 	</select>
 	
+	<!-- 상품 카테고리 MODEL 등록 -->
+	<select id="QID_DELETE_PRODUCT_CATEGORY_MODEL" resultType="ProductCategoryDto">
+		SELECT * FROM YM_PRODUCT_CATEGORY WHERE YM_PRODUCT_CATEGORY=#{ym_product_category_no}
+	</select>
+	
+	<!-- 상품 카테고리 등록 -->
+	<insert id="QID_INSERT_PRODUCT_CATEGORY">
+		insert into YM_PRODUCT_CATEGORY values(ym_product_category_no_seq.nextval,#{product_category_name},#{product_category_order_by})
+	</insert>
 	<!-- 상품 카테고리 삭제 -->
 	<delete id="QID_DELETE_PRODUCT_CATEGORY">
 		delete from YM_PRODUCT_CATEGORY where PRODUCT_CATEGORY_NO=#{no}

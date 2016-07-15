@@ -28,6 +28,7 @@ public class ProductController {
 	public ProductController() {
 		
 	}
+	//등록
 	@RequestMapping("/productCategoryList.do")
 	public ModelAndView productCategoryList(){
 		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
@@ -38,6 +39,39 @@ public class ProductController {
 	@RequestMapping("/selectproductCategoryList.json")
 	public @ResponseBody Map<String,Object> selectproductCategoryList(@RequestParam Map<String, Object> paramMap){
 		List<ProductCategoryDto> list=productDao.selectproductCategoryList(paramMap);
+		
+		return getSelectListResult(paramMap,list);
+	}
+	
+	//Model
+	@RequestMapping("/productCategoryModal.do")
+	public ModelAndView productCategoryModal(@RequestParam Map<String, Object> paramMap) {
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/product/productCategoryModal.jsp");
+		mav.addObject("modalType", paramMap.get("modalType"));
+		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
+			ProductCategoryDto dto = productDao.selectProductCategory(paramMap);
+			mav.addObject("dto", dto);
+		}
+		return mav;
+	}
+	
+	//등록
+	@RequestMapping("/insertProductCategory.json")
+	public @ResponseBody Map<String, Object> insertProductCategory(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = productDao.insertProductCategory(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		
+		return ret;
+	}
+	//수정
+	//@RequestMapping("/updateProductCategory.json")
+	
+	//삭제
+	@RequestMapping("/deleteproductCategoryList.json")
+	public @ResponseBody Map<String,Object> deleteproductCategoryList(@RequestParam Map<String, Object> paramMap){
+		List<ProductCategoryDto> list=productDao.deleteproductCategoryList(paramMap);
 		
 		return getSelectListResult(paramMap,list);
 	}

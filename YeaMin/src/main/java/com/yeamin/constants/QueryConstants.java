@@ -12,7 +12,9 @@ public class QueryConstants {
 	public final static String QID_SELECT_PRODUCT_CATEGORY_LIST_ONE = "product.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE";
 	public final static String QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2 = "product.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2";
 	public final static String QID_DELETE_PRODUCT_CATEGORY = "product.QID_DELETE_PRODUCT_CATEGORY";
-
+	public final static String QID_DELETE_PRODUCT_CATEGORY_MODEL = "product.QID_DELETE_PRODUCT_CATEGORY_MODEL";
+	public final static String QID_INSERT_PRODUCT_CATEGORY = "product.QID_INSERT_PRODUCT_CATEGORY";
+	
 	private QueryConstants() {
 		
 	}
