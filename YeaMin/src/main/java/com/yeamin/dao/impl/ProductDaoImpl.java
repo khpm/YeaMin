@@ -27,13 +27,13 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<ProductCategoryDto> selectproductCategoryList(Map<String, Object> paramMap) {
+	public List<ProductCategoryDto> selectproductCategoryContents(Map<String, Object> paramMap) {
 		if(paramMap.get("inputText")!="" && paramMap.get("inputText2")==""){
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE, paramMap);
+			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_CONTENTS_ONE, paramMap);
 		}else if(paramMap.get("inputText2")!=""){
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2, paramMap);
+			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_CONTENTS_ONE2, paramMap);
 		}else{
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
+			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_CONTENTS, paramMap);
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class ProductDaoImpl implements ProductDao {
 			System.out.println("삭제 실패");
 			return new ArrayList<ProductCategoryDto>();
 		}else{
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
+			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_CONTENTS, paramMap);
 		}
 	}
 	
@@ -58,6 +58,16 @@ public class ProductDaoImpl implements ProductDao {
 		Integer result=sqlSession.insert(QueryConstants.QID_INSERT_PRODUCT_CATEGORY,paramMap);
 		if(result==0){
 			System.out.println("등록 실패");
+		}else{
+		}
+		return result;
+	}
+	
+	@Override
+	public Integer updateProductCategory(Map<String, Object> paramMap){
+		Integer result=sqlSession.update(QueryConstants.QID_UPDATE_PRODUCT_CATEGORY,paramMap);
+		if(result==0){
+			System.out.println("수정 실패");
 		}else{
 		}
 		return result;

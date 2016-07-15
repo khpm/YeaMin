@@ -8,9 +8,10 @@ import com.yeamin.dto.ProductCategoryDto;
 
 public interface ProductDao {
 	
-	public List<ProductCategoryDto> selectproductCategoryList(Map<String,Object> paramMap);
+	public List<ProductCategoryDto> selectproductCategoryContents(Map<String,Object> paramMap);
 	public List<ProductCategoryDto> deleteproductCategoryList(Map<String,Object> paramMap);
 	public ProductCategoryDto selectProductCategory(Map<String, Object> paramMap);
 	public Integer insertProductCategory(Map<String, Object> paramMap);
+	public Integer updateProductCategory(Map<String, Object> paramMap);
 	
 }

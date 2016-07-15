@@ -29,17 +29,16 @@ public class ProductController {
 		
 	}
 	//등록
-	@RequestMapping("/productCategoryList.do")
-	public ModelAndView productCategoryList(){
+	@RequestMapping("/productCategoryContents.do")
+	public ModelAndView productCategoryContents(){
 		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/product/productCategoryList.jsp");
+		mav.addObject("contentViewName", "/WEB-INF/jsp/product/productCategoryContents.jsp");
 		return mav;
 	}
 	
-	@RequestMapping("/selectproductCategoryList.json")
-	public @ResponseBody Map<String,Object> selectproductCategoryList(@RequestParam Map<String, Object> paramMap){
-		List<ProductCategoryDto> list=productDao.selectproductCategoryList(paramMap);
-		
+	@RequestMapping("/selectproductCategoryContents.json")
+	public @ResponseBody Map<String,Object> selectproductCategoryContents(@RequestParam Map<String, Object> paramMap){
+		List<ProductCategoryDto> list=productDao.selectproductCategoryContents(paramMap);
 		return getSelectListResult(paramMap,list);
 	}
 	
@@ -65,8 +64,17 @@ public class ProductController {
 		
 		return ret;
 	}
+	
 	//수정
-	//@RequestMapping("/updateProductCategory.json")
+	@RequestMapping("/updateProductCategory.json")
+	public @ResponseBody Map<String, Object> updateProductCategory(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = productDao.updateProductCategory(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		
+		return ret;
+	}
 	
 	//삭제
 	@RequestMapping("/deleteproductCategoryList.json")

@@ -33,7 +33,7 @@
 								            	<i class="axi axi-add">&nbsp;등록</i>
 								            </button>
 								            <button class="AXButton red" >
-								                <i class="axi axi-refresh">&nbsp;수정</i>
+								                <i class="axi axi-refresh" id="btn-update">&nbsp;수정</i>
 								            </button>
 								            <button class="AXButton red"  id="btn-delete">
 								                <i class="axi axi-minus">&nbsp;삭제</i>
@@ -73,7 +73,7 @@
             	var gridTarget = fnObj.grid.target;
             	console.log(searchTarget.getParam());
             	gridTarget.setList({
-            		ajaxUrl: "selectproductCategoryList.json",
+            		ajaxUrl: "selectproductCategoryContents.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				    	
@@ -84,6 +84,24 @@
 			//등록
 			axdom("#btn-insert").bind("click",function(){
 				fnObj.modal.open("INSERT", null);
+			});
+			
+			//수정
+			axdom("#btn-update").bind("click",function(){
+				var gridTarget = fnObj.grid.target;
+				var selectedItem = gridTarget.getSelectedItem();
+				
+				 trace(selectedItem);
+				if(selectedItem.hasOwnProperty("error")) {
+					dialog.push({
+            			top: "350",
+            			title: "항목 미선택",
+            			body: "<b>경고</b> - 수정할 항목을 선택해 주세요.",
+            			type: "Caution"
+            		});
+				} else {
+            		fnObj.modal.open("UPDATE", selectedItem.item);
+            	}
 			});
 			
 			//삭제
@@ -165,15 +183,13 @@
 			submit: function(){
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
-            	
-            	// trace(searchTarget.getParam());
-            	
+            	console.log(searchTarget.getParam());
             	gridTarget.setList({
-				    ajaxUrl: "selectProductCategoryList.json",
+				    ajaxUrl: "selectproductCategoryContents.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				        // trace(this);
-				    }
+				    } 
 				});
             }
 		},

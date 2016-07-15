@@ -56,8 +56,6 @@
 				        	}
 				        }
 				    });
-		        	
-		        	fnObj.close();
 		        },
 		        update: function() {
 					var data = $("#form").serialize();
@@ -68,7 +66,7 @@
 				        data: data,
 				        success: function(data) {
 				        	var ret = JSON.parse(data);
-				        	
+				     		
 				        	if(ret.result === "ok") {
 				        		parent.fnObj.search.submit();
 				        		fnObj.close();
@@ -110,7 +108,7 @@
 		                                        <span class="th" style="min-width:100px;">카테고리 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	${dto.product_category_no}
-		                                        	<input type="hidden" name="dto.product_category_no" value="${dto.product_category_no}"/>
+		                                        	<input type="hidden" name="product_category_no" value="${dto.product_category_no}"/>
 		                                        </span>
 		                                    </label>
 		                                </div>
