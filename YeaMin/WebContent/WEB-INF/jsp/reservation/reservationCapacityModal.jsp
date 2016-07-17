@@ -58,8 +58,6 @@
 				        	}
 				        }
 				    });
-		        	
-		        	fnObj.close();
 		        },
 		        update: function() {
 					var data = $("#form").serialize();
