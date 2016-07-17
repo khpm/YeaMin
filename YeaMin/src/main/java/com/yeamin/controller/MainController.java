@@ -30,6 +30,13 @@ public class MainController {
 		
 	}
 	
+	@RequestMapping("/main.do")
+	public ModelAndView mainContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/mainContents.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/index.do")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
