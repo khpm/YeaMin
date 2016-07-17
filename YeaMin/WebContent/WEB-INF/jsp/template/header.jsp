@@ -25,12 +25,13 @@
                 <div class="ax-unit">
                     <ul class="ax-loginfo" id="ax-loginfo">
                         <c:if test="${user == null}">
-		                	 <li class="btns"><a href="#" class="AXButton" id="btn-login"><i class="axi axi-sign-in"></i> 로그인</a></li>
+		                	 <li class="btns"><a href="#" class="AXButton" id="btn-login"><i class="axi axi-ion-log-in"></i> 로그인</a></li>
+		                	 <li class="btns"><a href="#" class="AXButton" id="btn-regist"><i class="axi axi-ion-person-add"></i> 회원가입</a></li>
 	                	</c:if>
                         <c:if test="${user != null}">
                         	<li class="profile"><div class="photo"></div></li>
-                        	<li class="account"><a href="#ax">${user.user_name}</a></li>
-		                	<li class="btns"><a href="#" class="AXButton" id="btn-logout"><i class="axi axi-power-off"></i> 로그아웃</a></li>
+                        	<li class="account"><a href="#">${user.user_name}</a></li>
+		                	<li class="btns"><a href="#" class="AXButton" id="btn-logout"><i class="axi axi-ion-log-out"></i> 로그아웃</a></li>
 	                	</c:if>
                     </ul>
                     <div class="mx-loginfo"><a id="mx-loginfo-handle" class="mx-menu-button"><i class="axi axi-bars"></i></a></div>
@@ -44,12 +45,17 @@
 <script type="text/javascript">
 	var fnHeaderObj = {
 		pageStart: function(){
-            this.modal.bind();
+			this.registModal.bind();
+            this.loginModal.bind();
             this.bindEvent();
         },
         bindEvent: function(){
+        	axdom("#btn-regist").bind("click", function(){
+            	fnHeaderObj.registModal.open();
+            });
+        	
             axdom("#btn-login").bind("click", function(){
-            	fnHeaderObj.modal.open();
+            	fnHeaderObj.loginModal.open();
             });
             
             axdom("#btn-logout").bind("click", function(){
@@ -67,7 +73,29 @@
 			    });
             });
         },
-        modal: {
+        registModal: {
+            target: new AXModal(),
+            get: function(){ return this.target },
+            bind: function(){
+                window.registModal = this.target;
+                this.target.setConfig({
+                    windowID:"myModalContainer",
+                    mediaQuery: {
+                        mx:{min:0, max:767}, dx:{min:767}
+                    },
+                    displayLoading:true
+                });
+            },
+            open: function(){
+                this.target.open({
+                    url:"/YeaMin/registModal.do",
+                    pars: "",
+                    top:100, width:600,
+                    closeByEscKey:true
+                });
+            }
+        },
+        loginModal: {
             target: new AXModal(),
             get: function(){ return this.target },
             bind: function(){
