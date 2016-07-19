@@ -42,7 +42,7 @@
 					
 				},
 		        pageResize: function(){
-		            parent.loginModal.resize();
+		            parent.userLoginModal.resize();
 		        },
 		        login: function() {
 		        	var data = $("#form").serialize();
@@ -65,7 +65,7 @@
 				    });
 		        },
 		        close: function() {
-		        	parent.loginModal.close();
+		        	parent.userLoginModal.close();
 		        }
 			};
 		    axdom(window).ready(fnObj.pageStart);

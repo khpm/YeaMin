@@ -46,7 +46,7 @@
 	var fnHeaderObj = {
 		pageStart: function(){
 			this.registModal.bind();
-            this.loginModal.bind();
+            this.userLoginModal.bind();
             this.bindEvent();
         },
         bindEvent: function(){
@@ -55,7 +55,7 @@
             });
         	
             axdom("#btn-login").bind("click", function(){
-            	fnHeaderObj.loginModal.open();
+            	fnHeaderObj.userLoginModal.open();
             });
             
             axdom("#btn-logout").bind("click", function(){
@@ -95,11 +95,11 @@
                 });
             }
         },
-        loginModal: {
+        userLoginModal: {
             target: new AXModal(),
             get: function(){ return this.target },
             bind: function(){
-                window.loginModal = this.target;
+                window.userLoginModal = this.target;
                 this.target.setConfig({
                     windowID:"myModalContainer",
                     mediaQuery: {
@@ -110,7 +110,7 @@
             },
             open: function(){
                 this.target.open({
-                    url:"/YeaMin/loginModal.do",
+                    url:"/YeaMin/userLoginModal.do",
                     pars: "",
                     top:100, width:600,
                     closeByEscKey:true

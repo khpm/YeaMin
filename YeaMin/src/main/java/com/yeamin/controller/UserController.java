@@ -30,9 +30,9 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("/loginModal.do")
-	public ModelAndView loginModal() {
-		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/loginModal.jsp");
+	@RequestMapping("/userLoginModal.do")
+	public ModelAndView userLoginModal() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/userLoginModal.jsp");
 		return mav;
 	}
 	
