@@ -45,13 +45,13 @@
 <script type="text/javascript">
 	var fnHeaderObj = {
 		pageStart: function(){
-			this.registModal.bind();
+			this.userInsertModal.bind();
             this.userLoginModal.bind();
             this.bindEvent();
         },
         bindEvent: function(){
         	axdom("#btn-regist").bind("click", function(){
-            	fnHeaderObj.registModal.open();
+            	fnHeaderObj.userInsertModal.open();
             });
         	
             axdom("#btn-login").bind("click", function(){
@@ -60,7 +60,7 @@
             
             axdom("#btn-logout").bind("click", function(){
             	$.ajax({
-			        url: "/YeaMin/logout.do",
+			        url: "/YeaMin/userLogout.do",
 			        type: "post",
 			        data: "",
 			        success: function(data) {
@@ -73,11 +73,11 @@
 			    });
             });
         },
-        registModal: {
+        userInsertModal: {
             target: new AXModal(),
             get: function(){ return this.target },
             bind: function(){
-                window.registModal = this.target;
+                window.userInsertModal = this.target;
                 this.target.setConfig({
                     windowID:"myModalContainer",
                     mediaQuery: {
@@ -88,7 +88,7 @@
             },
             open: function(){
                 this.target.open({
-                    url:"/YeaMin/registModal.do",
+                    url:"/YeaMin/userInsertModal.do",
                     pars: "",
                     top:100, width:600,
                     closeByEscKey:true

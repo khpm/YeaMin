@@ -68,8 +68,8 @@ public class UserController {
 		return ret;
 	}
 	
-	@RequestMapping("/logout.do")
-	public @ResponseBody Map<String, Object> logout(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
+	@RequestMapping("/userLogout.do")
+	public @ResponseBody Map<String, Object> userLogout(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
 		String msg = "";
 		
