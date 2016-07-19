@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>0.8</zoom>
 	<x>0</x>
-	<y>0</y>
+	<y>99</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -89,7 +89,7 @@
 				<is_open_after_saved>true</is_open_after_saved>
 			</export_html_setting>
 			<export_image_setting>
-				<output_file_path></output_file_path>
+				<output_file_path>C:\Users\JHY\Desktop\database_erd.png</output_file_path>
 				<category_dir_path></category_dir_path>
 				<with_category_image>true</with_category_image>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-06-10 20:09:48</creation_date>
-			<updated_date>2016-07-08 19:46:04</updated_date>
+			<updated_date>2016-07-19 11:53:43</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1830,7 +1830,7 @@
 			<connections>
 				<relation>
 					<id>1</id>
-					<source>6</source>
+					<source>4</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1841,7 +1841,7 @@
 							<g>0</g>
 							<b>0</b>
 						</color>
-					<child_cardinality>1..n</child_cardinality>
+					<child_cardinality>1</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
 					<name></name>
@@ -1852,7 +1852,7 @@
 				</relation>
 				<relation>
 					<id>2</id>
-					<source>4</source>
+					<source>6</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1883,7 +1883,7 @@
 				<normal_column>
 					<id>22</id>
 					<referenced_column>36</referenced_column>
-					<relation>1</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1917,7 +1917,7 @@
 				<normal_column>
 					<id>23</id>
 					<referenced_column>25</referenced_column>
-					<relation>2</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3287,7 +3287,52 @@
 	</test_data_list>
 	<sequence_set>
 		<sequence>
+			<name>YM_BOARD_NO_SEQ</name>
+			<schema></schema>
+			<increment>1</increment>
+			<min_value>1</min_value>
+			<max_value>100000</max_value>
+			<start>1</start>
+			<cache></cache>
+			<nocache>false</nocache>
+			<cycle>false</cycle>
+			<order>false</order>
+			<description></description>
+			<data_type></data_type>
+			<decimal_size>0</decimal_size>
+		</sequence>
+		<sequence>
+			<name>YM_PRODUCT_CATEGORY_NO_SEQ</name>
+			<schema></schema>
+			<increment>1</increment>
+			<min_value>1</min_value>
+			<max_value>100000</max_value>
+			<start>1</start>
+			<cache></cache>
+			<nocache>false</nocache>
+			<cycle>false</cycle>
+			<order>false</order>
+			<description></description>
+			<data_type></data_type>
+			<decimal_size>0</decimal_size>
+		</sequence>
+		<sequence>
 			<name>YM_PRODUCT_NO_SEQ</name>
+			<schema></schema>
+			<increment>1</increment>
+			<min_value>1</min_value>
+			<max_value>100000</max_value>
+			<start>1</start>
+			<cache></cache>
+			<nocache>false</nocache>
+			<cycle>false</cycle>
+			<order>false</order>
+			<description></description>
+			<data_type></data_type>
+			<decimal_size>0</decimal_size>
+		</sequence>
+		<sequence>
+			<name>YM_RESERVATION_CAPACITY_NO_SEQ</name>
 			<schema></schema>
 			<increment>1</increment>
 			<min_value>1</min_value>
@@ -3333,51 +3378,6 @@
 		</sequence>
 		<sequence>
 			<name>YM_USER_NO_SEQ</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value>1</min_value>
-			<max_value>100000</max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>YM_PRODUCT_CATEGORY_NO_SEQ</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value>1</min_value>
-			<max_value>100000</max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>YM_BOARD_NO_SEQ</name>
-			<schema></schema>
-			<increment>1</increment>
-			<min_value>1</min_value>
-			<max_value>100000</max_value>
-			<start>1</start>
-			<cache></cache>
-			<nocache>false</nocache>
-			<cycle>false</cycle>
-			<order>false</order>
-			<description></description>
-			<data_type></data_type>
-			<decimal_size>0</decimal_size>
-		</sequence>
-		<sequence>
-			<name>YM_RESERVATION_CAPACITY_NO_SEQ</name>
 			<schema></schema>
 			<increment>1</increment>
 			<min_value>1</min_value>
