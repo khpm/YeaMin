@@ -8,4 +8,6 @@ public interface UserDao {
 	
 	public UserDto selectUser(Map<String, Object> paramMap);
 	
+	public Integer insertUser(Map<String, Object> paramMap);
+	
 }

@@ -10,4 +10,19 @@
 			AND user_id = #{user_id}
 		</where>
 	</select>
+	
+	<insert id="QID_INSERT_USER">
+		INSERT INTO ym_user
+		VALUES(
+			ym_user_no_seq.nextval,
+			#{user_id},
+			#{user_pw},
+			#{user_name},
+			#{user_email},
+			#{user_hp},
+			#{user_birth_day},
+			#{user_gender},
+			#{is_admin}
+		)
+	</insert>
 </mapper>

@@ -28,4 +28,7 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne(QueryConstants.QID_SELECT_USER, paramMap);
 	}
 	
+	public Integer insertUser(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_INSERT_USER, paramMap);
+	}
 }

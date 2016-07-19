@@ -36,6 +36,12 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("/userInsertModal.do")
+	public ModelAndView userInsertModal() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/userInsertModal.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/userLogin.do")
 	public @ResponseBody Map<String, Object> userLogin(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
@@ -60,6 +66,20 @@ public class UserController {
 				session.setAttribute("user", dto);
 			}
 		}
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", result);
+		ret.put("msg", msg);
+		
+		return ret;
+	}
+	
+	@RequestMapping("/userInsert.do")
+	public @ResponseBody Map<String, Object> userInsert(@RequestParam Map<String, Object> paramMap) {
+		String result = "ok";
+		String msg = "";
+		
+		Integer sqlResult = userDao.insertUser(paramMap);
 		
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", result);
