@@ -44,7 +44,7 @@
 		        pageResize: function(){
 		            parent.userLoginModal.resize();
 		        },
-		        login: function() {
+		        userLogin: function() {
 		        	var data = $("#form").serialize();
 		        	
 		        	$.ajax({
@@ -131,7 +131,7 @@
 		        <div class="ax-wrap">
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
-		                	<button type="button" class="AXButton" onclick="fnObj.login()">로그인</button>
+		                	<button type="button" class="AXButton" onclick="fnObj.userLogin()">로그인</button>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>
 		            </div>
