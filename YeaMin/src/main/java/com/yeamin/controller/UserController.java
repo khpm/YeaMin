@@ -36,8 +36,8 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("/login.do")
-	public @ResponseBody Map<String, Object> login(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
+	@RequestMapping("/userLogin.do")
+	public @ResponseBody Map<String, Object> userLogin(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
 		String msg = "";
 		
