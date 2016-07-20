@@ -1,7 +1,5 @@
 package com.yeamin.dto;
 
-import java.sql.Timestamp;
-
 public class UserDto {
 
 	private Integer user_no;
@@ -16,7 +14,7 @@ public class UserDto {
 
 	private String user_hp;
 
-	private Timestamp user_birth_day;
+	private String user_birth_day;
 
 	private String user_gender;
 
@@ -74,11 +72,11 @@ public class UserDto {
 		this.user_hp = user_hp;
 	}
 
-	public Timestamp getUser_birth_day() {
+	public String getUser_birth_day() {
 		return user_birth_day;
 	}
 
-	public void setUser_birth_day(Timestamp user_birth_day) {
+	public void setUser_birth_day(String user_birth_day) {
 		this.user_birth_day = user_birth_day;
 	}
 
