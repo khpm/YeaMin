@@ -81,7 +81,7 @@
 		    <div class="ax-modal-header">
 		        <div class="ax-col-12">
 		            <div class="ax-unit">
-		                <h1>회원 정보
+		                <h1>회원 관리
 		                	<c:if test="${modalType eq 'INSERT'}">
 		                		 - 등록
 		                	</c:if>
