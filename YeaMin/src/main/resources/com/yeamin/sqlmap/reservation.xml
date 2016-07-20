@@ -32,8 +32,12 @@
 	</select>
 	
 	<insert id="QID_INSERT_RESERVATION_CAPACITY">
-		INSERT INTO ym_reservation_capacity
-		VALUES (
+		INSERT INTO ym_reservation_capacity (
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
+		) VALUES (
 			ym_reservation_capacity_no_seq.nextval,
 			#{reservation_capacity_dw},
 			#{reservation_capacity_time},
