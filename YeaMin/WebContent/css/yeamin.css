@@ -1,8 +1,9 @@
 @CHARSET "UTF-8";
 
 .ret-msg {
+	width: 100%;
 	text-align: center;
 	color: red;
 	font-size: 15;
-	display: none;
+	display: inline; /* display: inline-block; */
 }

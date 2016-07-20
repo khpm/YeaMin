@@ -38,10 +38,10 @@
 							var ret = JSON.parse(data);
 				        	
 				        	if(ret.result === "ok") {
-				        		$("#userIdDuplicationCheckMsg").hide();
+				        		$("#userIdDuplicationCheckRetMsg").hide();
 				        	} else if(ret.result === "error") {
-				        		$("#userIdDuplicationCheckMsg").show();
-				        		$("#userIdDuplicationCheckMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+				        		$("#userIdDuplicationCheckRetMsg").show();
+				        		$("#userIdDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
 				        	}
 				        }
 				    });
@@ -122,7 +122,7 @@
 		                                        <span class="th" style="min-width:100px;">아이디</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="" class="AXInput av-required W150" />
-		                                        	<span id="userIdDuplicationCheckMsg" class="ret-msg"></span>
+		                                        	<span id="userIdDuplicationCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
