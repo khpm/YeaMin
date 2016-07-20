@@ -36,7 +36,7 @@
 				// $("#reservation_capacity_time").bindDateTime();
 			},
 	        pageResize: function(){
-	        	parent.myModal.resize();
+	        	parent.reservationCapacityModal.resize();
 	        },
 	        insert: function() {
 	        	var data = $("#form").serialize();
@@ -140,7 +140,7 @@
 		                                <div class="group-clear"></div>
 		                            </div>
 		                            <div class="item-group" style="">
-		                                <div class="item fullWidth">
+		                                <div class="item">
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">예약 수용 인원 수</span>
 		                                        <span class="td inputText" style="" title="">
