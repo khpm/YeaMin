@@ -30,8 +30,9 @@
 	                	</c:if>
                         <c:if test="${user != null}">
                         	<li class="profile"><div class="photo"></div></li>
-                        	<li class="account"><a href="#">${user.user_name}</a></li>
+                        	<li class="account">${user.user_name}</li>
 		                	<li class="btns"><a href="#" class="AXButton" id="btn-userLogout"><i class="axi axi-ion-log-out"></i> 로그아웃</a></li>
+		                	<li class="btns"><a href="#" class="AXButton" id="btn-myPage"><i class="axi axi-ion-log-out"></i> 마이페이지</a></li>
 	                	</c:if>
                     </ul>
                     <div class="mx-loginfo"><a id="mx-loginfo-handle" class="mx-menu-button"><i class="axi axi-bars"></i></a></div>
