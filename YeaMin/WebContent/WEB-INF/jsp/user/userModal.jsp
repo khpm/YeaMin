@@ -47,18 +47,18 @@
 	        pageResize: function(){
 	            parent.userModal.resize();
 	        },
-	        userInsert: function() {
+	        update: function() {
 	        	var data = $("#form").serialize();
 	        	
 	        	$.ajax({
-			        url: "/YeaMin/insertUser.json",
+			        url: "/YeaMin/updateUser.json",
 			        type: "post",
 			        data: data,
 			        success: function(data) {
 						var ret = JSON.parse(data);
 			        	
 			        	if(ret.result === "ok") {
-			        		parent.fnHeaderObj.goMain();
+			        		parent.fnObj.search.submit();
 			        		fnObj.close();
 			        	} else if(ret.result === "error") {
 			        		fnObj.pageResize();
@@ -102,6 +102,7 @@
 		
 		                    <form id="form" method="get" onsubmit="return false;">
 		                        <div class="ax-rwd-table">
+		                        	<input type="hidden" name="user_no" value="${dto.user_no}"/>
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
