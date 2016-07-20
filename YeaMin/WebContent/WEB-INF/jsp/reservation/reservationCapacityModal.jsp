@@ -85,7 +85,14 @@
 		    <div class="ax-modal-header">
 		        <div class="ax-col-12">
 		            <div class="ax-unit">
-		                <h1>시간 예약 관리</h1>
+		                <h1>예약 시간 관리
+		                	<c:if test="${modalType eq 'INSERT'}">
+		                		 - 등록
+		                	</c:if>
+		                	<c:if test="${modalType eq 'UPDATE'}">
+		                		 - 수정
+		                	</c:if>
+		                </h1>
 		                <p class="desc">컨텐츠 상세 설명을 넣어주세요.</p>
 		            </div>
 		        </div>
