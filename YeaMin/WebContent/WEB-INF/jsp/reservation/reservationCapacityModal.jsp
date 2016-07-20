@@ -73,7 +73,7 @@
 			    });
 	        },
 	        close: function() {
-	        	parent.myModal.close();
+	        	parent.reservationCapacityModal.close();
 	        }
 		};
 	    axdom(window).ready(fnObj.pageStart);
