@@ -54,7 +54,7 @@
 			<if test="user_no != null and user_no != ''">
 				AND user_no = #{user_no}
 			</if>
-			<if test="user_gender != null and user_gender != ''">
+			<if test="user_id != null and user_id != ''">
 				AND user_id = #{user_id}
 			</if>
 		</where>
