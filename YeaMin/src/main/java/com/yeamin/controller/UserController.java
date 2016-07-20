@@ -1,5 +1,6 @@
 package com.yeamin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.UserDao;
 import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
@@ -83,16 +85,6 @@ public class UserController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
-	@RequestMapping("/userInsert.json")
-	public @ResponseBody Map<String, Object> userInsert(@RequestParam Map<String, Object> paramMap) {
-		String result = "ok";
-		String msg = "";
-		
-		Integer sqlResult = userDao.insertUser(paramMap);
-		
-		return YmUtil.gerResponseRetMap(result, msg);
-	}
-	
 	@RequestMapping("/userIdDuplicationCheck.json")
 	public @ResponseBody Map<String, Object> userIdDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
 		String result = "";
@@ -107,6 +99,59 @@ public class UserController {
 			result = "error";
 			msg = "중복된 아이디입니다.";
 		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
+	@RequestMapping("/userContents.do")
+	public ModelAndView userContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/user/userContents.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/selectUserList.json")
+	public @ResponseBody Map<String, Object> selectUserList(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<UserDto> list = userDao.selectUserList(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
+	
+	@RequestMapping("/insertUser.json")
+	public @ResponseBody Map<String, Object> insertUser(@RequestParam Map<String, Object> paramMap) {
+		String result = "ok";
+		String msg = "";
+		
+		Integer sqlResult = userDao.insertUser(paramMap);
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
+	@RequestMapping("/updateUser.json")
+	public @ResponseBody Map<String, Object> updateUser(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer sqlResult = userDao.updateUser(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+
+	@RequestMapping("/deleteUser.json")
+	public @ResponseBody Map<String, Object> deleteUser(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer sqlResult = userDao.deleteUser(paramMap);
+		
+		result = "ok";
 		
 		return YmUtil.gerResponseRetMap(result, msg);
 	}

@@ -18,7 +18,7 @@ var topMenu_data = [
 	        {_id: "m0303", label: "통계", url: "#ax"}
 	    ]
     },
-    {_id: "m04", label: "회원 관리", url: "content-2.html"}
+    {_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"}
 ];
 
 var sideMenu_data = [

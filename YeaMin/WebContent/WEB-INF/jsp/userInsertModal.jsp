@@ -72,7 +72,7 @@
 	        	var data = $("#form").serialize();
 	        	
 	        	$.ajax({
-			        url: "/YeaMin/userInsert.json",
+			        url: "/YeaMin/insertUser.json",
 			        type: "post",
 			        data: data,
 			        success: function(data) {

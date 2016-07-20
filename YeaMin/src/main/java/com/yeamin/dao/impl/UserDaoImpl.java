@@ -1,5 +1,6 @@
 package com.yeamin.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -23,12 +24,30 @@ public class UserDaoImpl implements UserDao {
 	public UserDaoImpl() {
 		
 	}
-	
+
+	@Override
+	public List<UserDto> selectUserList(Map<String, Object> paramMap) {
+		return sqlSession.selectList(QueryConstants.QID_SELECT_USER_LIST, paramMap);
+	}
+
+	@Override
 	public UserDto selectUser(Map<String, Object> paramMap) {
 		return sqlSession.selectOne(QueryConstants.QID_SELECT_USER, paramMap);
 	}
-	
+
+	@Override
 	public Integer insertUser(Map<String, Object> paramMap) {
-		return sqlSession.selectOne(QueryConstants.QID_INSERT_USER, paramMap);
+		return sqlSession.insert(QueryConstants.QID_INSERT_USER, paramMap);
 	}
+
+	@Override
+	public Integer updateUser(Map<String, Object> paramMap) {
+		return sqlSession.update(QueryConstants.QID_UPDATE_USER, paramMap);
+	}
+
+	@Override
+	public Integer deleteUser(Map<String, Object> paramMap) {
+		return sqlSession.delete(QueryConstants.QID_DELETE_USER, paramMap);
+	}
+	
 }
