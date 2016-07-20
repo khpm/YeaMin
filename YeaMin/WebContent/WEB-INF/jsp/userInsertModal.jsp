@@ -56,8 +56,8 @@
 				// 성별
 				$("#user_gender").bindSegment({
 					options:[
-						{optionValue:"F", optionText:"남자"},
-						{optionValue:"M", optionText:"여자"}
+						{optionValue:"M", optionText:"남자"},
+						{optionValue:"F", optionText:"여자"}
 					], 
 					onChange:function(){
 						//this.targetID, this.options, this.selectedIndex, this.selectedOption
