@@ -1,6 +1,5 @@
 package com.yeamin.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yeamin.dao.UserDao;
 import com.yeamin.dto.UserDto;
+import com.yeamin.util.YmUtil;
 
 @Controller
 public class UserController {
@@ -67,11 +67,7 @@ public class UserController {
 			}
 		}
 		
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", result);
-		ret.put("msg", msg);
-		
-		return ret;
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 	@RequestMapping("/userInsert.json")
@@ -81,26 +77,20 @@ public class UserController {
 		
 		Integer sqlResult = userDao.insertUser(paramMap);
 		
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", result);
-		ret.put("msg", msg);
-		
-		return ret;
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 	@RequestMapping("/userLogout.json")
 	public @ResponseBody Map<String, Object> userLogout(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
-		String result = "ok";
+		String result = "";
 		String msg = "";
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("user");
 		
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", result);
-		ret.put("msg", msg);
-		
-		return ret;
+		result = "ok";
+				
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 	@RequestMapping("/userIdDuplicationCheck.json")
@@ -118,11 +108,7 @@ public class UserController {
 			msg = "중복된 아이디입니다.";
 		}
 		
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", result);
-		ret.put("msg", msg);
-		
-		return ret;
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 }
