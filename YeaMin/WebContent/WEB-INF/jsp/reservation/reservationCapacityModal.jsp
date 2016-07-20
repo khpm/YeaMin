@@ -105,6 +105,7 @@
 		                <div class="ax-col-12">
 		
 		                    <form id="form" method="get" onsubmit="return false;">
+		                    	<input type="hidden" name="reservation_capacity_no" value="${dto.reservation_capacity_no}"/>
 		                        <div class="ax-rwd-table">
 									<div class="item-group" style="">
 		                                <div class="item">
@@ -112,7 +113,6 @@
 		                                        <span class="th" style="min-width:100px;">예약 수용 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            ${dto.reservation_capacity_no}
-		                                        	<input type="hidden" name="reservation_capacity_no" value="${dto.reservation_capacity_no}"/>
 		                                        </span>
 		                                    </label>
 		                                </div>

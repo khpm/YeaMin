@@ -101,8 +101,9 @@
 		                <div class="ax-col-12">
 		
 		                    <form id="form" method="get" onsubmit="return false;">
+		                    	<input type="hidden" name="user_no" value="${dto.user_no}"/>
+	                        	<input type="hidden" name="is_admin" value="N"/>
 		                        <div class="ax-rwd-table">
-		                        	<input type="hidden" name="user_no" value="${dto.user_no}"/>
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
@@ -187,7 +188,6 @@
 		                                <div class="item-clear"></div>
 		                                <div class="group-clear"></div>
 		                            </div>
-		                            <input type="hidden" id="is_admin" name="is_admin" value="N"/>
 		                        </div>
 		                    </form>
 		
