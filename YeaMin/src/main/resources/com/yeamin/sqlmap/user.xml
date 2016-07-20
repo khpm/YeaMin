@@ -5,13 +5,11 @@
 		SELECT
 			user_no,
 			user_id,
-			user_pw,
 			user_name,
 			user_email,
 			user_hp,
-			TO_DATE(user_birth_day, 'YYYY-MM-DD'),
-			user_gender,
-			is_admin
+			TO_CHAR( user_birth_day, 'YYYY-MM-DD' ) AS user_birth_day,
+			user_gender
 		FROM
 			ym_user
 		<where>

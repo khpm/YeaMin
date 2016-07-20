@@ -236,13 +236,13 @@
                     colGroup: [
                         {key:"user_no", label:"사용자 번호", width:"200", align:"center"},
                         {key:"user_id", label:"사용자 아이디", width:"200", align:"center"},
-                        {key:"user_pw", label:"사용자 비밀번호", width:"200", align:"center"},
                         {key:"user_name", label:"사용자 이름", width:"200", align:"center"},
                         {key:"user_email", label:"사용자 이메일", width:"200", align:"center"},
                         {key:"user_hp", label:"사용자 핸드폰 번호", width:"200", align:"center"},
                         {key:"user_birth_day", label:"사용자 생년월일", width:"200", align:"center"},
-                        {key:"user_gender", label:"사용자 성별", width:"200", align:"center"},
-                        {key:"is_admin", label:"관리자 여부", width:"200", align:"center"}
+                        {key:"user_gender", label:"사용자 성별", width:"200", align:"center", formatter: function(){
+                            return (this.item.user_gender === "M" ? "남자" : "여자");
+                        }}
                     ],
                     body: {
                         ondblclick: function(){
