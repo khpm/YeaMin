@@ -30,9 +30,6 @@
 												</button>
 											</div>
 											<div class="right">
-												<button type="button" class="AXButton Blue" id="btn-insert">
-													<i class="axi axi-add"></i> 등록
-												</button>
 												<button type="button" class="AXButton Blue" id="btn-update">
 													<i class="axi axi-edit"></i> 수정
 												</button>
@@ -79,11 +76,6 @@
             	fnObj.search.submit();
             });
             
-            // 등록
-            axdom("#btn-insert").bind("click", function(){
-            	fnObj.modal.open("INSERT", null);
-            });
-            
             // 수정
             axdom("#btn-update").bind("click", function(){
             	var gridTarget = fnObj.grid.target;
@@ -120,7 +112,7 @@
 					data[fnObj.primaryKey] = selectedItem.item[fnObj.primaryKey];
 					
 					$.ajax({
-				        url: "/YeaMin/deleteReservationCapacity.json",
+				        url: "/YeaMin/deleteUser.json",
 				        type: "post",
 				        data: data,
 				        success: function(data) {
@@ -263,7 +255,7 @@
             target: new AXModal(),
             get: function(){ return this.target },
             bind: function(){
-                window.reservationCapacityModal = this.target;
+                window.userModal = this.target;
                 this.target.setConfig({
                     windowID:"myModalContainer",
                     mediaQuery: {
@@ -280,7 +272,7 @@
             	}
             	
                 this.target.open({
-                    url:"/YeaMin/reservationCapacityModal.do",
+                    url:"/YeaMin/userModal.do",
                     pars: pars.queryToObject(),
                     top:100, width:600,
                     closeByEscKey:true

@@ -5,11 +5,13 @@
 		SELECT
 			user_no,
 			user_id,
+			user_pw,
 			user_name,
 			user_email,
 			user_hp,
 			TO_CHAR( user_birth_day, 'YYYY-MM-DD' ) AS user_birth_day,
-			user_gender
+			user_gender,
+			is_admin
 		FROM
 			ym_user
 		<where>
@@ -36,11 +38,24 @@
 
 	<select id="QID_SELECT_USER" resultType="UserDto">
 		SELECT
-			*
+			user_no,
+			user_id,
+			user_pw,
+			user_name,
+			user_email,
+			user_hp,
+			TO_CHAR( user_birth_day, 'YYYY-MM-DD' ) AS user_birth_day,
+			user_gender,
+			is_admin
 		FROM
 			ym_user
 		<where>
-			AND user_id = #{user_id}
+			<if test="user_no != null and user_no != ''">
+				AND user_no = #{user_no}
+			</if>
+			<if test="user_gender != null and user_gender != ''">
+				AND user_id = #{user_id}
+			</if>
 		</where>
 	</select>
 	

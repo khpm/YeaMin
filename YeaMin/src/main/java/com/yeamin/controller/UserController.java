@@ -110,6 +110,19 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("/userModal.do")
+	public ModelAndView userModal(@RequestParam Map<String, Object> paramMap) {
+//		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+//		mav.addObject("contentViewName", "/WEB-INF/jsp/user/userModal.jsp");
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/user/userModal.jsp");
+		mav.addObject("modalType", paramMap.get("modalType"));
+		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
+			UserDto dto = userDao.selectUser(paramMap);
+			mav.addObject("dto", dto);
+		}
+		return mav;
+	}
+	
 	@RequestMapping("/selectUserList.json")
 	public @ResponseBody Map<String, Object> selectUserList(@RequestParam Map<String, Object> paramMap) {
 		String result = "";
