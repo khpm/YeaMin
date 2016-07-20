@@ -70,16 +70,6 @@ public class UserController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
-	@RequestMapping("/userInsert.json")
-	public @ResponseBody Map<String, Object> userInsert(@RequestParam Map<String, Object> paramMap) {
-		String result = "ok";
-		String msg = "";
-		
-		Integer sqlResult = userDao.insertUser(paramMap);
-		
-		return YmUtil.gerResponseRetMap(result, msg);
-	}
-	
 	@RequestMapping("/userLogout.json")
 	public @ResponseBody Map<String, Object> userLogout(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "";
@@ -90,6 +80,16 @@ public class UserController {
 		
 		result = "ok";
 				
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
+	@RequestMapping("/userInsert.json")
+	public @ResponseBody Map<String, Object> userInsert(@RequestParam Map<String, Object> paramMap) {
+		String result = "ok";
+		String msg = "";
+		
+		Integer sqlResult = userDao.insertUser(paramMap);
+		
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
