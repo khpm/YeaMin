@@ -48,7 +48,7 @@
 		        	var data = $("#form").serialize();
 		        	
 		        	$.ajax({
-				        url: "/YeaMin/userLogin.do",
+				        url: "/YeaMin/userLogin.json",
 				        type: "post",
 				        data: data,
 				        success: function(data) {

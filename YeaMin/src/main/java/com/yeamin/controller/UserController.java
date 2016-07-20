@@ -42,7 +42,7 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("/userLogin.do")
+	@RequestMapping("/userLogin.json")
 	public @ResponseBody Map<String, Object> userLogin(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
 		String msg = "";
@@ -74,7 +74,7 @@ public class UserController {
 		return ret;
 	}
 	
-	@RequestMapping("/userInsert.do")
+	@RequestMapping("/userInsert.json")
 	public @ResponseBody Map<String, Object> userInsert(@RequestParam Map<String, Object> paramMap) {
 		String result = "ok";
 		String msg = "";
@@ -88,13 +88,35 @@ public class UserController {
 		return ret;
 	}
 	
-	@RequestMapping("/userLogout.do")
+	@RequestMapping("/userLogout.json")
 	public @ResponseBody Map<String, Object> userLogout(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
 		String msg = "";
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("user");
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", result);
+		ret.put("msg", msg);
+		
+		return ret;
+	}
+	
+	@RequestMapping("/userIdDuplicationCheck.json")
+	public @ResponseBody Map<String, Object> userIdDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		UserDto dto = userDao.selectUser(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 아이디입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 아이디입니다.";
+		}
 		
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", result);

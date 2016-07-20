@@ -60,7 +60,7 @@
             
             axdom("#btn-userLogout").bind("click", function(){
             	$.ajax({
-			        url: "/YeaMin/userLogout.do",
+			        url: "/YeaMin/userLogout.json",
 			        type: "post",
 			        data: "",
 			        success: function(data) {

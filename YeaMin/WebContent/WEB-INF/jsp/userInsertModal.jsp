@@ -21,10 +21,40 @@
 	
 	    <link rel="stylesheet" href="ui/cacao/admin.css" id="axu-theme-admin" />
 	    <link rel="stylesheet" href="ui/custom.css" />
-	
+	    
+	    <style type="text/css">
+			.ret-msg {
+				text-align: center;
+				color: red;
+				font-size: 15;
+				display: none;
+			}
+		</style>
+	    
 		<script type="text/javascript">
 		var fnObj = {
 			pageStart: function(){
+				// 아이디
+				$("#user_id").bind("keyup", function(event) {
+					var data = $("#form").serialize();
+		        	
+		        	$.ajax({
+				        url: "/YeaMin/userIdDuplicationCheck.json",
+				        type: "post",
+				        data: data,
+				        success: function(data) {
+							var ret = JSON.parse(data);
+				        	
+				        	if(ret.result === "ok") {
+				        		$("#userIdDuplicationCheckMsg").hide();
+				        	} else if(ret.result === "error") {
+				        		$("#userIdDuplicationCheckMsg").show();
+				        		$("#userIdDuplicationCheckMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+				        	}
+				        }
+				    });
+				});
+				
 				// 생년월일
 				$("#user_birth_day").bindDate({
 					onchange: function(){
@@ -50,7 +80,7 @@
 	        	var data = $("#form").serialize();
 	        	
 	        	$.ajax({
-			        url: "/YeaMin/userInsert.do",
+			        url: "/YeaMin/userInsert.json",
 			        type: "post",
 			        data: data,
 			        success: function(data) {
@@ -60,6 +90,7 @@
 			        		parent.fnHeaderObj.goMain();
 			        		fnObj.close();
 			        	} else if(ret.result === "error") {
+			        		fnObj.pageResize();
 			        		$(".ret-msg").show();
 			        		$(".ret-msg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
 			        	}
@@ -99,6 +130,7 @@
 		                                        <span class="th" style="min-width:100px;">아이디</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                        	<span id="userIdDuplicationCheckMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
