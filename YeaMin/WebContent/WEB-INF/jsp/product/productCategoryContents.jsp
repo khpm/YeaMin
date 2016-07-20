@@ -73,7 +73,7 @@
             	var gridTarget = fnObj.grid.target;
             	console.log(searchTarget.getParam());
             	gridTarget.setList({
-            		ajaxUrl: "selectproductCategoryContents.json",
+            		ajaxUrl: "selectproductCategoryList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				    	
@@ -91,7 +91,7 @@
 				var gridTarget = fnObj.grid.target;
 				var selectedItem = gridTarget.getSelectedItem();
 				
-				 trace(selectedItem);
+				//trace(selectedItem);
 				if(selectedItem.hasOwnProperty("error")) {
 					dialog.push({
             			top: "350",
@@ -185,7 +185,7 @@
             	var gridTarget = fnObj.grid.target;
             	console.log(searchTarget.getParam());
             	gridTarget.setList({
-				    ajaxUrl: "selectproductCategoryContents.json",
+				    ajaxUrl: "selectproductCategoryList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				        // trace(this);

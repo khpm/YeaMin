@@ -15,6 +15,8 @@ public class ProductDto {
 	private String product_img_system_path;
 
 	private Integer product_order_by;
+	
+	private String product_category_name;
 
 	public ProductDto() {
 		
@@ -75,5 +77,14 @@ public class ProductDto {
 	public void setProduct_order_by(Integer product_order_by) {
 		this.product_order_by = product_order_by;
 	}
+
+	public String getProduct_category_name() {
+		return product_category_name;
+	}
+
+	public void setProduct_category_name(String product_category_name) {
+		this.product_category_name = product_category_name;
+	}
+	
 
 }
