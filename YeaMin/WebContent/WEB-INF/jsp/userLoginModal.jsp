@@ -26,15 +26,7 @@
 	
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
-
-		<style type="text/css">
-			.ret-msg {
-				text-align: center;
-				color: red;
-				font-size: 15;
-				display: none;
-			}
-		</style>
+		<link rel="stylesheet" href="css/yeamin.css" />
 
 		<script type="text/javascript">
 			var fnObj = {

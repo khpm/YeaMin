@@ -21,15 +21,7 @@
 	
 	    <link rel="stylesheet" href="ui/cacao/admin.css" id="axu-theme-admin" />
 	    <link rel="stylesheet" href="ui/custom.css" />
-	    
-	    <style type="text/css">
-			.ret-msg {
-				text-align: center;
-				color: red;
-				font-size: 15;
-				display: none;
-			}
-		</style>
+	    <link rel="stylesheet" href="css/yeamin.css" />
 	    
 		<script type="text/javascript">
 		var fnObj = {
