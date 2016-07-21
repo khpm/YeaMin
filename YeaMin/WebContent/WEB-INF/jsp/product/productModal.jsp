@@ -25,107 +25,107 @@
 	    
 		<script type="text/javascript">
 		var fnObj = {
-				pageStart: function(){
-					$("#product_order_by").bindNumber({
-						min: 1,
-						onChange: function(){
+			pageStart: function(){
+				$("#product_order_by").bindNumber({
+					min: 1,
+					onChange: function(){
+						// trace(this);
+					}
+				});
+				
+				fnObj.upload.bind();
+			},
+			pageResize: function(){
+			    parent.productModal.resize();
+			},
+			insert: function() {
+				var data = $("#form").serialize();
+				   	
+				$.ajax({
+					url: "",
+					type: "post",
+					data: data,
+					success: function(data) {
+						var ret = JSON.parse(data);
+						     	
+						if(ret.result === "ok") {
+							parent.fnObj.search.submit();
+							fnObj.close();
+						}
+					}
+				});
+			},
+			update: function() {
+				var data = $("#form").serialize();
+				       	
+				$.ajax({
+					url: "",
+					type: "post",
+					data: data,
+					success: function(data) {
+						var ret = JSON.parse(data);
+						
+						if(ret.result === "ok") {
+						parent.fnObj.search.submit();
+						fnObj.close();
+						}
+					}
+				});
+       		},
+			upload: {
+				target: new AXUpload5(),
+				bind: function() {
+					this.target.setConfig({
+						isSingleUpload:true,
+						targetID:"AXUpload5",
+						targetButtonClass:"Blue",
+						onClickUploadedItem: function(){
 							// trace(this);
+							window.open("/YeaMin/fileDownload.do?name=" + this.name.dec() + "&saveName=" + this.saveName.dec(), "_self");
+						},
+						uploadMaxFileSize:(10*1024*1024),
+						uploadMaxFileCount:0,
+						uploadUrl:"fileUpload.do",
+						uploadPars:{},
+						deleteUrl:"fileDelete.do",
+						deletePars:{},
+						fileKeys:{
+							name:"name",
+							type:"type",
+							saveName:"saveName",
+							fileSize:"fileSize",
+							uploadedPath:"uploadedPath",
+							thumbPath:"thumbUrl" // 서버에서 키값을 다르게 설정 할 수 있다는 것을 확인 하기 위해 이름을 다르게 처리한 예제 입니다.
+						},
+						onComplete: function(){
+							// trace(this);
+						},
+						onStart: function(){
+							// trace(this);
+						},
+						onDelete: function(){
+							// trace(this);
+						},
+						onError: function(errorType, extData) {
+							trace("------------------ onError");
+							if(errorType == "html5Support"){
+								//dialog.push('The File APIs are not fully supported in this browser.');
+							} else if(errorType == "fileSize") {
+								trace(extData);
+								alert("파일사이즈가 초과된 파일을 업로드 할 수 없습니다. 업로드 목록에서 제외 합니다.\n("+extData.name+" : "+extData.size.byte()+")");
+							} else if(errorType == "fileCount") {
+								alert("업로드 갯수 초과 초과된 아이템은 업로드 되지 않습니다.");
+							}
 						}
 					});
-					
-					fnObj.upload.bind();
-				},
-		        pageResize: function(){
-		            parent.productModal.resize();
-		        },
-		        insert: function() {
-		        	var data = $("#form").serialize();
-		        	
-		        	$.ajax({
-				        url: "",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-							var ret = JSON.parse(data);
-				        	
-				        	if(ret.result === "ok") {
-				        		parent.fnObj.search.submit();
-				        		fnObj.close();
-				        	}
-				        }
-				    });
-		        },
-		        update: function() {
-					var data = $("#form").serialize();
-		        	
-		        	$.ajax({
-				        url: "",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-				        	var ret = JSON.parse(data);
-				     		
-				        	if(ret.result === "ok") {
-				        		parent.fnObj.search.submit();
-				        		fnObj.close();
-				        	}
-				        }
-				    });
-		        },
-		        upload: {
-		        	target: new AXUpload5(),
-		        	bind: function() {
-		        		this.target.setConfig({
-		        			isSingleUpload:true,
-							targetID:"AXUpload5",
-							targetButtonClass:"Blue",
-							onClickUploadedItem: function(){
-								// trace(this);
-								window.open("/YeaMin/fileDownload.do?name=" + this.name.dec() + "&saveName=" + this.saveName.dec(), "_self");
-							},
-							uploadMaxFileSize:(10*1024*1024),
-							uploadMaxFileCount:0,
-							uploadUrl:"fileUpload.do",
-							uploadPars:{},
-							deleteUrl:"fileDelete.do",
-							deletePars:{},
-							fileKeys:{
-								name:"name",
-								type:"type",
-								saveName:"saveName",
-								fileSize:"fileSize",
-								uploadedPath:"uploadedPath",
-								thumbPath:"thumbUrl" // 서버에서 키값을 다르게 설정 할 수 있다는 것을 확인 하기 위해 이름을 다르게 처리한 예제 입니다.
-							},
-							onComplete: function(){
-								// trace(this);
-							},
-							onStart: function(){
-								// trace(this);
-							},
-							onDelete: function(){
-								// trace(this);
-							},
-							onError: function(errorType, extData){
-								trace("------------------ onError");
-								if(errorType == "html5Support"){
-									//dialog.push('The File APIs are not fully supported in this browser.');
-								}else if(errorType == "fileSize"){
-									trace(extData);
-									alert("파일사이즈가 초과된 파일을 업로드 할 수 없습니다. 업로드 목록에서 제외 합니다.\n("+extData.name+" : "+extData.size.byte()+")");
-								}else if(errorType == "fileCount"){
-									alert("업로드 갯수 초과 초과된 아이템은 업로드 되지 않습니다.");
-								}
-							}
-		        		});
-		        	}
-		        },
-		        close: function() {
-		        	parent.productModal.close();
-		        }		     
-			};
-		   axdom(window).ready(fnObj.pageStart);
-		   axdom(window).resize(fnObj.pageResize);
+				}
+			},
+       		close: function() {
+       			parent.productModal.close();
+			}		     
+		};
+		axdom(window).ready(fnObj.pageStart);
+		axdom(window).resize(fnObj.pageResize);
 		</script>
 	</head>
 	<body>
