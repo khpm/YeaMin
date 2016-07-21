@@ -221,7 +221,7 @@
             target: new AXModal(),
             get: function(){ return this.target },
             bind: function(){
-                window.myModal = this.target;
+                window.productCategoryModal = this.target;
                 this.target.setConfig({
                     windowID:"myModalContainer",
                     mediaQuery: {
