@@ -150,7 +150,7 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"예약 수용 요일", labelWidth:"100", type:"selectBox", width:"", key:"reservation_capacity_dw", addClass:"secondItem", valueBoxStyle:"", value:"all",
+                            {label:"예약 수용 요일", labelWidth:"100", type:"selectBox", width:"160", key:"reservation_capacity_dw", addClass:"secondItem", valueBoxStyle:"", value:"all",
                                 options:[
 									{optionValue:"all", optionText:"전체"},
 									{optionValue:"D", optionText:"평일"},

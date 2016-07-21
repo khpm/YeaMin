@@ -129,7 +129,7 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">예약 수용 요일</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <select name="reservation_capacity_dw" class="AXSelect">
+		                                            <select name="reservation_capacity_dw" class="AXSelect W160">
 														<option ${(dto.reservation_capacity_dw eq 'D') ? 'selected' : ''} value="D">평일</option>
 														<option ${(dto.reservation_capacity_dw eq 'W') ? 'selected' : ''} value="W">주말</option>
 		                                            </select>

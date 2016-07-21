@@ -182,7 +182,7 @@
 									// trace("keyup" + e.keyCode);
 								}
 							},
-                            {label:"사용자 성별", labelWidth:"100", type:"selectBox", width:"", key:"user_gender", addClass:"secondItem", valueBoxStyle:"", value:"all",
+                            {label:"사용자 성별", labelWidth:"100", type:"selectBox", width:"160", key:"user_gender", addClass:"secondItem", valueBoxStyle:"", value:"all",
                                 options:[
 									{optionValue:"all", optionText:"전체"},
 									{optionValue:"F", optionText:"남자"},
