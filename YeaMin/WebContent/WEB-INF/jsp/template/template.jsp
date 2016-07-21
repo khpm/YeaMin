@@ -16,14 +16,14 @@
 		<link rel="icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
 	
 		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css" />
-		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/arongi/AXJ.min.css" id="axu-theme-axisj" />
+		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj" />
 	
 		<script type="text/javascript" src="/YeaMin/js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/axisj/dist/AXJ.min.js"></script>
 	
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
-		<link rel="stylesheet" href="css/yeamin.css" />
+		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
