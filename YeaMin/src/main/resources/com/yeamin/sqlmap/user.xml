@@ -87,6 +87,7 @@
 	<update id="QID_UPDATE_USER">
 		UPDATE ym_user
 		SET
+			user_id = #{user_id},
 			user_pw = #{user_pw},
 			user_name = #{user_name},
 			user_email = #{user_email},

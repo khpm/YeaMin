@@ -23,9 +23,9 @@ var topMenu_data = [
 
 var sideMenu_data = [
     {_id: "m01", label: '<i class="axi axi-windows"></i> 대시보드', url: "index.html", target: "_self"},
-    {_id: "m02", label: '<i class="axi axi-asterisk"></i> 상품관리', url: "content.html", target: "_self"},
-    {_id: "m03", label: '<i class="axi axi-columns"></i> 주문/배송관리', url: "content-1.html", target: "_self"},
-    {_id: "m04", label: '<i class="axi axi-pagelines"></i> 정산관리', url: "content-2.html", target: "_self"},
+    {_id: "m02", label: '<i class="axi axi-asterisk"></i> 회원정보 수정', url: "/YeaMin/userUpdateContents.do", target: "_self"},
+    {_id: "m03", label: '<i class="axi axi-columns"></i> 회원탈퇴', url: "/YeaMin/userDeleteContents.do", target: "_self"},
+    {_id: "m04", label: '<i class="axi axi-pagelines"></i> 사이드메뉴 B', url: "content-2.html", target: "_self"},
     {_id: "m05", label: '<i class="axi axi-sitemap"></i> 사이드메뉴 C', url: "content.html", target: "_self"},
     {_id: "m06", label: '<i class="axi axi-archive"></i> 사이드메뉴 D', url: "content.html", target: "_self"},
     {_id: "m07", label: '<i class="axi axi-line-chart"></i> 사이드메뉴 E', url: "content.html", target: "_self"}

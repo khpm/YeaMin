@@ -20,6 +20,8 @@ import com.yeamin.dao.UserDao;
 import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 @Controller
 public class UserController {
 
@@ -145,26 +147,54 @@ public class UserController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
+	//회원정보 수정 화면
+	@RequestMapping("/userUpdateContents.do")
+	public ModelAndView userUpdateContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/mypage/userUpdateContents.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/updateUser.json")
-	public @ResponseBody Map<String, Object> updateUser(@RequestParam Map<String, Object> paramMap) {
+	public @ResponseBody Map<String, Object> updateUser(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "";
 		String msg = "";
 		
 		Integer sqlResult = userDao.updateUser(paramMap);
-		
-		result = "ok";
+		if(sqlResult != 0){
+			result = "ok";
+			msg="수정 성공";
+			UserDto dto = userDao.selectUser(paramMap);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", dto);
+		}else{
+			result = "error";
+			msg="수정 실패";
+		}
 		
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
-
+	@RequestMapping("/userDeleteContents.do")
+	public ModelAndView userDeleteContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/mypage/userDeleteContents.jsp");
+		return mav;
+	}	
 	@RequestMapping("/deleteUser.json")
-	public @ResponseBody Map<String, Object> deleteUser(@RequestParam Map<String, Object> paramMap) {
+	public @ResponseBody Map<String, Object> deleteUser(@RequestParam Map<String, Object> paramMap,  HttpServletRequest request) {
 		String result = "";
 		String msg = "";
 		
 		Integer sqlResult = userDao.deleteUser(paramMap);
-		
-		result = "ok";
+		if(sqlResult != 0){
+			HttpSession session = request.getSession();
+			session.removeAttribute("user");
+			result = "ok";
+			msg = "삭제 성공";
+		}else{
+			result = "error";
+			msg = "삭제 실패";			
+		}
 		
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
