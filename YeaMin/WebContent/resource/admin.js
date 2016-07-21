@@ -5,17 +5,17 @@ AXConfig.AXGrid.pageCountMSG = "page(s)"
 var topMenu_data = [
     {_id: "m01", label: "대시보드", url: "index.html"},
     {
-        _id: "m02", label: "가게 관리", url: "content.html", cn: [
+        _id: "m02", label: "가게 관리", url: "#", cn: [
 	        {_id: "m0201", label: "가게 정보 관리", url: "#ax"},
 	        {_id: "m0202", label: "상품 카테고리 정보 관리", url: "/YeaMin/productCategoryContents.do"},
 	        {_id: "m0203", label: "상품 정보 관리", url: "/YeaMin/productContents.do"}
 	    ]
     },
     {
-        _id: "m03", label: "예약 관리", url: "content-1.html", cn: [
+        _id: "m03", label: "예약 관리", url: "#", cn: [
         	{_id: "m0301", label: "예약 시간 관리", url: "/YeaMin/reservationCapacityContents.do"},
-	        {_id: "m0302", label: "예약 현황 및 이력", url: "#ax"},
-	        {_id: "m0303", label: "통계", url: "#ax"}
+	        {_id: "m0302", label: "예약 현황 및 이력", url: "#"},
+	        {_id: "m0303", label: "통계", url: "#"}
 	    ]
     },
     {_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"},
