@@ -195,7 +195,9 @@
                     },
                     colGroup: [
                         {key:"reservation_capacity_no", label:"예약 수용 번호", width:"200", align:"center"},
-                        {key:"reservation_capacity_dw", label:"예약 수용 요일", width:"200", align:"center"},
+                        {key:"reservation_capacity_dw", label:"예약 수용 요일", width:"200", align:"center", formatter: function() {
+                            return (this.item.reservation_capacity_dw === "D" ? "주말" : "평일");
+                        }},
                         {key:"reservation_capacity_time", label:"예약 수용 시간", width:"200", align:"center"},
                         {key:"reservation_capacity_people", label:"예약 수용 인원 수", width:"200", align:"center"}
                     ],
