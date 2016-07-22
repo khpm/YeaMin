@@ -22,6 +22,8 @@ public class BoardDto {
 	
 	private Integer user_no;
 	
+	private String user_name;
+	
 	public BoardDto() {
 		
 	}
@@ -96,6 +98,14 @@ public class BoardDto {
 
 	public void setUser_no(Integer user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	
 }

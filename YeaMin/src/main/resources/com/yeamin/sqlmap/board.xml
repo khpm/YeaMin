@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+	<insert id="QID_INSERT_BOARD">
+		INSERT INTO
+			ym_board
+		VALUES
+			(
+			board_seq.nextval,
+			#{board_title},
+			#{board_content},
+			0,
+			sysdate,
+			#{board_re_ref},
+			0,
+			0,
+			#{user_no}
+			)
+	</insert>
 	
+	<select id="QID_INSERT_BOARD_MAXREF" resultType="Integer">
+		SELECT
+			max(board_re_ref) AS refcnt
+		FROM
+			ym_board
+	</select>
+	
+	<select id="QID_SELECT_BOARD_LIST" resultType="BoardDto">
+	SELECT
+		b.board_no AS board_no,
+	    b.board_title AS board_title,
+	    (SELECT
+	    	u.user_name
+	    FROM
+	    	ym_user u
+	    WHERE
+	    	b.user_no=u.user_no
+	    ) AS user_name,
+	  	b.board_reg_time AS board_reg_time,
+	  	b.board_read_cnt AS board_read_cnt
+	FROM
+	  	ym_board b
+	ORDER BY
+		board_no desc
+	</select>
 </mapper>

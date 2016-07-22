@@ -90,7 +90,6 @@
 			axdom("#btn-update").bind("click",function(){
 				var gridTarget = fnObj.grid.target;
 				var selectedItem = gridTarget.getSelectedItem();
-				
 				//trace(selectedItem);
 				if(selectedItem.hasOwnProperty("error")) {
 					dialog.push({

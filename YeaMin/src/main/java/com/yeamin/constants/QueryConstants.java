@@ -26,6 +26,10 @@ public class QueryConstants {
 	public final static String QID_SELECT_PRODUCT_MODEL = "product.QID_SELECT_PRODUCT_MODEL";
 	public final static String QID_INSERT_PRODUCT = "product.QID_INSERT_PRODUCT";
 	
+	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
+	public final static String QID_INSERT_BOARD_MAXREF = "board.QID_INSERT_BOARD_MAXREF";
+	public final static String QID_SELECT_BOARD_LIST = "board.QID_SELECT_BOARD_LIST";
+	
 	private QueryConstants() {
 		
 	}
