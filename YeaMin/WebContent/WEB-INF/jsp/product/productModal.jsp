@@ -47,9 +47,9 @@
 				var data = $("#form").serialize();
 				   	
 				$.ajax({
-					url: "",
+					url: "/YeaMin/insertProduct.json",
 					type: "post",
-					data: data,
+					data: data ,
 					success: function(data) {
 						var ret = JSON.parse(data);
 						     	
@@ -64,7 +64,7 @@
 				var data = $("#form").serialize();
 				       	
 				$.ajax({
-					url: "",
+					url: "/YeaMin/updateProduct.json",
 					type: "post",
 					data: data,
 					success: function(data) {
@@ -103,7 +103,12 @@
 							thumbPath:"thumbUrl" // 서버에서 키값을 다르게 설정 할 수 있다는 것을 확인 하기 위해 이름을 다르게 처리한 예제 입니다.
 						},
 						onComplete: function(){
-							// trace(this);
+							trace(fnObj.upload.target.getUploadedList());
+							var img=this;
+							var name=img[0].name;
+							var saveName=img[0].saveName;
+							$('input[name=product_img_origin_path]').val(name);
+							$('input[name=product_img_system_path]').val(saveName);					
 						},
 						onStart: function(){
 							// trace(this);
@@ -159,6 +164,8 @@
 		
 		                    <form id="form" method="get" onsubmit="return false;">
 		                    	<input type="hidden" name="product_no" value="${dto.product_no}"/>
+		                    	<input type="hidden" name="product_img_origin_path" value="${dto.product_img_origin_path}"/>
+								<input type="hidden" name="product_img_system_path" value="${dto.product_img_system_path}"/>
 		                        <div class="ax-rwd-table">
 									<div class="item-group" style="">
 		                                <div class="item">
@@ -177,7 +184,12 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<input type="text" name="product_category_name" class="AXInput W150" id="product_category_name" value="${dto.product_category_name}" />
+		                                        	<%-- <input type="text" name="product_category_name" class="AXInput W150" id="product_category_name" value="${dto.product_category_name}" /> --%>
+		                                        	<select name="product_category_no">
+		                                        		<c:forEach var="category" items="${productCategoryList}">
+			                                        		<option value="${category.product_category_no}">${category.product_category_name}</option>
+			                                        	</c:forEach>
+		                                        	</select>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -237,7 +249,7 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">상품이미지</span>
 		                                        <span class="td inputText" style="" title="">																							       
-												    <span class="AXUpload5" id="AXUpload5"></span>
+												    <span class="AXUpload5" id="AXUpload5"></span>										 
 		                                        </span>
 		                                    </label>
 		                                </div>

@@ -22,6 +22,8 @@ import com.yeamin.dao.ProductDao;
 import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ProductDto;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 
 @Controller
 public class ProductController {
@@ -103,11 +105,15 @@ public class ProductController {
 	@RequestMapping("/productModal.do")
 	public ModelAndView productModal(@RequestParam Map<String, Object> paramMap) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/product/productModal.jsp");
+		//카테고리 이름 가져오기 위해서 
+		List<ProductCategoryDto> productCategoryList=productDao.selectproductCategoryList();
+		
 		mav.addObject("modalType", paramMap.get("modalType"));
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
-			ProductCategoryDto dto = productDao.selectProductCategory(paramMap);
+			ProductDto dto = productDao.selectProduct(paramMap);
 			mav.addObject("dto", dto);
 		}
+		mav.addObject("productCategoryList",productCategoryList);
 		return mav;
 	}
 	
@@ -115,7 +121,41 @@ public class ProductController {
 	@RequestMapping("/insertProduct.json")
 	public @ResponseBody Map<String, Object> insertProduct(@RequestParam Map<String, Object> paramMap) {
 		Integer sqlResult = productDao.insertProduct(paramMap);
+		if(sqlResult!=0){
+			System.out.println("등록 성공");
+		}else{
+			System.out.println("등록 실패");
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
 		
+		return ret;
+	}
+	
+	//상품 정보 수정
+	@RequestMapping("/updateProduct.json")
+	public @ResponseBody Map<String, Object> updateProduct(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = productDao.updateProduct(paramMap);
+		if(sqlResult!=0){
+			System.out.println("수정 성공");
+		}else{
+			System.out.println("수정 실패");
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		
+		return ret;
+	}
+	
+	//상품 정보 삭제
+	@RequestMapping("/deleteProduct.json")
+	public @ResponseBody Map<String, Object> deleteProduct(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = productDao.deleteProduct(paramMap);
+		if(sqlResult!=0){
+			System.out.println("삭제 성공");
+		}else{
+			System.out.println("삭제 실패");
+		}
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", "ok");
 		
@@ -125,15 +165,13 @@ public class ProductController {
 	//상품 정보 조회
 	@RequestMapping("/selectProductList.json")
 	public @ResponseBody Map<String,Object> selectProductList(@RequestParam Map<String, Object> paramMap){
-		List<ProductDto> list=productDao.selectProductList(paramMap);
+		List<ProductDto> list=null;
+		if(paramMap.containsKey("categoryName") || paramMap.containsKey("productName")){
+			list=productDao.selectProductListOne(paramMap);
+		}else{
+			list=productDao.selectProductList(paramMap);
+		}
 		return getSelectListResult(paramMap,list);
-	}
-	
-	//상품 이미지 Modal
-	@RequestMapping("/productfileModal.do")
-	public ModelAndView productfileModal(@RequestParam Map<String, Object> paramMap) {
-		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/product/productfileModal.jsp");
-		return mav;
 	}
 	
 	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {

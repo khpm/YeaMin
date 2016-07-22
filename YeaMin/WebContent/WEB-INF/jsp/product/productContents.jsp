@@ -120,7 +120,7 @@
 					data[fnObj.primaryKey] = selectedItem.item[fnObj.primaryKey];
 					
 					$.ajax({
-				        url: "/YeaMin/deleteProduct.json",
+				        url: "/YeaMin//deleteProduct.json",
 				        type: "post",
 				        data: data,
 				        success: function(data) {
@@ -150,19 +150,16 @@
                     },
                     rows: [
                         {display:true, addClass:"", style:"", list:[
-                            {label:"상품 이름", labelWidth:"", type:"inputText", width:"150", key:"inputText", addClass:"secondItem", valueBoxStyle:"", value:"",
+                            {label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"categoryName", addClass:"secondItem", valueBoxStyle:"", value:"",
                                   onChange: function(changedValue){
                                       //아래 2개의 값을 사용 하실 수 있습니다.
                                       //dialog.push(Object.toJSON(this));
                                       //dialog.push(changedValue);//입력란에 적은 텍스트						
                                   }
                             },
-                            {label:"상품 가격", labelWidth:"60", type:"inputText", width:"100", key:"startprice", addClass:"secondItem", valueBoxStyle:"", value:"", title:"",
+                            {label:"상품 이름", labelWidth:"60", type:"inputText", width:"150", key:"productName", addClass:"secondItem", valueBoxStyle:"", value:"", title:"",
                                   onChange: function(){}
-                            },
-                            {label:"~", labelWidth:"60", type:"inputText", width:"100", key:"endprice", addClass:"secondItem", valueBoxStyle:"", value:"", title:"",
-                                onChange: function(){}
-                          	}
+                            }                          
                         ]}
                     ]
                 });
@@ -170,7 +167,7 @@
             submit: function(){
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
-            	//console.log(searchTarget.getParam());
+            	console.log(searchTarget.getParam());
             	
             	gridTarget.setList({
 				    ajaxUrl: "selectProductList.json",

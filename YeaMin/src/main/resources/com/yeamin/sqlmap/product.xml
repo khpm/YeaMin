@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
+
+<!-- 상품 카테고리 정보 -->
+
 	<!-- 전체 카테고리 정보 조회 -->
 	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST" resultType="ProductCategoryDto">
 		SELECT
@@ -58,6 +61,9 @@
 		delete from YM_PRODUCT_CATEGORY where PRODUCT_CATEGORY_NO=#{no}
 	</delete>
 	
+
+<!-- 상품 정보 -->
+	
 	<!-- 상품 정보 전체 조회 -->
 	<select id="QID_SELECT_PRODUCT_LIST" resultType="ProductDto">
 		SELECT
@@ -75,13 +81,84 @@
 			ym_product p
 	</select>
 	
+	<!-- 상품 정보 조건 검색 -->
+	<select id="QID_SELECT_PRODUCT_LIST_ONE" resultType="ProductDto">
+		SELECT
+			product_no,
+			(SELECT
+				product_category_name
+			 FROM ym_product_category pc
+			 WHERE p.product_category_no=pc.product_category_no
+			) AS product_category_name,
+			product_name,
+			product_price,
+			product_desc,
+			product_order_by
+		FROM
+			ym_product p
+		<where>
+			<if test="categoryName != '' and categoryName != null">
+      		AND p.product_category_no = (SELECT
+                              				product_category_no
+                             		     FROM
+                              				ym_product_category
+                            		     WHERE
+                              				product_category_name LIKE '%'||#{categoryName}||'%')
+        	</if>
+        	<if test="productName != '' and productName != null">
+        	AND p.product_name LIKE '%'||#{productName}||'%'
+        	</if>
+		</where>
+	</select>
+	
 	<!-- Modal 수정시 해당 로우를 불러오기 -->
 	<select id="QID_SELECT_PRODUCT_MODEL" resultType="ProductDto">
-		SELECT * FROM YM_PRODUCT_CATEGORY WHERE product_category_no = #{product_no}
+		SELECT
+			*
+		FROM
+			ym_product
+		WHERE
+			product_no = #{product_no}
 	</select>
 	
 	<!-- 상품 정보 등록 -->
 	<insert id="QID_INSERT_PRODUCT">
-		
+		INSERT INTO
+			ym_product
+		VALUES (
+			ym_product_no_seq.nextval,
+			#{product_name},
+			#{product_price},
+			#{product_desc},
+			#{product_img_origin_path},
+			#{product_img_system_path},
+			#{product_order_by},
+			#{product_category_no}
+		)
 	</insert>
+	
+	<!-- 상품 정보 수정 -->
+	<update id="QID_UPDATE_PRODUCT">
+		UPDATE 
+			ym_product
+		SET
+			product_name = #{product_name},
+			product_price = #{product_price},
+			product_desc = #{product_desc},
+			product_img_origin_path = #{product_img_origin_path},
+			product_img_system_path = #{product_img_system_path},
+			product_order_by = #{product_order_by},
+			product_category_no = #{product_category_no}
+		WHERE
+			product_no = #{product_no}
+	</update>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="QID_DELETE_PRODUCT">
+		DELETE
+		FROM
+			ym_product
+		WHERE
+			product_no = #{product_no}	
+	</delete>
 </mapper>
