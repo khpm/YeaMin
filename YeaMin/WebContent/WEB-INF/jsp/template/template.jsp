@@ -27,6 +27,12 @@
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
+		
+		<link rel='stylesheet' href='/YeaMin/css/fullcalendar/lib/cupertino/jquery-ui.min.css' />
+		<link rel="stylesheet" href="/YeaMin/css/fullcalendar/fullcalendar.css" />
+		<link rel="stylesheet" href='/YeaMin/css/fullcalendar/fullcalendar.print.css' media='print' />
+		<script type="text/javascript" src="/YeaMin/js/fullcalendar/lib/moment.min.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/fullcalendar/fullcalendar.min.js"></script>
 	</head>
 	<body>
 		<div id="AXPage">
