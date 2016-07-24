@@ -18,6 +18,7 @@ var topMenu_data = [
 	    ]
     },
     {_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"},
+    {_id: "m05", label: "함께 예약하기", url: "/YeaMin/reservationTogetherContents.do"},
     {_id: "m05", label: "게시판", url: "/YeaMin/boardContents.do"}
 ];
 

@@ -101,4 +101,11 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
+	@RequestMapping("/reservationTogetherContents.do")
+	public ModelAndView reservationTogetherContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationTogetherContents.jsp");
+		return mav;
+	}
+	
 }
