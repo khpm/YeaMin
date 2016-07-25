@@ -63,15 +63,15 @@
 					var data = $("#form").serialize();
 		        	
 		        	$.ajax({
-				        url: "",
+				        url: "/YeaMin/updateBoard.json",
 				        type: "post",
 				        data: data,
 				        success: function(data) {
 				        	var ret = JSON.parse(data);
 				     		
 				        	if(ret.result === "ok") {
-				        		parent.fnObj.search.submit();
 				        		fnObj.close();
+				        		parent.fnObj.select();
 				        	}
 				        }
 				    });

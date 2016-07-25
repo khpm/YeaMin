@@ -45,4 +45,14 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardDto> selectBoardList(Map<String, Object> paramMap){
 		return sqlSession.selectList(QueryConstants.QID_SELECT_BOARD_LIST);
 	}
+	
+	@Override
+	public BoardDto selectBoard(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_BOARD_LIST_ONE,paramMap);
+	}
+	
+	@Override
+	public Integer updateBoard(Map<String, Object> paramMap){
+		return sqlSession.update(QueryConstants.QID_UPDATE_BOARD, paramMap);
+	}
 }

@@ -44,8 +44,8 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/board/boardModal.jsp");
 		mav.addObject("modalType", paramMap.get("modalType"));
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
-			//BoardDto dto = boardDao.selectProductCategory(paramMap);
-			//mav.addObject("dto", dto);
+			BoardDto dto = boardDao.selectBoard(paramMap);
+			mav.addObject("dto", dto);
 		}
 		return mav;
 	}
@@ -61,6 +61,20 @@ public class BoardController {
 			System.out.println("등록 성공");
 		}else{
 			System.out.println("등록 실패");
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		
+		return ret;
+	}
+	
+	@RequestMapping("/updateBoard.json")
+	public @ResponseBody Map<String, Object> updateBoard(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = boardDao.updateBoard(paramMap);
+		if(sqlResult!=0){
+			System.out.println("수정 성공");
+		}else{
+			System.out.println("수정 실패");
 		}
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", "ok");

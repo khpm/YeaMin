@@ -43,4 +43,23 @@
 	ORDER BY
 		board_no desc
 	</select>
+	
+	<select id="QID_SELECT_BOARD_LIST_ONE" resultType="BoardDto">
+	SELECT
+		*
+	FROM
+		ym_board
+	WHERE
+		board_no = #{board_no}
+	</select>
+	
+	<update id="QID_UPDATE_BOARD">
+	UPDATE
+		ym_board
+	SET
+		board_title = #{board_title},
+		board_content = #{board_content}
+	WHERE
+		board_no = #{board_no}
+	</update>
 </mapper>
