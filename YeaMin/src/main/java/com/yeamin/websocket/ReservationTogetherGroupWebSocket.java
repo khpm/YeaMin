@@ -2,6 +2,7 @@ package com.yeamin.websocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,6 +103,9 @@ public class ReservationTogetherGroupWebSocket {
 		case "RESERVATION_TOGETHER_GROUP_CHAT":
 			RESERVATION_TOGETHER_GROUP_CHAT(msgMap);
 			break;
+		case "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK":
+			RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK(msgMap);
+			break;
 		}
 	}
 	
@@ -184,11 +188,30 @@ public class ReservationTogetherGroupWebSocket {
 	}
 	
 	private void RESERVATION_TOGETHER_GROUP_CHAT(Map<String, Object> msgMap) {
-		int groupId = (Integer) msgMap.get("groupId");
-		List<ReservationTogetherGroupWebSocket> groupList = groupListMap.get(groupId);
-		System.out.println(groupList.size());
 		UserDto user = (UserDto) httpSession.getAttribute("user");
 		msgMap.put("userName", user.getUser_name());
+		
+		int groupId = (Integer) msgMap.get("groupId");
+		List<ReservationTogetherGroupWebSocket> groupList = groupListMap.get(groupId);
+		
+		broadcast(groupList, msgMap);
+	}
+	
+	private void RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK(Map<String, Object> msgMap) {
+		UserDto user = (UserDto) httpSession.getAttribute("user");
+		msgMap.put("userName", user.getUser_name());
+		
+		int groupId = (Integer) msgMap.get("groupId");
+		List<ReservationTogetherGroupWebSocket> groupListTemp = groupListMap.get(groupId);
+		List<ReservationTogetherGroupWebSocket> groupList = new ArrayList<ReservationTogetherGroupWebSocket>();
+				
+		for (ReservationTogetherGroupWebSocket ws : groupListTemp) {
+			UserDto otherUser = (UserDto) ws.httpSession.getAttribute("user");
+			if(!user.getUser_id().equals(otherUser.getUser_id())) {
+				groupList.add(ws);
+			}
+		}
+		
 		broadcast(groupList, msgMap);
 	}
 	

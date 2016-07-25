@@ -33,6 +33,7 @@
 		<link rel="stylesheet" href='/YeaMin/css/fullcalendar/fullcalendar.print.css' media='print' />
 		<script type="text/javascript" src="/YeaMin/js/fullcalendar/lib/moment.min.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/fullcalendar/fullcalendar.min.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/fullcalendar/lang-all.js"></script>
 	</head>
 	<body>
 		<div id="AXPage">

@@ -65,7 +65,7 @@
 			fnObj.fullCalendar.bind();
         },
         webSocket: {
-        	target: new WebSocket( "ws://localhost:8080/YeaMin/websocket/reservationTogether.do" ),
+        	target: new WebSocket("ws://localhost:8080/YeaMin/websocket/reservationTogether.do"),
         	bind: function() {
         		fnObj.webSocket.target.onopen = fnObj.webSocket.onopen;
         		fnObj.webSocket.target.onmessage = fnObj.webSocket.onmessage;
@@ -86,6 +86,11 @@
 				case "RESERVATION_TOGETHER_GROUP_CHAT":
 					var groupChat = "[" + data.userName + "] " + data.groupChat + "\n";
 					$('#groupChatDisplayTa').val($('#groupChatDisplayTa').val() + groupChat);
+					break;
+				case "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK":
+					fnObj.fullCalendar.clickHandler("unbind");
+					$("." + data.clickCalss).trigger("click");
+					fnObj.fullCalendar.clickHandler("bind");
 					break;
 				}
         	},
@@ -127,14 +132,128 @@
     					center: 'title',
     					right: 'month,agendaWeek,agendaDay'
     				},
+    				lang: "ko",
     				defaultDate: new Date(),
     				editable: true,
     				eventLimit: true, // allow "more" link when too many events
     				businessHours: false, // display business hours
     				droppable: true,
-    				events: []
+    				events: [
+    					{
+	    					title: 'Long Event1',
+	    					start: '2016-07-18',
+	    					end: '2016-07-20'
+	    				},
+	    				{
+	    					title: 'Long Event2',
+	    					start: '2016-07-08',
+	    					end: '2016-07-10'
+	    				}
+    				],
+    				eventDrop: function(event, delta, revertFunc) {
+						console.log("eventDrop");
+    			    },
+    				eventResize: function(event, delta, revertFunc) {
+    					console.log("eventResize");
+    					console.log($('#calendar').fullCalendar( 'clientEvents'));
+    			    }
     			});
-        	}
+        		fnObj.fullCalendar.clickHandler("bind");
+        	},
+        	clickHandler: function(type) {
+        		if(type === "bind") {
+        			$(".fc-prev-button").bind("click", fnObj.fullCalendar.prevClickHandler);
+            		$(".fc-next-button").bind("click", fnObj.fullCalendar.nextClickHandler);
+            		$(".fc-today-button").bind("click", fnObj.fullCalendar.todayClickHandler);
+            		$(".fc-month-button").bind("click", fnObj.fullCalendar.monthClickHandler);
+            		$(".fc-agendaWeek-button").bind("click", fnObj.fullCalendar.agendaWeekClickHandler);
+            		$(".fc-agendaDay-button").bind("click", fnObj.fullCalendar.agendaDayClickHandler);
+        		} else if(type === "unbind") {
+        			$(".fc-prev-button").unbind("click", fnObj.fullCalendar.prevClickHandler);
+            		$(".fc-next-button").unbind("click", fnObj.fullCalendar.nextClickHandler);
+            		$(".fc-today-button").unbind("click", fnObj.fullCalendar.todayClickHandler);
+            		$(".fc-month-button").unbind("click", fnObj.fullCalendar.monthClickHandler);
+            		$(".fc-agendaWeek-button").unbind("click", fnObj.fullCalendar.agendaWeekClickHandler);
+            		$(".fc-agendaDay-button").unbind("click", fnObj.fullCalendar.agendaDayClickHandler);
+        		}
+        	},
+        	prevClickHandler: function(event) {
+    			console.log("fc-next-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-prev-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		},
+    		nextClickHandler: function(event) {
+    			console.log("fc-next-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-next-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		},
+   			todayClickHandler: function(event) {
+    			console.log("fc-today-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-today-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		},
+   			monthClickHandler: function(event) {
+    			console.log("fc-month-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-month-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		},
+    		agendaWeekClickHandler: function(event) {
+    			console.log("fc-agendaWeek-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-agendaWeek-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		},
+   			agendaDayClickHandler: function(event) {
+    			console.log("fc-agendaDay-button");
+    			var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.clickCalss = "fc-agendaDay-button";
+       			fnObj.webSocket.send(JSON.stringify(req));
+    		}
+   			
+        },
+        modal: {
+            target: new AXModal(),
+            get: function(){ return this.target },
+            bind: function(){
+                window.reservationTogether = this.target;
+                this.target.setConfig({
+                    windowID:"myModalContainer",
+                    mediaQuery: {
+                        mx:{min:0, max:767}, dx:{min:767}
+                    },
+                    displayLoading:true
+                });
+            },
+            open: function(modalType, item){
+            	var pars = "modalType=" + modalType;
+            	
+            	if(modalType === "UPDATE") {
+            		pars += ("&" + fnObj.primaryKey + "=" + item[fnObj.primaryKey]);
+            	}
+            	
+                this.target.open({
+                    url:"/YeaMin/reservationTogetherModal.do",
+                    pars: pars.queryToObject(),
+                    top:100, width:600,
+                    closeByEscKey:true
+                });
+            }
         }
     };
 </script>
