@@ -36,13 +36,44 @@
 		 * Javascript 	: AXJ.js, AXUpload5.js
 		 * CSS			: AXJ.css, AXButton.css, AXUpload5.css
 		 */	
-		var list = [];
 		var fnObj = {
-			pageStart: function(){
+			pageStart: function(){				
 				fnObj.upload.bind();
 			},			
 	        pageResize: function(){
 	            //parent.userInsertModal.resize();
+	        },
+	        load : function(){
+	        	var uploadedList = [];
+	        	$.ajax({
+			        url: "/YeaMin/selectStoreImg.json",
+			        type: "post",
+			        data: "" ,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+						trace(ret);
+			        	if(ret.result === "ok") {
+			        		trace("이미지 조회 수행")
+			        		for(var i=0;i<ret.listDto.length;i++){
+				        		var tmp={
+				        			_id_: i,
+									name: ret.listDto[i].store_img_origin_path,
+									type:"jsp",
+									saveName: ret.listDto[i].store_img_system_path,
+									fileSize: 2097152,
+									uploadedPath:"C:/ExpertJava/YM/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/YeaMin/save",
+									thumbUrl:"http://localhost:8080/YeaMin/save/" + ret.listDto[i].store_img_system_path
+				        		};
+				        		uploadedList.push(tmp);
+			        		}//for문
+			        		fnObj.upload.target.setUploadedList(uploadedList);
+			        		
+			        		
+			        	} else if(ret.result === "error") {
+			        		//이미지 조회 실패
+			        	}
+			        }
+			    });
 	        },
 	        storeInsert: function(){
 	        	var data = $("#form").serialize();
@@ -54,7 +85,10 @@
 						var ret = JSON.parse(data);
 			        	if(ret.result === "ok") {
 			        		//등록 성공
-			        		location.href="/YeaMin/storeContents.do";
+			        		insertStoreImg();
+			        		setTimeout(function() {
+			        			location.href="/YeaMin/storeContents.do";
+			        		}, 500);
 			        	} else if(ret.result === "error") {
 			        		//등록 실패
 			        		location.href="/YeaMin/main.do";
@@ -65,6 +99,7 @@
 	        storeUpdate: function() {
 	        	var data = $("#form").serialize();
 	        	trace(data);
+	        	trace("수정 수행");
 	        	$.ajax({
 			        url: "/YeaMin/updateStore.json",
 			        type: "post",
@@ -73,17 +108,26 @@
 						var ret = JSON.parse(data);
 			        	if(ret.result === "ok") {
 			        		//수정 성공
+			        		fnObj.insertStoreImg();
+			        		setTimeout(function() {
+			        			location.href="/YeaMin/storeContents.do";
+			        		}, 500);
 			        	} else if(ret.result === "error") {
 			        		//수정 실패
 			        	}
 			        }
 			    });
-
-	        	for(var i=0;i<list.length;i++){				
+	        },
+	        insertStoreImg: function() {
+	        	trace("이미지 등록 수행");
+	        	
+	        	var uploadedList = fnObj.upload.target.getUploadedList();
+	        	
+	        	for(var i=0;i<uploadedList.length;i++){				
 					$.ajax({
 				        url: "/YeaMin/insertStoreImg.json",
 				        type: "post",
-				        data: "store_img_origin_path=" + list[i].name + "&store_img_system_path=" + list[i].saveName ,
+				        data: "store_img_origin_path=" + uploadedList[i].name + "&store_img_system_path=" + uploadedList[i].saveName ,
 				        success: function(data) {
 							var ret = JSON.parse(data);							
 				        	if(ret.result === "ok") {
@@ -94,8 +138,7 @@
 				        	}
 				        }
 				    });
-				}  		
-	        	location.href="/YeaMin/storeContents.do";
+				}
 	        },
 	        close: function() {
 	        	
@@ -141,28 +184,26 @@
 							thumbPath:"thumbUrl" // 서버에서 키값을 다르게 설정 할 수 있다는 것을 확인 하기 위해 이름을 다르게 처리한 예제 입니다.
 						},
 						
-						onbeforeFileSelect: function(){				
-							//trace(this);
+						onbeforeFileSelect: function(){	
+							
 							return true;
 						},
 						
-						onUpload: function(){
+						onUpload: function(){					
 							//trace(this);
 							//trace(fnObj.upload.target.uploadedList);
 							//trace("onUpload");
 						},
 						onComplete: function(){	
-							list= this;
-							trace(list);
-							//fnObj.upload.target.setUploadedList(list); list형식이 json이여야하고 모든 값들이 넘어와야 표시된다.
+							//fnObj.upload.target.setUploadedList(list); //list형식이 json이여야하고 모든 값들이 넘어와야 표시된다.
 							//trace("onComplete");
 						},
 						onStart: function(){
+							
 							//trace(this);
 							//trace("onStart");
 						},
 						onDelete: function(){
-							trace(this);
 							//trace("onDelete");
 						},
 						onError: function(errorType, extData){
@@ -195,8 +236,11 @@
 				}
 			}
 		};
-	    axdom(window).ready(fnObj.pageStart);
-	    axdom(window).resize(fnObj.pageResize);
+	    //axdom(window).ready(fnObj.pageStart);
+	    //axdom(window).resize(fnObj.pageResize);
+	    $(document).ready(function(){
+	    	fnObj.load();
+	    });
 		</script>
 	</head>
 <div class="ax-body">

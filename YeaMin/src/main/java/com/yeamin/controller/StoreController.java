@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.StoreDao;
 import com.yeamin.dto.StoreDto;
+import com.yeamin.dto.StoreImgDto;
 
 @Controller
 public class StoreController {
@@ -59,6 +60,7 @@ public class StoreController {
 	
 	@RequestMapping("/updateStore.json")
 	public @ResponseBody Map<String, Object> updateStore(@RequestParam Map<String, Object> paramMap) {
+		storeDao.deleteStoreImg();
 		Integer sqlResult = storeDao.updateStore(paramMap);
 		if(sqlResult!=0){
 			System.out.println("수정 성공");
@@ -86,6 +88,22 @@ public class StoreController {
 		
 		return ret;
 	}
+	
+	@RequestMapping("/selectStoreImg.json")
+	public @ResponseBody Map<String, Object> selectStoreImg(@RequestParam Map<String, Object> paramMap) {
+		List<StoreImgDto> listDto = storeDao.selectStoreImg(paramMap);
+		if(listDto!=null){
+			System.out.println("조회 성공");
+		}else{
+			System.out.println("조회 실패");
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+
+		ret.put("result", "ok");
+		ret.put("listDto", listDto);
+		
+		return ret;
+	}	
 	
 	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
 		int listCount = list.size();

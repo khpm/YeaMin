@@ -53,4 +53,10 @@
 		FROM
 			ym_store_img
 	</select>
+	
+	<delete id="QID_DELETE_STORE_IMG">
+		DELETE
+		FROM
+			ym_store_img
+	</delete>
 </mapper>

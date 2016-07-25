@@ -1,5 +1,6 @@
 package com.yeamin.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.yeamin.constants.QueryConstants;
 import com.yeamin.dao.StoreDao;
 import com.yeamin.dto.StoreDto;
+import com.yeamin.dto.StoreImgDto;
 
 @Repository
 public class StoreDaoImpl implements StoreDao {
@@ -44,6 +46,15 @@ public class StoreDaoImpl implements StoreDao {
 	public Integer insertStoreImg(Map<String, Object> paramMap){
 		return sqlSession.insert(QueryConstants.QID_INSERT_STORE_IMG, paramMap);
 	}
-
+	
+	@Override
+	public List<StoreImgDto> selectStoreImg(Map<String, Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_STORE_IMG, paramMap);
+	}
+	
+	@Override
+	public Integer deleteStoreImg(){
+		return sqlSession.delete(QueryConstants.QID_DELETE_STORE_IMG);
+	}
 	
 }

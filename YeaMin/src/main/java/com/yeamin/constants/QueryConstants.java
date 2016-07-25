@@ -34,6 +34,7 @@ public class QueryConstants {
 	public final static String QID_UPDATE_STORE = "store.QID_UPDATE_STORE";
 	public final static String QID_INSERT_STORE_IMG = "store.QID_INSERT_STORE_IMG";
 	public final static String QID_SELECT_STORE_IMG = "store.QID_SELECT_STORE_IMG";
+	public final static String QID_DELETE_STORE_IMG = "store.QID_DELETE_STORE_IMG";
 	
 	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
 	public final static String QID_INSERT_BOARD_MAXREF = "board.QID_INSERT_BOARD_MAXREF";
