@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
+	<select id="QID_SELECT_STORE" resultType="StoreDto">
+		SELECT
+			store_name,
+			store_tel,
+			store_addr,
+			store_desc,
+			store_week_business_time,
+			store_weekend_business_time
+		FROM
+			ym_store
+	</select>
 	
+	<insert id="QID_INSERT_STORE">
+		INSERT INTO
+			ym_store
+		VALUES (#{store_name},
+				#{store_tel},
+				#{store_addr},
+				#{store_desc},
+				#{store_week_business_time},
+				#{store_weekend_business_time}
+				)
+	</insert>
+	
+	<update id="QID_UPDATE_STORE">
+		UPDATE
+			ym_store
+		SET
+			store_name = #{store_name}, 
+			store_tel = #{store_tel},
+			store_addr = #{store_addr},
+			store_desc = #{store_desc},
+			store_week_business_time = #{store_week_business_time},
+			store_weekend_business_time = #{store_weekend_business_time}
+	</update>
+	
+	<insert id="QID_INSERT_STORE_IMG">
+		INSERT INTO
+			ym_store_img
+		VALUES(
+			#{store_img_system_path},
+			#{store_img_origin_path}
+			)
+	</insert>
+	
+	<select id="QID_SELECT_STORE_IMG" resultType="StoreImgDto">
+		SELECT
+			store_img_system_path,
+			store_img_origin_path
+		FROM
+			ym_store_img
+	</select>
 </mapper>

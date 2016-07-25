@@ -62,14 +62,14 @@ public class FileController {
 	        	log.debug("originalFileSize : " + originalFileSize);
 	        	log.debug("saveFileName : " + saveFileName);
 	        	
-	        	multipartFile.transferTo(new File(saveDirPath + File.separator + saveFileName));
-	        	
+	        	multipartFile.transferTo(new File(saveDirPath + File.separator + saveFileName));	    
 	        	Map<String, Object> ret = new HashMap<String, Object>();
 	        	ret.put("name", originalFileName);
 	        	ret.put("type", originalFileExtension);
 	        	ret.put("fileSize", originalFileSize);
 	        	ret.put("saveName", saveFileName);
 	        	ret.put("uploadedPath", saveDirPath + File.separator);
+	        	ret.put("thumbUrl", "http://localhost:8080/YeaMin/save/" + saveFileName);
 	        	
 	        	return ret;
 	        }
@@ -77,7 +77,7 @@ public class FileController {
 	    
 		return null;
 	}
-	
+
 	@RequestMapping("/fileDownload.do")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
 		String originalFileName = request.getParameter("name");

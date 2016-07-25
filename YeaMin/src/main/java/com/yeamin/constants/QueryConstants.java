@@ -29,6 +29,12 @@ public class QueryConstants {
 	public final static String QID_UPDATE_PRODUCT = "product.QID_UPDATE_PRODUCT";
 	public final static String QID_DELETE_PRODUCT = "product.QID_DELETE_PRODUCT";
 	
+	public final static String QID_SELECT_STORE = "store.QID_SELECT_STORE";
+	public final static String QID_INSERT_STORE = "store.QID_INSERT_STORE";
+	public final static String QID_UPDATE_STORE = "store.QID_UPDATE_STORE";
+	public final static String QID_INSERT_STORE_IMG = "store.QID_INSERT_STORE_IMG";
+	public final static String QID_SELECT_STORE_IMG = "store.QID_SELECT_STORE_IMG";
+	
 	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
 	public final static String QID_INSERT_BOARD_MAXREF = "board.QID_INSERT_BOARD_MAXREF";
 	public final static String QID_SELECT_BOARD_LIST = "board.QID_SELECT_BOARD_LIST";

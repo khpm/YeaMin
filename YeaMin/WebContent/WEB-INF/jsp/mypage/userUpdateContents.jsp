@@ -160,7 +160,7 @@
 							<div class="ax-unit">
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
-		                       		<div class="ax-rwd-table">
+		                       		<div class="ax-rwd-table" style="margin:5px;">
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
