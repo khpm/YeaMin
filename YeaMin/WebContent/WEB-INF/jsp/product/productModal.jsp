@@ -39,6 +39,20 @@
 				});
 				
 				fnObj.upload.bind();
+				if(form.product_img_origin_path.value){
+					var tmplist=[];
+					var tmp={
+		        			_id_: "0",
+							name: form.product_img_origin_path.value,
+							type:".jsp",
+							saveName: form.product_img_system_path.value,
+							fileSize: 2097152,
+							uploadedPath:"C:/ExpertJava/YM/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/YeaMin/save",
+							thumbUrl:"http://localhost:8080/YeaMin/save/" + form.product_img_system_path.value
+					};
+					tmplist.push(tmp);
+		    		fnObj.upload.target.setUploadedList(tmplist);
+				}
 			},
 			pageResize: function(){
 			    parent.productModal.resize();
@@ -84,6 +98,7 @@
 						isSingleUpload:true,
 						targetID:"AXUpload5",
 						targetButtonClass:"Blue",
+						
 						onClickUploadedItem: function(){
 							// trace(this);
 							window.open("/YeaMin/fileDownload.do?name=" + this.name.dec() + "&saveName=" + this.saveName.dec(), "_self");
@@ -134,8 +149,9 @@
        			parent.productModal.close();
 			}		     
 		};
-		axdom(window).ready(fnObj.pageStart);
+		//axdom(window).ready(fnObj.pageStart);
 		axdom(window).resize(fnObj.pageResize);
+
 		</script>
 	</head>
 	<body>
