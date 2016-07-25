@@ -106,6 +106,9 @@ public class ReservationTogetherGroupWebSocket {
 		case "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK":
 			RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK(msgMap);
 			break;
+		case "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_EVENTS":
+			RESERVATION_TOGETHER_GROUP_FULLCALENDAR_EVENTS(msgMap);
+			break;
 		}
 	}
 	
@@ -198,6 +201,24 @@ public class ReservationTogetherGroupWebSocket {
 	}
 	
 	private void RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK(Map<String, Object> msgMap) {
+		UserDto user = (UserDto) httpSession.getAttribute("user");
+		msgMap.put("userName", user.getUser_name());
+		
+		int groupId = (Integer) msgMap.get("groupId");
+		List<ReservationTogetherGroupWebSocket> groupListTemp = groupListMap.get(groupId);
+		List<ReservationTogetherGroupWebSocket> groupList = new ArrayList<ReservationTogetherGroupWebSocket>();
+				
+		for (ReservationTogetherGroupWebSocket ws : groupListTemp) {
+			UserDto otherUser = (UserDto) ws.httpSession.getAttribute("user");
+			if(!user.getUser_id().equals(otherUser.getUser_id())) {
+				groupList.add(ws);
+			}
+		}
+		
+		broadcast(groupList, msgMap);
+	}
+	
+	private void RESERVATION_TOGETHER_GROUP_FULLCALENDAR_EVENTS(Map<String, Object> msgMap) {
 		UserDto user = (UserDto) httpSession.getAttribute("user");
 		msgMap.put("userName", user.getUser_name());
 		

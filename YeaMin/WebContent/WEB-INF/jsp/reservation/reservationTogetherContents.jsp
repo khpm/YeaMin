@@ -92,6 +92,10 @@
 					$("." + data.clickCalss).trigger("click");
 					fnObj.fullCalendar.clickHandler("bind");
 					break;
+	        	case "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_EVENTS":
+	        		$('#calendar').fullCalendar( 'removeEvents' );
+	        		$('#calendar').fullCalendar( 'addEventSource', data.events );
+					break;
 				}
         	},
         	onclose: function() {
@@ -140,25 +144,52 @@
     				droppable: true,
     				events: [
     					{
-	    					title: 'Long Event1',
-	    					start: '2016-07-18',
-	    					end: '2016-07-20'
-	    				},
-	    				{
-	    					title: 'Long Event2',
-	    					start: '2016-07-08',
-	    					end: '2016-07-10'
-	    				}
-    				],
-    				eventDrop: function(event, delta, revertFunc) {
-						console.log("eventDrop");
+   		   					title: 'Long Event1',
+   		   					start: '2016-07-18T16:00:00',
+   		   					end: '2016-07-20T20:00:00',
+   		   					color: '#1DDB16',
+   		   				},
+   		   				{
+   		   					title: 'Long Event2',
+   		   					start: '2016-07-08T12:00:00',
+   		   					end: '2016-07-10T16:00:00',
+   		  					color: '#0054FF',
+   		   				}
+   					],
+    				eventClick: function(clientEvent, jsEvent, view) {
+    					console.log('Event Title: ' + clientEvent.title);
+    					console.log('Event Url: ' + clientEvent.Url);
+    			        $(this).css('border-color', 'red');
     			    },
-    				eventResize: function(event, delta, revertFunc) {
-    					console.log("eventResize");
-    					console.log($('#calendar').fullCalendar( 'clientEvents'));
+    				eventDragStop: function(event, delta, revertFunc) {
+    					fnObj.fullCalendar.sendEvents();
+    			    },
+    			    eventResizeStop: function(event, delta, revertFunc) {
+    			    	fnObj.fullCalendar.sendEvents();
     			    }
     			});
         		fnObj.fullCalendar.clickHandler("bind");
+        	},
+        	sendEvents: function() {
+				setTimeout(function () {
+					
+					var events = [];
+					$('#calendar').fullCalendar("clientEvents", function(clientEvent) {
+						var event = {};
+						event.title = clientEvent.title;
+						event.start = $.fullCalendar.moment(clientEvent.start).format();
+						event.end = $.fullCalendar.moment(clientEvent.end).format();
+						event.color = clientEvent.color;
+						events.push(event);
+  					});
+					
+					var req = new Object();
+	        		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_EVENTS";
+	        		req.groupId = parseInt($("#groupId").val());
+	        		req.events = events;
+	       			fnObj.webSocket.send(JSON.stringify(req));
+					
+				}, 100);
         	},
         	clickHandler: function(type) {
         		if(type === "bind") {
@@ -178,7 +209,6 @@
         		}
         	},
         	prevClickHandler: function(event) {
-    			console.log("fc-next-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
@@ -186,7 +216,6 @@
        			fnObj.webSocket.send(JSON.stringify(req));
     		},
     		nextClickHandler: function(event) {
-    			console.log("fc-next-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
@@ -194,7 +223,6 @@
        			fnObj.webSocket.send(JSON.stringify(req));
     		},
    			todayClickHandler: function(event) {
-    			console.log("fc-today-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
@@ -202,7 +230,6 @@
        			fnObj.webSocket.send(JSON.stringify(req));
     		},
    			monthClickHandler: function(event) {
-    			console.log("fc-month-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
@@ -210,7 +237,6 @@
        			fnObj.webSocket.send(JSON.stringify(req));
     		},
     		agendaWeekClickHandler: function(event) {
-    			console.log("fc-agendaWeek-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
@@ -218,7 +244,6 @@
        			fnObj.webSocket.send(JSON.stringify(req));
     		},
    			agendaDayClickHandler: function(event) {
-    			console.log("fc-agendaDay-button");
     			var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_FULLCALENDAR_CLICK";
         		req.groupId = parseInt($("#groupId").val());
