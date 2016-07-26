@@ -7,7 +7,7 @@
             <div class="ax-col-12">
                 <div class="ax-unit">
                     <div class="ax-logo">
-                     <a href="index.html"><span class="logo-img"><i class="axi axi-axisj"></i></span><span class="logo-txt">AXU4J@AXISJ</span></a>
+                     <a href="main.do"><span class="logo-img"><i class="axi axi-axisj"></i></span><span class="logo-txt">AXU4J@AXISJ</span></a>
                     </div>
                 </div>
             </div>
