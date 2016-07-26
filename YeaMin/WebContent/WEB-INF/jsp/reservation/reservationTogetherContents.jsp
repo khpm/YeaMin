@@ -149,7 +149,7 @@
             }});
         },
         webSocket: {
-        	target: new WebSocket("ws://192.168.0.114:8080/YeaMin/websocket/reservationTogether.do"),
+        	target: new WebSocket("ws://localhost:8080/YeaMin/websocket/reservationTogether.do"),
         	bind: function() {
         		fnObj.webSocket.target.onopen = fnObj.webSocket.onopen;
         		fnObj.webSocket.target.onmessage = fnObj.webSocket.onmessage;
