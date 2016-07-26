@@ -38,7 +38,7 @@
 					}
 				});
 				
-				// $("#reservation_capacity_time").bindDateTime();
+				$("#reservation_capacity_time").bindPattern({pattern: "time"});
 			},
 	        pageResize: function(){
 	        	parent.reservationCapacityModal.resize();

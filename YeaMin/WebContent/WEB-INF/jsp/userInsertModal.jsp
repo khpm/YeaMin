@@ -58,6 +58,7 @@
 						// trace(Object.toJSON(this));
 					}
 				}).val("1990-01-01");
+				
 				// 성별
 				$("#user_gender").bindSegment({
 					options:[
@@ -69,6 +70,8 @@
 						// toast.push(Object.toJSON({targetID:this.targetID, options:this.options, selectedIndex:this.selectedIndex, selectedOption:this.selectedOption}));
 					}
 				});
+				
+				$("#user_hp").bindPattern({pattern: "phone"});
 			},
 	        pageResize: function(){
 	            parent.userInsertModal.resize();

@@ -147,6 +147,8 @@
 			$("#AXInputDateTimeED").bindTwinDateTime({align:"right", valign:"top", separator:"-", startTargetID:"AXInputDateTimeST", onChange:function() {
                 // console.log(this);
             }});
+			
+			$("#groupId").bindPattern({pattern: "numberint"});
         },
         webSocket: {
         	target: new WebSocket("ws://localhost:8080/YeaMin/websocket/reservationTogether.do"),

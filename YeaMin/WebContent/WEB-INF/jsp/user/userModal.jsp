@@ -48,6 +48,8 @@
 						// toast.push(Object.toJSON({targetID:this.targetID, options:this.options, selectedIndex:this.selectedIndex, selectedOption:this.selectedOption}));
 					}
 				});
+				
+				$("#user_hp").bindPattern({pattern: "phone"});
 			},
 	        pageResize: function(){
 	            parent.userModal.resize();
