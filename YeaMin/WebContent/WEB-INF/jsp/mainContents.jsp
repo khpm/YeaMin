@@ -245,12 +245,16 @@
 			        	var ret = JSON.parse(data);
 			        	
 			        	if(ret.result === "ok") {
-							console.log(ret);
+							console.log(ret.list);
+							var options = [];
+							for(var i = 0; i < ret.list.length; i++){
+								options.push({optionText: ret.list[i]., optionValue: ret.list[i].});
+							}
 			        	}
 			        }
 			    });
 				
-				/* console.log(categoryList[1].product_category_name);
+				/*
 				var options = [];
 				var index;
 				for(var i = 0; i < addCount; i++){
