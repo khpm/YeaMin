@@ -12,32 +12,14 @@
 		
 		FROM
 		YM_PRODUCT_CATEGORY y
-	</select>
-	
-	<!-- 카테고리 이름으로 카테고리 정보 조회 -->
-	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST_ONE" resultType="ProductCategoryDto">
-		SELECT
-		y.PRODUCT_CATEGORY_NO, y.PRODUCT_CATEGORY_NAME, y.PRODUCT_CATEGORY_ORDER_BY,
-  		(select count(*) from YM_PRODUCT m where y.PRODUCT_CATEGORY_NO=m.PRODUCT_CATEGORY_NO) AS PRODUCT_CATEGORY_CNT
-		
-		FROM
-		YM_PRODUCT_CATEGORY y
-		
-		WHERE
-		y.PRODUCT_CATEGORY_NAME = #{inputText}
-	</select>
-	
-	<!-- 상품 이름으로 카테고리 정보 조회 -->
-	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2" resultType="ProductCategoryDto">
-		SELECT
-  		y.PRODUCT_CATEGORY_NO, y.PRODUCT_CATEGORY_NAME, y.PRODUCT_CATEGORY_ORDER_BY,
-  		(select count(*) from YM_PRODUCT m where y.PRODUCT_CATEGORY_NO=m.PRODUCT_CATEGORY_NO) AS PRODUCT_CATEGORY_CNT
-		
-		FROM
-		YM_PRODUCT_CATEGORY y
-		
-		WHERE
-		y.PRODUCT_CATEGORY_NO=(SELECT m2.PRODUCT_CATEGORY_NO FROM YM_PRODUCT m2 WHERE m2.PRODUCT_NAME=#{inputText2})
+		<where>
+			<if test="product_category_name != null and product_category_name != ''">
+				AND y.product_category_name LIKE '%'||#{product_category_name}||'%'
+			</if>
+			<if test="product_name != null and product_name != ''">
+				AND y.product_category_no in(SELECT m2.product_category_no FROM ym_product m2 WHERE m2.product_name LIKE '%'||#{product_name}||'%')
+			</if>
+		</where>
 	</select>
 	
 	<!-- 상품 카테고리 MODEL 등록 -->

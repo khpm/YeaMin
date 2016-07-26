@@ -29,18 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public List<ProductCategoryDto> selectproductCategoryList(Map<String, Object> paramMap) {
-		if(paramMap.get("inputText")!="" && paramMap.get("inputText2")==""){
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE, paramMap);
-		}else if(paramMap.get("inputText2")!=""){
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_ONE2, paramMap);
-		}else{
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
-		}
-	}
-	
-	@Override
-	public List<ProductCategoryDto> selectproductCategoryList(){
-		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST);
+		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
 	}
 	
 	@Override
