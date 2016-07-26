@@ -129,7 +129,8 @@
 							// trace(this);
 						},
 						onDelete: function(){
-							// trace(this);
+							//trace(this);
+													
 						},
 						onError: function(errorType, extData) {
 							trace("------------------ onError");
