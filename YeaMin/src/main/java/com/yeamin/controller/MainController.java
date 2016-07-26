@@ -1,5 +1,8 @@
 package com.yeamin.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,9 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dao.ReviewDao;
 import com.yeamin.dao.StoreDao;
+import com.yeamin.dto.ProductCategoryDto;
+import com.yeamin.dto.StoreDto;
+import com.yeamin.dto.StoreImgDto;
 
 @Controller
 public class MainController {
@@ -33,36 +39,18 @@ public class MainController {
 	@RequestMapping("/main.do")
 	public ModelAndView mainContents() {
 		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		List<StoreImgDto> list = storeDao.selectStoreImg(new HashMap<String,Object>());
+		if(list != null){
+			mav.addObject("list", list);
+		}
+		StoreDto dto = storeDao.selectStore();
+		if(dto != null){
+			mav.addObject("dto", dto);
+		}
+
 		mav.addObject("contentViewName", "/WEB-INF/jsp/mainContents.jsp");
 		return mav;
 	}
 	
-	@RequestMapping("/index.do")
-	public ModelAndView index() {
-		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/example/index.jsp");
-		return mav;
-	}
-	
-	@RequestMapping("/content.do")
-	public ModelAndView content() {
-		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/example/content.jsp");
-		return mav;
-	}
-	
-	@RequestMapping("/content-1.do")
-	public ModelAndView content1() {
-		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/example/content-1.jsp");
-		return mav;
-	}
-	
-	@RequestMapping("/content-2.do")
-	public ModelAndView content2() {
-		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
-		mav.addObject("contentViewName", "/WEB-INF/jsp/example/content-2.jsp");
-		return mav;
-	}
 	
 }

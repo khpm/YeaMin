@@ -20,7 +20,9 @@
 	
 		<script type="text/javascript" src="/YeaMin/js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/axisj/dist/AXJ.min.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/axisj/lib/AXDivSlider.js"></script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="//apis.daum.net/maps/maps3.js?apikey=8355c25105d42f80b6f88247555a1c2a&libraries=services"></script>
 	
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
