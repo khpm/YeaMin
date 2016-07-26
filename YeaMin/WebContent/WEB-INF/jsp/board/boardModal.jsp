@@ -76,6 +76,25 @@
 				        }
 				    });
 		        },
+		        
+		        boardDelete: function() {
+		        	var data = $("#form").serialize();
+		        	
+		        	$.ajax({
+				        url: "/YeaMin/deleteBoard.json",
+				        type: "post",
+				        data: data,
+				        success: function(data) {
+							var ret = JSON.parse(data);
+				     		
+				        	if(ret.result === "ok") {
+				        		fnObj.close();
+				        		parent.fnObj.select();
+				        	}
+				        }
+				    });
+		        },
+		        
 		        close: function() {
 		        	parent.myModal.close();
 		        }		     
@@ -133,7 +152,7 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">작성자</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="text" value="${user.user_name}" class="AXInput W70" readonly/>
+													<input type="text" value="${dto.user_name}" class="AXInput W70" readonly/>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -172,6 +191,7 @@
 		                	<c:if test="${modalType eq 'UPDATE'}">
 		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
 		                	</c:if>
+		                	<button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>
 		            </div>

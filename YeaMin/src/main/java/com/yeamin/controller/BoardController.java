@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,6 +70,20 @@ public class BoardController {
 	@RequestMapping("/updateBoard.json")
 	public @ResponseBody Map<String, Object> updateBoard(@RequestParam Map<String, Object> paramMap) {
 		Integer sqlResult = boardDao.updateBoard(paramMap);
+		if(sqlResult!=0){
+			System.out.println("수정 성공");
+		}else{
+			System.out.println("수정 실패");
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		
+		return ret;
+	}
+		
+	@RequestMapping("/deleteBoard.json")
+	public @ResponseBody Map<String, Object> deleteBoard(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = boardDao.deleteBoard(paramMap);
 		if(sqlResult!=0){
 			System.out.println("수정 성공");
 		}else{

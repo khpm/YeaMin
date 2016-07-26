@@ -46,11 +46,15 @@
 	
 	<select id="QID_SELECT_BOARD_LIST_ONE" resultType="BoardDto">
 	SELECT
-		*
+		ym_board.*,
+		ym_user.user_no,
+		ym_user.user_name
 	FROM
-		ym_board
+		ym_board,
+		ym_user
 	WHERE
-		board_no = #{board_no}
+		ym_board.user_no = ym_user.user_no
+		AND ym_board.board_no = #{board_no}
 	</select>
 	
 	<update id="QID_UPDATE_BOARD">
@@ -62,4 +66,12 @@
 	WHERE
 		board_no = #{board_no}
 	</update>
+	
+	<delete id="QID_DELETE_BOARD">
+	DELETE
+		ym_board
+	WHERE
+		board_no = #{board_no}
+	</delete>
+	
 </mapper>

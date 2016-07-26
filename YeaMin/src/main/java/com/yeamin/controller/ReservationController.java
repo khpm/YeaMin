@@ -108,11 +108,4 @@ public class ReservationController {
 		return mav;
 	}
 	
-	@RequestMapping("/reservationTogetherModal.do")
-	public ModelAndView reservationTogetherModal(@RequestParam Map<String, Object> paramMap) {
-		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/reservation/reservationTogetherModal.jsp");
-		mav.addObject("modalType", paramMap.get("modalType"));
-		return mav;
-	}
-	
 }
