@@ -222,17 +222,25 @@
 				$("#menuTab").bindTab({
 					theme : "AXTabs",
 					value:"",
-					overflow:"scroll", /* "visible" */
+					overflow:"scroll",
 					options:[
-						{optionValue:"M", optionText:"남성"}, 
-						{optionValue:"F", optionText:"여성"}, 
-						{optionValue:"N", optionText:"선택안함"}, 
-						{optionValue:"", optionText:"모두"}
+
 					],
 					onchange: function(selectedObject, value){
-						//toast.push(Object.toJSON(this));
-						//toast.push(Object.toJSON(selectedObject));
-						toast.push("onchange: "+Object.toJSON(value));
+						var product_category_no = Object.toJSON(value);
+						var data = new Object();
+						data["product_category_no"] = product_category_no;
+						$.ajax({
+					        url: "/YeaMin/selectProductMain.json",
+					        type: "post",
+					        data: data,
+					        success: function(data) {
+					        	var ret = JSON.parse(data);
+					        	if(ret.result === "ok") {
+					        		console.log(ret);
+					        	}
+					        }
+					    });
 					}
 				});
 			},
@@ -245,23 +253,14 @@
 			        	var ret = JSON.parse(data);
 			        	
 			        	if(ret.result === "ok") {
-							console.log(ret.list);
 							var options = [];
 							for(var i = 0; i < ret.list.length; i++){
-								options.push({optionText: ret.list[i]., optionValue: ret.list[i].});
+								options.push({optionText: ret.list[i].product_category_name, optionValue: ret.list[i].product_category_no});
 							}
+							$("#menuTab").addTabs(options);
 			        	}
 			        }
 			    });
-				
-				/*
-				var options = [];
-				var index;
-				for(var i = 0; i < addCount; i++){
-					index = "0" + (i + 1);
-					options.push({optionText: "add " + index, optionValue: index});
-				}
-				$("#" + tabID).addTabs(options); */
 			}
 		}
 	}

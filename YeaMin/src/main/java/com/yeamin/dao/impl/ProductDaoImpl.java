@@ -115,4 +115,9 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<ProductDto> selectProductMain(Map<String,Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_MAIN, paramMap);
+	}
 }

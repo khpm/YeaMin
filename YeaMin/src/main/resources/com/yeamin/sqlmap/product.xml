@@ -20,6 +20,8 @@
 				AND y.product_category_no in(SELECT m2.product_category_no FROM ym_product m2 WHERE m2.product_name LIKE '%'||#{product_name}||'%')
 			</if>
 		</where>
+		ORDER BY
+			product_category_order_by asc
 	</select>
 	
 	<!-- 상품 카테고리 MODEL 등록 -->
@@ -90,6 +92,19 @@
         	<if test="productName != '' and productName != null">
         	AND p.product_name LIKE '%'||#{productName}||'%'
         	</if>
+		</where>
+	</select>
+	
+	<!-- 메인에서 메뉴판(카테고리NO)을 통해 상품 조회 -->
+	<select id="QID_SELECT_PRODUCT_MAIN" resultType="ProductDto">
+		SELECT
+			*
+		FROM
+			ym_product
+		<where>
+			<if test="product_category_no != '' and product_category_no != null">
+				AND product_category_no = #{product_category_no}
+			</if>
 		</where>
 	</select>
 	

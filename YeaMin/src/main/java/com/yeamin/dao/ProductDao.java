@@ -21,5 +21,6 @@ public interface ProductDao {
 	public Integer insertProduct(Map<String, Object> paramMap);
 	public Integer updateProduct(Map<String, Object> paramMap);
 	public Integer deleteProduct(Map<String, Object> paramMap);
+	public List<ProductDto> selectProductMain(Map<String,Object> paramMap);
 	
 }
