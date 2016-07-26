@@ -73,13 +73,21 @@
 				                            <div class="item-group" style="">
 				                                <div class="item">
 				                                    <label class="item-lable">
-				                                        <span class="th" style="min-width:100px;">주중 영업시간</span>
+				                                        <span class="th" style="min-width:100px;">주중 영업 시간</span>
 				                                        <span class="td inputText" style="" title="">
-				                                            <input type="text" id="store_week_business_time" name="store_week_business_time" title="" value="${dto.store_week_business_time}" class="AXInput av-required W150"/>
+				                                            <input type="text" id="store_week_business_time" name="store_week_business_time" title="" value="${dto.store_week_business_time}" class="AXInput av-required W400"/>
 				                                        </span>
-				                                        <span class="th" style="min-width:100px;">주말 영업시간</span>
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">주말 영업 시간</span>
 				                                        <span class="td inputText" style="" title="">
-				                                            <input type="text" id="store_weekend_business_time" name="store_weekend_business_time" title="" value="${dto.store_weekend_business_time}" class="AXInput av-required W150"/>
+				                                            <input type="text" id="store_weekend_business_time" name="store_weekend_business_time" title="" value="${dto.store_weekend_business_time}" class="AXInput av-required W400"/>
 				                                        </span>
 				                                    </label>
 				                                </div>
