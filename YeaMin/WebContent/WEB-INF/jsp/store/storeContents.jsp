@@ -12,8 +12,7 @@
 			<div class="ax-clear"></div>
 		</div>
 		<div class="ax-layer">
-			<div class="ax-col-12 ax-content">
-					
+			<div class="ax-col-12 ax-content">				
 				<!-- s.CXPage -->
 				<div id="CXPage">
 					<div class="ax-layer">
@@ -21,114 +20,114 @@
 							<div class="ax-unit">
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
-		                       		<div class="ax-rwd-table" style="margin:5px;">
-									<div class="item-group">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">가게 이름</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="store_name" name="store_name" title="" placeholder="" value="${dto.store_name}" class="AXInput av-required W150"/>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">가게 전화번호</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="tel" id="store_tel" name="store_tel" title="" placeholder="" value="${dto.store_tel}" class="AXInput av-required W150" />
-		                                        </span>		                                      
-		                                    </label>		                                    
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">가게 주소</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="sample5_address" name="store_addr" title="" placeholder="" value="${dto.store_addr}" class="AXInput av-required W400" readonly/>
-		                                            <input type="button" class="AXButton" onclick="sample5_execDaumPostcode()" value="주소 검색">
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">가게 설명</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <textarea name="store_desc" class="AXInput W150" id="store_desc" style="width:470px; height:130px;">${dto.store_desc}</textarea>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">주중 영업시간</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="store_week_business_time" name="store_week_business_time" title="" value="${dto.store_week_business_time}" class="AXInput av-required W150"/>
-		                                        </span>
-		                                        <span class="th" style="min-width:100px;">주말 영업시간</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="store_weekend_business_time" name="store_weekend_business_time" title="" value="${dto.store_weekend_business_time}" class="AXInput av-required W150"/>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">가게 이미지</span>		                                        
-		                                        	<!-- 이미지 부분 -->
-		                                        <span class="td">												            
-												    <div class="AXdemoPageContent">
-												    	<div class="AXUpload5" id="AXUpload5"></div>
-												    	<div class="H10"></div>
-												    	<div id="uploadQueueBox" class="AXUpload5QueueBox" style="height:188px; width:490px;"></div>
-												    	<div class="H10"></div>
-													</div>
-												</span>				                                        
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>		                            
-		                        </div>
-		                    </form>
+		                       			<div class="ax-rwd-table" style="margin:5px;">
+											<div class="item-group">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">가게 이름</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <input type="text" id="store_name" name="store_name" title="" placeholder="" value="${dto.store_name}" class="AXInput av-required W150"/>
+				                                        </span>
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">가게 전화번호</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <input type="tel" id="store_tel" name="store_tel" title="" placeholder="" value="${dto.store_tel}" class="AXInput av-required W150" />
+				                                        </span>		                                      
+				                                    </label>		                                    
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">가게 주소</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <input type="text" id="sample5_address" name="store_addr" title="" placeholder="" value="${dto.store_addr}" class="AXInput av-required W400" readonly/>
+				                                            <input type="button" class="AXButton" onclick="sample5_execDaumPostcode()" value="주소 검색">
+				                                        </span>
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">가게 설명</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <textarea name="store_desc" class="AXInput W150" id="store_desc" style="width:470px; height:130px;">${dto.store_desc}</textarea>
+				                                        </span>
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">주중 영업시간</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <input type="text" id="store_week_business_time" name="store_week_business_time" title="" value="${dto.store_week_business_time}" class="AXInput av-required W150"/>
+				                                        </span>
+				                                        <span class="th" style="min-width:100px;">주말 영업시간</span>
+				                                        <span class="td inputText" style="" title="">
+				                                            <input type="text" id="store_weekend_business_time" name="store_weekend_business_time" title="" value="${dto.store_weekend_business_time}" class="AXInput av-required W150"/>
+				                                        </span>
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">가게 이미지</span>		                                        
+				                                        	<!-- 이미지 부분 -->
+				                                        <span class="td">												            
+														    <div class="AXdemoPageContent">
+														    	<div class="AXUpload5" id="AXUpload5"></div>
+														    	<div class="H10"></div>
+														    	<div id="uploadQueueBox" class="AXUpload5QueueBox" style="height:188px; width:490px;"></div>
+														    	<div class="H10"></div>
+															</div>
+														</span>				                                        
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>		                            
+		                        		</div>
+		                    		</form>
 								</div>
 							</div>
 						</div>
-							<div class="ax-clear"></div>
+						<div class="ax-clear"></div>
 					</div>
 				</div>
 				<!-- e.CXPage -->					
 				<div class="ax-modal-footer">
-		        <div class="ax-wrap">
-		            <div class="ax-col-12">
-		                <div class="ax-unit center">
-		                	<c:if test="${empty dto.store_name}">
-		                    <button type="button" class="AXButton" onclick="fnObj.storeInsert();">등록</button>
-		                    </c:if>
-		                    <c:if test="${!empty dto.store_name}">
-		                    <button type="button" class="AXButton" onclick="fnObj.storeUpdate();">수정</button>
-		                    </c:if>
-		                </div>
-		            </div>
-		            <div class="ax-clear"></div>
-		        </div>
-		    </div>	
+			        <div class="ax-wrap">
+			            <div class="ax-col-12">
+			                <div class="ax-unit center">
+			                	<c:if test="${empty dto.store_name}">
+			                    <button type="button" class="AXButton" onclick="fnObj.storeInsert();">등록</button>
+			                    </c:if>
+			                    <c:if test="${!empty dto.store_name}">
+			                    <button type="button" class="AXButton" onclick="fnObj.storeUpdate();">수정</button>
+			                    </c:if>
+			                </div>
+			            </div>
+			            <div class="ax-clear"></div>
+			        </div>
+		    	</div>	
 			</div>
 			<div class="ax-clear"></div>
 		</div>
@@ -167,11 +166,11 @@
 		pageStart: function(){				
 			fnObj.upload.bind();
 		},			
-	       pageResize: function(){
-	           //parent.userInsertModal.resize();
-	       },
-	       load : function(){
-	       	var uploadedList = [];
+	    pageResize: function(){
+	    	//parent.userInsertModal.resize();
+	    },
+		load : function(){
+	    	var uploadedList = [];
 	       	$.ajax({
 		        url: "/YeaMin/selectStoreImg.json",
 		        type: "post",
@@ -193,17 +192,15 @@
 			        		};
 			        		uploadedList.push(tmp);
 		        		}//for문
-		        		fnObj.upload.target.setUploadedList(uploadedList);
-		        		
-		        		
+		        		fnObj.upload.target.setUploadedList(uploadedList);        		
 		        	} else if(ret.result === "error") {
 		        		//이미지 조회 실패
 		        	}
 		        }
 		    });
-	       },
-	       storeInsert: function(){
-	       	var data = $("#form").serialize();
+		},
+	    storeInsert: function(){
+	    	var data = $("#form").serialize();
 	       	$.ajax({
 		        url: "/YeaMin/insertStore.json",
 		        type: "post",
@@ -222,8 +219,8 @@
 		        	}
 		        }
 		    });
-	       },
-	       storeUpdate: function() {
+		},
+		storeUpdate: function() {
 	       	var data = $("#form").serialize();
 	       	trace(data);
 	       	trace("수정 수행");
@@ -244,8 +241,8 @@
 		        	}
 		        }
 		    });
-	       },
-	       insertStoreImg: function() {
+		},
+		insertStoreImg: function() {
 	       	trace("이미지 등록 수행");
 	       	
 	       	var uploadedList = fnObj.upload.target.getUploadedList();
@@ -266,11 +263,10 @@
 			        }
 			    });
 			}
-	       },
-	       close: function() {
-	       	
-	       },
-	       upload: {
+		},
+		close: function() {   	
+		},
+		upload: {
 			target: new AXUpload5(),
 			bind: function() {
 				this.target.setConfig({
@@ -344,17 +340,6 @@
 						}
 					}
 				});
-				// 서버에 저장된 파일 목록을 불러와 업로드된 목록에 추가 합니다. ----------------------------- s
-				/* var url = "fileListLoad.php";
-				var pars = "dummy="+axf.timekey();
-				new AXReq(url, {pars:pars, onsucc:function(res){
-					if(!res.error){
-						myUpload.setUploadedList(res);
-					}else{
-						alert(res.msg.dec());
-					}
-				}}); */
-				// 서버에 저장된 파일 목록을 불러와 업로드된 목록에 추가 합니다. ----------------------------- e
 			},
 			printMethodReturn: function(method, type){
 				var list = myUpload[method](type);
@@ -366,8 +351,8 @@
 	//axdom(window).ready(fnObj.pageStart);
 	//axdom(window).resize(fnObj.pageResize);
 	$(document).ready(function(){
-		if($("#store_name").val()){
-			fnObj.load();
-		}
-	});
+   		if($("#store_name").val()){
+   			fnObj.load();
+   		}
+   	});
 </script>
