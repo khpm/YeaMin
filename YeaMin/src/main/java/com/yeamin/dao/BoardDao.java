@@ -11,4 +11,5 @@ public interface BoardDao {
 	public List<BoardDto> selectBoardList(Map<String, Object> paramMap);
 	public BoardDto selectBoard(Map<String, Object> paramMap);
 	public Integer updateBoard(Map<String, Object> paramMap);
+	public Integer deleteBoard(Map<String, Object> paramMap);
 }

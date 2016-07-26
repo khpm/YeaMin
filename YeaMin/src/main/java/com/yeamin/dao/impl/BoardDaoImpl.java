@@ -55,4 +55,9 @@ public class BoardDaoImpl implements BoardDao {
 	public Integer updateBoard(Map<String, Object> paramMap){
 		return sqlSession.update(QueryConstants.QID_UPDATE_BOARD, paramMap);
 	}
+	
+	@Override
+	public Integer deleteBoard(Map<String, Object> paramMap){
+		return sqlSession.delete(QueryConstants.QID_DELETE_BOARD, paramMap);
+	}
 }
