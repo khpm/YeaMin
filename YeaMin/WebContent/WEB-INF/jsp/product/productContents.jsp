@@ -190,7 +190,7 @@
                     },
                     colGroup: [
                         {key:"product_no", label:"상품 번호", width:"80", align:"center"},
-                        {key:"product_category_name", label:"카테고리", width:"100", align:"center"},
+                        {key:"product_category_name", label:"카테고리 이름", width:"100", align:"center"},
                         {key:"product_name", label:"상품 이름", width:"200", align:"center"},
                         {key:"product_price", label:"상품 가격", width:"200", align:"center"},
                         {key:"product_desc", label:"상품 소개", width:"200", align:"center"},

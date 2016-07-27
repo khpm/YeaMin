@@ -29,12 +29,27 @@
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
 	    
 		<script type="text/javascript">
+		var orderby = []; // 상품 순서를 저장하고 있는 배열
 		var fnObj = {
 			pageStart: function(){
 				$("#product_order_by").bindNumber({
 					min: 1,
 					onChange: function(){
-						// trace(this);
+						trace(orderby[0]);
+						var change = this;
+						var bool = false;
+						for(var i=0;i<orderby.length;i++){
+							if(change.value == orderby[i]){
+								bool = true;
+								break;
+							}
+						}
+						if(bool){
+							$("#productOrderByCheckRetMsg").show();
+			        		$("#productOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
+						}else{
+							$("#productOrderByCheckRetMsg").hide();
+						}
 					}
 				});
 				
@@ -152,6 +167,21 @@
 		};
 		//axdom(window).ready(fnObj.pageStart);
 		axdom(window).resize(fnObj.pageResize);
+		$(document).ready(function(){
+			$.ajax({
+		        url: "/YeaMin/selectProductList.json",
+		        type: "post",
+		        data: "",
+		        success: function(data) {
+		        	var ret = JSON.parse(data);
+		        	if(ret.result === "ok") {
+						for(var i=0;i<ret.list.length;i++){
+							orderby[i] = ret.list[i].product_order_by;
+						}
+		        	}
+		        }
+		    });
+		});
 
 		</script>
 	</head>
@@ -255,6 +285,7 @@
 		                                        <span class="th" style="min-width:100px;">상품 순서</span>
 		                                        <span class="td inputText" style="" title="">
 													<input type="tel" name="product_order_by" id="product_order_by" value="${dto.product_order_by}" class="AXInput W50" />
+		                                        	<span id="productOrderByCheckRetMsg" class="ret-msg"></span>	
 		                                        </span>
 		                                    </label>
 		                                </div>
