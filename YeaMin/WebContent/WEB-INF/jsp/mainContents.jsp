@@ -34,9 +34,9 @@
 										</c:forEach>
 						                
 						                <a href="#axexec" id="slide-handle-left"
-						                   style="display:block;width: 24px;height: 40px;position:absolute;left:10px;top:10px;background: url(http://localhost:8080/YeaMin/save/slider_handle_left.png) no-repeat"></a>
+						                   style="display:block;width: 24px;height: 40px;position:absolute;left:10px;top:10px;background: url(http://localhost:8080/YeaMin/images/slider_handle_left.png) no-repeat"></a>
 						                <a href="#axexec" id="slide-handle-right"
-						                   style="display:block;width: 24px;height: 40px;position:absolute;right:10px;top:10px;background: url(http://localhost:8080/YeaMin/save/slider_handle_right.png) no-repeat"></a>				
+						                   style="display:block;width: 24px;height: 40px;position:absolute;right:10px;top:10px;background: url(http://localhost:8080/YeaMin/images/slider_handle_right.png) no-repeat"></a>				
 						            </div>
 						            
 						            <div id="slide-handles" style="display:2none; text-align: center;"> <!-- 핸들은 사용 하지 않으면 display:none -->
