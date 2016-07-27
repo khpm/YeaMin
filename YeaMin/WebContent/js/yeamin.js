@@ -24,10 +24,22 @@ $(document.body).ready(function () {
 	});
 });
 
-function emptyRequiredValueCheck() {
+function emptyRequiredValueCheck(checkAreaId) {
 	var isEmptyRequiredValue = false;
+	var selector = "";
 	
-	$("label[for]").each(function(index, element) {
+	if(checkAreaId == undefined) {
+		selector = "label[for]";
+	} else {
+		if($("#" + checkAreaId).length == 1) {
+			selector = "#" + checkAreaId + " label[for]";
+		} else {
+			console.log(checkAreaId + "를 id로 사용하는 태그가 없거나 하나 이상입니다.");
+			return false;
+		}
+	}
+	
+	$(selector).each(function(index, element) {
 		var requiredLabel= $(element).children().first().text();
 		var requiredId = $(this).attr("for");
 		var requiredVaule = $("#" + requiredId).val();
