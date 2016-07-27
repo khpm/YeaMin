@@ -51,18 +51,19 @@
 	<!-- 상품 정보 전체 조회 -->
 	<select id="QID_SELECT_PRODUCT_LIST" resultType="ProductDto">
 		SELECT
-			product_no,
-			(SELECT
-				product_category_name
-			 FROM ym_product_category pc
-			 WHERE p.product_category_no=pc.product_category_no
-			) AS product_category_name,
-			product_name,
-			product_price,
-			product_desc,
-			product_order_by
+			p.product_category_no,
+			p.product_no,
+			pc.product_category_name,
+			p.product_name,
+			p.product_price,
+			p.product_desc,
+			p.product_img_origin_path,
+			p.product_img_system_path,
+			p.product_order_by
 		FROM
-			ym_product p
+			ym_product p, ym_product_category pc
+		WHERE
+			p.product_category_no = pc.product_category_no
 	</select>
 	
 	<!-- 상품 정보 조건 검색 -->

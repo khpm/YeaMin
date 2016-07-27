@@ -180,18 +180,6 @@ public class ProductController {
 		return ret;
 	}
 	
-	//메인에서 메뉴판 상품 조회
-	@RequestMapping("/selectProductMain.json")
-	public @ResponseBody Map<String,Object> selectProductMain(@RequestParam Map<String, Object> paramMap){
-		List<ProductDto> list = productDao.selectProductMain(paramMap);
-		
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", "ok");
-		ret.put("list", list);
-		
-		return ret;
-	}
-	
 	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
 		int listCount = list.size();
 		int pageCount = 1; // 전체 페이지 개수

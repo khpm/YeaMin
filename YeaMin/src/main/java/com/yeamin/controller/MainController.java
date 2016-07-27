@@ -43,11 +43,12 @@ public class MainController {
 		if(list != null){
 			mav.addObject("list", list);
 		}
+		
 		StoreDto dto = storeDao.selectStore();
 		if(dto != null){
 			mav.addObject("dto", dto);
 		}
-
+		
 		mav.addObject("contentViewName", "/WEB-INF/jsp/mainContents.jsp");
 		return mav;
 	}

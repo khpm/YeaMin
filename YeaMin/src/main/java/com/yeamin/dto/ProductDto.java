@@ -17,6 +17,8 @@ public class ProductDto {
 	private Integer product_order_by;
 	
 	private String product_category_name;
+	
+	private String product_category_no;
 
 	public ProductDto() {
 		
@@ -84,6 +86,14 @@ public class ProductDto {
 
 	public void setProduct_category_name(String product_category_name) {
 		this.product_category_name = product_category_name;
+	}
+
+	public String getProduct_category_no() {
+		return product_category_no;
+	}
+
+	public void setProduct_category_no(String product_category_no) {
+		this.product_category_no = product_category_no;
 	}
 	
 
