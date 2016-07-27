@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
+		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>

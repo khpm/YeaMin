@@ -23,7 +23,7 @@
 		                       			<div class="ax-rwd-table" style="margin:5px;">
 											<div class="item-group">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_name">
 				                                        <span class="th" style="min-width:100px;">가게 이름</span>
 				                                        <span class="td inputText" style="" title="">
 				                                            <input type="text" id="store_name" name="store_name" title="" placeholder="" value="${dto.store_name}" class="AXInput av-required W150"/>
@@ -35,7 +35,7 @@
 				                            </div>
 				                            <div class="item-group" style="">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_tel">
 				                                        <span class="th" style="min-width:100px;">가게 전화번호</span>
 				                                        <span class="td inputText" style="" title="">
 				                                            <input type="tel" id="store_tel" name="store_tel" title="" placeholder="" value="${dto.store_tel}" class="AXInput av-required W150" />
@@ -47,10 +47,10 @@
 				                            </div>
 				                            <div class="item-group" style="">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_addr">
 				                                        <span class="th" style="min-width:100px;">가게 주소</span>
 				                                        <span class="td inputText" style="" title="">
-				                                            <input type="text" id="sample5_address" name="store_addr" title="" placeholder="" value="${dto.store_addr}" class="AXInput av-required W400" readonly/>
+				                                            <input type="text" id="store_addr" name="store_addr" title="" placeholder="" value="${dto.store_addr}" class="AXInput av-required W400" readonly/>
 				                                            <input type="button" class="AXButton" onclick="sample5_execDaumPostcode()" value="주소 검색">
 				                                        </span>
 				                                    </label>
@@ -60,10 +60,10 @@
 				                            </div>
 				                            <div class="item-group" style="">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_desc">
 				                                        <span class="th" style="min-width:100px;">가게 설명</span>
 				                                        <span class="td inputText" style="" title="">
-				                                            <textarea name="store_desc" class="AXInput W150" id="store_desc" style="width:470px; height:130px;">${dto.store_desc}</textarea>
+				                                            <textarea id="store_desc" name="store_desc" class="AXInput W150" style="width:470px; height:130px;">${dto.store_desc}</textarea>
 				                                        </span>
 				                                    </label>
 				                                </div>
@@ -72,7 +72,7 @@
 				                            </div>
 				                            <div class="item-group" style="">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_week_business_time">
 				                                        <span class="th" style="min-width:100px;">주중 영업 시간</span>
 				                                        <span class="td inputText" style="" title="">
 				                                            <input type="text" id="store_week_business_time" name="store_week_business_time" title="" value="${dto.store_week_business_time}" class="AXInput av-required W400"/>
@@ -84,7 +84,7 @@
 				                            </div>
 				                            <div class="item-group" style="">
 				                                <div class="item">
-				                                    <label class="item-lable">
+				                                    <label class="item-lable" for="store_weekend_business_time">
 				                                        <span class="th" style="min-width:100px;">주말 영업 시간</span>
 				                                        <span class="td inputText" style="" title="">
 				                                            <input type="text" id="store_weekend_business_time" name="store_weekend_business_time" title="" value="${dto.store_weekend_business_time}" class="AXInput av-required W400"/>
@@ -166,7 +166,7 @@
 	            }
 	
 	            // 주소 정보를 해당 필드에 넣는다.
-	            document.getElementById("sample5_address").value = fullAddr;	            
+	            document.getElementById("store_addr").value = fullAddr;	            
 	    	}
 		}).open();
 	}
@@ -208,6 +208,8 @@
 		    });
 		},
 	    storeInsert: function(){
+	    	if(emptyRequiredValueCheck()) return;
+	    	
 	    	var data = $("#form").serialize();
 	       	$.ajax({
 		        url: "/YeaMin/insertStore.json",
@@ -229,6 +231,8 @@
 		    });
 		},
 		storeUpdate: function() {
+			if(emptyRequiredValueCheck()) return;
+			
 	       	var data = $("#form").serialize();
 	       	trace(data);
 	       	trace("수정 수행");

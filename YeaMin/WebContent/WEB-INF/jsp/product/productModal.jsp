@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
+		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
@@ -73,6 +74,8 @@
 			    parent.productModal.resize();
 			},
 			insert: function() {
+				if(emptyRequiredValueCheck()) return;
+				
 				var data = $("#form").serialize();
 				   	
 				$.ajax({
@@ -90,6 +93,8 @@
 				});
 			},
 			update: function() {
+				if(emptyRequiredValueCheck()) return;
+				
 				var data = $("#form").serialize();
 				       	
 				$.ajax({
@@ -245,10 +250,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_name">
 		                                        <span class="th" style="min-width:100px;">상품 이름</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="tel" name="product_name" id="product_name" value="${dto.product_name}" class="AXInput W50" />
+													<input type="tel" id="product_name" name="product_name" value="${dto.product_name}" class="AXInput W50" />
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -257,10 +262,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_price">
 		                                        <span class="th" style="min-width:100px;">상품 가격</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<input type="text" name="product_price" class="AXInput W150" id="product_price" value="${dto.product_price}" />
+		                                        	<input type="text" id="product_price" name="product_price" class="AXInput W150" value="${dto.product_price}" />
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -269,10 +274,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_desc">
 		                                        <span class="th" style="min-width:100px;">상품 소개</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<textarea name="product_desc" class="AXInput W150" id="product_desc" style="width:400px; height:130px;">${dto.product_desc}</textarea>
+		                                        	<textarea id="product_desc" name="product_desc" class="AXInput W150" style="width:400px; height:130px;">${dto.product_desc}</textarea>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -281,10 +286,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_order_by">
 		                                        <span class="th" style="min-width:100px;">상품 순서</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="tel" name="product_order_by" id="product_order_by" value="${dto.product_order_by}" class="AXInput W50" />
+													<input type="tel" id="product_order_by" name="product_order_by" value="${dto.product_order_by}" class="AXInput W50" />
 		                                        	<span id="productOrderByCheckRetMsg" class="ret-msg"></span>	
 		                                        </span>
 		                                    </label>

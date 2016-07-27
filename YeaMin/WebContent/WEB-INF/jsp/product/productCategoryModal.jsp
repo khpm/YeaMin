@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
+		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
@@ -42,6 +43,8 @@
 	            parent.productCategoryModal.resize();
 	        },
 	        insert: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
 	        	var data = $("#form").serialize();
 	        	
 	        	$.ajax({
@@ -59,6 +62,8 @@
 			    });
 	        },
 	        update: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
 				var data = $("#form").serialize();
 	        	
 	        	$.ajax({
@@ -124,10 +129,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_category_name">
 		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<input type="text" name="product_category_name" class="AXInput W150" id="product_category_name" value="${dto.product_category_name}" />
+		                                        	<input type="text" id="product_category_name" name="product_category_name" class="AXInput W150" value="${dto.product_category_name}" />
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -136,10 +141,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="product_category_order_by">
 		                                        <span class="th" style="min-width:100px;">카테고리 순서</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="tel" name="product_category_order_by" id="product_category_order_by" value="${dto.product_category_order_by}" class="AXInput W50" />
+													<input type="tel" id="product_category_order_by" name="product_category_order_by" value="${dto.product_category_order_by}" class="AXInput W50" />
 		                                        </span>
 		                                    </label>
 		                                </div>

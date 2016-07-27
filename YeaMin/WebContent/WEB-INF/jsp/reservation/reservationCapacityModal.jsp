@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
 		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
+		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
@@ -44,6 +45,8 @@
 	        	parent.reservationCapacityModal.resize();
 	        },
 	        insert: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
 	        	var data = $("#form").serialize();
 	        	
 	        	$.ajax({
@@ -61,6 +64,8 @@
 			    });
 	        },
 	        update: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
 				var data = $("#form").serialize();
 	        	
 	        	$.ajax({
@@ -141,10 +146,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="reservation_capacity_time">
 		                                        <span class="th" style="min-width:100px;">예약 수용 시간</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" name="reservation_capacity_time" class="AXInput W150" id="reservation_capacity_time" value="${dto.reservation_capacity_time}" />
+		                                            <input type="text" id="reservation_capacity_time" name="reservation_capacity_time" class="AXInput W150" value="${dto.reservation_capacity_time}" />
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -153,10 +158,10 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable">
+		                                    <label class="item-lable" for="reservation_capacity_people">
 		                                        <span class="th" style="min-width:100px;">예약 수용 인원 수</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" name="reservation_capacity_people" id="reservation_capacity_people" value="${dto.reservation_capacity_people}" class="AXInput W50" />
+		                                            <input type="text" id="reservation_capacity_people" name="reservation_capacity_people" value="${dto.reservation_capacity_people}" class="AXInput W50" />
 		                                        </span>
 		                                    </label>
 		                                </div>

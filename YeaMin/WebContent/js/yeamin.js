@@ -17,3 +17,41 @@ function GJF_Only_Email(obj)
 	obj.value = obj.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣\`\~\!\#\$\%\^\&\*\(\)\=\+\\\{\}\[\]\'\"\;\:\<\,\>\?\/\s]/g, '' );
 	return true;
 }
+
+$(document.body).ready(function () {
+	$("label[for]").each(function(index, element) {
+		$(element).children().first().prepend("<span style='color: red;'>* </span>");
+	});
+});
+
+function emptyRequiredValueCheck() {
+	var isEmptyRequiredValue = false;
+	
+	$("label[for]").each(function(index, element) {
+		var requiredLabel= $(element).children().first().text();
+		var requiredId = $(this).attr("for");
+		var requiredVaule = $("#" + requiredId).val();
+		
+		if(requiredVaule != undefined) {
+			if(requiredVaule === "") {
+				console.log(requiredId + "를 id로 사용한 태그의 값이 비워져 있습니다.");
+				dialog.push({
+        			top: "350",
+        			title: "필수 항목 미입력",
+        			body: "<b>경고</b> - \"" + requiredLabel.replace("* ", "") + "\"을/를 입력하세요.",
+        			type: "Caution",
+        			onConfirm: function() {
+        				$("#" + requiredId).focus();
+    				}
+        		});
+				
+				isEmptyRequiredValue = true;
+				return false;
+			}
+		} else {
+			console.log("label 태그의 for 속성에서 추출한 " + requiredId + "를 id로 사용한 태그가 없습니다.");
+		}
+	});
+	
+	return isEmptyRequiredValue;
+}
