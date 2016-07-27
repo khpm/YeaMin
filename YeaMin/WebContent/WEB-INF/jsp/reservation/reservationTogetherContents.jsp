@@ -18,17 +18,18 @@
 						<div class="ax-col-12">
 							<div class="ax-unit">
 								<div class="ax-box">
-								
+									
+									<div id="tab"></div>
 									<div id="calendar"></div>
 									
 									<div style="height: 100%; width: 500px; float: left;">
 									
 										<!-- 그룹 영역 -->
-										<div id="chat" style="height: 90px;">
+										<div id="reservationTogetherGroupController" class="grayBox" style="height: 90px;">
 											<div class="ax-rwd-table" style="margin:5px;">
 												<div class="item-group">
 					                                <div class="item">
-					                                    <label class="item-lable">
+					                                    <label class="item-lable" for="groupId">
 					                                        <span class="th" style="min-width:100px;">그룹 아이디</span>
 					                                        <span class="td inputText" style="" title="">
 					                                            <input type="text" id="groupId" title="" placeholder="" value="" class="AXInput av-required W150"/>
@@ -53,11 +54,11 @@
 										</div>
 									
 										<!-- 일정 영역 -->
-										<div id="chat" style="height: 190px;">
+										<div id="scheduleController" class="grayBox" style="height: 190px;">
 											<div class="ax-rwd-table" style="margin:5px;">
 												<div class="item-group">
 					                                <div class="item">
-					                                    <label class="item-lable">
+					                                    <label class="item-lable" for="schedule_title">
 					                                        <span class="th" style="min-width:100px;">일정 제목</span>
 					                                        <span class="td inputText" style="" title="">
 					                                            <input type="text" id="schedule_title" title="" placeholder="" value="" class="AXInput av-required W150"/>
@@ -69,7 +70,7 @@
 					                            </div>
 					                            <div class="item-group">
 					                                <div class="item">
-					                                    <label class="item-lable">
+					                                    <label class="item-lable" for="AXInputDateTimeST">
 					                                        <span class="th" style="min-width:100px;">일정 기간</span>
 					                                        <span class="td inputText" style="" title="">
 					                                            <input type="text" name="" id="AXInputDateTimeST" class="AXInput W140" /> ~ 
@@ -82,7 +83,7 @@
 					                            </div>
 					                            <div class="item-group">
 					                                <div class="item">
-					                                    <label class="item-lable">
+					                                    <label class="item-lable" for="schedule_color">
 					                                        <span class="th" style="min-width:100px;">색상</span>
 					                                        <span class="td inputText" style="" title="">
 					                                        	<input id="schedule_color" type="color"/>
@@ -108,7 +109,7 @@
 										</div>
 										
 										<!-- 채팅 영역 -->
-										<div id="chat" style="height: 340px;">
+										<div id="chat" class="grayBox" style="height: 340px;">
 											<textarea id="groupChatDisplayTa" style="width: 97%; height: 80%;" readonly="readonly"></textarea>
 											<div style="width: 100%; height: 17%;">
 												<textarea id="groupChatWriteTa" style="width: 72%; height: 97%; float: left; margin-right: 5px;" placeholder="채팅 내용을 입력하세요."></textarea>
@@ -142,6 +143,7 @@
     var fnObj = {
 		pageStart: function(){
 			fnObj.webSocket.bind();
+			fnObj.tab.bind();
 			fnObj.fullCalendar.bind();
 			
 			$("#AXInputDateTimeED").bindTwinDateTime({align:"right", valign:"top", separator:"-", startTargetID:"AXInputDateTimeST", onChange:function() {
@@ -183,6 +185,9 @@
 	        		$('#calendar').fullCalendar( 'removeEvents' );
 	        		$('#calendar').fullCalendar( 'addEventSource', data.events );
 					break;
+	        	case "RESERVATION_TOGETHER_GROUP_TAB_CHANGE":
+	        		fnObj.tab.setValueTab(data.optionValue);
+					break;
 				}
         	},
         	onclose: function() {
@@ -199,6 +204,8 @@
         		fnObj.webSocket.send(JSON.stringify(req));
         	},
         	groupEnter: function() {
+        		if(emptyRequiredValueCheck("reservationTogetherGroupController")) return;
+        		
         		var req = new Object();
         		req.type = "RESERVATION_TOGETHER_GROUP_ENTER";
         		req.groupId = parseInt($("#groupId").val());
@@ -212,6 +219,33 @@
        			fnObj.webSocket.send(JSON.stringify(req));
        			$('#groupChatWriteTa').val("");
         	}
+        },
+        tab: {
+        	bind: function() {
+				$("#tab").bindTab({
+					theme : "AXTabsLarge",
+					value:"calendar",
+					overflow:"scroll",
+					options:[
+						{optionText: "STEP 1 일정 정하기", optionValue: "calendar"},
+						{optionText: "STEP 2 메뉴 정하기", optionValue: "menu"}
+					],
+					onchange: function(selectedObject, optionValue) {
+						fnObj.tab.changeHandler(optionValue);
+					}
+				});
+				fnObj.tab.setValueTab("calendar");
+			},
+			setValueTab: function(tabValue) {
+				$("#tab").setValueTab(tabValue);
+			},
+			changeHandler: function(optionValue) {
+				var req = new Object();
+        		req.type = "RESERVATION_TOGETHER_GROUP_TAB_CHANGE";
+        		req.groupId = parseInt($("#groupId").val());
+        		req.optionValue = optionValue;
+       			fnObj.webSocket.send(JSON.stringify(req));
+			}
         },
         fullCalendar: {
         	targetID: "calendar",
@@ -229,20 +263,7 @@
     				eventLimit: true, // allow "more" link when too many events
     				businessHours: false, // display business hours
     				droppable: true,
-    				events: [
-    					{
-   		   					title: 'Long Event1',
-   		   					start: '2016-07-18T16:00:00',
-   		   					end: '2016-07-20T20:00:00',
-   		   					color: '#1DDB16',
-   		   				},
-   		   				{
-   		   					title: 'Long Event2',
-   		   					start: '2016-07-08T12:00:00',
-   		   					end: '2016-07-10T16:00:00',
-   		  					color: '#0054FF',
-   		   				}
-   					],
+    				events: [],
     				eventClick: function(clientEvent, jsEvent, view) {
     					fnObj.fullCalendar.selectedEvent = clientEvent;
     					
@@ -278,6 +299,8 @@
         	},
         	selectedEvent: null,
         	insertEvent: function() {
+        		if(emptyRequiredValueCheck("scheduleController")) return;
+        		
         		var event = {};
         		
         		var title = $("#schedule_title").val();
@@ -296,6 +319,8 @@
                 fnObj.fullCalendar.sendEvents();
         	},
         	updateEvent: function() {
+        		if(emptyRequiredValueCheck("scheduleController")) return;
+        		
         		if(fnObj.fullCalendar.selectedEvent != null) {
         			fnObj.fullCalendar.insertEvent();
 	        		fnObj.fullCalendar.deleteEvent();
