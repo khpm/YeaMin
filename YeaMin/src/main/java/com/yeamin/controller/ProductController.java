@@ -173,7 +173,11 @@ public class ProductController {
 		}else{
 			list=productDao.selectProductList(paramMap);
 		}
-		return getSelectListResult(paramMap,list);
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("list", list);
+		
+		return ret;
 	}
 	
 	//메인에서 메뉴판 상품 조회

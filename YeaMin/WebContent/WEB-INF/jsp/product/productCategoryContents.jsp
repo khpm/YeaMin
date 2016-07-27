@@ -133,24 +133,7 @@
 					onsubmit: function(){
 						fnObj.submit();
 					},
-					rows:[
-						{display:true, addClass:"gray", style:"",
-							list:[
-								{label:"공개설정", labelWidth:"100", type:"link",
-								width:"", key:"openType", addClass:"", valueBoxStyle:"", value:"all",
-								options:[
-										{optionValue:"all", optionText:"전체보기"},
-										{optionValue:"open", optionText:"공개"},
-										{optionValue:"close", optionText:"비공개"},
-								],
-								onChange: function(selectedObject, value){
-									//아래 3개의 값을 사용 하실 수 있습니다.
-									toast.push(Object.toJSON(this));
-									//dialog.push(Object.toJSON(selectedObject));
-									//dialog.push(value);
-								}
-							}
-						]},
+					rows:[					
 						 {display:true, addClass:"", style:"", list:[
 							{label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"product_category_name", addClass:"secondItem", valueBoxStyle:"", value:"",
 								onChange: function(changedValue){
@@ -160,19 +143,6 @@
 								}
 							},
 							{label:"상품명", labelWidth:"60", type:"inputText", width:"250", key:"product_name", addClass:"secondItem", valueBoxStyle:"", value:"", title:"타이틀정보",
-								onChange: function(){}
-							}
-						]},
-						{display:false, addClass:"gray", style:"",
-							list:[
-								{label:"정렬", labelWidth:"", type:"radioBox",
-								width:"", key:"radiobox2", addClass:"secondItem", valueBoxStyle:"", value:"all",
-								options:[
-								         {optionValue:"all", optionText:"카테고리 번호"},
-								         {optionValue:"open", optionText:"카테고리 이름"},
-								         {optionValue:"open2", optionText:"카테고리 순서"},
-								         {optionValue:"close", optionText:"상품 개수"}
-								        ],
 								onChange: function(){}
 							}
 						]},
