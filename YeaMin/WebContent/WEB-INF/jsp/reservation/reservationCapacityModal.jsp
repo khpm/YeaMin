@@ -156,7 +156,7 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">예약 수용 인원 수</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="tel" name="reservation_capacity_people" id="reservation_capacity_people" value="${dto.reservation_capacity_people}" class="AXInput W50" />
+		                                            <input type="text" name="reservation_capacity_people" id="reservation_capacity_people" value="${dto.reservation_capacity_people}" class="AXInput W50" />
 		                                        </span>
 		                                    </label>
 		                                </div>
