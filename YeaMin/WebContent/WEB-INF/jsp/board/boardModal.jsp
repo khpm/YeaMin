@@ -153,7 +153,12 @@
 		                                    <label class="item-lable" for="user_name">
 		                                        <span class="th" style="min-width:100px;">작성자</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="text" id="user_name" name="user_name" value="${dto.user_name}" class="AXInput W70" readonly/>
+		                                        <c:if test="${modalType eq 'INSERT'}">
+							                		 <input type="text" id="user_name" name="user_name" value="${user.user_name}" class="AXInput W70" readonly/>
+							                	</c:if>
+							                	<c:if test="${modalType eq 'UPDATE'}">
+							                		 <input type="text" id="user_name" name="user_name" value="${dto.user_name}" class="AXInput W70" readonly/>
+							                	</c:if>
 		                                        </span>
 		                                    </label>
 		                                </div>
