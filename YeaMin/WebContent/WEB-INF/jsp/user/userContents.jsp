@@ -58,7 +58,7 @@
 </div>
 
 <script type="text/javascript">
-    var page_menu_id = "m0301"; // admin.js > topMenu_data 에 정의된 id
+    var page_menu_id = "m04"; // admin.js > topMenu_data 에 정의된 id
 </script>
 
 <script type="text/javascript">

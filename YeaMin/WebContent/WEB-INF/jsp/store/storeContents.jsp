@@ -143,6 +143,10 @@
 </div>
 
 <script type="text/javascript">
+	var page_menu_id = "m0101"; // admin.js > topMenu_data 에 정의된 id
+</script>
+
+<script type="text/javascript">
 	function sample5_execDaumPostcode() {
 	 	new daum.Postcode({
 	 		oncomplete: function(data) {

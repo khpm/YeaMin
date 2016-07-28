@@ -4,22 +4,22 @@ AXConfig.AXGrid.pageCountMSG = "page(s)"
 
 var topMenu_data = [
     {
-        _id: "m02", label: "가게 관리", url: "#", cn: [
-	        {_id: "m0201", label: "가게 정보 관리", url: "/YeaMin/storeContents.do"},
-	        {_id: "m0202", label: "상품 카테고리 정보 관리", url: "/YeaMin/productCategoryContents.do"},
-	        {_id: "m0203", label: "상품 정보 관리", url: "/YeaMin/productContents.do"}
+        _id: "m01", label: "가게 관리", url: "#", cn: [
+	        {_id: "m0101", label: "가게 정보 관리", url: "/YeaMin/storeContents.do"},
+	        {_id: "m0102", label: "상품 카테고리 정보 관리", url: "/YeaMin/productCategoryContents.do"},
+	        {_id: "m0103", label: "상품 정보 관리", url: "/YeaMin/productContents.do"}
 	    ]
     },
     {
-        _id: "m03", label: "예약 관리", url: "#", cn: [
-        	{_id: "m0301", label: "예약 시간 관리", url: "/YeaMin/reservationCapacityContents.do"},
-	        {_id: "m0302", label: "예약 현황 및 이력", url: "#"},
-	        {_id: "m0303", label: "예약 통계", url: "/YeaMin/reservationStatsContents.do"}
+        _id: "m02", label: "예약 관리", url: "#", cn: [
+        	{_id: "m0201", label: "예약 시간 관리", url: "/YeaMin/reservationCapacityContents.do"},
+	        {_id: "m0202", label: "예약 현황 및 이력", url: "#"},
+	        {_id: "m0203", label: "예약 통계", url: "/YeaMin/reservationStatsContents.do"}
 	    ]
     },
     {_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"},
     {_id: "m05", label: "함께 예약하기", url: "/YeaMin/reservationTogetherContents.do"},
-    {_id: "m05", label: "게시판", url: "/YeaMin/boardContents.do"}
+    {_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
 ];
 
 var sideMenu_data = [
