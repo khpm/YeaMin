@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <div class="ax-body">
 	<div class="ax-wrap">
+	
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
 				<h1>가게 정보 관리</h1>
@@ -11,14 +11,17 @@
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 		<div class="ax-layer">
-			<div class="ax-col-12 ax-content">				
+			<div class="ax-col-12 ax-content">
+			
 				<!-- s.CXPage -->
 				<div id="CXPage">
 					<div class="ax-layer">
 						<div class="ax-col-12">
 							<div class="ax-unit">
-								<div class="ax-box">							
+								<div class="ax-box">
+								
 									<form id="form" method="get" onsubmit="return false;">
 		                       			<div class="ax-rwd-table" style="margin:5px;">
 											<div class="item-group">
@@ -139,6 +142,7 @@
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 	</div>
 </div>
 

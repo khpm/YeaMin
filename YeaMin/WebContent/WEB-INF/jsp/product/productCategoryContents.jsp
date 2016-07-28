@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="ax-body">
 	<div class="ax-wrap">
+	
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
 				<h1>상품 카테고리 정보 관리</h1>
@@ -10,49 +11,55 @@
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 		<div class="ax-layer">
 			<div class="ax-col-12 ax-content">
-
+			
 				<!-- s.AXPageBody -->
 				<div id="AXPage">
 					<div class="ax-layer">
 						<div class="ax-col-12">
 							<div class="ax-unit">
 								<div class="ax-box">
-				        			<!-- 검색 조건 영역  -->
+								
+									<!-- 검색 조건 영역 -->
 				           			<div id="page-search-box" style="margin:5px;"></div>
-				           			<!-- 버튼 영역 start -->
-				           			<div class="ax-button-group">
-					           			<div class="left">
-					                		<button class="AXButton red" id="btn-search">
-					                			<i class="axi axi-search">&nbsp;조회</i>
-					                		</button>
-					                	</div>
-					                	<div class="right">
-								            <button class="AXButton red" id="btn-insert">
-								            	<i class="axi axi-add">&nbsp;등록</i>
-								            </button>
-								            <button class="AXButton red" >
-								                <i class="axi axi-refresh" id="btn-update">&nbsp;수정</i>
-								            </button>
-								            <button class="AXButton red"  id="btn-delete">
-								                <i class="axi axi-minus">&nbsp;삭제</i>
-								            </button>
-							            </div>
-							            <div class="ax-clear"></div>
-						            </div>
-						            <!-- 버튼 영역 end -->
-						            <!-- 검색 결과 영역 -->
-						            <div class="ax-grid" id="page-grid-box"></div>
+				           			
+									<!-- 컨트롤 버튼 영역 -->
+									<div class="ax-button-group">
+										<div class="left">
+											<button id="btn-search" type="button" class="AXButton">
+												<i class="axi axi-search"></i> 검색
+											</button>
+										</div>
+										<div class="right">
+											<button id="btn-insert" type="button" class="AXButton">
+												<i class="axi axi-add"></i> 등록
+											</button>
+											<button id="btn-update" type="button" class="AXButton">
+												<i class="axi axi-edit"></i> 수정
+											</button>
+											<button id="btn-delete" type="button" class="AXButton">
+												<i class="axi axi-remove"></i> 삭제
+											</button>
+										</div>
+										<div class="ax-clear"></div>
+									</div>
+									
+									<!-- 검색 결과 영역 -->
+									<div class="ax-grid" id="page-grid-box"></div>
+									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- e.AXPageBody -->
+				
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 	</div>
 </div>
 
@@ -60,7 +67,6 @@
 	var page_menu_id = "m0102"; // admin.js > topMenu_data 에 정의된 id
 </script>
 
-<!-- script -->
 <script type="text/javascript">
 	var fnObj = {
 		primaryKey: "product_category_no",
@@ -138,7 +144,7 @@
 						fnObj.submit();
 					},
 					rows:[					
-						 {display:true, addClass:"", style:"", list:[
+						 {display:true, addClass:"gray", style:"", list:[
 							{label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"product_category_name", addClass:"secondItem", valueBoxStyle:"", value:"",
 								onChange: function(changedValue){
 									//아래 2개의 값을 사용 하실 수 있습니다.

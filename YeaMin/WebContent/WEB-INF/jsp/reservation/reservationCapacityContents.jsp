@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="ax-body">
 	<div class="ax-wrap">
 	
@@ -21,33 +22,33 @@
 							<div class="ax-unit">
 								<div class="ax-box">
 								
-										<!-- 검색 조건 영역 -->
-										<div class="ax-search" id="page-search-box"></div>
-										
-										<!-- 컨트롤 버튼 영역 -->
-										<div class="ax-button-group">
-											<div class="left">
-												<button type="button" class="AXButton Blue" id="btn-search">
-													<i class="axi axi-search"></i> 검색
-												</button>
-											</div>
-											<div class="right">
-												<button type="button" class="AXButton Blue" id="btn-insert">
-													<i class="axi axi-add"></i> 등록
-												</button>
-												<button type="button" class="AXButton Blue" id="btn-update">
-													<i class="axi axi-edit"></i> 수정
-												</button>
-												<button type="button" class="AXButton Blue" id="btn-delete">
-													<i class="axi axi-remove"></i> 삭제
-												</button>
-											</div>
-											<div class="ax-clear"></div>
+									<!-- 검색 조건 영역 -->
+									<div id="page-search-box" class="ax-search"></div>
+									
+									<!-- 컨트롤 버튼 영역 -->
+									<div class="ax-button-group">
+										<div class="left">
+											<button id="btn-search" type="button" class="AXButton">
+												<i class="axi axi-search"></i> 검색
+											</button>
 										</div>
-										
-										<!-- 검색 결과 영역 -->
-										<div class="ax-grid" id="page-grid-box"></div>
-								
+										<div class="right">
+											<button id="btn-insert" type="button" class="AXButton">
+												<i class="axi axi-add"></i> 등록
+											</button>
+											<button id="btn-update" type="button" class="AXButton">
+												<i class="axi axi-edit"></i> 수정
+											</button>
+											<button id="btn-delete" type="button" class="AXButton">
+												<i class="axi axi-remove"></i> 삭제
+											</button>
+										</div>
+										<div class="ax-clear"></div>
+									</div>
+									
+									<!-- 검색 결과 영역 -->
+									<div class="ax-grid" id="page-grid-box"></div>
+									
 								</div>
 							</div>
 						</div>

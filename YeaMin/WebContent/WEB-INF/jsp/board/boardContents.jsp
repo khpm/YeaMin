@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="ax-body">
 	<div class="ax-wrap">
+	
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
 				<h1>게시판</h1>
@@ -9,9 +11,10 @@
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 		<div class="ax-layer">
 			<div class="ax-col-12 ax-content">
-					
+			
 				<!-- s.CXPage -->
 				<div id="AXPage">
 					<div class="ax-layer">
@@ -48,11 +51,12 @@
 			</div>
 			<div class="ax-clear"></div>
 		</div>
+		
 	</div>
 </div>
 
 <script type="text/javascript">
-    var page_menu_id = "m06"; // admin.js > topMenu_data 에 정의된 id
+	var page_menu_id = "m06"; // admin.js > topMenu_data 에 정의된 id
 </script>
 
 <script type="text/javascript">
