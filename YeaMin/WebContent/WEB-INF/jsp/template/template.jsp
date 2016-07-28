@@ -44,6 +44,10 @@
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<!-- <script src="//apis.daum.net/maps/maps3.js?apikey=8355c25105d42f80b6f88247555a1c2a&libraries=services"></script> -->
 		
+		<!-- amcharts -->
+		<script type="text/javascript" src="/YeaMin/js/amcharts/amcharts.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/amcharts/serial.js"></script>
+		
 		<!-- yeamin -->
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
 		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
