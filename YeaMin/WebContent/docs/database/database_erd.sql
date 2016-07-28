@@ -197,9 +197,9 @@ CREATE TABLE YM_USER
 	-- 사용자 비밀번호
 	USER_PW varchar2(20) NOT NULL,
 	-- 사용자 이름
-	USER_NAME varchar2(10) NOT NULL,
+	USER_NAME varchar2(20) NOT NULL,
 	-- 사용자 이메일
-	USER_EMAIL varchar2(40) NOT NULL UNIQUE,
+	USER_EMAIL varchar2(40) NOT NULL,
 	-- 사용자 핸드폰 번호
 	USER_HP varchar2(13) NOT NULL,
 	-- 사용자 생년월일 ( YYYYMMDD )
