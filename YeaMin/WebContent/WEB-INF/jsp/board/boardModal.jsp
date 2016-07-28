@@ -29,80 +29,79 @@
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
 		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
 	    
-		<script type="text/javascript">
-		
-		var fnObj = {
-				pageStart: function(){
-					
-				},
-		        pageResize: function(){
-		            parent.myModal.resize();
-		        },
-		        insert: function() {
-		        	if(emptyRequiredValueCheck()) return;
-		        	
-		        	var data = $("#form").serialize();
-		        	//trace(data);
-		        	$.ajax({
-				        url: "/YeaMin/insertBoard.json",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-							var ret = JSON.parse(data);
-				        	
-				        	if(ret.result === "ok") {				    
-				        		fnObj.close();
-				        		//등록 후 게시글 리스트 뿌려주기~
-				        		parent.fnObj.select();
-				        	}
-				        }
-				    });
-		        },
-		        update: function() {
-		        	if(emptyRequiredValueCheck()) return;
-		        	
-					var data = $("#form").serialize();
-		        	
-		        	$.ajax({
-				        url: "/YeaMin/updateBoard.json",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-				        	var ret = JSON.parse(data);
-				     		
-				        	if(ret.result === "ok") {
-				        		fnObj.close();
-				        		parent.fnObj.select();
-				        	}
-				        }
-				    });
-		        },
-		        
-		        boardDelete: function() {
-		        	var data = $("#form").serialize();
-		        	
-		        	$.ajax({
-				        url: "/YeaMin/deleteBoard.json",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-							var ret = JSON.parse(data);
-				     		
-				        	if(ret.result === "ok") {
-				        		fnObj.close();
-				        		parent.fnObj.select();
-				        	}
-				        }
-				    });
-		        },
-		        
-		        close: function() {
-		        	parent.myModal.close();
-		        }		     
-			};
-		   axdom(window).ready(fnObj.pageStart);
-		   axdom(window).resize(fnObj.pageResize);
-		</script>
+<script type="text/javascript">	
+	var fnObj = {
+			pageStart: function(){
+				
+			},
+	        pageResize: function(){
+	            parent.myModal.resize();
+	        },
+	        insert: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
+	        	var data = $("#form").serialize();
+	        	//trace(data);
+	        	$.ajax({
+			        url: "/YeaMin/insertBoard.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+			        	
+			        	if(ret.result === "ok") {				    
+			        		fnObj.close();
+			        		//등록 후 게시글 리스트 뿌려주기~
+			        		parent.fnObj.select();
+			        	}
+			        }
+			    });
+	        },
+	        update: function() {
+	        	if(emptyRequiredValueCheck()) return;
+	        	
+				var data = $("#form").serialize();
+	        	
+	        	$.ajax({
+			        url: "/YeaMin/updateBoard.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+			        	var ret = JSON.parse(data);
+			     		
+			        	if(ret.result === "ok") {
+			        		fnObj.close();
+			        		parent.fnObj.select();
+			        	}
+			        }
+			    });
+	        },
+	        
+	        boardDelete: function() {
+	        	var data = $("#form").serialize();
+	        	
+	        	$.ajax({
+			        url: "/YeaMin/deleteBoard.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+			     		
+			        	if(ret.result === "ok") {
+			        		fnObj.close();
+			        		parent.fnObj.select();
+			        	}
+			        }
+			    });
+	        },
+	        
+	        close: function() {
+	        	parent.myModal.close();
+	        }		     
+		};
+	   axdom(window).ready(fnObj.pageStart);
+	   axdom(window).resize(fnObj.pageResize);
+</script>
 	</head>
 	<body>
 		<div id="AXPage" class="bodyHeightDiv">
@@ -122,6 +121,7 @@
 		            <div class="ax-layer">
 		                <div class="ax-col-12">
 		                    <form id="form" method="get" onsubmit="return false;">
+		                    	<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
 		                        <div class="ax-rwd-table">
 		                            <div class="item-group" style="">
 		                                <div class="item">
@@ -141,7 +141,12 @@
 		                                    <label class="item-lable" for="board_title">
 		                                        <span class="th" style="min-width:100px;">제목</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" />
+		                                        	<c:if test="${user.user_name == dto.user_name}">
+		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" />
+		                                        	</c:if>
+		                                        	<c:if test="${user.user_name != dto.user_name}">
+		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" readonly/>
+		                                        	</c:if>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -170,8 +175,12 @@
 		                                    <label class="item-lable" for="user_name">
 		                                        <span class="th" style="min-width:100px;">글 내용</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;">${dto.board_content}</textarea>
-		                                        	<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
+		                                        	<c:if test="${user.user_name == dto.user_name}">
+		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;">${dto.board_content}</textarea>
+		                                        	</c:if>
+		                                        	<c:if test="${user.user_name != dto.user_name}">
+		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;" readonly>${dto.board_content}</textarea>
+		                                        	</c:if>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -195,9 +204,11 @@
 		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+		                		<c:if test="${user.user_name == dto.user_name}">
+			                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+			                		 <button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
+			                	</c:if>
 		                	</c:if>
-		                	<button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>
 		            </div>
