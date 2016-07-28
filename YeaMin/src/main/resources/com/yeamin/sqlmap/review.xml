@@ -32,14 +32,16 @@
 			r.review_re_step,
 			r.review_re_level,
 			r.user_no,
-			u.user_name
+			u.user_name,
+      		(SELECT count(*) from ym_review where review_re_ref = r.review_re_ref and review_re_step > r.review_re_step) AS review_answer_cnt
 		FROM
 			ym_review r,
 			ym_user u
 		WHERE
 			r.user_no = u.user_no
 		ORDER BY
-			review_re_ref desc
+			review_re_ref desc,
+			review_re_step asc
 	</select>
 	
 	<update id="QID_UPDATE_REVIEW">

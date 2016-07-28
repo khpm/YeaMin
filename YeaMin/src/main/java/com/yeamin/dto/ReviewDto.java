@@ -19,6 +19,8 @@ public class ReviewDto {
 	private Integer user_no;
 	
 	private String user_name;
+	
+	private Integer review_answer_cnt;
 
 	public ReviewDto() {
 		
@@ -86,6 +88,14 @@ public class ReviewDto {
 
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+
+	public Integer getReview_answer_cnt() {
+		return review_answer_cnt;
+	}
+
+	public void setReview_answer_cnt(Integer review_answer_cnt) {
+		this.review_answer_cnt = review_answer_cnt;
 	}
 	
 }

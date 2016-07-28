@@ -26,7 +26,6 @@
     </div>
 </form>
 
-<i class="axi axi-reply-all axi-rotate-270"></i>
 <div class="ax-body">
 	<div class="ax-wrap">
 		<div class="ax-layer ax-title">
@@ -257,7 +256,9 @@
 				                                    		</div>
 				                                    		<div style="float: right;">
 				                                    			<c:if test="${sessionScope.user.is_admin eq 'Y' and item.review_re_step eq 0}">
-				                                    				<input type="button" class="AXButton" value="댓글등록" onclick="fnObj.reviewAnswerInputFormShow(${item.review_no});"/>
+				                                    				<c:if test="${item.review_answer_cnt eq 0}">
+				                                    					<input type="button" class="AXButton" value="댓글등록" onclick="fnObj.reviewAnswerInputFormShow(${item.review_no});"/>
+				                                    				</c:if>
 				                                    				<input type="button" class="AXButton" value="삭제" onclick="fnObj.reviewDelete(${item.review_no});"/>
 				                                    			</c:if>
 				                                    			<c:if test="${sessionScope.user != null}">
@@ -521,6 +522,7 @@
 					var ret = JSON.parse(data);
 		        	if(ret.result === "ok") {
 		        		//리뷰 등록 성공
+		        		fnHeaderObj.goMain();
 		        		reviewInputform.review_content.value="";
 		        	} else if(ret.result === "error") {
 		        		//리뷰 등록 실패
