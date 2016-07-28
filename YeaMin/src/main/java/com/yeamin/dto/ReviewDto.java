@@ -17,6 +17,8 @@ public class ReviewDto {
 	private Integer review_re_level;
 
 	private Integer user_no;
+	
+	private String user_name;
 
 	public ReviewDto() {
 		
@@ -76,6 +78,14 @@ public class ReviewDto {
 
 	public void setUser_no(Integer user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	
 }

@@ -15,6 +15,7 @@ import com.yeamin.dao.ProductDao;
 import com.yeamin.dao.ReviewDao;
 import com.yeamin.dao.StoreDao;
 import com.yeamin.dto.ProductCategoryDto;
+import com.yeamin.dto.ReviewDto;
 import com.yeamin.dto.StoreDto;
 import com.yeamin.dto.StoreImgDto;
 
@@ -47,6 +48,11 @@ public class MainController {
 		StoreDto dto = storeDao.selectStore();
 		if(dto != null){
 			mav.addObject("dto", dto);
+		}
+		
+		List<ReviewDto> reviewList = reviewDao.selectReviewList();
+		if(reviewList != null){
+			mav.addObject("reviewList", reviewList);
 		}
 		
 		mav.addObject("contentViewName", "/WEB-INF/jsp/mainContents.jsp");

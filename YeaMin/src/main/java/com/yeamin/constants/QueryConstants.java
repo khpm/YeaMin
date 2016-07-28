@@ -44,6 +44,12 @@ public class QueryConstants {
 	
 	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
 	public final static String QID_INSERT_REVIEW = "review.QID_INSERT_REVIEW";
+	public final static String QID_SELECT_REVIEW_LIST = "review.QID_SELECT_REVIEW_LIST";
+	public final static String QID_UPDATE_REVIEW = "review.QID_UPDATE_REVIEW";
+	public final static String QID_DELETE_REVIEW = "review.QID_DELETE_REVIEW";
+	public final static String QID_SELETE_REVIEW_ONE = "review.QID_SELETE_REVIEW_ONE";
+	public final static String QID_INSERT_REVIEW_ANSWER = "review.QID_INSERT_REVIEW_ANSWER";
+	
 	
 	
 	private QueryConstants() {

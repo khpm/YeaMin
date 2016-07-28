@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yeamin.dao.ReviewDao;
+import com.yeamin.dto.ReviewDto;
 
 @Controller
 public class ReviewController {
@@ -47,4 +48,50 @@ public class ReviewController {
 		return ret;
 	}
 	
+	@RequestMapping("/updateReview.json")
+	public @ResponseBody Map<String, Object> updateReview(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = reviewDao.updateReview(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		if(sqlResult != 0){
+			ret.put("result", "ok");
+		}else{
+			ret.put("result", "error");
+		}
+		return ret;
+	}
+	
+	@RequestMapping("/deleteReview.json")
+	public @ResponseBody Map<String, Object> deleteReview(@RequestParam Map<String, Object> paramMap) {
+		Integer sqlResult = reviewDao.deleteReview(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		if(sqlResult != 0){
+			ret.put("result", "ok");
+		}else{
+			ret.put("result", "error");
+		}
+		return ret;
+	}
+	
+	@RequestMapping("/insertReviewAnswerInputForm.json")
+	public @ResponseBody Map<String, Object> insertReviewAnswerInputForm(@RequestParam Map<String, Object> paramMap) {
+		ReviewDto dto = reviewDao.selectReviewOne(paramMap);
+		if(dto != null){
+			int review_re_ref = dto.getReview_re_ref();
+			
+			paramMap.put("review_re_ref", review_re_ref);
+			paramMap.put("review_re_step", 1);
+			paramMap.put("review_re_level", 1);
+		}
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		Integer sqlResult = reviewDao.insertReviewAnswerInputForm(paramMap);
+		if(sqlResult != 0){
+			ret.put("result", "ok");
+		}else{
+			ret.put("result", "error");
+		}
+		return ret;
+	}	
 }
