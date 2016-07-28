@@ -47,6 +47,7 @@
 		<!-- amcharts -->
 		<script type="text/javascript" src="/YeaMin/js/amcharts/amcharts.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/amcharts/serial.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/amcharts/pie.js"></script>
 		
 		<!-- yeamin -->
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />

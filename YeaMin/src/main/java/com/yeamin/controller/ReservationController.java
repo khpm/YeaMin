@@ -115,4 +115,18 @@ public class ReservationController {
 		return mav;
 	}
 	
+	@RequestMapping("/selectReviewCnt.json")
+	public @ResponseBody Map<String, Object> selectReviewCnt(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<Map<String, Object>> list = statsDao.selectReviewCnt(paramMap);
+		
+		System.out.println(paramMap.get("user_gender"));
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
+	
 }

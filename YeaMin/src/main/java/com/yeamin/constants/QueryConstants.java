@@ -50,7 +50,7 @@ public class QueryConstants {
 	public final static String QID_SELETE_REVIEW_ONE = "review.QID_SELETE_REVIEW_ONE";
 	public final static String QID_INSERT_REVIEW_ANSWER = "review.QID_INSERT_REVIEW_ANSWER";
 	
-	
+	public final static String QID_SELECT_REVIEW_CNT = "stats.QID_SELECT_REVIEW_CNT";
 	
 	private QueryConstants() {
 		

@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="stats">
-	
+	<select id="QID_SELECT_REVIEW_CNT" resultType="Map">
+		SELECT
+			u.user_gender,
+			COUNT(*) as review_cnt
+		FROM
+			ym_review r,
+			ym_user u
+		<where>
+			r.user_no = u.user_no
+			AND u.is_admin = 'N'
+			<if test="user_gender != 'ALL'">
+				AND u.user_gender = #{user_gender}
+			</if>
+		</where>
+		GROUP BY
+			u.user_gender
+	</select>
 </mapper>
