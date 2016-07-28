@@ -165,7 +165,7 @@
 		                            <div style="margin-top:5px; width:100%;">
 		                            	<div style="margin-left:5px;">
 											<h1><i class="axi axi-comment"></i>&nbsp;리뷰 </h1>
-											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;가게에 대한 평을 볼 수 있습니다.</p>
+											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;리뷰와 댓글을 표시합니다.</p>
 										</div>
 										
 										<jsp:include page="/WEB-INF/jsp/main/reviewContents.jsp"/>
