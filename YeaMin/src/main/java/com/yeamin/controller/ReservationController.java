@@ -108,4 +108,11 @@ public class ReservationController {
 		return mav;
 	}
 	
+	@RequestMapping("/reservationStatsContents.do")
+	public ModelAndView reservationStatsContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationStatsContents.jsp");
+		return mav;
+	}
+	
 }
