@@ -28,7 +28,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<ProductCategoryDto> selectproductCategoryList(Map<String, Object> paramMap) {
+	public List<ProductCategoryDto> selectProductCategoryList(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
 	}
 	

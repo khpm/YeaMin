@@ -83,7 +83,7 @@
             	var gridTarget = fnObj.grid.target;
             	console.log(searchTarget.getParam());
             	gridTarget.setList({
-            		ajaxUrl: "selectproductCategoryList.json",
+            		ajaxUrl: "selectProductCategoryList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				    	
@@ -164,7 +164,7 @@
             	var gridTarget = fnObj.grid.target;
             	console.log(searchTarget.getParam());
             	gridTarget.setList({
-				    ajaxUrl: "selectproductCategoryList.json",
+				    ajaxUrl: "selectProductCategoryList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				        // trace(this);

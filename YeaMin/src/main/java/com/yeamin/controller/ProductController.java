@@ -45,9 +45,9 @@ public class ProductController {
 	}
 	
 	//상품 카테고리 조회
-	@RequestMapping("/selectproductCategoryList.json")
-	public @ResponseBody Map<String,Object> selectproductCategoryList(@RequestParam Map<String, Object> paramMap){
-		List<ProductCategoryDto> list=productDao.selectproductCategoryList(paramMap);
+	@RequestMapping("/selectProductCategoryList.json")
+	public @ResponseBody Map<String,Object> selectProductCategoryList(@RequestParam Map<String, Object> paramMap){
+		List<ProductCategoryDto> list=productDao.selectProductCategoryList(paramMap);
 		return getSelectListResult(paramMap,list);
 	}
 	
@@ -108,7 +108,7 @@ public class ProductController {
 	public ModelAndView productModal(@RequestParam Map<String, Object> paramMap) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/product/productModal.jsp");
 		//카테고리 이름 가져오기 위해서 
-		List<ProductCategoryDto> productCategoryList=productDao.selectproductCategoryList(null);
+		List<ProductCategoryDto> productCategoryList=productDao.selectProductCategoryList(null);
 		
 		mav.addObject("modalType", paramMap.get("modalType"));
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {

@@ -14,7 +14,6 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dao.ReviewDao;
 import com.yeamin.dao.StoreDao;
-import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ReviewDto;
 import com.yeamin.dto.StoreDto;
 import com.yeamin.dto.StoreImgDto;
@@ -55,9 +54,8 @@ public class MainController {
 			mav.addObject("reviewList", reviewList);
 		}
 		
-		mav.addObject("contentViewName", "/WEB-INF/jsp/mainContents.jsp");
+		mav.addObject("contentViewName", "/WEB-INF/jsp/main/mainContents.jsp");
 		return mav;
 	}
-	
 	
 }
