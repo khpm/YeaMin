@@ -148,18 +148,99 @@
 									</div>
 									<!-- 가게 지도와 가게 정보 END -->
 									
+									<!-- 통계 START -->
+									<!-- 통계 END -->
+									
 									<!-- 메뉴판 START-->
 						            <div>
 							            <div style="margin-left:5px;">
 											<h1><i class="axi axi-restaurant-menu"></i>&nbsp;메뉴판</h1>
-											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;메뉴들을 볼 수 있습니다.</p>
+											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;메뉴를 선택하고 계산결과를 표시합니다.</p>
 										</div>
 										
 										<div id="menuTab"></div>
 										<div id="menuTabContents"></div>
-										
+										<!-- 예약하기 버튼 , 간이계산 START -->
+										<div style="height:40px; padding: 5px;">
+			                           		<div style="float: right;">
+			                            		<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="">
+			                            			<i class="axi axi-ion-clipboard" style="font-size:18px;"></i>예약하기
+			                            		</button>
+			                            	</div>
+			                            	<div style="float: right;">
+			                            		<i class='axi axi-krw' style="font-size:25px;"></i>&nbsp;
+				                            	<label id="sum" style="font-size: 30px; font-weight:bold;">합 계 : 0 원</label>
+			                            	</div>
+			                            </div>
+			                            <!-- 예약하기 버튼 , 간이계산 END -->
 						            </div>
 		                            <!-- 메뉴판 END -->
+		                            
+		                            <!-- 리뷰 START -->
+		                            <div style="margin-top:5px; width:100%;">
+		                            	<div style="margin-left:5px;">
+											<h1><i class="axi axi-comment"></i>&nbsp;리뷰 </h1>
+											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;가게에 대한 평을 볼 수 있습니다.</p>
+										</div>
+										
+										<!-- 리뷰 등록 START -->
+										<form id="reviewInputform" method="get" onsubmit="return false;">
+											<input type="hidden" name="user_no" value="${user.user_no}"/>
+				                       		<c:if test="${sessionScope.user.is_admin == 'N'}">
+						                       	<div class="ax-rwd-table" style="margin:5px;">
+						                       		<div class="item-group" style="text-align: center">
+					                                    <div class="item-lable">
+					                                    	<div style="width: 88%; float: right; margin: 10px;">
+					                                    		<div>
+					                                    			<textarea id="AXTextArea" name="review_content" style="width: 100%; height: 75px;" placeholder="리뷰를 작성하세요."></textarea>
+					                                    		</div>
+					                                    		<div style="float: right;">
+					                                    			<input type="button" class="AXButton" value="등록" onclick="fnObj.reviewInsert();"/>
+					                                    		</div>
+					                                    	</div>
+					                                    </div>		                                    
+					                                	<div class="group-clear"></div>
+					                            	</div>	
+					                            </div>
+					                    	</c:if>
+				                        </form>
+				                        <!-- 리뷰 등록 END -->
+				                        
+				                        <!-- 리뷰 리스트 START -->
+				                        <div class="ax-rwd-table" style="margin:5px;">											
+				                    		<!-- 댓글 START -->
+				                    		<div class="item-group" style="text-align: center">
+			                                    <div class="item-lable">
+			                                    	<div style="display: inline-block; float: left; width: 10%;">
+			                                    		<img src="images/user.PNG" width="100" height="110" >
+			                                    	</div>
+			                                    	<div style="width: 88%; float: right; margin: 10px;">
+			                                    		<div style="font-size: 15px;">
+			                                    			<div style="display: inline-block; float: left;">작성자 : 홍길동</div>
+			                                    			<div style="display: inline-block; float: right;">작성일 : 2016-07-28 15:16</div>
+			                                    		</div>
+			                                    		<div>
+			                                    			<textarea id="AXTextArea" name="review_content" style="width: 100%; height: 75px;" readonly></textarea>
+			                                    		</div>
+			                                    		<div style="float: right;">
+			                                    			<c:if test="${sessionScope.user.is_admin eq 'Y'}">
+			                                    				<input type="button" class="AXButton" value="댓글등록" onclick=""/>
+			                                    				<input type="button" class="AXButton" value="삭제" onclick=""/>
+			                                    			</c:if>
+			                                    			<c:if test="${sessionScope.user.user_no eq item.user_no}">
+			                                    				<input type="button" class="AXButton" value="수정" onclick=""/>
+			                                    				<input type="button" class="AXButton" value="삭제" onclick=""/>
+			                                    			</c:if>
+			                                    		</div>
+			                                    	</div>
+			                                    </div>		                                    
+				                                <div class="group-clear"></div>
+				                            </div>
+				                            <!-- 댓글 END -->
+		                            	</div>
+		                            	<!-- 리뷰 리스트 END -->
+		                            </div>
+		                            <!-- 리뷰 END -->
 								</div>
 							</div>
 						</div>
@@ -279,7 +360,7 @@
 				for(var i = 0; i < categoryList.length; i++){
 					var categoryItem = categoryList[i];
 					options.push({optionText: categoryItem.product_category_name, optionValue: categoryItem.product_category_no});
-					$("#menuTabContents").append("<div id='product_category_no_"+categoryItem.product_category_no+"' style='width:100%; height:500px; overflow-y:scroll;'>");
+					$("#menuTabContents").append("<div id='product_category_no_"+categoryItem.product_category_no+"' style='width:100%; height:500px; overflow-y:scroll; border-bottom: 1px solid #CFCFCF;'>");
 				}
 				$("#menuTab").addTabs(options);
 			},
@@ -309,7 +390,7 @@
 						sum += productItem.product_cnt * productItem.product_price;
 					}
 				}
-				console.log(sum);
+				$('#sum').text(" 합계 : "+sum+" 원");
 			},
 			// 해당 카테고리에 각 상품을 넣는 함수
 			menu: function() {
@@ -330,8 +411,8 @@
 				        				+		"<div class='ax-rwd-table'>"
 					        			+			"<div class='item-group'>"
 			                            +				"<div class='item'>"
-			                            +    				"<label class='item-lable'>"
-				                        +       	 			"<span class='th' style='min-width:40px;'>상품 이미지</span>"
+			                            +    				"<label class='item-lable' style=''>"
+				                        +       	 			"<span class='th' style='width:100px;'>상품 이미지</span>"
 						        		+							"<img src='http://localhost:8080/YeaMin/save/"+item.product_img_system_path+"' width='103' height='103' align='center'>"				        				
 										+    					"</span>"
 						                +     	           "</label>"
@@ -347,7 +428,7 @@
 					        			+			"<div class='item-group'>"
 			                            +				"<div class='item'>"
 			                            +    				"<label class='item-lable'>"
-				                        +       	 			"<span class='th' style='min-width:40px;'>상품 이름</span>"
+				                        +       	 			"<span class='th' style='width:60px;'>상품 이름</span>"
 				        				+							"<label style='font-size:16px;'>&nbsp;&nbsp;" + item.product_name + "</label><br>"
 				        				+    					"</span>"
 						                +     	           "</label>"
@@ -360,7 +441,7 @@
 					        			+			"<div class='item-group'>"
 			                            +				"<div class='item'>"
 			                            +    				"<label class='item-lable' style='height:60px;'>"
-				        				+       	 			"<span class='th' style='min-width:40px;'>상품 소개</span>"
+				        				+       	 			"<span class='th' style='width:60px;'>상품 소개</span>"
 				        				+							"<label>&nbsp;&nbsp;" + item.product_desc + "</label>"
 				        				+    					"</span>"
 						                +     	           "</label>"
@@ -392,6 +473,23 @@
 			        }
 			    });
 			}
+		},
+		reviewInsert: function(){
+			var data = $("#reviewInputform").serialize();
+        	$.ajax({
+		        url: "/YeaMin/insertReview.json",
+		        type: "post",
+		        data: data ,
+		        success: function(data) {
+					var ret = JSON.parse(data);
+		        	if(ret.result === "ok") {
+		        		//리뷰 등록 성공
+		        		reviewInputform.review_content.value="";
+		        	} else if(ret.result === "error") {
+		        		//리뷰 등록 실패
+		        	}
+		        }
+		    });
 		}
 	}
 	$(document.body).ready(function(){

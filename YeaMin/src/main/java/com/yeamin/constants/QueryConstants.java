@@ -42,6 +42,9 @@ public class QueryConstants {
 	public final static String QID_UPDATE_BOARD = "board.QID_UPDATE_BOARD";
 	public final static String QID_DELETE_BOARD = "board.QID_DELETE_BOARD";
 	
+	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
+	public final static String QID_INSERT_REVIEW = "review.QID_INSERT_REVIEW";
+	
 	
 	private QueryConstants() {
 		

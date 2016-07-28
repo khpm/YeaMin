@@ -2,4 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 	
+	<select id="QID_SELECT_REVIEW_MAXREF" resultType="String">
+		SELECT
+			max(review_re_ref)
+		FROM
+			ym_review
+	</select>
+	
+	<insert id="QID_INSERT_REVIEW">
+		INSERT INTO
+			ym_review
+		VALUES(
+			ym_review_no_seq.nextval,
+			#{review_content},
+			sysdate,
+			#{review_re_ref},
+			0,
+			0,
+			#{user_no}
+		)
+	</insert>
 </mapper>
