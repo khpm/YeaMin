@@ -46,20 +46,24 @@ public class BoardController {
 	public ModelAndView boardModal(@RequestParam Map<String, Object> paramMap ,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/board/boardModal.jsp");
 		mav.addObject("modalType", paramMap.get("modalType"));
+		
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
 			BoardDto dto = boardDao.selectBoard(paramMap);
 			int boardUserNo = dto.getUser_no();
 			UserDto sessionDto = (UserDto)request.getSession().getAttribute("user");
-			int sessionUserNo = sessionDto.getUser_no();
+			if(sessionDto != null){
+				int sessionUserNo = sessionDto.getUser_no();
 			
-			if(boardUserNo != sessionUserNo){
-				boardDao.updateBoardReadCount(paramMap);
-				dto = boardDao.selectBoard(paramMap);
-			}else{
-				
+				if(boardUserNo != sessionUserNo){
+					boardDao.updateBoardReadCount(paramMap);
+					dto = boardDao.selectBoard(paramMap);
+				}else{
+					
+				}
 			}
 			mav.addObject("dto", dto);
 		}
+		
 		return mav;
 	}
 	
@@ -112,6 +116,7 @@ public class BoardController {
 	@RequestMapping("/selectBoardList.json")
 	public @ResponseBody Map<String, Object> selectBoardList(@RequestParam Map<String, Object> paramMap) {
 		List<BoardDto> list=boardDao.selectBoardList(paramMap);
+		
 		return getSelectListResult(paramMap,list);
 	}
 	
