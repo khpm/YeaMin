@@ -37,7 +37,7 @@
 	        pageResize: function(){
 	            parent.myModal.resize();
 	        },
-	        insert: function() {
+	        boardInsert: function() {
 	        	if(emptyRequiredValueCheck()) return;
 	        	
 	        	var data = $("#form").serialize();
@@ -57,7 +57,7 @@
 			        }
 			    });
 	        },
-	        update: function() {
+	        boardUpdate: function() {
 	        	if(emptyRequiredValueCheck()) return;
 	        	
 				var data = $("#form").serialize();
@@ -99,8 +99,8 @@
 	        	parent.myModal.close();
 	        }		     
 		};
-	   axdom(window).ready(fnObj.pageStart);
-	   axdom(window).resize(fnObj.pageResize);
+	   //axdom(window).ready(fnObj.pageStart);
+	   //axdom(window).resize(fnObj.pageResize);
 </script>
 	</head>
 	<body>
@@ -141,11 +141,13 @@
 		                                    <label class="item-lable" for="board_title">
 		                                        <span class="th" style="min-width:100px;">제목</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<c:if test="${user.user_name == dto.user_name}">
+		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT'}">
 		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" />
 		                                        	</c:if>
 		                                        	<c:if test="${user.user_name != dto.user_name}">
-		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" readonly/>
+		                                        		<c:if test="${modalType eq 'UPDATE'}">
+		                                        			<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" readonly/>
+		                                        		</c:if>
 		                                        	</c:if>
 		                                        </span>
 		                                    </label>
@@ -175,11 +177,13 @@
 		                                    <label class="item-lable" for="user_name">
 		                                        <span class="th" style="min-width:100px;">글 내용</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<c:if test="${user.user_name == dto.user_name}">
+		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT'}">
 		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;">${dto.board_content}</textarea>
 		                                        	</c:if>
 		                                        	<c:if test="${user.user_name != dto.user_name}">
-		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;" readonly>${dto.board_content}</textarea>
+		                                        		<c:if test="${modalType eq 'UPDATE'}">
+		                                        			<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;" readonly>${dto.board_content}</textarea>
+		                                        		</c:if>
 		                                        	</c:if>
 		                                        </span>
 		                                    </label>
@@ -201,11 +205,11 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                	<c:if test="${modalType eq 'INSERT'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
+		                		 <button type="button" class="AXButton" onclick="fnObj.boardInsert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
 		                		<c:if test="${user.user_name == dto.user_name}">
-			                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+			                		 <button type="button" class="AXButton" onclick="fnObj.boardUpdate()">수정</button>
 			                		 <button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
 			                	</c:if>
 		                	</c:if>
