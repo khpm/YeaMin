@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.BoardDao;
 import com.yeamin.dto.BoardDto;
+import com.yeamin.dto.UserDto;
 
 @Controller
 public class BoardController {
@@ -39,11 +43,21 @@ public class BoardController {
 	
 	//게시판 Modal
 	@RequestMapping("/boardModal.do")
-	public ModelAndView boardModal(@RequestParam Map<String, Object> paramMap) {
+	public ModelAndView boardModal(@RequestParam Map<String, Object> paramMap ,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/board/boardModal.jsp");
 		mav.addObject("modalType", paramMap.get("modalType"));
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
 			BoardDto dto = boardDao.selectBoard(paramMap);
+			int boardUserNo = dto.getUser_no();
+			UserDto sessionDto = (UserDto)request.getSession().getAttribute("user");
+			int sessionUserNo = sessionDto.getUser_no();
+			
+			if(boardUserNo != sessionUserNo){
+				boardDao.updateBoardReadCount(paramMap);
+				dto = boardDao.selectBoard(paramMap);
+			}else{
+				
+			}
 			mav.addObject("dto", dto);
 		}
 		return mav;

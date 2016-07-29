@@ -43,7 +43,7 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public List<BoardDto> selectBoardList(Map<String, Object> paramMap){
-		return sqlSession.selectList(QueryConstants.QID_SELECT_BOARD_LIST);
+		return sqlSession.selectList(QueryConstants.QID_SELECT_BOARD_LIST, paramMap);
 	}
 	
 	@Override
@@ -59,5 +59,10 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public Integer deleteBoard(Map<String, Object> paramMap){
 		return sqlSession.delete(QueryConstants.QID_DELETE_BOARD, paramMap);
+	}
+	
+	@Override
+	public Integer updateBoardReadCount(Map<String, Object> paramMap){
+		return sqlSession.update(QueryConstants.QID_UPDATE_BOARD_READCOUNT, paramMap);
 	}
 }

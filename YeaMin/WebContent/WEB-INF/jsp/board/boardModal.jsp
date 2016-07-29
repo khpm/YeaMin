@@ -97,6 +97,7 @@
 	        
 	        close: function() {
 	        	parent.myModal.close();
+	        	parent.fnObj.select();
 	        }		     
 		};
 	   //axdom(window).ready(fnObj.pageStart);
@@ -209,8 +210,11 @@
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
 		                		<c:if test="${user.user_name == dto.user_name}">
-			                		 <button type="button" class="AXButton" onclick="fnObj.boardUpdate()">수정</button>
-			                		 <button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
+			                		<button type="button" class="AXButton" onclick="fnObj.boardUpdate()">수정</button>
+			                		<button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
+			                	</c:if>
+			                	<c:if test="${user.user_name != dto.user_name}">
+			                		<button type="button" class="AXButton" onclick="xxxxx">댓글</button>
 			                	</c:if>
 		                	</c:if>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>

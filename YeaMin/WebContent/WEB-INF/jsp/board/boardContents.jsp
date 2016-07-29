@@ -39,11 +39,13 @@
 				                    	<button type="button" class="AXButton" onclick="fnObj.modal.open('INSERT',null)"><i class="axi axi-add"></i>등록</button>			                	          
 				                	</c:if>
 				                </div>
-				                <div class="ax-unit right" style="float:right;">
-				                <input type="text" name="inputSelector_text" id="AXInputSelector_text" value="" class="AXInput" data-axbind="selector" style="height:22px;padding:1.5px;" readonly/>
-				                	<input type="text" name="search" id="AXInputSearch4" class="AXInputSmail" style="padding-bottom:3px"/>
-				                	<button type="button" class="AXButton" onclick=""><i class="axi axi-search"></i>검색</button>
-				                </div>
+				                <form id="searchForm">
+					                <div class="ax-unit right" style="float:right;">
+					                <input type="text" name="searchType" id="AXInputSelector_text" value="" class="AXInput" data-axbind="selector" style="height:22px;padding:1.5px;" readonly/>
+					                	<input type="text" name="searchMsg" id="AXInputSearch4" class="AXInputSmail" value="" style="padding-bottom:3px"/>
+					                	<button type="button" class="AXButton" onclick="fnObj.boardSearch();"><i class="axi axi-search"></i>검색</button>
+					                </div>
+					            </form>
 				            </div> 
 			            </div>
 			            <div class="ax-clear"></div>
@@ -57,7 +59,6 @@
 </div>
 
 <script type="text/javascript">
-	var itemSum = 0;
 
 	var fnObj = {	 
  		primaryKey: "board_no",
@@ -67,6 +68,19 @@
       		fnObj.boardSelector();
       		fnObj.boardList.bind();
       		fnObj.select();
+      	},
+      	boardSearch: function() {		
+      		var data = $("#searchForm").serialize();
+      		
+      		fnObj.boardList.target.setData(
+   				fnObj.boardList.target.setList({
+           			ajaxUrl: "selectBoardList.json",
+           	 	    ajaxPars: data,
+           	 	    onLoad: function(){
+           	 	    	console.log("조건 검색");
+           	 	    }
+           	 	})
+           	);
       	},
       	boardSelector: function() {
       		jQuery("#AXInputSelector_text").bindSelector({

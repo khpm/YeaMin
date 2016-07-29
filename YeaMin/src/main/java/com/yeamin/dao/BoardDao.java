@@ -12,4 +12,5 @@ public interface BoardDao {
 	public BoardDto selectBoard(Map<String, Object> paramMap);
 	public Integer updateBoard(Map<String, Object> paramMap);
 	public Integer deleteBoard(Map<String, Object> paramMap);
+	public Integer updateBoardReadCount(Map<String, Object> paramMap);
 }
