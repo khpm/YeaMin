@@ -125,9 +125,18 @@
       	             },     	             
       	             page:{
       	                 paging: true,
+      	                 pageNo:1,
       	                 onchange: function(pageNo) {
-      	                     dialog.push(Object.toJSON(this));
-      	                     trace(this, pageNo);
+      	                	var data = $("#searchForm").serialize();
+      	                	console.log(pageNo);
+     	                	 fnObj.boardList.target.setData(
+     	          				fnObj.boardList.target.setList({
+     	                 			ajaxUrl: "selectBoardList.json",
+     	                 	 	    ajaxPars: "&" +data,
+     	                 	 	    onLoad: function(){
+     	                 	 	    } 
+     	                  		}, false, "", "paging")
+     	                  	);
       	                 }
       	             }
 					 /* var _obj ={

@@ -25,32 +25,47 @@
 			ym_board
 	</select>
 	
-	<select id="QID_SELECT_BOARD_LIST" resultType="BoardDto">
-	SELECT
-		b.board_no AS board_no,
-	    b.board_title AS board_title,
-	    u.user_name AS user_name,
-	  	b.board_reg_time AS board_reg_time,
-	  	b.board_read_cnt AS board_read_cnt
-	FROM
-	  	ym_board b, ym_user u
-	<where>
-		b.user_no = u.user_no
+	<sql id="SELECT_BOARD_LIST_CONDITION">
 		<if test="searchType == '제목'">
-			AND b.board_title LIKE '%'||#{searchMsg}||'%'
+			AND board_title LIKE '%'||#{searchMsg}||'%'
 		</if>
 		<if test="searchType == '내용'">
-			AND b.board_content LIKE '%'||#{searchMsg}||'%'
+			AND board_content LIKE '%'||#{searchMsg}||'%'
 		</if>
 		<if test="searchType == '작성자'">
-			AND u.user_name LIKE '%'||#{searchMsg}||'%'
+			AND user_name LIKE '%'||#{searchMsg}||'%'
 		</if>
 		<if test="searchType == '제목+내용'">
-			AND b.board_title LIKE '%'||#{searchMsg}||'%' AND AND b.board_content LIKE '%'||#{searchMsg}||'%'
+			AND board_title LIKE '%'||#{searchMsg}||'%' AND AND board_content LIKE '%'||#{searchMsg}||'%'
 		</if>
-	</where>
-	ORDER BY
-		b.board_no desc
+	</sql>
+	
+	<select id="QID_SELECT_BOARD_LIST" resultType="BoardDto">
+		<include refid="common.PAGE_HEADER"/>
+			SELECT
+				b.*,
+				u.user_name
+			FROM
+				ym_board b,
+				ym_user u
+			<where>
+				b.user_no = u.user_no
+				<include refid="SELECT_BOARD_LIST_CONDITION"/>
+			</where>
+			ORDER BY
+			   b.board_re_ref desc,
+			   b.board_re_step asc
+		<include refid="common.PAGE_FOOTER"/>
+	</select>
+	
+	<select id="QID_SELECT_BOARD_LIST_CNT" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			ym_board
+		<where>
+			<include refid="SELECT_BOARD_LIST_CONDITION"/>
+		</where>
 	</select>
 	
 	<select id="QID_SELECT_BOARD_LIST_ONE" resultType="BoardDto">
@@ -91,4 +106,5 @@
 	WHERE
 		board_no = #{board_no}
 	</update>
+	
 </mapper>

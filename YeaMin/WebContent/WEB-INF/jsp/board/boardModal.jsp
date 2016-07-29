@@ -214,7 +214,9 @@
 			                		<button type="button" class="AXButton" onclick="fnObj.boardDelete()">삭제</button>
 			                	</c:if>
 			                	<c:if test="${user.user_name != dto.user_name}">
-			                		<button type="button" class="AXButton" onclick="xxxxx">댓글</button>
+			                		<c:if test="${user.user_name}">
+			                			<button type="button" class="AXButton" onclick="xxxxx">댓글</button>
+			                		</c:if>
 			                	</c:if>
 		                	</c:if>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>

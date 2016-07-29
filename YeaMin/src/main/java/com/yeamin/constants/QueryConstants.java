@@ -38,6 +38,7 @@ public class QueryConstants {
 	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
 	public final static String QID_INSERT_BOARD_MAXREF = "board.QID_INSERT_BOARD_MAXREF";
 	public final static String QID_SELECT_BOARD_LIST = "board.QID_SELECT_BOARD_LIST";
+	public final static String QID_SELECT_BOARD_LIST_CNT = "board.QID_SELECT_BOARD_LIST_CNT";
 	public final static String QID_SELECT_BOARD_LIST_ONE = "board.QID_SELECT_BOARD_LIST_ONE";
 	public final static String QID_UPDATE_BOARD = "board.QID_UPDATE_BOARD";
 	public final static String QID_DELETE_BOARD = "board.QID_DELETE_BOARD";

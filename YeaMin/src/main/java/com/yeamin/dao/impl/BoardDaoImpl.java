@@ -47,6 +47,12 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Override
+	public Integer selecBoardListCnt(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_BOARD_LIST_CNT, paramMap); 
+		
+	}
+	
+	@Override
 	public BoardDto selectBoard(Map<String, Object> paramMap){
 		return sqlSession.selectOne(QueryConstants.QID_SELECT_BOARD_LIST_ONE,paramMap);
 	}

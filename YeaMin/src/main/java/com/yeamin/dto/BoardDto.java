@@ -24,6 +24,8 @@ public class BoardDto {
 	
 	private String user_name;
 	
+	private Integer r;
+	
 	public BoardDto() {
 		
 	}
@@ -106,6 +108,14 @@ public class BoardDto {
 
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+
+	public Integer getR() {
+		return r;
+	}
+
+	public void setR(Integer r) {
+		this.r = r;
 	}
 	
 }
