@@ -186,7 +186,7 @@
 	var pageID = "AXDivSlider";
 	var fnObj = {
 		pageStart: function() {
-			menuFnObj.tab.bind();
+			menuFnObj.bind();
 		},
 		slider: {
             target : new AXDivSlider(),
