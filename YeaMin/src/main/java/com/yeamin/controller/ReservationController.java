@@ -129,4 +129,51 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
+	@RequestMapping("/reservationModal.do")
+	public ModelAndView reservationModal(@RequestParam Map<String, Object> paramMap) {
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/reservation/reservationModal.jsp");
+		mav.addObject("modalType", paramMap.get("modalType"));
+		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
+			ReservationCapacityDto dto = reservationDao.selectReservationCapacity(paramMap);
+			mav.addObject("dto", dto);
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/insertReservation.json")
+	public @ResponseBody Map<String, Object> insertReservation(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer sqlResult = reservationDao.insertReservation(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
+	@RequestMapping("/updateReservation.json")
+	public @ResponseBody Map<String, Object> updateReservation(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer sqlResult = reservationDao.updateReservation(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+
+	@RequestMapping("/deleteReservation.json")
+	public @ResponseBody Map<String, Object> deleteReservation(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer sqlResult = reservationDao.deleteReservation(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
 }

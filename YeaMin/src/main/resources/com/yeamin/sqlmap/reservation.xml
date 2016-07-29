@@ -14,6 +14,8 @@
 				AND reservation_capacity_dw = #{reservation_capacity_dw}
 			</if>
 		</where>
+		ORDER BY
+    		reservation_capacity_time asc
 	</select>
 	
 	<select id="QID_SELECT_RESERVATION_CAPACITY" resultType="ReservationCapacityDto">
@@ -57,5 +59,67 @@
 			ym_reservation_capacity
 		WHERE
 			reservation_capacity_no = #{reservation_capacity_no}
+	</delete>
+	
+	<select id="QID_SELECT_RESERVATION_LIST" resultType="ReservationDto">
+		SELECT
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
+		FROM
+			ym_reservation_capacity
+		<where>
+			<if test="reservation_capacity_dw != 'all'">
+				AND reservation_capacity_dw = #{reservation_capacity_dw}
+			</if>
+		</where>
+		ORDER BY
+    		reservation_capacity_time asc
+	</select>
+	
+	<select id="QID_SELECT_RESERVATION" resultType="ReservationDto">
+		SELECT
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people
+		FROM
+			ym_reservation_capacity
+		WHERE
+			reservation_capacity_no = #{reservation_capacity_no}
+	</select>
+	
+	<insert id="QID_INSERT_RESERVATION">
+		INSERT INTO ym_reservation (
+			reservation_no,
+			reservation_people,
+			reservation_comment,
+			reservation_time,
+			user_no
+		) VALUES (
+			ym_reservation_no_seq.nextval,
+			#{reservation_people},
+			#{reservation_comment},
+			TO_DATE(#{reservation_time}, 'yyyy/mm/dd hh24:mi:ss'),
+			#{user_no}
+		)
+	</insert>
+	
+	<update id="QID_UPDATE_RESERVATION">
+		UPDATE ym_reservation
+		SET
+			reservation_people = #{reservation_capacity_dw},
+			reservation_comment = #{reservation_capacity_dw},
+			reservation_time = #{reservation_capacity_dw}
+		WHERE
+			reservation_no = #{reservation_no}
+	</update>
+	
+	<delete id="QID_DELETE_RESERVATION">
+		DELETE
+			ym_reservation
+		WHERE
+			reservation_no = #{reservation_no}
 	</delete>
 </mapper>

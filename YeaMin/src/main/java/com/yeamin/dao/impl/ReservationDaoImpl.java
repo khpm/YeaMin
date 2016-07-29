@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.yeamin.constants.QueryConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dto.ReservationCapacityDto;
+import com.yeamin.dto.ReservationDto;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
@@ -50,4 +51,28 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sqlSession.delete(QueryConstants.QID_DELETE_RESERVATION_CAPACITY, paramMap);
 	}
 	
+	@Override
+	public List<ReservationDto> selectReservationList(Map<String, Object> paramMap) {
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_LIST, paramMap);
+	}
+	
+	@Override
+	public ReservationDto selectReservation(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_RESERVATION, paramMap);
+	}
+	
+	@Override
+	public Integer insertReservation(Map<String, Object> paramMap) {
+		return sqlSession.insert(QueryConstants.QID_INSERT_RESERVATION, paramMap);
+	}
+	
+	@Override
+	public Integer updateReservation(Map<String, Object> paramMap) {
+		return sqlSession.delete(QueryConstants.QID_UPDATE_RESERVATION, paramMap);
+	}
+	
+	@Override
+	public Integer deleteReservation(Map<String, Object> paramMap) {
+		return sqlSession.delete(QueryConstants.QID_DELETE_RESERVATION, paramMap);
+	}
 }

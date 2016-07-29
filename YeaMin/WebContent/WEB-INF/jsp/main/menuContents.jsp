@@ -5,11 +5,13 @@
 <div id="menuTabContents"></div>
 <!-- 예약하기 버튼 , 간이계산 START -->
 <div style="height:40px; padding: 5px;">
-	<div style="float: right;">
-		<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="">
-			<i class="axi axi-ion-clipboard" style="font-size:18px;"></i>예약하기
-		</button>
-	</div>
+	<c:if test="${user.is_admin eq 'N'}">
+		<div style="float: right;">
+			<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="menuFnObj.modal.open('INSERT', null, 1200)">
+				<i class="axi axi-ion-clipboard" style="font-size:18px;"></i>예약하기
+			</button>
+		</div>
+	</c:if>
 	<div style="float: right;">
 		<i class='axi axi-krw' style="font-size:25px;"></i>&nbsp;
  	<label id="sum" style="font-size: 30px; font-weight:bold;">합 계 : 0 원</label>
@@ -19,6 +21,10 @@
 
 <script type="text/javascript">
 	var menuFnObj = {
+		bind: function() {
+			menuFnObj.tab.bind();
+			menuFnObj.modal.bind();
+		},
 		tab: {
 			categoryList: [],
 			productList: [],
@@ -178,6 +184,34 @@
 			        }
 			    });
 			}
-		}	
+		},
+		modal: {
+            target: new AXModal(),
+            get: function(){ return this.target },
+            bind: function(){
+                window.reservationModal = this.target;
+                this.target.setConfig({
+                    windowID:"myModalContainer",
+                    mediaQuery: {
+                        mx:{min:0, max:767}, dx:{min:767}
+                    },
+                    displayLoading:true
+                });
+            },
+            open: function(modalType, item, top){
+            	var pars = "modalType=" + modalType;
+            	
+            	if(modalType === "UPDATE") {
+            		pars += ("&" + fnObj.primaryKey + "=" + item[fnObj.primaryKey]);
+            	}
+            	
+                this.target.open({
+                    url:"/YeaMin/reservationModal.do",
+                    pars: pars.queryToObject(),
+                    top:top, width:600,
+                    closeByEscKey:true
+                });
+            }
+        }
 	};
 </script>
