@@ -95,7 +95,7 @@
 		    <div class="ax-modal-header">
 		        <div class="ax-col-12">
 		            <div class="ax-unit">
-		                <h1>예약 시간 관리
+		                <h1>예약 수용 관리
 		                	<c:if test="${modalType eq 'INSERT'}">
 		                		 - 등록
 		                	</c:if>

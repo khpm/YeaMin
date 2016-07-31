@@ -6,7 +6,7 @@
 	
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
-				<h1>예약 시간 관리</h1>
+				<h1>예약 수용 관리</h1>
 				<p class="desc">예약할 때 필요한 정보인 예약 수용 정보를 관리합니다.</p>
 			</div>
 			<div class="ax-clear"></div>
