@@ -153,7 +153,7 @@
                         // 버튼이 선언되지 않았거나 submit 개체가 있는 경우 발동 합니다.
                     },
                     rows: [
-                        {display:true, addClass:"", style:"", list:[
+                        {display:true, addClass:"gray", style:"", list:[
                             {label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"categoryName", addClass:"secondItem", valueBoxStyle:"", value:"",
                                   onChange: function(changedValue){
                                       //아래 2개의 값을 사용 하실 수 있습니다.
