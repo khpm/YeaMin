@@ -18,6 +18,8 @@ public interface ReservationDao {
 	
 	public Integer deleteReservationCapacity(Map<String, Object> paramMap);
 	
+	public Integer selectReservationNoSeq();
+	
 	public List<ReservationDto> selectReservationList(Map<String, Object> paramMap);
 	
 	public ReservationDto selectReservation(Map<String, Object> paramMap);
@@ -27,5 +29,7 @@ public interface ReservationDao {
 	public Integer updateReservation(Map<String, Object> paramMap);
 	
 	public Integer deleteReservation(Map<String, Object> paramMap);
+	
+	public Integer insertReservationProduct(Map<String, Object> paramMap);
 	
 }

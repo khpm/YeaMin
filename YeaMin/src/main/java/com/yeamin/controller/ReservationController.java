@@ -1,5 +1,6 @@
 package com.yeamin.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dao.StatsDao;
@@ -141,11 +146,29 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/insertReservation.json")
-	public @ResponseBody Map<String, Object> insertReservation(@RequestParam Map<String, Object> paramMap) {
+	public @ResponseBody Map<String, Object> insertReservation(@RequestParam Map<String, Object> paramMap) throws JsonParseException, JsonMappingException, IOException {
 		String result = "";
 		String msg = "";
 		
+		Integer reservation_no = reservationDao.selectReservationNoSeq();
+		
+		paramMap.put("reservation_no", reservation_no);
 		Integer sqlResult = reservationDao.insertReservation(paramMap);
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Map<String, Object>> productList = mapper.readValue((String) paramMap.get("productList"), new TypeReference<List<Map<String, Object>>>(){});
+		
+		for (Map<String, Object> product : productList) {
+			if(product.containsKey("product_cnt") && !((String)product.get("product_cnt")).equals("")) {
+				Integer product_cnt = Integer.parseInt((String) product.get("product_cnt"));
+				
+				if(product_cnt > 0) {
+					product.put("reservation_no", reservation_no);
+					reservationDao.insertReservationProduct(product);
+				}
+			}
+		}
 		
 		result = "ok";
 		

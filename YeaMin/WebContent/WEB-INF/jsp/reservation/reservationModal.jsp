@@ -49,9 +49,7 @@
 	        	
 	        	var reservation_time = $("#reservation_date").val() + " " + $("#reservation_time").val() + ":00";
 	        	var data = $("#form").serialize();
-	        	data += "&reservation_time=" + reservation_time;
-	        	
-	        	console.log(data);
+	        	data += "&reservation_time=" + reservation_time + "&productList=" + JSON.stringify(parent.menuFnObj.tab.productList);
 	        	
 	        	$.ajax({
 			        url: "/YeaMin/insertReservation.json",

@@ -52,6 +52,11 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 	
 	@Override
+	public Integer selectReservationNoSeq() {
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_RESERVATION_NO_SEQ);
+	}
+	
+	@Override
 	public List<ReservationDto> selectReservationList(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_LIST, paramMap);
 	}
@@ -75,4 +80,10 @@ public class ReservationDaoImpl implements ReservationDao {
 	public Integer deleteReservation(Map<String, Object> paramMap) {
 		return sqlSession.delete(QueryConstants.QID_DELETE_RESERVATION, paramMap);
 	}
+	
+	@Override
+	public Integer insertReservationProduct(Map<String, Object> paramMap) {
+		return sqlSession.insert(QueryConstants.QID_INSERT_RESERVATION_PRODUCT, paramMap);
+	}
+	
 }

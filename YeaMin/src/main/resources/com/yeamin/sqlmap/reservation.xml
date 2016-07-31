@@ -90,6 +90,13 @@
 			reservation_capacity_no = #{reservation_capacity_no}
 	</select>
 	
+	<select id="QID_SELECT_RESERVATION_NO_SEQ" resultType="Integer">
+		SELECT
+			ym_reservation_no_seq.nextval
+		FROM
+			dual
+	</select>
+	
 	<insert id="QID_INSERT_RESERVATION">
 		INSERT INTO ym_reservation (
 			reservation_no,
@@ -98,7 +105,7 @@
 			reservation_time,
 			user_no
 		) VALUES (
-			ym_reservation_no_seq.nextval,
+			#{reservation_no},
 			#{reservation_people},
 			#{reservation_comment},
 			TO_DATE(#{reservation_time}, 'yyyy/mm/dd hh24:mi:ss'),
@@ -109,9 +116,9 @@
 	<update id="QID_UPDATE_RESERVATION">
 		UPDATE ym_reservation
 		SET
-			reservation_people = #{reservation_capacity_dw},
-			reservation_comment = #{reservation_capacity_dw},
-			reservation_time = #{reservation_capacity_dw}
+			reservation_people = #{reservation_people},
+			reservation_comment = #{reservation_comment},
+			reservation_time = TO_DATE(#{reservation_time}, 'yyyy/mm/dd hh24:mi:ss')
 		WHERE
 			reservation_no = #{reservation_no}
 	</update>
@@ -122,4 +129,16 @@
 		WHERE
 			reservation_no = #{reservation_no}
 	</delete>
+	
+	<insert id="QID_INSERT_RESERVATION_PRODUCT">
+		INSERT INTO ym_reservation_product (
+			reservation_no,
+			product_no,
+			product_cnt
+		) VALUES (
+			#{reservation_no},
+			#{product_no},
+			#{product_cnt}
+		)
+	</insert>
 </mapper>
