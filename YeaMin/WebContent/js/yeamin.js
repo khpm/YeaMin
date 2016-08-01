@@ -67,3 +67,9 @@ function emptyRequiredValueCheck(checkAreaId) {
 	
 	return isEmptyRequiredValue;
 }
+
+function getWebScoketUrl() {
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return "ws://" + location.host + ctxPath;
+}

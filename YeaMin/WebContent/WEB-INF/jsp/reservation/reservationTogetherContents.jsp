@@ -49,8 +49,8 @@
 											        <div class="ax-wrap">
 											            <div class="ax-col-12">
 											                <div class="ax-unit center">
-											                    <button type="button" class="AXButton" onclick="fnObj.reservationTogether.groupEnter()">그룹 입장</button>
-											                    <button type="button" class="AXButton" onclick="fnObj.reservationTogether.groupCreate()">그룹 생성</button>
+											                    <button id="groupEnterBtn" type="button" class="AXButton" onclick="fnObj.reservationTogether.groupEnter()">그룹 입장</button>
+											                    <button id="groupCreateBtn" type="button" class="AXButton" onclick="fnObj.reservationTogether.groupCreate()">그룹 생성</button>
 											                </div>
 											            </div>
 											            <div class="ax-clear"></div>
@@ -166,7 +166,7 @@
 			$("#menu").hide();
         },
         webSocket: {
-        	target: new WebSocket("ws://192.168.0.114:8080/YeaMin/websocket/reservationTogether.do"),
+        	target: new WebSocket(getWebScoketUrl() + "/websocket/reservationTogether.do"),
         	bind: function() {
         		fnObj.webSocket.target.onopen = fnObj.webSocket.onopen;
         		fnObj.webSocket.target.onmessage = fnObj.webSocket.onmessage;
@@ -228,14 +228,29 @@
         		req.type = "RESERVATION_TOGETHER_GROUP_ENTER";
         		req.groupId = parseInt($("#groupId").val());
         		fnObj.webSocket.send(JSON.stringify(req));
+        		
+        		$("#groupId").prop("disabled", true);
+        		$("#groupEnterBtn").prop("disabled", true);
+        		$("#groupCreateBtn").prop("disabled", true);
         	},
         	groupChat: function() {
-        		var req = new Object();
-        		req.type = "RESERVATION_TOGETHER_GROUP_CHAT";
-        		req.groupId = parseInt($("#groupId").val());
-        		req.groupChat = $("#groupChatWriteTa").val();
-       			fnObj.webSocket.send(JSON.stringify(req));
-       			$('#groupChatWriteTa').val("");
+        		var groupChat = $("#groupChatWriteTa").val();
+        		
+        		if(groupChat != "") {
+        			var req = new Object();
+            		req.type = "RESERVATION_TOGETHER_GROUP_CHAT";
+            		req.groupId = parseInt($("#groupId").val());
+            		req.groupChat = $("#groupChatWriteTa").val();
+           			fnObj.webSocket.send(JSON.stringify(req));
+           			$('#groupChatWriteTa').val("");
+        		} else {
+        			dialog.push({
+            			top: "350",
+            			title: "채팅 내용 미입력",
+            			body: "<b>경고</b> - 전송할 채팅 내용을 입력하세요.",
+            			type: "Caution"
+            		});
+        		}
         	}
         },
         stepTab: {
@@ -251,9 +266,11 @@
 					onchange: function(selectedObject, optionValue) {
 						if(optionValue == "calendar") {
 		       				$("#calendar").show();
+		       				$("#scheduleController").show();
 		       				$("#menu").hide();
 		       			} else if(optionValue == "menu") {
 		       				$("#calendar").hide();
+		       				$("#scheduleController").hide();
 		       				$("#menu").show();
 		       				menuFnObj.bind();
 		       			}
@@ -362,6 +379,13 @@
 					
 					fnObj.fullCalendar.sendEvents();
 					fnObj.fullCalendar.eventControllerInit();
+				} else {
+					dialog.push({
+            			top: "350",
+            			title: "항목 미선택",
+            			body: "<b>경고</b> - 삭제할 항목을 선택해 주세요.",
+            			type: "Caution"
+            		});
 				}
         	},
         	sendEvents: function() {
