@@ -153,6 +153,8 @@
 			fnObj.stepTab.bind();
 			fnObj.fullCalendar.bind();
 			menuFnObj.bind();
+			menuFnObj.showMenuTabHeadersHandler = fnObj.menu.showMenuTabHeadersHandler;
+			menuFnObj.changeCountHandler = fnObj.menu.changeCountHandler;
 			
 			$("#AXInputDateTimeED").bindTwinDateTime({align:"right", valign:"top", separator:"-", startTargetID:"AXInputDateTimeST", onChange:function() {
                 // console.log(this);
@@ -436,6 +438,14 @@
         		req.clickCalss = "fc-agendaDay-button";
        			fnObj.webSocket.send(JSON.stringify(req));
     		}
+        },
+        menu: {
+        	showMenuTabHeadersHandler: function(optionValue) {
+        		console.log(optionValue);
+        	},
+        	changeCountHandler: function(productList) {
+        		console.log(productList);
+        	}
         }
     };
 </script>

@@ -21,6 +21,8 @@
 
 <script type="text/javascript">
 	var menuFnObj = {
+		showMenuTabHeadersHandler: function(optionValue) { },
+		changeCountHandler: function(productList) { },
 		bind: function() {
 			menuFnObj.tab.bind();
 			menuFnObj.modal.bind();
@@ -35,8 +37,9 @@
 					value: "",
 					overflow: "scroll",
 					options: [],
-					onchange: function(selectedObject, value) {
-						menuFnObj.tab.showMenuTabHeaders(value);
+					onchange: function(selectedObject, optionValue) {
+						menuFnObj.showMenuTabHeadersHandler(optionValue);
+						menuFnObj.tab.showMenuTabHeaders(optionValue);
 					}
 				});
 				menuFnObj.tab.addTabs(flag);
@@ -92,6 +95,7 @@
 					}
 				}
 				
+				menuFnObj.changeCountHandler(menuFnObj.tab.productList);
 				menuFnObj.tab.sumPrice();
 			},
 			sumPrice: function() {
