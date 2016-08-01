@@ -204,7 +204,7 @@
 								saveName: ret.listDto[i].store_img_system_path,
 								fileSize: 2097152,
 								uploadedPath:"C:/ExpertJava/YM/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/YeaMin/save",
-								thumbUrl:"http://localhost:8080/YeaMin/save/" + ret.listDto[i].store_img_system_path
+								thumbUrl:"/YeaMin/save/" + ret.listDto[i].store_img_system_path
 			        		};
 			        		uploadedList.push(tmp);
 		        		}//for문

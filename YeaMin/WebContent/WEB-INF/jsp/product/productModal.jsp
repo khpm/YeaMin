@@ -64,7 +64,7 @@
 							saveName: form.product_img_system_path.value,
 							fileSize: 2097152,
 							uploadedPath:"C:/ExpertJava/YM/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/YeaMin/save",
-							thumbUrl:"http://localhost:8080/YeaMin/save/" + form.product_img_system_path.value
+							thumbUrl:"/YeaMin/save/" + form.product_img_system_path.value
 					};
 					tmplist.push(tmp);
 		    		fnObj.upload.target.setUploadedList(tmplist);

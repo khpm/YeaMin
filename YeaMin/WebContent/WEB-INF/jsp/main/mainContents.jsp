@@ -26,7 +26,7 @@
 										<div id="slide-block" style="height: 100%"> <!-- 높이만 지정하고 너비는 자동 상황에 맞게 구현 되도록 -->
 											<c:forEach var="storeImg" items="${list}">
 												<c:set var="url">
-													http://localhost:8080/YeaMin/save/${storeImg.store_img_system_path}
+													/YeaMin/save/${storeImg.store_img_system_path}
 												</c:set>
 												<div class="item slide-block-item"
 							                     style="background: url(${url}) no-repeat center center;background-size: cover;height: 378px;">
@@ -35,9 +35,9 @@
 											</c:forEach>
 							                
 							                <a href="#axexec" id="slide-handle-left"
-							                   style="display:block;width: 24px;height: 40px;position:absolute;left:10px;top:10px;background: url(http://localhost:8080/YeaMin/images/slider_handle_left.png) no-repeat"></a>
+							                   style="display:block;width: 24px;height: 40px;position:absolute;left:10px;top:10px;background: url(/YeaMin/images/slider_handle_left.png) no-repeat"></a>
 							                <a href="#axexec" id="slide-handle-right"
-							                   style="display:block;width: 24px;height: 40px;position:absolute;right:10px;top:10px;background: url(http://localhost:8080/YeaMin/images/slider_handle_right.png) no-repeat"></a>				
+							                   style="display:block;width: 24px;height: 40px;position:absolute;right:10px;top:10px;background: url(/YeaMin/images/slider_handle_right.png) no-repeat"></a>				
 							            </div>
 							            
 							            <div id="slide-handles" style="display:2none; text-align: center;"> <!-- 핸들은 사용 하지 않으면 display:none -->

@@ -69,7 +69,7 @@ public class FileController {
 	        	ret.put("fileSize", originalFileSize);
 	        	ret.put("saveName", saveFileName);
 	        	ret.put("uploadedPath", saveDirPath + File.separator);
-	        	ret.put("thumbUrl", "http://localhost:8080/YeaMin/save/" + saveFileName);
+	        	ret.put("thumbUrl", "/YeaMin/save/" + saveFileName);
 	        	
 	        	return ret;
 	        }

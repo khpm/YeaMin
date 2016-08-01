@@ -147,12 +147,12 @@
 </script>
 
 <script type="text/javascript">
+	var isChange = false;
+
     var fnObj = {
 		pageStart: function(){
-			fnObj.webSocket.bind();
 			fnObj.stepTab.bind();
 			fnObj.fullCalendar.bind();
-			menuFnObj.bind();
 			menuFnObj.showMenuTabHeadersHandler = fnObj.menu.showMenuTabHeadersHandler;
 			menuFnObj.changeCountHandler = fnObj.menu.changeCountHandler;
 			
@@ -161,6 +161,9 @@
             }});
 			
 			$("#groupId").bindPattern({pattern: "numberint"});
+			
+			fnObj.webSocket.bind();
+			$("#menu").hide();
         },
         webSocket: {
         	target: new WebSocket("ws://192.168.0.114:8080/YeaMin/websocket/reservationTogether.do"),
@@ -195,8 +198,13 @@
 	        		$('#calendar').fullCalendar( 'removeEvents' );
 	        		$('#calendar').fullCalendar( 'addEventSource', data.events );
 					break;
-	        	case "RESERVATION_TOGETHER_GROUP_TAB_CHANGE":
+	        	case "RESERVATION_TOGETHER_GROUP_STEP_TAB_CHANGE":
 	        		fnObj.stepTab.setValueTab(data.optionValue);
+	        	case "RESERVATION_TOGETHER_GROUP_MENU_TAB_CHANGE":
+	        		menuFnObj.tab.setValueTab(data.optionValue);
+					break;
+	        	case "RESERVATION_TOGETHER_GROUP_MENU_COUNT_CHANGE":
+	        		menuFnObj.tab.setProductList(data.productList);
 					break;
 				}
         	},
@@ -241,7 +249,14 @@
 						{optionText: "STEP 2 메뉴 정하기", optionValue: "menu"}
 					],
 					onchange: function(selectedObject, optionValue) {
-						fnObj.stepTab.setValueTab(optionValue);
+						if(optionValue == "calendar") {
+		       				$("#calendar").show();
+		       				$("#menu").hide();
+		       			} else if(optionValue == "menu") {
+		       				$("#calendar").hide();
+		       				$("#menu").show();
+		       				menuFnObj.bind();
+		       			}
 						fnObj.stepTab.changeHandler(optionValue);
 					}
 				});
@@ -249,23 +264,14 @@
 			},
 			setValueTab: function(optionValue) {
 				$("#stepTab").setValueTab(optionValue);
-				
-				if(optionValue == "calendar") {
-       				$("#calendar").show();
-       				$("#menu").hide();
-       			} else if(optionValue == "menu") {
-       				$("#calendar").hide();
-       				$("#menu").show();
-       				$("#menuTabHeaders").empty();
-       				menuFnObj.tab.bind(true);
-       			}
 			},
 			changeHandler: function(optionValue) {
 				var req = new Object();
-        		req.type = "RESERVATION_TOGETHER_GROUP_TAB_CHANGE";
+        		req.type = "RESERVATION_TOGETHER_GROUP_STEP_TAB_CHANGE";
         		req.groupId = parseInt($("#groupId").val());
         		req.optionValue = optionValue;
        			fnObj.webSocket.send(JSON.stringify(req));
+       			isChange= false;
 			}
         },
         fullCalendar: {
@@ -441,10 +447,23 @@
         },
         menu: {
         	showMenuTabHeadersHandler: function(optionValue) {
-        		console.log(optionValue);
+        		console.log("showMenuTabHeadersHandler");
+        		if($("#groupId").val() != "") {
+        			var req = new Object();
+            		req.type = "RESERVATION_TOGETHER_GROUP_MENU_TAB_CHANGE";
+            		req.groupId = parseInt($("#groupId").val());
+            		req.optionValue = optionValue;
+           			fnObj.webSocket.send(JSON.stringify(req));
+        		}
         	},
         	changeCountHandler: function(productList) {
-        		console.log(productList);
+        		if($("#groupId").val() != "") {
+        			var req = new Object();
+            		req.type = "RESERVATION_TOGETHER_GROUP_MENU_COUNT_CHANGE";
+            		req.groupId = parseInt($("#groupId").val());
+            		req.productList = productList;
+           			fnObj.webSocket.send(JSON.stringify(req));
+        		}
         	}
         }
     };

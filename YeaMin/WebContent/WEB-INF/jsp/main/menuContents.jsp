@@ -24,6 +24,8 @@
 		showMenuTabHeadersHandler: function(optionValue) { },
 		changeCountHandler: function(productList) { },
 		bind: function() {
+			$("#menuTabHeaders").empty();
+			$("#menuTabContents").empty();
 			menuFnObj.tab.bind();
 			menuFnObj.modal.bind();
 		},
@@ -31,27 +33,42 @@
 			categoryList: [],
 			productList: [],
 			// 초기화 함수
-			bind: function(flag) {
+			bind: function() {
 				$("#menuTabHeaders").bindTab({
 					theme: "AXTabs",
 					value: "",
 					overflow: "scroll",
 					options: [],
 					onchange: function(selectedObject, optionValue) {
+						var product_category_no = optionValue;
+						$("div[id*=product_category_no_]").hide();
+						$("#product_category_no_"+product_category_no).show();	
 						menuFnObj.showMenuTabHeadersHandler(optionValue);
-						menuFnObj.tab.showMenuTabHeaders(optionValue);
 					}
 				});
-				menuFnObj.tab.addTabs(flag);
+				menuFnObj.tab.addTabs();
+			},
+			setProductList: function(productList) {
+				menuFnObj.tab.productList = productList;
+				
+				for ( var index in productList) {
+					var item = productList[index];
+					
+					if(item.hasOwnProperty("product_cnt")) {
+						$("#product_cnt_"+item.product_no).val(item.product_cnt);
+					} else {
+						$("#product_cnt_"+item.product_no).val("");
+					}
+				}
+				
+				menuFnObj.tab.sumPrice();
 			},
 			// 해당 카테고리 div 영역만 show 하고 나머지는 hide하는 함수, 매개변수는 해당 카테고리의 no값
-			showMenuTabHeaders: function(value) {
-				var product_category_no = value;
-				$("div[id*=product_category_no_]").hide();
-				$("#product_category_no_"+product_category_no).show();	
+			setValueTab: function(value) {
+				$("#menuTabHeaders").setValueTab(value);
 			},
 			//탭에 카테고리가 들어가기 위한 함수
-			addTabs: function(flag) {
+			addTabs: function() {
 				$.ajax({
 			        url: "/YeaMin/selectProductCategoryList.json",
 			        type: "post",
@@ -62,12 +79,7 @@
 			        	if(ret.result === "ok") {
 			        		menuFnObj.tab.categoryList = ret.list;
 							menuFnObj.tab.createMenuTabContents(ret.list);
-							
-							if(flag != true) {
-								menuFnObj.tab.menu();
-							} else {
-								$("#menuTabHeaders").setValueTab(menuFnObj.tab.categoryList[0].product_category_no);
-							}
+							menuFnObj.tab.menu();
 			        	}
 			        }
 			    });
@@ -81,6 +93,7 @@
 					$("#menuTabContents").append("<div id='product_category_no_"+categoryItem.product_category_no+"' style='width:100%; height:500px; overflow-y:scroll; border-bottom: 1px solid #CFCFCF;'>");
 				}
 				$("#menuTabHeaders").addTabs(options);
+				console.log("createMenuTabContents");
 			},
 			changeCount: function(target, product_category_no, product_no) {
 				var productList = menuFnObj.tab.productList;
@@ -119,9 +132,9 @@
 			        data: "",
 			        success: function(data) {
 			        	var ret = JSON.parse(data);
-			        	menuFnObj.tab.productList = ret.list;// 상품 데이터 넣기(메모리에 들고있기)
 			        	
 			        	if(ret.result === "ok") {
+			        		console.log("menu");
 			        		for(var i=0; i<ret.list.length; i++){
 			        			var item = ret.list[i];
 			        			$("#product_category_no_"+item.product_category_no).html(
@@ -133,7 +146,7 @@
 			                            +				"<div class='item'>"
 			                            +    				"<label class='item-lable' style=''>"
 				                        +       	 			"<span class='th' style='width:100px;'>상품 이미지</span>"
-						        		+							"<img src='http://localhost:8080/YeaMin/save/"+item.product_img_system_path+"' width='103' height='103' align='center'>"				        				
+						        		+							"<img src='/YeaMin/save/"+item.product_img_system_path+"' width='103' height='103' align='center'>"				        				
 										+    					"</span>"
 						                +     	           "</label>"
 						                +     	       "</div>"
@@ -183,12 +196,18 @@
 			        			).hide();
 			        		}
 			        		
-			        		$("#menuTabHeaders").setValueTab(menuFnObj.tab.categoryList[0].product_category_no);
+			        		menuFnObj.tab.setValueTab(menuFnObj.tab.categoryList[0].product_category_no);
 			        		
 			        		$("input[id*=product_cnt_]").bindPattern({
 			        			pattern: "numberint",
 			        			max_length: 1
 			        		});
+			        		
+			        		if(menuFnObj.tab.productList.length == 0) {
+				        		menuFnObj.tab.productList = ret.list;// 상품 데이터 넣기(메모리에 들고있기)
+				        	} else {
+				        		menuFnObj.tab.setProductList(menuFnObj.tab.productList);
+				        	}
 			        	}			     
 			        }
 			    });
