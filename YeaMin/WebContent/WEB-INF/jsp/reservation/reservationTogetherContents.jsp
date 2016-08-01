@@ -16,14 +16,17 @@
 			<div class="ax-col-12 ax-content">
 			
 				<!-- s.CXPage -->
-				<div id="CXPage">
+				<div id="AXPage">
 					<div class="ax-layer">
 						<div class="ax-col-12">
 							<div class="ax-unit">
 								<div class="ax-box">
 								
-									<div id="tab"></div>
-									<div id="calendar"></div>
+									<div id="stepTab"></div>
+									<div id="calendar" class="reservationTogetherContent"></div>
+									<div id="menu" class="reservationTogetherContent">
+										<jsp:include page="/WEB-INF/jsp/main/menuContents.jsp"/>
+									</div>
 									
 									<div style="height: 100%; width: 500px; float: left;">
 									
@@ -147,8 +150,9 @@
     var fnObj = {
 		pageStart: function(){
 			fnObj.webSocket.bind();
-			fnObj.tab.bind();
+			fnObj.stepTab.bind();
 			fnObj.fullCalendar.bind();
+			menuFnObj.bind();
 			
 			$("#AXInputDateTimeED").bindTwinDateTime({align:"right", valign:"top", separator:"-", startTargetID:"AXInputDateTimeST", onChange:function() {
                 // console.log(this);
@@ -190,7 +194,7 @@
 	        		$('#calendar').fullCalendar( 'addEventSource', data.events );
 					break;
 	        	case "RESERVATION_TOGETHER_GROUP_TAB_CHANGE":
-	        		fnObj.tab.setValueTab(data.optionValue);
+	        		fnObj.stepTab.setValueTab(data.optionValue);
 					break;
 				}
         	},
@@ -224,9 +228,9 @@
        			$('#groupChatWriteTa').val("");
         	}
         },
-        tab: {
+        stepTab: {
         	bind: function() {
-				$("#tab").bindTab({
+				$("#stepTab").bindTab({
 					theme : "AXTabsLarge",
 					value:"calendar",
 					overflow:"scroll",
@@ -235,13 +239,24 @@
 						{optionText: "STEP 2 메뉴 정하기", optionValue: "menu"}
 					],
 					onchange: function(selectedObject, optionValue) {
-						fnObj.tab.changeHandler(optionValue);
+						fnObj.stepTab.setValueTab(optionValue);
+						fnObj.stepTab.changeHandler(optionValue);
 					}
 				});
-				fnObj.tab.setValueTab("calendar");
+				fnObj.stepTab.setValueTab("calendar");
 			},
-			setValueTab: function(tabValue) {
-				$("#tab").setValueTab(tabValue);
+			setValueTab: function(optionValue) {
+				$("#stepTab").setValueTab(optionValue);
+				
+				if(optionValue == "calendar") {
+       				$("#calendar").show();
+       				$("#menu").hide();
+       			} else if(optionValue == "menu") {
+       				$("#calendar").hide();
+       				$("#menu").show();
+       				$("#menuTabHeaders").empty();
+       				menuFnObj.tab.bind(true);
+       			}
 			},
 			changeHandler: function(optionValue) {
 				var req = new Object();

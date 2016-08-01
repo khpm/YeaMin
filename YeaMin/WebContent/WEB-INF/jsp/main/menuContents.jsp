@@ -29,7 +29,7 @@
 			categoryList: [],
 			productList: [],
 			// 초기화 함수
-			bind: function() {
+			bind: function(flag) {
 				$("#menuTabHeaders").bindTab({
 					theme: "AXTabs",
 					value: "",
@@ -39,7 +39,7 @@
 						menuFnObj.tab.showMenuTabHeaders(value);
 					}
 				});
-				menuFnObj.tab.addTabs();
+				menuFnObj.tab.addTabs(flag);
 			},
 			// 해당 카테고리 div 영역만 show 하고 나머지는 hide하는 함수, 매개변수는 해당 카테고리의 no값
 			showMenuTabHeaders: function(value) {
@@ -48,7 +48,7 @@
 				$("#product_category_no_"+product_category_no).show();	
 			},
 			//탭에 카테고리가 들어가기 위한 함수
-			addTabs: function() {
+			addTabs: function(flag) {
 				$.ajax({
 			        url: "/YeaMin/selectProductCategoryList.json",
 			        type: "post",
@@ -59,7 +59,12 @@
 			        	if(ret.result === "ok") {
 			        		menuFnObj.tab.categoryList = ret.list;
 							menuFnObj.tab.createMenuTabContents(ret.list);
-							menuFnObj.tab.menu();
+							
+							if(flag != true) {
+								menuFnObj.tab.menu();
+							} else {
+								$("#menuTabHeaders").setValueTab(menuFnObj.tab.categoryList[0].product_category_no);
+							}
 			        	}
 			        }
 			    });

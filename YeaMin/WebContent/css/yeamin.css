@@ -22,8 +22,9 @@
 	text-align: left;
 }
 	
-#calendar {
-	max-width: 900px;
+.reservationTogetherContent {
+	width: 900px;
+	height: 728px;
 	margin: 10px;
 	float: left;
 }
