@@ -6,5 +6,6 @@ import java.util.Map;
 public interface StatsDao {
 	
 	public List<Map<String, Object>> selectReviewCnt(Map<String, Object> paramMap);
+	public List<Map<String, Object>> selectProductTop5(Map<String, Object> paramMap);
 	
 }

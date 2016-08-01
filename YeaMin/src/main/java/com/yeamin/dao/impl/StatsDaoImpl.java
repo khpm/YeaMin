@@ -24,8 +24,14 @@ public class StatsDaoImpl implements StatsDao {
 		
 	}
 	
+	@Override
 	public List<Map<String, Object>> selectReviewCnt(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_REVIEW_CNT, paramMap);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectProductTop5(Map<String, Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_TOP5, paramMap);
 	}
 	
 }

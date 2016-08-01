@@ -23,8 +23,16 @@
 			max(board_re_ref) AS refcnt
 		FROM
 			ym_board
+		WHERE
+			board_re_ref &lt; 1000
 	</select>
 	
+	<select id="QID_INSERT_BOARD_NOTICE_MAXREF" resultType="Integer">
+		SELECT
+			max(board_re_ref) AS refcnt
+		FROM
+			ym_board		
+	</select>
 	<sql id="SELECT_BOARD_LIST_CONDITION">
 		<if test="searchType == '제목'">
 			AND board_title LIKE '%'||#{searchMsg}||'%'
@@ -44,7 +52,8 @@
 		<include refid="common.PAGE_HEADER"/>
 			SELECT
 				b.*,
-				u.user_name
+				u.user_name,
+				u.is_admin
 			FROM
 				ym_board b,
 				ym_user u
@@ -69,42 +78,79 @@
 	</select>
 	
 	<select id="QID_SELECT_BOARD_LIST_ONE" resultType="BoardDto">
-	SELECT
-		ym_board.*,
-		ym_user.user_no,
-		ym_user.user_name
-	FROM
-		ym_board,
-		ym_user
-	WHERE
-		ym_board.user_no = ym_user.user_no
-		AND ym_board.board_no = #{board_no}
+		SELECT
+			ym_board.*,
+			ym_user.user_no,
+			ym_user.user_name
+		FROM
+			ym_board,
+			ym_user
+		WHERE
+			ym_board.user_no = ym_user.user_no
+			AND ym_board.board_no = #{board_no}
 	</select>
 	
 	<update id="QID_UPDATE_BOARD">
-	UPDATE
-		ym_board
-	SET
-		board_title = #{board_title},
-		board_content = #{board_content}
-	WHERE
-		board_no = #{board_no}
+		UPDATE
+			ym_board
+		SET
+			board_title = #{board_title},
+			board_content = #{board_content}
+		WHERE
+			board_no = #{board_no}
 	</update>
 	
 	<delete id="QID_DELETE_BOARD">
-	DELETE
-		ym_board
-	WHERE
-		board_no = #{board_no}
+		DELETE
+			ym_board
+		WHERE
+			board_no = #{board_no}
 	</delete>
 	
 	<update id="QID_UPDATE_BOARD_READCOUNT">
-	UPDATE
-		ym_board
-	set
-		board_read_cnt = board_read_cnt + 1
-	WHERE
-		board_no = #{board_no}
+		UPDATE
+			ym_board
+		set
+			board_read_cnt = board_read_cnt + 1
+		WHERE
+			board_no = #{board_no}
 	</update>
+	
+	<update id="QID_UPDATE_BOARD_REPLY_STEP">
+		UPDATE
+		 	ym_board
+		SET
+			board_re_step = board_re_step + 1
+		WHERE
+			board_re_ref = #{board_re_ref} and board_re_step &gt; #{board_re_step}
+	</update>
+	
+	<insert id="QID_INSERT_BOARD_REPLY">
+		INSERT INTO
+			ym_board
+		VALUES
+			(
+			board_seq.nextval,
+			#{board_title},
+			#{board_content},
+			0,
+			sysdate,
+			#{board_re_ref},
+			#{board_re_step},
+			#{board_re_level},
+			#{user_no}
+			)
+	</insert>
+	
+	<select id="QID_SELETE_BOARD_DELETE_CHECK" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			ym_board
+		WHERE
+			board_re_ref = #{board_re_ref}
+			AND board_re_step = #{board_re_step} + 1
+			AND board_re_level &gt; #{board_re_level}
+	</select>
 	
 </mapper>

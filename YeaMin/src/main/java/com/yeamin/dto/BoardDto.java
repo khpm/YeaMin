@@ -24,7 +24,7 @@ public class BoardDto {
 	
 	private String user_name;
 	
-	private Integer r;
+	private String is_admin;
 	
 	public BoardDto() {
 		
@@ -110,12 +110,12 @@ public class BoardDto {
 		this.user_name = user_name;
 	}
 
-	public Integer getR() {
-		return r;
+	public String getIs_admin() {
+		return is_admin;
 	}
 
-	public void setR(Integer r) {
-		this.r = r;
+	public void setIs_admin(String is_admin) {
+		this.is_admin = is_admin;
 	}
-	
+
 }

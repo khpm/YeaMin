@@ -6,6 +6,7 @@ public class AppConstants {
 	
 	public final static String MODAL_TYPE_INSERT = "INSERT";
 	public final static String MODAL_TYPE_UPDATE = "UPDATE";
+	public final static String MODAL_TYPE_REPLY = "REPLY";
 	
 	private AppConstants() {
 		

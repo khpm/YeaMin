@@ -42,6 +42,11 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Override
+	public Integer getNoticeMaxRef(){
+		return sqlSession.selectOne(QueryConstants.QID_INSERT_BOARD_NOTICE_MAXREF);
+	}
+	
+	@Override
 	public List<BoardDto> selectBoardList(Map<String, Object> paramMap){
 		return sqlSession.selectList(QueryConstants.QID_SELECT_BOARD_LIST, paramMap);
 	}
@@ -70,5 +75,20 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public Integer updateBoardReadCount(Map<String, Object> paramMap){
 		return sqlSession.update(QueryConstants.QID_UPDATE_BOARD_READCOUNT, paramMap);
+	}
+	
+	@Override
+	public Integer updateBoardReplyStep(Map<String, Object> paramMap){
+		return sqlSession.update(QueryConstants.QID_UPDATE_BOARD_REPLY_STEP, paramMap);
+	}
+	
+	@Override
+	public Integer insertBoardReply(Map<String, Object> paramMap){
+		return sqlSession.insert(QueryConstants.QID_INSERT_BOARD_REPLY, paramMap);
+	}
+	
+	@Override
+	public Integer selectBoardDeleteCheck(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELETE_BOARD_DELETE_CHECK, paramMap);
 	}
 }

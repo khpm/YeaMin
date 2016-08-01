@@ -18,4 +18,27 @@
 		GROUP BY
 			u.user_gender
 	</select>
+	
+	<select id="QID_SELECT_PRODUCT_TOP5" resultType="Map">
+		SELECT
+			t.*
+		FROM
+			(SELECT
+		    	p.PRODUCT_NAME,
+		    	(SELECT
+		      		count(*)
+		    	FROM
+		      		ym_reservation_product rp
+		    	WHERE
+		    		rp.product_no =  p.product_no) AS product_cnt
+		  	FROM
+		    	ym_product p
+		  	ORDER BY
+		    	product_cnt desc) t
+		<where>
+			<if test="top_n != null and top_n != '' ">
+				AND rownum &lt;= #{top_n}
+			</if>
+		</where>
+	</select>
 </mapper>

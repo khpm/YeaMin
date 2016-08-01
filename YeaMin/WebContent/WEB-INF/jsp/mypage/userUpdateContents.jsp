@@ -254,7 +254,12 @@
 		                                <div class="item-clear"></div>
 		                                <div class="group-clear"></div>
 		                            </div>
-		                            <input type="hidden" id="is_admin" name="is_admin" value="N"/>
+		                            <c:if test="${user.is_admin eq 'N'}">
+		                            	<input type="hidden" id="is_admin" name="is_admin" value="N"/>
+		                            </c:if>
+		                            <c:if test="${user.is_admin eq 'Y'}">
+		                            	<input type="hidden" id="is_admin" name="is_admin" value="Y"/>
+		                            </c:if>
 		                        </div>
 		                        <!-- 결과 -->
 		                        <div id="result"></div>

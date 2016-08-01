@@ -47,12 +47,17 @@ public class QueryConstants {
 	
 	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
 	public final static String QID_INSERT_BOARD_MAXREF = "board.QID_INSERT_BOARD_MAXREF";
+	public final static String QID_INSERT_BOARD_NOTICE_MAXREF = "board.QID_INSERT_BOARD_NOTICE_MAXREF";
 	public final static String QID_SELECT_BOARD_LIST = "board.QID_SELECT_BOARD_LIST";
 	public final static String QID_SELECT_BOARD_LIST_CNT = "board.QID_SELECT_BOARD_LIST_CNT";
 	public final static String QID_SELECT_BOARD_LIST_ONE = "board.QID_SELECT_BOARD_LIST_ONE";
 	public final static String QID_UPDATE_BOARD = "board.QID_UPDATE_BOARD";
 	public final static String QID_DELETE_BOARD = "board.QID_DELETE_BOARD";
 	public final static String QID_UPDATE_BOARD_READCOUNT = "board.QID_UPDATE_BOARD_READCOUNT";
+	public final static String QID_UPDATE_BOARD_REPLY_STEP = "board.QID_UPDATE_BOARD_REPLY_STEP";
+	public final static String QID_INSERT_BOARD_REPLY = "board.QID_INSERT_BOARD_REPLY";
+	public final static String QID_SELETE_BOARD_DELETE_CHECK = "board.QID_SELETE_BOARD_DELETE_CHECK";
+	
 	
 	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
 	public final static String QID_INSERT_REVIEW = "review.QID_INSERT_REVIEW";
@@ -63,6 +68,7 @@ public class QueryConstants {
 	public final static String QID_INSERT_REVIEW_ANSWER = "review.QID_INSERT_REVIEW_ANSWER";
 	
 	public final static String QID_SELECT_REVIEW_CNT = "stats.QID_SELECT_REVIEW_CNT";
+	public final static String QID_SELECT_PRODUCT_TOP5 = "stats.QID_SELECT_PRODUCT_TOP5";
 	
 	private QueryConstants() {
 		

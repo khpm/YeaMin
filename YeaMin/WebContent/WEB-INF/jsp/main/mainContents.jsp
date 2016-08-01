@@ -148,6 +148,14 @@
 									<!-- 가게 지도와 가게 정보 END -->
 									
 									<!-- 통계 START -->
+									<div>
+							            <div style="margin-left:5px;">
+											<h1><i class="axi axi-bar-graph"></i>&nbsp;통계</h1>
+											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;예약 통계를 표시합니다.</p>
+										</div>
+										
+										<jsp:include page="/WEB-INF/jsp/main/statsContents.jsp"/>
+						            </div>
 									<!-- 통계 END -->
 									
 									<!-- 메뉴판 START-->
@@ -187,6 +195,7 @@
 	var fnObj = {
 		pageStart: function() {
 			menuFnObj.bind();
+			statsContentsFnObj.pageStart();
 		},
 		slider: {
             target : new AXDivSlider(),

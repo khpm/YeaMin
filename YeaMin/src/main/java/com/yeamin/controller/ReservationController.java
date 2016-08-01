@@ -134,6 +134,17 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
+	@RequestMapping("/selectProductTop5.json")
+	public @ResponseBody Map<String, Object> selectProductTop5(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<Map<String, Object>> list = statsDao.selectProductTop5(paramMap);		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
+	
 	@RequestMapping("/reservationModal.do")
 	public ModelAndView reservationModal(@RequestParam Map<String, Object> paramMap) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/reservation/reservationModal.jsp");

@@ -35,9 +35,12 @@
 			            <div class="ax-col-12">
 			            	<div class="ax-button-group">
 				                <div class="ax-unit center" style="float:left;">
-				                	<c:if test="${!empty user.user_no}">
+				                	<c:if test="${!empty user.user_no and user.is_admin == 'N'}">
 				                    	<button type="button" class="AXButton" onclick="fnObj.modal.open('INSERT',null)"><i class="axi axi-add"></i>등록</button>			                	          
 				                	</c:if>
+				                	<c:if test="${user.is_admin == 'Y'}">
+				                		<button type="button" class="AXButton" onclick="fnObj.modal.open('INSERT',null)"><i class="axi axi-add"></i>공지등록</button>			                	       
+				                	</c:if>				                	
 				                </div>
 				                <form id="searchForm">
 					                <div class="ax-unit right" style="float:right;">
@@ -77,7 +80,6 @@
            			ajaxUrl: "selectBoardList.json",
            	 	    ajaxPars: data,
            	 	    onLoad: function(){
-           	 	    	console.log("조건 검색");
            	 	    }
            	 	})
            	);
@@ -102,15 +104,51 @@
       	             theme : "AXGrid",
       	             colHeadAlign: "center",
       	             colGroup : [
-      	                 {key:"board_no", label:"번호", width:"100", align:"center"},
-      	                 {key:"board_title", label:"제목", width:"*",},
-      	                 {key:"user_name", label:"작성자", width:"100", align:"center"},
-      	                 {key:"board_reg_time", label:"작성일", width:"120", align:"center",
-      	                 	formatter:function(){
-      	                 		return this.value.date().print("yyyy.mm.dd");
-      	                 	}
-      	                 },
-      	                 {key:"board_read_cnt", label:"조회수", width:"70", align:"center"}
+      	                 {key:"board_no", label:"번호", width:"100", align:"center", formatter: function() {
+      	                	 var value = this.value;
+      	                	 
+      	                	 if(this.item.is_admin == "Y") {
+      	                		value = "<span style='color: red; font-weight: bold;'>" + value + "</span>";
+      	                	 }
+      	                	 
+      	                	return value;
+      	                 }},
+      	                 {key:"board_title", label:"제목", width:"*", formatter: function(){
+      	                	var value = this.value;
+     	                	 
+     	                	 if(this.item.is_admin == "Y") {
+     	                		value = "<span style='color: red; font-weight: bold;'>" + value + "</span>";
+     	                	 }
+     	                	 
+     	                	return value;
+      	                 }},
+      	                 {key:"user_name", label:"작성자", width:"100", align:"center", formatter: function(){
+       	                	var value = this.value;
+    	                	 
+    	                	 if(this.item.is_admin == "Y") {
+    	                		value = "<span style='color: red; font-weight: bold;'>" + value + "</span>";
+    	                	 }
+    	                	 
+    	                	return value;
+     	                 }},
+      	                 {key:"board_reg_time", label:"작성일", width:"120", align:"center", formatter: function(){
+       	                	var value = this.value.date().print("yyyy.mm.dd");
+    	                	 
+    	                	 if(this.item.is_admin == "Y") {
+    	                		value = "<span style='color: red; font-weight: bold;'>" + value + "</span>";
+    	                	 }
+    	                	 
+    	                	return value;
+     	                 }},
+      	                 {key:"board_read_cnt", label:"조회수", width:"70", align:"center", formatter: function(){
+        	                	var value = this.value;
+       	                	 
+       	                	 if(this.item.is_admin == "Y") {
+       	                		value = "<span style='color: red; font-weight: bold;'>" + value + "</span>";
+       	                	 }
+       	                	 
+       	                	return value;
+        	                 }}
       	             ],	                
       	             body: {
       	                 onclick: function(){ //게시글 클릭시 발생하는 이벤트
@@ -138,30 +176,7 @@
      	                  		}, false, "", "paging")
      	                  	);
       	                 }
-      	             }
-					 /* var _obj ={
-						message_type:"",
-						document_list: [
-						//게시판의 내용이 들어갈 자리
-						],
-						page_navigation:{
-							total_count:23, total_page:2,
-							cur_page:1, page_count:2,
-							first_page:1, last_page:2, point:0
-						},
-						error:0, message:"success"
-					};
-					    
-					var gridData = {
-						list: _obj.document_list,
-						page:{
-					    	pageNo: _obj.page_navigation.cur_page,
-					    	pageSize: 20,
-					    	pageCount: _obj.page_navigation.page_count,
-					    	listCount: _obj.page_navigation.total_count
-					    }
-					}; 
-					fnObj.boardList.target.setData(gridData);*/      	           
+      	             }     	           
 				});
 			}
 		},
@@ -194,6 +209,10 @@
          		if(modalType === "UPDATE") {
          			pars += ("&" + fnObj.primaryKey + "=" + item[fnObj.primaryKey]);
          		}
+         		
+         		if(modalType === "REPLY") {
+         			pars += ("&" + fnObj.primaryKey + "=" + item);
+         		}
          	
              	this.target.open({
                  	url:"/YeaMin/boardModal.do",
@@ -202,6 +221,10 @@
                  	closeByEscKey:true
              	});
          	}
+     	},
+     	replyChange: function(board_no) {
+     		fnObj.modal.target.close();
+     		fnObj.modal.open('REPLY',board_no);
      	}
 	};
 </script>
