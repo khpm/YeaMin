@@ -48,17 +48,6 @@
 				    });
 				});
 				
-				// 비밀번호
-				$("#user_pw,#user_pw2").bind("keyup", function(event) {
-					if(form.user_pw.value == form.user_pw2.value){
-						$("#userPwDuplicationCheckRetMsg").hide();
-					}else{
-						$("#userPwDuplicationCheckRetMsg").show();
-		        		$("#userPwDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "비밀번호가 일치하지 않습니다.");
-					}
-		        	
-				});
-				
 				// 이름
 				$("#user_name").bind("keyup", function(event) {
 					if(form.user_name.value.length < 6){
@@ -160,110 +149,104 @@
 							<div class="ax-unit">
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
-		                       		<div class="ax-rwd-table" style="margin:5px;">
-									<div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">아이디</span>
-		                                        <span class="td inputText" style="" title="">
-		                                        <input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
-		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="${user.user_id}" class="AXInput av-required W100"/>
-		                                        	<span id="userIdDuplicationCheckRetMsg" class="ret-msg"></span>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">비밀번호</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="${user.user_pw}" class="AXInput av-required W150" />
-		                                        </span>
-		                                        <span class="th" style="min-width:100px;">비밀번호 확인</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="password" id="user_pw2" name="user_pw2" title="" placeholder="" value="" class="AXInput av-required W150" />
-		                                        </span>
-		                                        <span id="userPwDuplicationCheckRetMsg" class="ret-msg"></span>
-		                                    </label>		                                    
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">이름</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_name" name="user_name" title="" placeholder="" value="${user.user_name}" class="AXInput av-required W100" />
-		                                        </span>
-		                                        <span id="userNameDuplicationCheckRetMsg" class="ret-msg"></span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">이메일</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="${user.user_email}" class="AXInput av-required av-email" />
-		                                        </span>
-		                                        <span id="userEmailDuplicationCheckRetMsg" class="ret-msg"></span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">전화번호</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_hp" name="user_hp" title=""  value="${user.user_hp}" class="AXInput av-required W100"/>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">생년월일</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_birth_day" name="user_birth_day" title="" placeholder="" value="${user.user_birth_day}" class="AXInput av-required W150" />
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">성별</span>
-		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_gender" name="user_gender" title="" placeholder="" value="${user.user_gender}" class="AXInput av-required W150" style="height:30px;"/>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>
-		                            <c:if test="${user.is_admin eq 'N'}">
-		                            	<input type="hidden" id="is_admin" name="is_admin" value="N"/>
-		                            </c:if>
-		                            <c:if test="${user.is_admin eq 'Y'}">
-		                            	<input type="hidden" id="is_admin" name="is_admin" value="Y"/>
-		                            </c:if>
-		                        </div>
-		                        <!-- 결과 -->
-		                        <div id="result"></div>
-		                    </form>
+										<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
+			                       		<div class="ax-rwd-table" style="margin:5px;">
+										<div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">아이디</span>
+			                                        <span class="td inputText" style="" title="">
+				                                       ${user.user_id}
+			                                        </span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">비밀번호</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="${user.user_pw}" class="AXInput av-required W150" />
+			                                        </span>
+			                                    </label>		                                    
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">이름</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="text" id="user_name" name="user_name" title="" placeholder="" value="${user.user_name}" class="AXInput av-required W150" />
+			                                        </span>
+			                                        <span id="userNameDuplicationCheckRetMsg" class="ret-msg"></span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">이메일</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="${user.user_email}" class="AXInput av-required av-email W400" />
+			                                        </span>
+			                                        <span id="userEmailDuplicationCheckRetMsg" class="ret-msg"></span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">전화번호</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="text" id="user_hp" name="user_hp" title=""  value="${user.user_hp}" class="AXInput av-required W150"/>
+			                                        </span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">생년월일</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="text" id="user_birth_day" name="user_birth_day" title="" placeholder="" value="${user.user_birth_day}" class="AXInput av-required W150" />
+			                                        </span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <div class="item-group" style="">
+			                                <div class="item">
+			                                    <label class="item-lable">
+			                                        <span class="th" style="min-width:100px;">성별</span>
+			                                        <span class="td inputText" style="" title="">
+			                                            <input type="text" id="user_gender" name="user_gender" title="" placeholder="" value="${user.user_gender}" class="AXInput av-required W150" style="height:30px;"/>
+			                                        </span>
+			                                    </label>
+			                                </div>
+			                                <div class="item-clear"></div>
+			                                <div class="group-clear"></div>
+			                            </div>
+			                            <c:if test="${user.is_admin eq 'N'}">
+			                            	<input type="hidden" id="is_admin" name="is_admin" value="N"/>
+			                            </c:if>
+			                            <c:if test="${user.is_admin eq 'Y'}">
+			                            	<input type="hidden" id="is_admin" name="is_admin" value="Y"/>
+			                            </c:if>
+			                        </div>
+			                        <!-- 결과 -->
+			                        <div id="result"></div>
+			                    </form>
 								</div>
 							</div>
 						</div>
@@ -276,7 +259,6 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                    <button type="button" class="AXButton" onclick="fnObj.userUpdate();">수정</button>
-		                    <button type="button" class="AXButton" onclick="fnObj.close();">취소</button>
 		                </div>
 		            </div>
 		            <div class="ax-clear"></div>
