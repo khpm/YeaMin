@@ -7,7 +7,7 @@
 <div style="height:40px; padding: 5px;">
 	<c:if test="${user.is_admin eq 'N'}">
 		<div style="float: right;">
-			<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="menuFnObj.modal.open('INSERT', null, 1200)">
+			<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="menuFnObj.modal.open('INSERT', null)">
 				<i class="axi axi-ion-clipboard" style="font-size:18px;"></i>예약하기
 			</button>
 		</div>
@@ -226,7 +226,7 @@
                     displayLoading:true
                 });
             },
-            open: function(modalType, item, top){
+            open: function(modalType, item){
             	var pars = "modalType=" + modalType;
             	
             	if(modalType === "UPDATE") {
@@ -236,7 +236,7 @@
                 this.target.open({
                     url:"/YeaMin/reservationModal.do",
                     pars: pars.queryToObject(),
-                    top:top, width:600,
+                    top: $("#menuTabHeaders").position().y, width:600,
                     closeByEscKey:true
                 });
             }
