@@ -25,15 +25,15 @@
 										<!-- 컨트롤 버튼 영역 -->
 										<div class="ax-button-group">
 											<div class="left">
-												<button type="button" class="AXButton Blue" id="btn-search">
+												<button type="button" class="AXButton" id="btn-search">
 													<i class="axi axi-search"></i> 검색
 												</button>
 											</div>
 											<div class="right">
-												<button type="button" class="AXButton Blue" id="btn-update">
+												<button type="button" class="AXButton" id="btn-update">
 													<i class="axi axi-edit"></i> 수정
 												</button>
-												<button type="button" class="AXButton Blue" id="btn-delete">
+												<button type="button" class="AXButton" id="btn-delete">
 													<i class="axi axi-remove"></i> 삭제
 												</button>
 											</div>
