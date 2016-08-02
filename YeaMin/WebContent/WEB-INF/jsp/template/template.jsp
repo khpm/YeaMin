@@ -21,16 +21,21 @@
 		<!-- axicon -->
 		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css"/>
 		
-		<!-- axisj - theme : cocker, cocker-dark, cocker-dark-red, cacao, cacao-dark -->
-		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj"/>
+		<!-- axisj -->
+		<c:if test="${user == null or user.is_admin eq 'N'}">
+			<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/bulldog/AXJ.min.css" id="axu-theme-axisj"/>
+			<link rel="stylesheet" href="/YeaMin/ui/cocker-dark/admin.css" id="axu-theme-admin"/>
+		</c:if>
+		<c:if test="${user.is_admin eq 'Y'}">
+			<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj"/>
+			<link rel="stylesheet" href="/YeaMin/ui/cocker-dark-red/admin.css" id="axu-theme-admin"/>
+		</c:if>
+		
+		<link rel="stylesheet" href="/YeaMin/ui/custom.css"/>
 		<script type="text/javascript" src="/YeaMin/js/axisj/dist/AXJ.min.js"></script>
 		<script type="text/javascript" src="/YeaMin/js/axisj/lib/AXDivSlider.js"></script>
 	
-		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin"/>
-		<link rel="stylesheet" href="/YeaMin/ui/custom.css"/>
-		
 	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
-		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
 		
 		<!-- fullcalendar -->
 		<link rel="stylesheet" href="/YeaMin/css/fullcalendar/lib/cupertino/jquery-ui.min.css"/>

@@ -49,7 +49,7 @@ var fcObj = {
         } catch (e) {
 
         }
-        this.theme.init();
+        // this.theme.init();
     },
     pageResize: function () {
         fcObj.setAsideMenu();
