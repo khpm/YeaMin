@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -33,6 +34,33 @@
 		var fnObj = {
 			pageStart: function() {
 				reservation_date.bind();
+				grid.bind();
+				
+				if($("#modalType").val() == "INSERT") {
+					
+					var productListTemp = [];
+					var productList = parent.menuFnObj.tab.productList;
+					
+					for(var index in productList) {
+						var item = productList[index];
+						
+						if(item.hasOwnProperty("product_cnt") && item.product_cnt > 0) {
+							productListTemp.push(item);
+						}
+					}
+					
+					grid.target.setList(productListTemp);
+				} if($("#modalType").val() == "UPDATE") {
+					reservation_date.onchangeHandler($("#reservation_date").val());
+					
+					grid.target.setList({
+					    ajaxUrl: "selectReservationProductList.json",
+					    ajaxPars: "reservation_no=" + $("#reservation_no").val(),
+					    onLoad: function(){
+					        // trace(this);
+					    }
+					});
+				}
 				
 				$("#reservation_people").bindNumber({
 					min: 1,
@@ -67,7 +95,9 @@
 	        update: function() {
 	        	if(emptyRequiredValueCheck()) return;
 	        	
-				var data = $("#form").serialize();
+	        	var reservation_time = $("#reservation_date").val() + " " + $("#reservation_time").val() + ":00";
+	        	var data = $("#form").serialize();
+	        	data += "&reservation_time=" + reservation_time;
 	        	
 	        	$.ajax({
 			        url: "/YeaMin/updateReservation.json",
@@ -77,6 +107,7 @@
 			        	var ret = JSON.parse(data);
 			        	
 			        	if(ret.result === "ok") {
+			        		parent.fnObj.search.submit();
 			        		fnObj.close();
 			        	}
 			        }
@@ -94,23 +125,26 @@
 	                maxDate: new Date().date().add(8),
 	                defaultDate: new Date().date().add(1),
 					onchange: function() {
-						var selectedDate = new Date(this.value);
-						
-						if(selectedDate < new Date() || selectedDate > new Date().date().add(8) ) {
-							$("#reservation_date").val(new Date().add(1).print('yyyy-mm-dd'));
-						}
-						
-						var reservation_capacity_dw = selectedDate.date().print("dw");
-						
-						if(reservation_capacity_dw.indexOf("토") == 0 || reservation_capacity_dw.indexOf("일") == 0) {
-							reservation_capacity_dw = "W";
-						} else {
-							reservation_capacity_dw = "D";
-						}
-						
-						reservation_time.bind(reservation_capacity_dw);
+						reservation_date.onchangeHandler(this.value);
 					}
 				});
+			},
+			onchangeHandler: function(value) {
+				var selectedDate = new Date(value);
+				
+				if(selectedDate < new Date() || selectedDate > new Date().date().add(8) ) {
+					$("#reservation_date").val(new Date().add(1).print('yyyy-mm-dd'));
+				}
+				
+				var reservation_capacity_dw = selectedDate.date().print("dw");
+				
+				if(reservation_capacity_dw.indexOf("토") == 0 || reservation_capacity_dw.indexOf("일") == 0) {
+					reservation_capacity_dw = "W";
+				} else {
+					reservation_capacity_dw = "D";
+				}
+				
+				reservation_time.bind(reservation_capacity_dw);
 			}
 		};
 		
@@ -127,12 +161,46 @@
 			            optionText: "reservation_capacity_time",
 			            optionData: "reservation_capacity_people"
 		            },
+		            setValue: $("#reservation_time_format").val(),
 		            onChange: function(){
-	                    trace(this);
+	                    // trace(this);
 	                }
 	            });
 			}
 		};
+		
+		var grid = {
+            target: new AXGrid(),
+            get: function(){ return this.target },
+            bind: function(){
+                this.target.setConfig({
+                    targetID: "AXGridTarget",
+                    theme: "AXGrid",
+                    mediaQuery: {
+                        mx:{min:0, max:767}, dx:{min:767}
+                    },
+                    colGroup: [
+                        {key:"product_category_name", label:"상품 카테고리 이름", width:"200", align:"center"},
+                        {key:"product_name", label:"상품 상품", width:"200", align:"center"},
+                        {key:"product_price", label:"상품 가격", width:"100", align:"center", formatter: function() {
+                        	return this.value.money();
+                        }},
+                        {key:"product_cnt", label:"상품 개수", width:"100", align:"center"}
+                    ],
+                    body: {
+                        ondblclick: function(){
+                        	// trace(this.index);
+                        	// trace(this.item);
+                        	// trace(this.list);
+                        	// trace(this.page);
+                        }
+                    },
+                    page: {
+                        paging: false
+                    }
+                });
+            }
+        }
 		
 	    axdom(window).ready(fnObj.pageStart);
 	    axdom(window).resize(fnObj.pageResize);
@@ -151,7 +219,6 @@
 		                		 - 수정
 		                	</c:if>
 		                </h1>
-		                <p class="desc">컨텐츠 상세 설명을 넣어주세요.</p>
 		            </div>
 		        </div>
 		        <div class="ax-clear"></div>
@@ -163,7 +230,8 @@
 		                <div class="ax-col-12">
 		
 		                    <form id="form" method="get" onsubmit="return false;">
-		                    	<input type="hidden" name="reservation_no" value="${dto.reservation_no}"/>
+		                    	<input type="hidden" id="modalType" value="${modalType}"/>
+		                    	<input type="hidden" id="reservation_no" name="reservation_no" value="${dto.reservation_no}"/>
 		                    	<input type="hidden" name="user_no" value="${user.user_no}"/>
 		                        <div class="ax-rwd-table">
 		                        	<div class="item-group" style="">
@@ -175,7 +243,7 @@
 								                		 ${user.user_name}
 								                	</c:if>
 								                	<c:if test="${modalType eq 'UPDATE'}">
-								                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+								                		 ${dto.user_name}
 								                	</c:if>
 		                                        </span>
 		                                    </label>
@@ -188,7 +256,8 @@
 		                                    <label class="item-lable" for="reservation_date">
 		                                        <span class="th" style="min-width:100px;">예약 날짜</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="reservation_date" name="" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                        	<fmt:formatDate var="reservation_date_format" value="${dto.reservation_time}" pattern="yyyy-MM-dd"/>
+		                                            <input type="text" id="reservation_date" name="" title="" placeholder="" value="${reservation_date_format}" class="AXInput av-required W150" />
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -200,7 +269,9 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:100px;">예약 시간</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <select id="reservation_time" class="AXSelect W160" id=""></select>
+		                                        	<fmt:formatDate var="reservation_time_format" value="${dto.reservation_time}" pattern="HH:mm"/>
+		                                        	<input type="hidden" id="reservation_time_format" value="${reservation_time_format}"/>
+		                                            <select id="reservation_time" class="AXSelect W160"></select>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -224,9 +295,16 @@
 		                                    <label class="item-lable" for="reservation_comment">
 		                                        <span class="th" style="min-width:100px;">전달 사항</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<textarea id="reservation_comment" name="reservation_comment" rows="4" cols="" style="height: 200px;"></textarea>
+		                                        	<textarea id="reservation_comment" name="reservation_comment" rows="4" cols="" style="height: 200px;">${dto.reservation_comment}</textarea>
 		                                        </span>
 		                                    </label>
+		                                </div>
+		                                <div class="item-clear"></div>
+		                                <div class="group-clear"></div>
+		                            </div>
+		                            <div class="item-group" style="">
+		                                <div class="item fullWidth">
+		                                	<div id="AXGridTarget" style="height: 200px;"></div>
 		                                </div>
 		                                <div class="item-clear"></div>
 		                                <div class="group-clear"></div>

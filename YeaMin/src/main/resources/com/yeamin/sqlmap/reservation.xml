@@ -63,31 +63,55 @@
 	
 	<select id="QID_SELECT_RESERVATION_LIST" resultType="ReservationDto">
 		SELECT
-			reservation_capacity_no,
-			reservation_capacity_dw,
-			reservation_capacity_time,
-			reservation_capacity_people
+			r.*,
+			u.user_name,
+			(SELECT
+				COUNT(*)
+			FROM
+				ym_reservation_product rp
+			WHERE
+				rp.reservation_no = r.reservation_no) AS product_total_cnt,
+			(SELECT
+				SUM(p.product_price)
+			FROM
+				ym_reservation_product rp,
+				ym_product p
+			WHERE
+				rp.product_no = p.product_no
+				AND rp.reservation_no = r.reservation_no) AS product_sum_price
 		FROM
-			ym_reservation_capacity
-		<where>
-			<if test="reservation_capacity_dw != 'all'">
-				AND reservation_capacity_dw = #{reservation_capacity_dw}
-			</if>
-		</where>
+			ym_reservation r,
+			ym_user u
+		WHERE
+			r.user_no = u.user_no
 		ORDER BY
-    		reservation_capacity_time asc
+    		reservation_time ASC
 	</select>
 	
 	<select id="QID_SELECT_RESERVATION" resultType="ReservationDto">
 		SELECT
-			reservation_capacity_no,
-			reservation_capacity_dw,
-			reservation_capacity_time,
-			reservation_capacity_people
+			r.*,
+			u.user_name,
+			(SELECT
+				COUNT(*)
+			FROM
+				ym_reservation_product rp
+			WHERE
+				rp.reservation_no = r.reservation_no) AS product_total_cnt,
+			(SELECT
+				SUM(p.product_price)
+			FROM
+				ym_reservation_product rp,
+				ym_product p
+			WHERE
+				rp.product_no = p.product_no
+				AND rp.reservation_no = r.reservation_no) AS product_sum_price
 		FROM
-			ym_reservation_capacity
+			ym_reservation r,
+			ym_user u
 		WHERE
-			reservation_capacity_no = #{reservation_capacity_no}
+			r.user_no = u.user_no
+			and reservation_no = #{reservation_no}
 	</select>
 	
 	<select id="QID_SELECT_RESERVATION_NO_SEQ" resultType="Integer">
@@ -141,4 +165,28 @@
 			#{product_cnt}
 		)
 	</insert>
+	
+	<select id="QID_SELECT_RESERVATION_PRODUCT_LIST" resultType="ReservationProductDto">
+		SELECT
+			r.reservation_no,
+			pc.product_category_no,
+			pc.product_category_name,
+			p.product_no,
+			p.product_name,
+			p.product_price,
+			rp.product_cnt
+		FROM
+			ym_reservation r,
+			ym_reservation_product rp,
+			ym_product p,
+			ym_product_category pc
+		WHERE
+			r.reservation_no = rp.reservation_no
+			AND rp.product_no = p.product_no
+			AND p.product_category_no = pc.product_category_no
+			AND r.reservation_no = #{reservation_no}
+		ORDER BY
+			pc.product_category_order_by ASC,
+			p.product_order_by ASC
+	</select>
 </mapper>

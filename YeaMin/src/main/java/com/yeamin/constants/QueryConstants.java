@@ -22,6 +22,7 @@ public class QueryConstants {
 	public final static String QID_UPDATE_RESERVATION = "reservation.QID_UPDATE_RESERVATION";
 	public final static String QID_DELETE_RESERVATION = "reservation.QID_DELETE_RESERVATION";
 	
+	public final static String QID_SELECT_RESERVATION_PRODUCT_LIST = "reservation.QID_SELECT_RESERVATION_PRODUCT_LIST";
 	public final static String QID_INSERT_RESERVATION_PRODUCT = "reservation.QID_INSERT_RESERVATION_PRODUCT";
 	
 	public final static String QID_SELECT_PRODUCT_CATEGORY_LIST = "product.QID_SELECT_PRODUCT_CATEGORY_LIST";	
