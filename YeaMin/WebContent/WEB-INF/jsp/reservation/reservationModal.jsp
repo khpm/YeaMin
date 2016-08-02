@@ -13,22 +13,31 @@
 		
 		<title>${title}</title>
 		
-		<link rel="shortcut icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
-		<link rel="icon" href="http://dev.axisj.com/ui/axisj.ico" type="image/x-icon" />
-	
-		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css" />
-		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj" />
-	
+		<!-- jquery -->
 		<script type="text/javascript" src="/YeaMin/js/jquery-1.12.4.js"></script>
+		
+		<!-- axicon -->
+		<link rel="stylesheet" type="text/css" href="/YeaMin/css/axicon/axicon.min.css"/>
+		
+		<!-- axisj -->
+		<c:if test="${user == null or user.is_admin eq 'N'}">
+			<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/bulldog/AXJ.min.css" id="axu-theme-axisj"/>
+			<link rel="stylesheet" href="/YeaMin/ui/cocker-dark/admin.css" id="axu-theme-admin"/>
+		</c:if>
+		<c:if test="${user.is_admin eq 'Y'}">
+			<link rel="stylesheet" type="text/css" href="/YeaMin/css/axisj/ui/kakao/AXJ.min.css" id="axu-theme-axisj"/>
+			<link rel="stylesheet" href="/YeaMin/ui/cocker-dark-red/admin.css" id="axu-theme-admin"/>
+		</c:if>
+		
+		<link rel="stylesheet" href="/YeaMin/ui/custom.css"/>
 		<script type="text/javascript" src="/YeaMin/js/axisj/dist/AXJ.min.js"></script>
+		<script type="text/javascript" src="/YeaMin/js/axisj/lib/AXDivSlider.js"></script>
 	
-		<link rel="stylesheet" href="/YeaMin/ui/cacao/admin.css" id="axu-theme-admin" />
-		<link rel="stylesheet" href="/YeaMin/ui/custom.css" />
+	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
+
+		<!-- yeamin -->
 		<link rel="stylesheet" href="/YeaMin/css/yeamin.css" />
 		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
-		
-	    <script type="text/javascript" src="/YeaMin/resource/admin.js"></script>
-		<script type="text/javascript" src="/YeaMin/resource/Chart.min.js"></script>
 	    
 		<script type="text/javascript">
 		var fnObj = {
