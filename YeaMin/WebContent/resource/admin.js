@@ -226,9 +226,13 @@ jQuery(document.body).ready(function () {
 });
 
 jQuery(window).bind("scroll", function () {
-    if (jQuery(document.body).scrollTop() > 60) {
+	var scrollTop = $(document.body).scrollTop();
+	
+    if (scrollTop > 60) {
         window.scroll_top_handle.addClass("on");
+        $(".ax-aside").css("top", scrollTop + 130);
     } else {
         window.scroll_top_handle.removeClass("on");
+        jQuery(".ax-aside").css("top", 130);
     }
 });
