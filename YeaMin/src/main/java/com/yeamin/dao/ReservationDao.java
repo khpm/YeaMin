@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.dto.ReservationDto;
+import com.yeamin.dto.ReservationProductDto;
 
 public interface ReservationDao {
 	
@@ -29,6 +30,8 @@ public interface ReservationDao {
 	public Integer updateReservation(Map<String, Object> paramMap);
 	
 	public Integer deleteReservation(Map<String, Object> paramMap);
+	
+	public List<ReservationProductDto> selectReservationProductList(Map<String, Object> paramMap);
 	
 	public Integer insertReservationProduct(Map<String, Object> paramMap);
 	

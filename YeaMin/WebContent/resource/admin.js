@@ -13,7 +13,7 @@ var topMenu_data = [
     {
         _id: "m02", label: "예약 관리", url: "#", cn: [
         	{_id: "m0201", label: "예약 수용 관리", url: "/YeaMin/reservationCapacityContents.do"},
-	        {_id: "m0202", label: "예약 현황 및 이력", url: "#"},
+	        {_id: "m0202", label: "예약 이력 및 현황", url: "/YeaMin/reservationContents.do"},
 	        {_id: "m0203", label: "예약 통계", url: "/YeaMin/reservationStatsContents.do"}
 	    ]
     },

@@ -13,6 +13,7 @@ import com.yeamin.constants.QueryConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.dto.ReservationDto;
+import com.yeamin.dto.ReservationProductDto;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
@@ -79,6 +80,11 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public Integer deleteReservation(Map<String, Object> paramMap) {
 		return sqlSession.delete(QueryConstants.QID_DELETE_RESERVATION, paramMap);
+	}
+	
+	@Override
+	public List<ReservationProductDto> selectReservationProductList(Map<String, Object> paramMap) {
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_PRODUCT_LIST, paramMap);
 	}
 	
 	@Override

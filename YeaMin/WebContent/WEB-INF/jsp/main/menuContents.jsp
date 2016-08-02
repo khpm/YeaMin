@@ -260,7 +260,7 @@
                 this.target.open({
                     url:"/YeaMin/reservationModal.do",
                     pars: pars.queryToObject(),
-                    top: $("#menuTabHeaders").position().y, width:600,
+                    top: $("#menuTabHeaders").position().y, width:800,
                     closeByEscKey:true
                 });
             }

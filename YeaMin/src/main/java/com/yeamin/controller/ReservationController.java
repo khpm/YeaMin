@@ -21,6 +21,8 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dao.StatsDao;
 import com.yeamin.dto.ReservationCapacityDto;
+import com.yeamin.dto.ReservationDto;
+import com.yeamin.dto.ReservationProductDto;
 import com.yeamin.util.YmUtil;
 
 @Controller
@@ -145,15 +147,34 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
+	@RequestMapping("/reservationContents.do")
+	public ModelAndView reservationContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/reservation/reservationContents.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/reservationModal.do")
 	public ModelAndView reservationModal(@RequestParam Map<String, Object> paramMap) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/reservation/reservationModal.jsp");
 		mav.addObject("modalType", paramMap.get("modalType"));
 		if(AppConstants.MODAL_TYPE_UPDATE.equals(paramMap.get("modalType"))) {
-			ReservationCapacityDto dto = reservationDao.selectReservationCapacity(paramMap);
+			ReservationDto dto = reservationDao.selectReservation(paramMap);
 			mav.addObject("dto", dto);
 		}
 		return mav;
+	}
+	
+	@RequestMapping("/selectReservationList.json")
+	public @ResponseBody Map<String, Object> selectReservationList(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<ReservationDto> list = reservationDao.selectReservationList(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
 	@RequestMapping("/insertReservation.json")
@@ -210,4 +231,15 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
+	@RequestMapping("/selectReservationProductList.json")
+	public @ResponseBody Map<String, Object> selectReservationProductList(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<ReservationProductDto> list = reservationDao.selectReservationProductList(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
 }

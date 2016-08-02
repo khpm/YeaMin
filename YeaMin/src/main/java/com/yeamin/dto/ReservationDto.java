@@ -11,6 +11,12 @@ public class ReservationDto {
 	private String reservation_comment;
 
 	private Timestamp reservation_time;
+	
+	private String user_name;
+	
+	private Integer product_total_cnt;
+	
+	private Integer product_sum_price;
 
 	public ReservationDto() {
 		
@@ -46,6 +52,30 @@ public class ReservationDto {
 
 	public void setReservation_time(Timestamp reservation_time) {
 		this.reservation_time = reservation_time;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public Integer getProduct_total_cnt() {
+		return product_total_cnt;
+	}
+
+	public void setProduct_total_cnt(Integer product_total_cnt) {
+		this.product_total_cnt = product_total_cnt;
+	}
+
+	public Integer getProduct_sum_price() {
+		return product_sum_price;
+	}
+
+	public void setProduct_sum_price(Integer product_sum_price) {
+		this.product_sum_price = product_sum_price;
 	}
 	
 }
