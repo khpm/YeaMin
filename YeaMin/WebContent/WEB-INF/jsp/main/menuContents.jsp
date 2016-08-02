@@ -1,6 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- 메뉴 예비 폼 -->
+<div style='float: none; display: none;'>
+	<div style='float: left;'>
+		<div class='ax-rwd-table' style='margin: 30px; border: 3px solid yellow; border-radius: 5px; border-style:outset;'>
+			<div class='item-group'>
+             	<div class='item'>
+             		<div class='item-lable'>
+						<img src='/YeaMin/save/1469602300036.jpg' width='400' height='300' align='center' style='border-radius: 5px;'>							        				
+      				</div>
+      			</div>
+      			<div class='item-clear'></div>
+      			<div class='group-clear'></div>
+      		</div>
+      		<div class='item-group'>
+	            <div class='item' style='min-width:400px;'>
+	            	<div style='float: right; margin-top: 5px; margin-right: 3px;'>
+							<input type='text' class='AXInput W30'/>
+					</div>
+	             	<div class='item-lable' style='min-width:400px;'>
+          				<span class='th' style='max-width:70px;'>상품 이름</span>
+						<span class='td' style='font-size:16px; min-width: 100px;'>삼겹살</span><br>
+						<span class='th' style='max-width:70px;'>상품 가격</span>
+						<span class='td' style='font-size:16px; min-width: 50%;'><i class='axi axi-krw' style='font-size: 14px;'></i>&nbsp;9000</span>
+					</div>
+				</div>
+				<div class='item-clear'></div>
+				<div class='group-clear'></div>
+			</div>
+			<div class='item-group'>
+            	<div class='item'>
+            		<div class='item-lable' style='height:60px;'>
+						<span class='th' style='max-width:70px;'>상품 소개</span>
+						<div class='td'>
+							<div style='margin-left: 10px; min-height: 100px; max-width: 300px; font-size: 16px; text-align: left;'>
+								상품 소개가 들어갈 자리
+							</div>
+						</div>
+					</div>
+     			</div>
+    			<div class='item-clear'></div>
+     			<div class='group-clear'></div>
+     		</div>
+      	</div>
+	</div>
+</div>
+<div style='clear:both;'></div>
+<!-- 메뉴 예비 폼 -->
+
+
 <div id="menuTabHeaders"></div>
 <div id="menuTabContents"></div>
 <!-- 예약하기 버튼 , 간이계산 START -->
@@ -138,61 +188,51 @@
 			        		for(var i=0; i<ret.list.length; i++){
 			        			var item = ret.list[i];
 			        			$("#product_category_no_"+item.product_category_no).html(
-			        					$("#product_category_no_"+item.product_category_no).html() + "<br>"	
+			        					$("#product_category_no_"+item.product_category_no).html()
 			        					+"<div style='float: none;'>"
-				        				+	"<div style='float: left;'>"
-				        				+		"<div class='ax-rwd-table'>"
-					        			+			"<div class='item-group'>"
-			                            +				"<div class='item'>"
-			                            +    				"<label class='item-lable' style=''>"
-				                        +       	 			"<span class='th' style='width:100px;'>상품 이미지</span>"
-						        		+							"<img src='/YeaMin/save/"+item.product_img_system_path+"' width='103' height='103' align='center'>"				        				
-										+    					"</span>"
-						                +     	           "</label>"
-						                +     	       "</div>"
-						                +     	       "<div class='item-clear'></div>"
-						                +    	        "<div class='group-clear'></div>"
-						                +    	    "</div>"
-						                +		"</div>"	
-				        				+	"</div>"
-				        				+	"<div style='float: left; width:40%;'>"
-				        				//+		"<br>"				        				
-				        				+		"<div class='ax-rwd-table'>"
-					        			+			"<div class='item-group'>"
-			                            +				"<div class='item'>"
-			                            +    				"<label class='item-lable'>"
-				                        +       	 			"<span class='th' style='width:60px;'>상품 이름</span>"
-				        				+							"<label style='font-size:16px;'>&nbsp;&nbsp;" + item.product_name + "</label><br>"
-				        				+    					"</span>"
-						                +     	           "</label>"
-						                +     	       "</div>"
-						                +     	       "<div class='item-clear'></div>"
-						                +    	        "<div class='group-clear'></div>"
-						                +    	    "</div>"
-						                +		"</div>"
-						                +		"<div class='ax-rwd-table' style='height:65px;'>"
-					        			+			"<div class='item-group'>"
-			                            +				"<div class='item'>"
-			                            +    				"<label class='item-lable' style='height:60px;'>"
-				        				+       	 			"<span class='th' style='width:60px;'>상품 소개</span>"
-				        				+							"<label>&nbsp;&nbsp;" + item.product_desc + "</label>"
-				        				+    					"</span>"
-						                +     	           "</label>"
-						                +     	       "</div>"
-						                +     	       "<div class='item-clear'></div>"
-						                +    	        "<div class='group-clear'></div>"
-						                +    	    "</div>"
-						                +		"</div>"
-				        				+	"</div>"
-				        				+	"<div style='float: left;'>"
-				        				+		"<br><br><br>"
-				        				+		"<label style='font-size:16px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='axi axi-krw'></i> " + item.product_price + "</label>"
-				        				+	"</div>"
-				        				+	"<div style='float: right;'>"
-				        				+		"<br><br><br><input type='text' id='product_cnt_"+item.product_no+"' class='AXInput W30' onchange='menuFnObj.tab.changeCount(this, " + item.product_category_no + ", " + item.product_no + ");'/>" 
-				        				+	"</div>"
-			        					+"</div>"
-			        					+"<div style='clear:both;'></div>"
+										+	"<div style='float: left;'>"
+										+		"<div class='ax-rwd-table' style='margin: 30px; border: 3px solid yellow; border-radius: 5px; border-style:outset;'>"
+										+			"<div class='item-group'>"
+										+             	"<div class='item'>"
+										+             		"<div class='item-lable'>"
+										+						"<img src='/YeaMin/save/"+item.product_img_system_path+"' width='400' height='300' align='center' style='border-radius: 5px;'>"							        				
+										+      				"</div>"
+										+      			"</div>"
+										+      			"<div class='item-clear'></div>"
+										+      			"<div class='group-clear'></div>"
+										+      		"</div>"
+										+      		"<div class='item-group'>"
+										+	            "<div class='item' style='min-width:400px;'>"
+										+	            	"<div style='float: right; margin-top: 5px; margin-right: 3px;'>"
+										+							"<input type='text' id='product_cnt_"+item.product_no+"' class='AXInput W30' onchange='menuFnObj.tab.changeCount(this, " + item.product_category_no + ", " + item.product_no + ");'/>"
+										+					"</div>"
+										+	             	"<div class='item-lable' style='min-width:400px;'>"
+										+         				"<span class='th' style='max-width:70px;'>상품 이름</span>"
+										+						"<span class='td' style='font-size:16px; min-width: 100px;'>" + item.product_name + "</span><br>"
+										+						"<span class='th' style='max-width:70px;'>상품 가격</span>"
+										+						"<span class='td' style='font-size:16px; min-width: 50%;'><i class='axi axi-krw' style='font-size: 14px;'></i>&nbsp;" + item.product_price + "</span>"
+										+					"</div>"
+										+				"</div>"
+										+				"<div class='item-clear'></div>"
+										+				"<div class='group-clear'></div>"
+										+			"</div>"
+										+			"<div class='item-group'>"
+										+           	"<div class='item'>"
+										+            		"<div class='item-lable' style='height:60px;'>"
+										+						"<span class='th' style='max-width:70px;'>상품 소개</span>"
+										+						"<div class='td'>"
+										+							"<div style='margin-left: 10px; min-height: 100px; max-width: 300px; font-size: 16px; text-align: left;'>"
+										+								item.product_desc
+										+							"</div>"
+										+						"</div>"
+										+					"</div>"
+										+     			"</div>"
+										+    			"<div class='item-clear'></div>"
+										+     			"<div class='group-clear'></div>"
+										+     		"</div>"
+										+      	"</div>"
+										+	"</div>"
+										+"</div>"										
 			        			).hide();
 			        		}
 			        		

@@ -55,8 +55,6 @@
 					<span class="td inputText"> ${user.user_name} </span>
 				</div>
 				<div style="display: inline-block; float: right; width: 45%;">
-					<span class="th" style="min-width:100px;">작성일</span>
-					<span class="td inputText"> ${item.review_reg_time} </span>
 				</div>
 			</div>
 			<div class="item-clear"></div>
@@ -77,26 +75,6 @@
 		<div class="item-clear"></div>
 		</div>
 	</div>
-	
-	<!-- <div class="ax-rwd-table" style="margin:5px;">
-		<div class="item-group" style="text-align: center">
-            <div class="item-lable">
-             <div style="display: inline-block; float: left; width: 10%;">
-            		<img src="images/user.PNG" width="100" height="110" >
-            	</div>
-            	<div style="width: 88%; float: right; margin: 10px;">
-            		<div>
-            			<textarea id="AXTextArea" name="review_content" style="width: 100%; height: 75px;" placeholder="댓글을 작성하세요."></textarea>
-            		</div>
-            		<div style="float: right;">
-            			<input type="button" class="AXButton" value="등록" onclick="reviewFnObj.insertReviewAnswerInputForm();"/>
-            			<input type="button" class="AXButton" value="취소" onclick="reviewFnObj.reviewAnswerInputFormDestory();"/>
-            		</div>
-            	</div>
-            </div>		                                    
-        	<div class="group-clear"></div>
-    	</div>	
-    </div> -->
 </form>
 <!-- 리뷰 댓글 입력 폼 END -->
 
@@ -116,8 +94,6 @@
 							<span class="td inputText"> ${user.user_name} </span>
 						</div>
 						<div style="display: inline-block; float: right; width: 45%;">
-							<span class="th" style="min-width:100px;">작성일</span>
-							<span class="td inputText"> ${item.review_reg_time} </span>
 						</div>
 					</div>
 					<div class="item-clear"></div>
@@ -147,8 +123,8 @@
 		<!-- 리뷰 하나 START -->
 		<div id="review_no_${item.review_no}" class="item-group" style="text-align: center">
 		<div class="item-group" style="text-align: center;">
-		<div style="display: inline-block; float: left; width: 10%; height: 110px">
-	    	<img src="images/user.PNG" width="100" height="110" >
+		<div style="display: inline-block; float: left; width: 10%; height: 100px">
+	    	<img src="images/user.PNG" width="100" height="100" >
 	    </div>
 			<div class="item" style="display: inline-block; float:left; width: 90%;">
 				<div class="item-lable">
@@ -172,7 +148,7 @@
 							</c:if>
 						</c:if>
 						<c:if test="${sessionScope.user == null or sessionScope.user.user_no ne item.user_no}">
-							<textarea id="AXTextArea" name="review_content" style="width:inherit; height: 45px;" placeholder="리뷰를 작성하세요." readonly>${item.review_content}</textarea>
+							${item.review_content}
 						</c:if>					
 					</span>
 				</div>
