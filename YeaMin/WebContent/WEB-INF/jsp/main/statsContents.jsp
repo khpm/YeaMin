@@ -141,7 +141,7 @@
 					"trendLines": [],
 					"graphs": [
 						{
-							"balloonText": "[[category]]:[[value]] 개",
+							"balloonText": "[[category]]:[[value]]",
 							"fillAlphas": 1,
 							"id": "AmGraph-1",
 							"title": "graph 1",
@@ -155,14 +155,15 @@
 					"valueAxes": [
 						{
 							"id": "PRODCUT_CNT",
-							"title": ""
+						    "axisAlpha": 1, //step
+						    "minimum": 0 // min
 						}
 					],
 					"allLabels": [],
 					"balloon": {},
 					"legend": {
 						"enabled": false,
-						"useGraphSettings": true
+						"useGraphSettings": false
 					},
 					"titles": [
 					],
@@ -180,14 +181,18 @@
 			        data: data,
 			        success: function(data) {
 						var ret = JSON.parse(data);
-			        	
+
 			        	if(ret.result === "ok") {
 			        		color = ["red", "orange", "yellow", "green", "blue", "navy", "purple", "silver", "pink", "black"];
+			        		var max = 0;
 			        		for(var i=0;i<ret.list.length;i++){
 			        			ret.list[i].color = color[i];
+			        			if(ret.list[i].PRODUCT_CNT > max){
+			        				max = ret.list[i].PRODUCT_CNT;
+			        			}
 			        		}
+			        		statsContentsFnObj.reviewCntChart2.target.valueAxes[0].maximum = max;
 			        		statsContentsFnObj.reviewCntChart2.target.dataProvider = ret.list;
-			        		//statsContentsFnObj.reviewCntChart2.target.graphs = ret.list;
 							statsContentsFnObj.reviewCntChart2.target.validateData();
 							statsContentsFnObj.reviewCntChart2.target.animateAgain();
 			        	}
