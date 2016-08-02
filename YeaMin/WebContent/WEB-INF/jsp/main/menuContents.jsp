@@ -7,7 +7,7 @@
 <div style="height:40px; padding: 5px;">
 	<c:if test="${user.is_admin eq 'N'}">
 		<div style="float: right;">
-			<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="menuFnObj.modal.open('INSERT', null)">
+			<button class="AXButton" style="width:80px; height:40px; font-size: 15px;" onclick="menuFnObj.modal.openProxy()">
 				<i class="axi axi-ion-clipboard" style="font-size:18px;"></i>예약하기
 			</button>
 		</div>
@@ -226,7 +226,31 @@
                     displayLoading:true
                 });
             },
-            open: function(modalType, item){
+            openProxy: function() {
+            	var isOpenable = false;
+            	var productList = menuFnObj.tab.productList;
+            	
+            	for(var index in productList) {
+            		var item = productList[index];
+            		
+            		if(item.hasOwnProperty("product_cnt") && item.product_cnt > 0) {
+            			isOpenable = true;
+            			break;
+            		}
+            	}
+            	
+            	if(isOpenable) {
+            		menuFnObj.modal.open('INSERT', null);
+            	} else {
+            		dialog.push({
+            			top: 350,
+            			title: "항목 미선택",
+            			body: "<b>경고</b> - 예약할 항목을 선택하세요.",
+            			type: "Caution"
+            		});
+            	}
+            },
+            open: function(modalType, item) {
             	var pars = "modalType=" + modalType;
             	
             	if(modalType === "UPDATE") {
