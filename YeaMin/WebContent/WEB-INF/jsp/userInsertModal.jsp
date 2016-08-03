@@ -43,23 +43,27 @@
 			pageStart: function(){
 				// 아이디
 				$("#user_id").bind("keyup", function(event) {
-					var data = $("#form").serialize();
-		        	
-		        	$.ajax({
-				        url: "/YeaMin/userIdDuplicationCheck.json",
-				        type: "post",
-				        data: data,
-				        success: function(data) {
-							var ret = JSON.parse(data);
-				        	
-				        	if(ret.result === "ok") {
-				        		$("#userIdDuplicationCheckRetMsg").hide();
-				        	} else if(ret.result === "error") {
-				        		$("#userIdDuplicationCheckRetMsg").show();
-				        		$("#userIdDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
-				        	}
-				        }
-				    });
+					if($("#user_id").val() != ''){
+						var data = $("#form").serialize();
+			        	
+			        	$.ajax({
+					        url: "/YeaMin/userIdDuplicationCheck.json",
+					        type: "post",
+					        data: data,
+					        success: function(data) {
+								var ret = JSON.parse(data);
+					        	
+					        	if(ret.result === "ok") {
+					        		$("#userIdDuplicationCheckRetMsg").hide();
+					        		$("#userInsertBtn").attr("disabled",false);
+					        	} else if(ret.result === "error") {
+					        		$("#userIdDuplicationCheckRetMsg").show();
+					        		$("#userIdDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+					        		$("#userInsertBtn").attr("disabled",true);
+					        	}
+					        }
+					    });
+					}
 				});
 				
 				// 생년월일
@@ -235,7 +239,7 @@
 		        <div class="ax-wrap">
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
-		                    <button type="button" class="AXButton" onclick="fnObj.userInsert();">회원가입</button>
+		                    <button type="button" id="userInsertBtn" class="AXButton" onclick="fnObj.userInsert();">회원가입</button>
 		                    <button type="button" class="AXButton" onclick="fnObj.close();">취소</button>
 		                </div>
 		            </div>
