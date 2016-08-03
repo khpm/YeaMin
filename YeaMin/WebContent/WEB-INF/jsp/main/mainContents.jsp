@@ -78,7 +78,8 @@
 				                                            </label>
 				                                        </span>
 				                                    </label>
-				                                </div>	                                
+				                                </div>
+				                                <div class="group-clear"></div>	                                
 				                            </div>
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
@@ -91,6 +92,7 @@
 				                                        </span>
 				                                    </label>
 				                                </div>
+				                                <div class="group-clear"></div>
 				                            </div>
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
@@ -103,6 +105,7 @@
 				                                        </span>
 				                                    </label>
 				                                </div>
+				                                <div class="group-clear"></div>
 				                            </div>
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
@@ -115,6 +118,7 @@
 				                                        </span>
 				                                    </label>
 				                                </div>
+				                                <div class="group-clear"></div>
 				                            </div>	
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
@@ -127,6 +131,7 @@
 				                                        </span>
 				                                    </label>
 				                                </div>
+				                                <div class="group-clear"></div>
 				                            </div>	
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">

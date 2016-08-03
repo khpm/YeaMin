@@ -263,6 +263,10 @@ jQuery(window).resize(function () {
 jQuery(document.body).ready(function () {
     jQuery(document.body).append('<div class="ax-scroll-top"><a href="javascript:window.scroll(0, 0);"><i class="axi axi-ion-arrow-up-c"></i> TOP</a></div>');
     window.scroll_top_handle = jQuery(".ax-scroll-top");
+	
+	if(location.search.indexOf("pageNo") > 0) {
+		location.href = "#reviewInfo";
+	}
 });
 
 jQuery(window).bind("scroll", function () {

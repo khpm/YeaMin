@@ -156,6 +156,7 @@
 					"valueAxes": [
 						{
 							"id": "PRODCUT_CNT",
+							"autoGridCount": false,
 						    "axisAlpha": 1, //step
 						    "minimum": 0 // min
 						}

@@ -119,7 +119,7 @@
                   
 <!-- 리뷰 리스트 START -->
 <div class="ax-rwd-table" style="margin:5px;">
-	<c:forEach var="item" items="${reviewList}">
+	<c:forEach var="item" items="${pageList}">
 		<!-- 리뷰 하나 START -->
 		<div id="review_no_${item.review_no}" class="item-group" style="text-align: center">
 		<div class="item-group" style="text-align: center;">
@@ -170,50 +170,35 @@
 			</div>
 			<div class="group-clear" style="background: white;"></div>
 			<div class="item-clear"></div>
-		</div>
-
-			 <%-- <div class="item-lable">
-				<div style="display: inline-block; float: left; width: 10%;">
-					<img src="images/user.PNG" width="100" height="110" >
-				</div>
-				<div style="width: 88%; float: right; margin: 10px;">
-					<div style="font-size: 15px;">
-						<div style="display: inline-block; float: left;">작성자 : ${item.user_name}</div>
-							<div style="display: inline-block; float: right;">작성일 : ${item.review_reg_time}</div>
-						</div>
-					<div>
-						<c:if test="${sessionScope.user != null}">
-							<c:if test="${sessionScope.user.user_no eq item.user_no}">
-								<textarea id="AXTextArea" name="review_content" class="review_content_${item.review_no}" style="width: 100%; height: 75px;">${item.review_content}</textarea>
-							</c:if>
-						</c:if>
-						<c:if test="${sessionScope.user == null or sessionScope.user.user_no ne item.user_no}">
-							<textarea id="AXTextArea" name="review_content" style="width: 100%; height: 75px;" readonly>${item.review_content}</textarea>
-						</c:if>
-					</div>
-					<div style="float: right;">
-						<c:if test="${sessionScope.user.is_admin eq 'Y' and item.review_re_step eq 0}">
-							<c:if test="${item.review_answer_cnt eq 0}">
-								<input type="button" class="AXButton" value="댓글등록" onclick="reviewFnObj.reviewAnswerInputFormShow(${item.review_no});"/>
-							</c:if>
-							<input type="button" class="AXButton" value="삭제" onclick="reviewFnObj.reviewDelete(${item.review_no});"/>
-						</c:if>
-						<c:if test="${sessionScope.user != null}">
-							<c:if test="${sessionScope.user.user_no eq item.user_no}">
-								<input type="button" class="AXButton" value="수정" onclick="reviewFnObj.reviewUpdate(${item.review_no});"/>
-									<input type="button" class="AXButton" value="삭제" onclick="reviewFnObj.reviewDelete(${item.review_no});"/>
-							</c:if>
-						</c:if>
-					</div>
-				</div>
-			</div>	  --%>
-				                                    
-			<div class="group-clear"></div>
+		</div>		                                    
+		<div class="group-clear"></div>
 		</div>
 	<!-- 리뷰 하나 END -->
 	</c:forEach>
 </div>
 <!-- 리뷰 리스트 END -->
+
+<div align="center" style="min-height: 30px; font-size: 15px;">
+	<c:if test="${page ne 1}">
+		<a href="#" onclick="reviewFnObj.changeView(1)">◀</a>
+	</c:if>
+	<c:if test="${startPage - reviewSize > 0}">
+		<a href="#" onclick="reviewFnObj.changeView(${startPage - reviewSize})">◁</a>
+	</c:if>
+	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+		<c:if test="${i <= allPage}">
+			<a href="#" onclick="reviewFnObj.changeView(${i})"><c:out value="${i}"/></a>
+		</c:if>
+	</c:forEach>
+	<c:if test="${startPage + reviewSize < allPage}">
+		<a href="#" onclick="reviewFnObj.changeView(${startPage + reviewSize})">▷</a>
+	</c:if>
+	<c:if test="${pageNo ne allPage}">
+		<a href="#" onclick="reviewFnObj.changeView(${allPage})">▶</a>
+	</c:if>
+
+</div>
+
 
 <script type="text/javascript">
 	var reviewFnObj = {
@@ -304,6 +289,9 @@
 		        	}
 		        }
 		    });
+		},
+		changeView: function(pageNo) {
+			location.href = "/YeaMin/main.do?pageNo="+pageNo;
 		}
 	};
 </script>
