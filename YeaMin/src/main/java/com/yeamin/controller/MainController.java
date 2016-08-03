@@ -72,7 +72,7 @@ public class MainController {
 		int page = pageNo / (reviewSize+1) + 1 ;	// 1~9페이지는 1 , 10~19페이지는 2
 		int startPage = (page * reviewSize) - 9;	//시작페이지
 		int endPage = (page * reviewSize);		//끝페이지
-		int allPage = reviewCnt / reviewSize + 1; //전체 페이지 수
+		int allPage = Math.round(reviewCnt / reviewSize); //전체 페이지 수
 		ArrayList<ReviewDto> pageList = new ArrayList<ReviewDto>();
 		for(int i = (pageNo * reviewSize)-reviewSize; i<(pageNo * reviewSize); i++){
 			if(i == reviewCnt)
