@@ -7,11 +7,17 @@
 	<!-- 전체 카테고리 정보 조회 -->
 	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST" resultType="ProductCategoryDto">
 		SELECT
-		y.PRODUCT_CATEGORY_NO, y.PRODUCT_CATEGORY_NAME, y.PRODUCT_CATEGORY_ORDER_BY,
-  		(select count(*) from YM_PRODUCT m where y.PRODUCT_CATEGORY_NO=m.PRODUCT_CATEGORY_NO) AS PRODUCT_CATEGORY_CNT
-		
+			y.product_category_no,
+			y.product_category_name,
+			y.product_category_order_by,
+	  		(SELECT
+	  			count(*)
+	  		FROM
+	  			ym_product m
+	  		WHERE 
+	  			y.product_category_no = m.product_category_no) as product_category_cnt		
 		FROM
-		YM_PRODUCT_CATEGORY y
+		ym_product_category y
 		<where>
 			<if test="product_category_name != null and product_category_name != ''">
 				AND y.product_category_name LIKE '%'||#{product_category_name}||'%'
@@ -26,23 +32,43 @@
 	
 	<!-- 상품 카테고리 MODEL 등록 -->
 	<select id="QID_DELETE_PRODUCT_CATEGORY_MODEL" resultType="ProductCategoryDto">
-		SELECT * FROM YM_PRODUCT_CATEGORY WHERE product_category_no = #{product_category_no}
+		SELECT
+			*
+		FROM
+			ym_product_category
+		WHERE
+			product_category_no = #{product_category_no}
 	</select>
 	
 	<!-- 상품 카테고리 등록 -->
 	<insert id="QID_INSERT_PRODUCT_CATEGORY">
-		insert into YM_PRODUCT_CATEGORY values(ym_product_category_no_seq.nextval,#{product_category_name},#{product_category_order_by})
+		INSERT INTO
+			ym_product_category
+		VALUES(
+			ym_product_category_no_seq.nextval,
+			#{product_category_name},
+			#{product_category_order_by}
+			)
 	</insert>
 	
 	<!-- 상품 카테고리 수정 -->
 	<update id="QID_UPDATE_PRODUCT_CATEGORY">
-		update YM_PRODUCT_CATEGORY set product_category_name = #{product_category_name}, product_category_order_by = #{product_category_order_by}
-		where product_category_no = #{product_category_no}
+		UPDATE
+			YM_PRODUCT_CATEGORY
+		SET
+			product_category_name = #{product_category_name},
+			product_category_order_by = #{product_category_order_by}
+		WHERE
+			product_category_no = #{product_category_no}
 	</update>
 	
 	<!-- 상품 카테고리 삭제 -->
 	<delete id="QID_DELETE_PRODUCT_CATEGORY">
-		delete from YM_PRODUCT_CATEGORY where PRODUCT_CATEGORY_NO=#{no}
+		DELETE
+		FROM
+			ym_product_category
+		WHERE
+			product_category_no = #{product_category_no}
 	</delete>
 	
 

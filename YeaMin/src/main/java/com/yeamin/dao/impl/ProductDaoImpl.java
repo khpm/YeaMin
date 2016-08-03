@@ -33,14 +33,14 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<ProductCategoryDto> deleteproductCategoryList(Map<String,Object> paramMap) {
-		int result=sqlSession.delete(QueryConstants.QID_DELETE_PRODUCT_CATEGORY, paramMap);
+	public Integer deleteproductCategoryList(Map<String,Object> paramMap) {
+		Integer result=sqlSession.delete(QueryConstants.QID_DELETE_PRODUCT_CATEGORY, paramMap);
 		if(result==0){
 			System.out.println("삭제 실패");
-			return new ArrayList<ProductCategoryDto>();
 		}else{
-			return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
+			System.out.println("삭제 성공");
 		}
+		return result;
 	}
 	
 	@Override
