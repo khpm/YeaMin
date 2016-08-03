@@ -69,7 +69,7 @@ public class MainController {
 		}
 		int reviewCnt = reviewList.size();		// 리뷰 수
 		int reviewSize = 10;					// 페이지당 리뷰 수
-		int page = pageNo / reviewSize + 1 ;	// 1~9페이지는 1 , 10~19페이지는 2
+		int page = pageNo / (reviewSize+1) + 1 ;	// 1~9페이지는 1 , 10~19페이지는 2
 		int startPage = (page * reviewSize) - 9;	//시작페이지
 		int endPage = (page * reviewSize);		//끝페이지
 		int allPage = reviewCnt / reviewSize + 1; //전체 페이지 수
