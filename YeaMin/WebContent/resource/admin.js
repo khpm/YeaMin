@@ -22,15 +22,38 @@ var topMenu_data = [
     {_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
 ];
 
-//{_id: "m02", LABEL: '<I CLASS="AXI AXI-ASTERISK"></I> 회원정보 수정', URL: "/YEAMIN/USERUPDATECONTENTS.DO", TARGET: "_SELF"},
-//{_ID: "M03", LABEL: '<I CLASS="AXI AXI-COLUMNS"></I> 회원탈퇴', URL: "/YEAMIN/USERDELETECONTENTS.DO", TARGET: "_SELF"},
+var sideMenu_data = [];
 
-var sideMenu_data = [
-    {_id: "m00", label: '<i class="axi axi-home2"></i> 가게 정보', url: "#storeInfo", target: "_self", areaId: "storeInfo"},
-    {_id: "m05", label: '<i class="axi axi-bar-graph"></i> 통계', url: "#statsInfo", target: "_self", areaId: "statsInfo"},
-    {_id: "m06", label: '<i class="axi axi-restaurant-menu"></i> 메뉴판', url: "#menuInfo", target: "_self", areaId: "menuInfo"},
-    {_id: "m07", label: '<i class="axi axi-comment"></i> 리뷰', url: "#reviewInfo", target: "_self", areaId: "reviewInfo"},
-    {_id: "m08", label: '<i class="axi axi-comment"></i> TOP', url: "#", target: "_self", areaId: ""}
+var sideMenu_data_main = [
+	{_id: "m00", label: '<i class="axi axi-home2"></i> 가게 정보', url: "#storeInfo", target: "_self", areaId: "storeInfo"},
+	{_id: "m01", label: '<i class="axi axi-bar-graph"></i> 통계', url: "#statsInfo", target: "_self", areaId: "statsInfo"},
+	{_id: "m02", label: '<i class="axi axi-restaurant-menu"></i> 메뉴판', url: "#menuInfo", target: "_self", areaId: "menuInfo"},
+	{_id: "m03", label: '<i class="axi axi-comment"></i> 리뷰', url: "#reviewInfo", target: "_self", areaId: "reviewInfo"},
+	{_id: "m99", label: '<i class="axi axi-comment"></i> TOP', url: "#", target: "_self", areaId: ""}
+ ];
+
+var sideMenu_data_store = [
+	{_id: "m0101", label: '<i class="axi axi-home2"></i> 가게 정보 관리', url: "/YeaMin/storeContents.do", target: "_self"},
+	{_id: "m0102", label: '<i class="axi axi-bar-graph"></i> 상품 카테고리 정보 관리', url: "/YeaMin/productCategoryContents.do", target: "_self"},
+	{_id: "m0103", label: '<i class="axi axi-restaurant-menu"></i> 상품 정보 관리', url: "/YeaMin/productContents.do", target: "_self"}
+];
+
+var sideMenu_data_reservation = [
+	{_id: "m0201", label: '<i class="axi axi-home2"></i> 예약 수용 관리', url: "/YeaMin/reservationCapacityContents.do", target: "_self"},
+	{_id: "m0202", label: '<i class="axi axi-bar-graph"></i> 예약 이력 및 현황', url: "/YeaMin/reservationContents.do", target: "_self"},
+	{_id: "m0203", label: '<i class="axi axi-restaurant-menu"></i> 예약 통계', url: "/YeaMin/reservationStatsContents.do", target: "_self"}
+];
+
+var sideMenu_data_user = [
+	{_id: "m04", label: '<i class="axi axi-home2"></i> 회원 관리', url: "/YeaMin/userContents.do", target: "_self"}
+];
+
+var sideMenu_data_reservationTogether = [
+	{_id: "m05", label: '<i class="axi axi-home2"></i> 함께 예약하기', url: "/YeaMin/reservationTogetherContents.do", target: "_self"}
+];
+
+var sideMenu_data_board = [
+	{_id: "m06", label: '<i class="axi axi-home2"></i> 게시판', url: "/YeaMin/boardContents.do", target: "_self"}
 ];
 
 var topMenu = new AXTopDownMenu();
@@ -38,7 +61,21 @@ var mobileMenu = new AXMobileMenu();
 var loginInfoModal = new AXMobileModal();
 var fcObj = {
     pageStart: function () {
-
+    	
+    	if((location.href.indexOf("main.do") > 0)) {
+        	sideMenu_data = sideMenu_data_main;
+        } else if((location.href.indexOf("storeContents.do") > 0) || (location.href.indexOf("productCategoryContents.do") > 0) || (location.href.indexOf("productContents.do") > 0)) {
+        	sideMenu_data = sideMenu_data_store;
+        } else if((location.href.indexOf("reservationCapacityContents.do") > 0) || (location.href.indexOf("reservationContents.do") > 0) || (location.href.indexOf("reservationStatsContents.do") > 0)) {
+        	sideMenu_data = sideMenu_data_reservation;
+        } else if((location.href.indexOf("userContents.do") > 0)) {
+        	sideMenu_data = sideMenu_data_user;
+        } else if((location.href.indexOf("reservationTogetherContents.do") > 0)) {
+        	sideMenu_data = sideMenu_data_reservationTogether;
+        } else if((location.href.indexOf("boardContents.do") > 0)) {
+        	sideMenu_data = sideMenu_data_board;
+        } 
+    	
         // ax-header가 존재 하는 경우
         if (jQuery(".ax-header").get(0)) {
             fcObj.bindEvent();
@@ -51,6 +88,7 @@ var fcObj = {
         } catch (e) {
 
         }
+        
         // this.theme.init();
     },
     pageResize: function () {
@@ -235,14 +273,14 @@ jQuery(window).bind("scroll", function () {
         $(".ax-aside").css("top", scrollTop + 130);
         
         for (var mi = 0; mi < sideMenu_data.length; mi++) {
-        	if(sideMenu_data[mi].areaId != "") {
+        	if(sideMenu_data[mi].areaId != "" && $("#" + sideMenu_data[mi].areaId).length != 0) {
         		var elementTop = $("#" + sideMenu_data[mi].areaId).position().top;
                 var elementHeight = $("#" + sideMenu_data[mi].areaId).height();
                 
                 if(scrollTop >= elementTop && elementTop + elementHeight > scrollTop) {
-                	$("#" + sideMenu_data[mi].areaId + "Link").addClass("active");
+                	$("#" + sideMenu_data[mi].areaId + "Link").addClass("submenu");
                 } else {
-                	$("#" + sideMenu_data[mi].areaId + "Link").removeClass("active");
+                	$("#" + sideMenu_data[mi].areaId + "Link").removeClass("submenu");
                 }
         	}
         }
