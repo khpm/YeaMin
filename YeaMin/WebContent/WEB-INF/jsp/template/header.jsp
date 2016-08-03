@@ -44,6 +44,7 @@
             <div class="ax-clear"></div>
         </div>
     </div>
+    <input id="is_admin" type="hidden" value="${user.is_admin}"/>
 </div>
 <div class="H60"></div>
 <script type="text/javascript">

@@ -2,24 +2,30 @@ AXConfig.AXGrid.emptyListMSG = "조회된 결과가 없습니다.";
 AXConfig.AXGrid.listCountMSG = "<b>{listCount}</b> count(s)",
 AXConfig.AXGrid.pageCountMSG = "page(s)"
 
-var topMenu_data = [
-    {
-        _id: "m01", label: "가게 관리", url: "#", cn: [
+var topMenu_data = [];
+
+var topMenu_data_admin = [
+	{
+	    _id: "m01", label: "가게 관리", url: "#", cn: [
 	        {_id: "m0101", label: "가게 정보 관리", url: "/YeaMin/storeContents.do"},
 	        {_id: "m0102", label: "상품 카테고리 정보 관리", url: "/YeaMin/productCategoryContents.do"},
 	        {_id: "m0103", label: "상품 정보 관리", url: "/YeaMin/productContents.do"}
 	    ]
-    },
-    {
-        _id: "m02", label: "예약 관리", url: "#", cn: [
-        	{_id: "m0201", label: "예약 수용 관리", url: "/YeaMin/reservationCapacityContents.do"},
+	},
+	{
+	    _id: "m02", label: "예약 관리", url: "#", cn: [
+	    	{_id: "m0201", label: "예약 수용 관리", url: "/YeaMin/reservationCapacityContents.do"},
 	        {_id: "m0202", label: "예약 이력 및 현황", url: "/YeaMin/reservationContents.do"},
 	        {_id: "m0203", label: "예약 통계", url: "/YeaMin/reservationStatsContents.do"}
 	    ]
-    },
-    {_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"},
-    {_id: "m05", label: "함께 예약하기", url: "/YeaMin/reservationTogetherContents.do"},
-    {_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
+	},
+	{_id: "m04", label: "회원 관리", url: "/YeaMin/userContents.do"},
+	{_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
+];
+
+var topMenu_data_user = [
+	{_id: "m05", label: "함께 예약하기", url: "/YeaMin/reservationTogetherContents.do"},
+	{_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
 ];
 
 var sideMenu_data = [];
@@ -75,6 +81,12 @@ var fcObj = {
         } else if((location.href.indexOf("boardContents.do") > 0)) {
         	sideMenu_data = sideMenu_data_board;
         } 
+    	
+    	if($("#is_admin").val() == "Y") {
+    		topMenu_data = topMenu_data_admin;
+    	} else {
+    		topMenu_data = topMenu_data_user;
+    	}
     	
         // ax-header가 존재 하는 경우
         if (jQuery(".ax-header").get(0)) {
