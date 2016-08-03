@@ -112,7 +112,7 @@
 		                                    <label class="item-lable" for="user_pw">
 		                                        <span class="th" style="min-width:100px;">비밀번호</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="admin" class="AXInput av-required W150" />
 		                                        </span>
 		                                    </label>
 		                                </div>
