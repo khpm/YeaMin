@@ -44,11 +44,32 @@
 				$("#reservation_capacity_people").bindNumber({
 					min: 1,
 					onChange: function(){
-						// trace(this);
 					}
 				});
 				
 				$("#reservation_capacity_time").bindPattern({pattern: "time"});
+				
+				$("#reservation_capacity_time").keyup(function() {
+					if($("#reservation_capacity_time").val().length == 5){
+						$.ajax({
+					        url: "/YeaMin/selectReservationCapacity.json",
+					        type: "post",
+					        data: "reservation_capacity_time=" + $("#reservation_capacity_time").val(),
+					        success: function(data) {
+								var ret = JSON.parse(data);
+								
+								if(ret.result === "ok") {
+					        		$("#reservationCapacityTimeCheckRetMsg").hide();
+					        		$("#insertBtn").attr("disabled",false);
+					        	} else if(ret.result === "error") {
+					        		$("#reservationCapacityTimeCheckRetMsg").show();
+					        		$("#reservationCapacityTimeCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+					        		$("#insertBtn").attr("disabled",true);
+					        	}
+					        }
+					    });
+					}	
+				});
 			},
 	        pageResize: function(){
 	        	parent.reservationCapacityModal.resize();
@@ -95,8 +116,8 @@
 	        	parent.reservationCapacityModal.close();
 	        }
 		};
-	    axdom(window).ready(fnObj.pageStart);
-	    axdom(window).resize(fnObj.pageResize);
+	    //axdom(window).ready(fnObj.pageStart);
+	    //axdom(window).resize(fnObj.pageResize);
 		</script>
 	</head>
 	<body>
@@ -159,6 +180,7 @@
 		                                        <span class="th" style="min-width:100px;">예약 수용 시간</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="reservation_capacity_time" name="reservation_capacity_time" class="AXInput W150" value="${dto.reservation_capacity_time}" />
+		                                        	<span id="reservationCapacityTimeCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -191,7 +213,7 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                	<c:if test="${modalType eq 'INSERT'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
+		                		 <button type="button" id="insertBtn" class="AXButton" onclick="fnObj.insert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
 		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>

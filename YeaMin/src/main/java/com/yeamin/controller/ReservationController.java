@@ -23,6 +23,7 @@ import com.yeamin.dao.StatsDao;
 import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.dto.ReservationDto;
 import com.yeamin.dto.ReservationProductDto;
+import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
 
 @Controller
@@ -70,6 +71,24 @@ public class ReservationController {
 		result = "ok";
 		
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
+	
+	@RequestMapping("/selectReservationCapacity.json")
+	public @ResponseBody Map<String, Object> selectReservationCapacity(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		ReservationCapacityDto dto = reservationDao.selectReservationCapacity(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 예약 수용 시간입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 예약 수용 시간입니다.";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 	@RequestMapping("/insertReservationCapacity.json")

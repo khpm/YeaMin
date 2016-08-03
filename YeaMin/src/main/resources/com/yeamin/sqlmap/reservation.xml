@@ -26,8 +26,14 @@
 			reservation_capacity_people
 		FROM
 			ym_reservation_capacity
-		WHERE
-			reservation_capacity_no = #{reservation_capacity_no}
+		<where>
+			<if test="reservation_capacity_no != null and reservation_capacity_no != ''">
+				AND reservation_capacity_no = #{reservation_capacity_no}
+			</if>
+			<if test="reservation_capacity_time != null and reservation_capacity_time != ''">
+				AND reservation_capacity_time = #{reservation_capacity_time}
+			</if>
+		</where>
 	</select>
 	
 	<insert id="QID_INSERT_RESERVATION_CAPACITY">
