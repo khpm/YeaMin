@@ -7,7 +7,10 @@
             <div class="ax-col-12">
                 <div class="ax-unit">
                     <div class="ax-logo">
-                     <a href="main.do"><span class="logo-img"><i class="axi axi-axisj"></i></span><span class="logo-txt">AXU4J@AXISJ</span></a>
+	                     <a href="main.do">
+	                     	<span class="logo-img"><img src="images/logo.png" width="45" height="45"></span>
+	                     	<span class="logo-txt" style="font-size: 18px;">KH RESTAURANT</span>
+	                     </a>
                     </div>
                 </div>
             </div>
