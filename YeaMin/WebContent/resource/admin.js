@@ -22,13 +22,15 @@ var topMenu_data = [
     {_id: "m06", label: "게시판", url: "/YeaMin/boardContents.do"}
 ];
 
+//{_id: "m02", LABEL: '<I CLASS="AXI AXI-ASTERISK"></I> 회원정보 수정', URL: "/YEAMIN/USERUPDATECONTENTS.DO", TARGET: "_SELF"},
+//{_ID: "M03", LABEL: '<I CLASS="AXI AXI-COLUMNS"></I> 회원탈퇴', URL: "/YEAMIN/USERDELETECONTENTS.DO", TARGET: "_SELF"},
+
 var sideMenu_data = [
-    {_id: "m02", label: '<i class="axi axi-asterisk"></i> 회원정보 수정', url: "/YeaMin/userUpdateContents.do", target: "_self"},
-    {_id: "m03", label: '<i class="axi axi-columns"></i> 회원탈퇴', url: "/YeaMin/userDeleteContents.do", target: "_self"},
-    {_id: "m04", label: '<i class="axi axi-pagelines"></i> 사이드메뉴 B', url: "content-2.html", target: "_self"},
-    {_id: "m05", label: '<i class="axi axi-sitemap"></i> 사이드메뉴 C', url: "content.html", target: "_self"},
-    {_id: "m06", label: '<i class="axi axi-archive"></i> 사이드메뉴 D', url: "content.html", target: "_self"},
-    {_id: "m07", label: '<i class="axi axi-line-chart"></i> 사이드메뉴 E', url: "content.html", target: "_self"}
+    {_id: "m00", label: '<i class="axi axi-home2"></i> 가게 정보', url: "#storeInfo", target: "_self", areaId: "storeInfo"},
+    {_id: "m05", label: '<i class="axi axi-bar-graph"></i> 통계', url: "#statsInfo", target: "_self", areaId: "statsInfo"},
+    {_id: "m06", label: '<i class="axi axi-restaurant-menu"></i> 메뉴판', url: "#menuInfo", target: "_self", areaId: "menuInfo"},
+    {_id: "m07", label: '<i class="axi axi-comment"></i> 리뷰', url: "#reviewInfo", target: "_self", areaId: "reviewInfo"},
+    {_id: "m08", label: '<i class="axi axi-comment"></i> TOP', url: "#", target: "_self", areaId: ""}
 ];
 
 var topMenu = new AXTopDownMenu();
@@ -167,7 +169,7 @@ var fcObj = {
         var po = [], _target = axdom("#ax-aside-ul");
         var active_menu_id = window.page_menu_id;
         for (var mi = 0; mi < sideMenu_data.length; mi++) {
-            po.push('<li><a href="' + sideMenu_data[mi].url + '" target="' + sideMenu_data[mi].target + '" ');
+            po.push('<li><a id="' + sideMenu_data[mi].areaId + 'Link" href="' + sideMenu_data[mi].url + '" target="' + sideMenu_data[mi].target + '" ');
             if(active_menu_id == sideMenu_data[mi]._id) po.push(' class="active"');
             po.push('>');
             po.push(sideMenu_data[mi].label);
@@ -231,6 +233,19 @@ jQuery(window).bind("scroll", function () {
     if (scrollTop > 60) {
         window.scroll_top_handle.addClass("on");
         $(".ax-aside").css("top", scrollTop + 130);
+        
+        for (var mi = 0; mi < sideMenu_data.length; mi++) {
+        	if(sideMenu_data[mi].areaId != "") {
+        		var elementTop = $("#" + sideMenu_data[mi].areaId).position().top;
+                var elementHeight = $("#" + sideMenu_data[mi].areaId).height();
+                
+                if(scrollTop >= elementTop && elementTop + elementHeight > scrollTop) {
+                	$("#" + sideMenu_data[mi].areaId + "Link").addClass("active");
+                } else {
+                	$("#" + sideMenu_data[mi].areaId + "Link").removeClass("active");
+                }
+        	}
+        }
     } else {
         window.scroll_top_handle.removeClass("on");
         jQuery(".ax-aside").css("top", 130);

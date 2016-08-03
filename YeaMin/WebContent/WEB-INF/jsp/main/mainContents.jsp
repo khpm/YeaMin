@@ -56,7 +56,7 @@
 						            <!-- 스크롤 END -->
 		                            
 									<!-- 가게 지도와 가게 정보 START -->
-									<div>
+									<div id="storeInfo">
 							            <div style="margin-left:5px;">
 											<h1><i class="axi axi-home2"></i>&nbsp;가게 정보</h1>
 											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;가게 지도와 정보를 표시합니다.</p>
@@ -148,7 +148,7 @@
 									<!-- 가게 지도와 가게 정보 END -->
 									
 									<!-- 통계 START -->
-									<div>
+									<div id="statsInfo">
 							            <div style="margin-left:5px;">
 											<h1><i class="axi axi-bar-graph"></i>&nbsp;통계</h1>
 											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;예약 통계를 표시합니다.</p>
@@ -159,7 +159,7 @@
 									<!-- 통계 END -->
 									
 									<!-- 메뉴판 START-->
-						            <div>
+						            <div id="menuInfo">
 							            <div style="margin-left:5px;">
 											<h1><i class="axi axi-restaurant-menu"></i>&nbsp;메뉴판</h1>
 											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;메뉴를 선택하고 계산결과를 표시합니다.</p>
@@ -170,7 +170,7 @@
 		                            <!-- 메뉴판 END -->
 		                            
 		                            <!-- 리뷰 START -->
-		                            <div style="margin-top:5px; width:100%;">
+		                            <div id="reviewInfo" style="margin-top:5px; width:100%;">
 		                            	<div style="margin-left:5px;">
 											<h1><i class="axi axi-comment"></i>&nbsp;리뷰 </h1>
 											<p class="desc"><i class="axi axi-content-paste"></i>&nbsp;리뷰와 댓글을 표시합니다.</p>

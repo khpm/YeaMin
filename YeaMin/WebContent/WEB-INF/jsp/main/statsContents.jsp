@@ -84,6 +84,7 @@
 	<div class="ax-clear"></div>	
 	</div>
 </div>
+<div style="clear: both;"></div>
 
 <script type="text/javascript">
 	var statsContentsFnObj = {
