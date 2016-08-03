@@ -62,9 +62,13 @@ var sideMenu_data_board = [
 	{_id: "m06", label: '<i class="axi axi-home2"></i> 게시판', url: "/YeaMin/boardContents.do", target: "_self"}
 ];
 
-var sideMenu_data_mypage = [
+var sideMenu_data_mypage_user = [
 	{_id: "m07", label: '<i class="axi axi-home2"></i> 회원 정보 수정', url: "/YeaMin/userUpdateContents.do", target: "_self"},
 	{_id: "m08", label: '<i class="axi axi-home2"></i> 회원 탈퇴', url: "/YeaMin/userDeleteContents.do", target: "_self"}
+];
+
+var sideMenu_data_mypage_admin = [
+	{_id: "m07", label: '<i class="axi axi-home2"></i> 회원 정보 수정', url: "/YeaMin/userUpdateContents.do", target: "_self"}
 ];
 
 var topMenu = new AXTopDownMenu();
@@ -86,7 +90,11 @@ var fcObj = {
         } else if((location.href.indexOf("boardContents.do") > 0)) {
         	sideMenu_data = sideMenu_data_board;
         }  else if((location.href.indexOf("userUpdateContents.do") > 0) || (location.href.indexOf("userDeleteContents.do") > 0)) {
-        	sideMenu_data = sideMenu_data_mypage;
+        	if($("#is_admin").val() == "Y") {
+        		sideMenu_data = sideMenu_data_mypage_admin;
+        	} else {
+        		sideMenu_data = sideMenu_data_mypage_user;
+        	}
         }
     	
     	if($("#is_admin").val() == "Y") {
