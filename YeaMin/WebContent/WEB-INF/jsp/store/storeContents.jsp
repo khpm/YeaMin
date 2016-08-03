@@ -368,8 +368,6 @@
 			}
 		}
 	};
-	//axdom(window).ready(fnObj.pageStart);
-	//axdom(window).resize(fnObj.pageResize);
 	$(document).ready(function(){
    		if($("#store_name").val()){
    			fnObj.load();

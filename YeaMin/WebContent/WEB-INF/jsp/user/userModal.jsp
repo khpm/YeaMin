@@ -89,8 +89,6 @@
 	        	parent.userModal.close();
 	        }
 		};
-	    axdom(window).ready(fnObj.pageStart);
-	    axdom(window).resize(fnObj.pageResize);
 		</script>
 	</head>
 	<body>

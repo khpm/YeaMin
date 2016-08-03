@@ -179,8 +179,6 @@
        			parent.productModal.close();
 			}		     
 		};
-		//axdom(window).ready(fnObj.pageStart);
-		axdom(window).resize(fnObj.pageResize);
 		$(document).ready(function(){
 			$.ajax({
 		        url: "/YeaMin/selectProductList.json",
