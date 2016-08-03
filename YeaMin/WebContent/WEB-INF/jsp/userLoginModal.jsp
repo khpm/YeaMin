@@ -100,7 +100,7 @@
 		                                    <label class="item-lable" for="user_id">
 		                                        <span class="th" style="min-width:100px;">아이디</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="admin" class="AXInput av-required W150" />
 		                                        </span>
 		                                    </label>
 		                                </div>
