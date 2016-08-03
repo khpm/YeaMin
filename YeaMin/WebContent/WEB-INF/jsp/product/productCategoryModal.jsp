@@ -44,7 +44,27 @@
 				$("#product_category_order_by").bindNumber({
 					min: 1,
 					onChange: function(){
-						// trace(this);
+						$.ajax({
+			        		url: "/YeaMin/selectProductCategoryList.json",
+					        type: "post",
+					        data: "",
+					        success: function(data) {
+								var ret = JSON.parse(data);
+								var value = form.product_category_order_by.value;
+								
+								if(ret.result === "ok") {
+					        		for(var i = 0; i<ret.list.length; i++){
+					        			if(value == ret.list[i].product_category_order_by){
+					        				$("#productCategoryOrderByCheckRetMsg").show();
+							        		$("#productCategoryOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
+							        		break;
+					        			}else{
+					        				$("#productCategoryOrderByCheckRetMsg").hide();
+					        			}
+					        		}
+					        	}
+					        }
+					    });
 					}
 				});
 			},
@@ -154,6 +174,7 @@
 		                                        <span class="th" style="min-width:100px;">카테고리 순서</span>
 		                                        <span class="td inputText" style="" title="">
 													<input type="tel" id="product_category_order_by" name="product_category_order_by" value="${dto.product_category_order_by}" class="AXInput W50" />
+													<span id="productCategoryOrderByCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
