@@ -34,4 +34,8 @@ public class StatsDaoImpl implements StatsDao {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_TOP5, paramMap);
 	}
 	
+	@Override
+	public List<Map<String, Object>> selectReservationAges(Map<String, Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_AGES, paramMap);
+	}
 }

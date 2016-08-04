@@ -1,6 +1,7 @@
 package com.yeamin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -273,5 +274,18 @@ public class ReservationController {
 		
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
+	
+	@RequestMapping("/selectReservationAges.json")
+	public @ResponseBody Map<String, Object> selectReservationAges(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<Map<String, Object>> list = statsDao.selectReservationAges(paramMap);
+
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
+	
 	
 }

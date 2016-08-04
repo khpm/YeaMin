@@ -41,4 +41,25 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_AGES" resultType="Map">
+		SELECT
+		 	user_age_group,
+		 	sum(reservation_cnt) AS reservation_sum
+		FROM
+			(SELECT
+				trunc((to_char(sysdate,'YYYY') - to_char(u.USER_BIRTH_DAY,'YYYY') + 1)/10)*10 AS user_age_group,
+		    	(SELECT
+		    		count(*)
+		    	FROM
+		    		ym_reservation
+		    	WHERE
+		    		user_no = u.user_no) AS reservation_cnt
+		  	FROM
+		    	ym_user u)
+		GROUP BY
+			user_age_group
+		ORDER BY
+			user_age_group asc
+	</select>
 </mapper>
