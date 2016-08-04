@@ -1,5 +1,7 @@
 package com.yeamin.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -126,9 +128,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/selectUserList.json")
-	public @ResponseBody Map<String, Object> selectUserList(@RequestParam Map<String, Object> paramMap) {
+	public @ResponseBody Map<String, Object> selectUserList(@RequestParam Map<String, Object> paramMap) throws UnsupportedEncodingException {
 		String result = "";
 		String msg = "";
+		
+		paramMap.put("user_name", URLDecoder.decode((String) paramMap.get("user_name"), "UTF-8"));
 		
 		List<UserDto> list = userDao.selectUserList(paramMap);
 		

@@ -30,7 +30,7 @@
 			<if test="user_birth_day != null and user_birth_day != ''">
 				AND user_birth_day = TO_DATE(#{user_birth_day})
 			</if>
-			<if test="user_gender != 'all'">
+			<if test="user_gender != null and user_gender != 'all'">
 				AND user_gender = #{user_gender}
 			</if>
 			AND is_admin = 'N'

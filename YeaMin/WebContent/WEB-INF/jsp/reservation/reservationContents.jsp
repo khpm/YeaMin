@@ -5,7 +5,7 @@
 	<div class="ax-wrap">
 	
 		<div class="ax-layer ax-title">
-			<div class="ax-col-12 ax-content">
+			<div class="ax-col12 ax-content">
 				<h1>예약 이력 및 현황</h1>
 				<p class="desc">사용자의 모든 예약 이력과 현황을 확인 및 관리할 수 있습니다.</p>
 			</div>
@@ -154,21 +154,39 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"예약 수용 요일", labelWidth:"100", type:"selectBox", width:"160", key:"reservation_capacity_dw", addClass:"secondItem", valueBoxStyle:"", value:"all",
-                                options:[
-									{optionValue:"all", optionText:"전체"},
-									{optionValue:"D", optionText:"평일"},
-									{optionValue:"W", optionText:"주말"}
-								],
+                            {label:"예약 일자", labelWidth:"", type:"inputText", width:"90", key:"reservation_time_start", addClass:"secondItem", valueBoxStyle:"", value:"",
+                                onChange: function(){}
+                            },
+                            {label:"", labelWidth:"", type:"inputText", width:"90", key:"reservation_time_end", addClass:"secondItem", valueBoxStyle:"padding-left:0px;", value:"",
                                 AXBind:{
-                                    type:"select", config:{
+                                    type:"twinDate", config:{
+                                        align:"right", valign:"top", startTargetID:"reservation_time_start",
                                         onChange:function(){
-                                        	// trace(this);
+
                                         }
                                     }
                                 }
                             }
-                        ]}
+                        ]},
+                        {display:true, addClass:"", style:"", list:[
+						    {label:"예약자", labelWidth:"", type:"inputText", width:"150", key:"user_name", addClass:"", valueBoxStyle:"", value:"",
+								AXBind:{
+									type:"selector", config:{
+										appendable:true,
+										ajaxUrl:"selectUserList.json",
+										ajaxPars:"",
+										reserveKeys: {
+								            options: "list",
+								            optionValue: "user_name",
+								            optionText: "user_name",
+							            },
+										onChange:function(){
+											// console.log(this);
+										}
+									}
+								}
+							}
+						]}
                     ]
                 });
             },
@@ -176,7 +194,7 @@
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
             	
-            	// trace(searchTarget.getParam());
+            	trace(searchTarget.getParam());
             	
             	gridTarget.setList({
 				    ajaxUrl: "selectReservationList.json",
@@ -200,7 +218,7 @@
                     colGroup: [
                         {key:"reservation_no", label:"예약 번호", width:"200", align:"center"},
                         {key:"user_name", label:"예약자", width:"200", align:"center"},
-                        {key:"reservation_time", label:"예약 시간", width:"200", align:"center", formatter: function(){
+                        {key:"reservation_time", label:"예약 일자", width:"200", align:"center", formatter: function(){
 	  	                	return this.value.date().print('yyyy년 mm월 dd일 hh시 mi분(dw)');
     	                 }},
                         {key:"reservation_people", label:"예약 인원 수", width:"200", align:"center"},

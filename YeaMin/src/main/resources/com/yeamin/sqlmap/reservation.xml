@@ -15,7 +15,7 @@
 			</if>
 		</where>
 		ORDER BY
-    		reservation_capacity_time asc
+    		reservation_capacity_time ASC
 	</select>
 	
 	<select id="QID_SELECT_RESERVATION_CAPACITY" resultType="ReservationCapacityDto">
@@ -88,10 +88,20 @@
 		FROM
 			ym_reservation r,
 			ym_user u
-		WHERE
+		<where>
 			r.user_no = u.user_no
+			<if test="reservation_time_start != null and reservation_time_start != ''">
+				AND r.reservation_time &gt;= TO_DATE(#{reservation_time_start}, 'yyyy/mm/dd hh24:mi:ss')
+			</if>
+			<if test="reservation_time_end != null and reservation_time_end != ''">
+				AND r.reservation_time &lt;= TO_DATE(#{reservation_time_end}, 'yyyy/mm/dd hh24:mi:ss')
+			</if>
+			<if test="user_name != null and user_name != ''">
+				AND u.user_name LIKE '%'||#{user_name}||'%'
+			</if>
+		</where>
 		ORDER BY
-    		reservation_time ASC
+    		reservation_time DESC
 	</select>
 	
 	<select id="QID_SELECT_RESERVATION" resultType="ReservationDto">
