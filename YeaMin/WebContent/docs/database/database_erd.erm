@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-06-10 20:09:48</creation_date>
-			<updated_date>2016-07-29 00:44:00</updated_date>
+			<updated_date>2016-08-04 20:05:05</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -922,7 +922,7 @@
 		</word>
 		<word>
 			<id>47</id>
-			<length>20</length>
+			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
