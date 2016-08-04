@@ -17,6 +17,8 @@ public class ReservationDto {
 	private Integer product_total_cnt;
 	
 	private Integer product_sum_price;
+	
+	private String reservation_time_format;
 
 	public ReservationDto() {
 		
@@ -76,6 +78,14 @@ public class ReservationDto {
 
 	public void setProduct_sum_price(Integer product_sum_price) {
 		this.product_sum_price = product_sum_price;
+	}
+
+	public String getReservation_time_format() {
+		return reservation_time_format;
+	}
+
+	public void setReservation_time_format(String reservation_time_format) {
+		this.reservation_time_format = reservation_time_format;
 	}
 	
 }

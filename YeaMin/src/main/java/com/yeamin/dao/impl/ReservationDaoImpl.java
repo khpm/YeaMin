@@ -92,4 +92,9 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sqlSession.insert(QueryConstants.QID_INSERT_RESERVATION_PRODUCT, paramMap);
 	}
 	
+	@Override
+	public List<ReservationDto> selectReservationPeople(Map<String, Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_PEOPLE, paramMap);
+	}
+	
 }

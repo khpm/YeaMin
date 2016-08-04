@@ -172,7 +172,35 @@
 		            },
 		            setValue: $("#reservation_time_format").val(),
 		            onChange: function(){
-	                    // trace(this);
+	                    if(this.value != ""){
+			            	var reservation_capacity_time = this.value;	//현재 지정한 시간
+			            	var reservation_capacity_people = this.optionData;	//현재 지정한 날짜 전체 인원
+			            	var reservation_date = $("#reservation_date").val(); // 현재 지정한 날짜
+			            	var selectedDate = reservation_date + " " + reservation_capacity_time;
+			            	
+			            	$.ajax({
+						        url: "/YeaMin/selectReservationPeople.json",
+						        type: "post",
+						        data: null,
+						        success: function(data) {
+									var ret = JSON.parse(data);
+									
+						        	if(ret.result === "ok") {
+						        		var reservationPeople = 0;	// 해당 날짜에 예약된 인원 수
+						        		for(var i=0;i<ret.list.length;i++){
+						        			var item = ret.list[i];
+						        			if(selectedDate == item.reservation_time_format){
+						        				reservationPeople += item.reservation_people;
+						        			}
+						        		}
+						        		$("#reservationPeopleCheckRetMsg").show();
+						        		$("#reservationPeopleCheckRetMsg").html("잔여 인원 : "+ (reservation_capacity_people - reservationPeople) +" / 총 인원 : "+reservation_capacity_people);
+						        	}
+						        }
+						    });
+	                    }else{
+	                    	$("#reservationPeopleCheckRetMsg").hide();
+	                    }
 	                }
 	            });
 			}
@@ -278,6 +306,7 @@
 		                                        	<fmt:formatDate var="reservation_time_format" value="${dto.reservation_time}" pattern="HH:mm"/>
 		                                        	<input type="hidden" id="reservation_time_format" value="${reservation_time_format}"/>
 		                                            <select id="reservation_time" class="AXSelect W160"></select>
+		                                            <span id="reservationPeopleCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>

@@ -195,4 +195,12 @@
 			pc.product_category_order_by ASC,
 			p.product_order_by ASC
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_PEOPLE" resultType="ReservationDto">
+		SELECT
+			to_char(reservation_time,'YYYY-MM-DD HH:MI') AS reservation_time_format,
+			reservation_people
+		FROM
+			ym_reservation
+	</select>
 </mapper>
