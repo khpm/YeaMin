@@ -5,8 +5,8 @@
 	<div class="ax-wrap">
 		<div class="ax-layer ax-title">
 			<div class="ax-col-12 ax-content">
-				<h1>메인(main)</h1>
-				<p class="desc">가게 정보, 리뷰, 통계, 메뉴를 볼 수 있습니다.</p>
+				<h1>KH Restaurant 엄선된 최고오오오오오오급  식자 재료를 사용하여 7성급 호텔에서 일한 "이재준" 쉐프가 요리합니다.</h1>
+				<p class="desc"></p>
 			</div>
 			<div class="ax-clear"></div>
 		</div>
