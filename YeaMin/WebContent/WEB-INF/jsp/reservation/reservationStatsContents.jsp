@@ -119,8 +119,112 @@
 								<div class="ax-clear"></div>
 								<div class="H20"></div>
 							</div>
-						</div>					
-
+						</div>
+						
+						<div class="ax-col-6">
+							<div class="ax-unit">
+								<div class="ax-box sample-01">
+									<div class="ax-box-wrap">
+										<!-- head -->
+										<div style="width: 100%; height: 65px; border-bottom: 1px solid #CFCFCF;">
+											<!-- 통계 제목 및 설명 -->
+											<div style="display: inline-block; float: left;">
+												<h1 style="margin-top: 0px;">통계명</h1>
+												<p>
+													상세정보<br/>
+												</p>
+											</div>
+											<!-- 통계 검색 조건 -->
+											<form id="" onsubmit="return false;">
+												<div style="display: inline-block; float: right;">
+													<select name="" class="AXSelect">
+									                    <option value=""></option>
+									                    <option value=""></option>
+									                </select>
+													<button type="button" class="AXButton" id="btn-search" onclick="">
+														<i class="axi axi-search"></i> 검색
+													</button>
+												</div>
+											</form>
+										</div>
+										<!-- content -->
+										<div id="" style="width: 100%; height: 400px;"></div>
+									</div>
+								</div>
+								<div class="ax-clear"></div>
+								<div class="H20"></div>
+							</div>
+						</div>
+						
+						<div class="ax-col-12">
+							<div class="ax-unit">
+								<div class="ax-box sample-01">
+									<div class="ax-box-wrap">
+										<!-- head -->
+										<div style="width: 100%; height: 65px; border-bottom: 1px solid #CFCFCF;">
+											<!-- 통계 제목 및 설명 -->
+											<div style="display: inline-block; float: left;">
+												<h1 style="margin-top: 0px;">시간별 매출액</h1>
+												<p>
+													시간별 매출액을 표시합니다.<br/>
+												</p>
+											</div>
+											<!-- 통계 검색 조건 -->
+											<form id="timeSalesSearchForm" onsubmit="return false;">
+												<div style="display: inline-block; float: right;">
+													<select name="" class="AXSelect">
+									                    <option value=""></option>
+									                    <option value=""></option>
+									                </select>
+													<button type="button" class="AXButton" id="btn-search" onclick="fnObj.timeSalesChart.search()">
+														<i class="axi axi-search"></i> 검색
+													</button>
+												</div>
+											</form>
+										</div>
+										<!-- content -->
+										<div id="timeSalesChart" style="width: 100%; height: 400px;"></div>
+									</div>
+								</div>
+								<div class="ax-clear"></div>
+								<div class="H20"></div>
+							</div>
+						</div>
+						
+						<div class="ax-col-12">
+							<div class="ax-unit">
+								<div class="ax-box sample-01">
+									<div class="ax-box-wrap">
+										<!-- head -->
+										<div style="width: 100%; height: 65px; border-bottom: 1px solid #CFCFCF;">
+											<!-- 통계 제목 및 설명 -->
+											<div style="display: inline-block; float: left;">
+												<h1 style="margin-top: 0px;">시간별 예약 수</h1>
+												<p>
+													시간별 예약 수를 표시합니다.<br/>
+												</p>
+											</div>
+											<!-- 통계 검색 조건 -->
+											<form id="timeReservationCntSearchForm" onsubmit="return false;">
+												<div style="display: inline-block; float: right;">
+													<select name="reservation_capacity_dw" class="AXSelect">
+									                    <option value="D">주중</option>
+									                    <option value="W">주말</option>
+									                </select>
+													<button type="button" class="AXButton" id="btn-search" onclick="fnObj.timeReservationCntChart.search()">
+														<i class="axi axi-search"></i> 검색
+													</button>
+												</div>
+											</form>
+										</div>
+										<!-- content -->
+										<div id="timeReservationCntChart" style="width: 100%; height: 400px;"></div>
+									</div>
+								</div>
+								<div class="ax-clear"></div>
+								<div class="H20"></div>
+							</div>
+						</div>
 						<div class="ax-clear"></div>
 					</div>
 				</div>
@@ -143,6 +247,8 @@
 			fnObj.reviewCntChart.bind();
 			fnObj.productTopNChart.bind();
 			fnObj.ageGroupReservationCntChart.bind();
+			//fnObj.timeSalesChart.bind();
+			fnObj.timeReservationCntChart.bind();
 		},
 		reviewCntChart: {
 			target: null,
@@ -323,6 +429,83 @@
 			        		fnObj.ageGroupReservationCntChart.target.dataProvider = ret.list;
 			        		fnObj.ageGroupReservationCntChart.target.validateData();
 			        		fnObj.ageGroupReservationCntChart.target.animateAgain();
+			        	}
+			        }
+			    });
+			}
+		},
+		timeSalesChart: {
+			target: null,
+			bind: function() {
+				fnObj.timeSalesChart.target = AmCharts.makeChart("timeSalesChart", {
+					
+				});
+				fnObj.timeSalesChart.search();
+			},
+			search: function() {
+				//var data = $("").serialize();
+
+			}
+		},
+		timeReservationCntChart: {
+			target: null,
+			bind: function() {
+				fnObj.timeReservationCntChart.target = AmCharts.makeChart("timeReservationCntChart", {
+					"type": "serial",
+					"categoryField": "RESERVATION_CAPACITY_TIME",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[RESERVATION_CAPACITY_TIME]] : [[value]]",
+							"bullet": "round",
+							"id": "AmGraph-1",
+							"title": "graph 1",
+							"valueField": "RESERVATION_CNT"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": ""
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": false,
+						"useGraphSettings": false
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"text": ""
+						}
+					],
+					"dataProvider": [
+
+					]
+				});
+				fnObj.timeReservationCntChart.search();
+			},
+			search: function() {
+				var data = $("#timeReservationCntSearchForm").serialize();
+				console.log(data);
+				$.ajax({
+			        url: "/YeaMin/selectTimeReservationCnt.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+						console.log(ret.list);
+			        	if(ret.result === "ok") {
+			        		fnObj.timeReservationCntChart.target.dataProvider = ret.list;
+			        		fnObj.timeReservationCntChart.target.validateData();
+			        		fnObj.timeReservationCntChart.target.animateAgain();
 			        	}
 			        }
 			    });
