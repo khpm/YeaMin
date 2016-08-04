@@ -71,6 +71,7 @@ public class QueryConstants {
 	
 	public final static String QID_SELECT_REVIEW_CNT = "stats.QID_SELECT_REVIEW_CNT";
 	public final static String QID_SELECT_PRODUCT_TOP5 = "stats.QID_SELECT_PRODUCT_TOP5";
+	public final static String QID_SELECT_RESERVATION_AGES = "stats.QID_SELECT_RESERVATION_AGES";
 	
 	private QueryConstants() {
 		

@@ -59,26 +59,27 @@
 										</p>
 									</div>
 									<!-- 통계 검색 조건 -->
-									<form id="reviewCntChart2SearchForm" onsubmit="return false;">
+									<form id="productTopNSearchForm" onsubmit="return false;">
 										<div style="display: inline-block; float: right;">
 											<select name="top_n" class="AXSelect">
 							                    <option value="5">TOP 5</option>
 							                    <option value="10">TOP 10</option>
 							                </select>
-											<button type="button" class="AXButton" id="btn-search" onclick="statsContentsFnObj.reviewCntChart2.search()">
+											<button type="button" class="AXButton" id="btn-search" onclick="statsContentsFnObj.productTopNChart.search()">
 												<i class="axi axi-search"></i> 검색
 											</button>
 										</div>
 									</form>
 								</div>
 								<!-- content -->
-								<div id="reviewCntChart2" style="width: 100%; height: 400px;"></div>
+								<div id="productTopNChart" style="width: 100%; height: 400px;"></div>
 							</div>
 						</div>
 						<div class="ax-clear"></div>
 						<div class="H20"></div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	<div class="ax-clear"></div>	
@@ -90,7 +91,7 @@
 	var statsContentsFnObj = {
 		pageStart: function() {
 			statsContentsFnObj.reviewCntChart.bind();
-			statsContentsFnObj.reviewCntChart2.bind();
+			statsContentsFnObj.productTopNChart.bind();
 		},
 		reviewCntChart: {
 			target: null,
@@ -127,10 +128,10 @@
 			    });
 			}
 		},
-		reviewCntChart2: {
+		productTopNChart: {
 			target: null,
 			bind: function() {
-				statsContentsFnObj.reviewCntChart2.target = AmCharts.makeChart("reviewCntChart2", {
+				statsContentsFnObj.productTopNChart.target = AmCharts.makeChart("productTopNChart", {
 					"type": "serial",
 					"titleField": "PRODUCT_NAME",
 					"categoryField": "PRODUCT_NAME",
@@ -172,10 +173,10 @@
 					"dataProvider": [
 					]
 			    });
-				statsContentsFnObj.reviewCntChart2.search();
+				statsContentsFnObj.productTopNChart.search();
 			},
 			search: function() {
-				var data = $("#reviewCntChart2SearchForm").serialize();
+				var data = $("#productTopNSearchForm").serialize();
 				
 				$.ajax({
 			        url: "/YeaMin/selectProductTop5.json",
@@ -193,10 +194,10 @@
 			        				max = ret.list[i].PRODUCT_CNT;
 			        			}
 			        		}
-			        		statsContentsFnObj.reviewCntChart2.target.valueAxes[0].maximum = max;
-			        		statsContentsFnObj.reviewCntChart2.target.dataProvider = ret.list;
-							statsContentsFnObj.reviewCntChart2.target.validateData();
-							statsContentsFnObj.reviewCntChart2.target.animateAgain();
+			        		statsContentsFnObj.productTopNChart.target.valueAxes[0].maximum = max;
+			        		statsContentsFnObj.productTopNChart.target.dataProvider = ret.list;
+			        		statsContentsFnObj.productTopNChart.target.validateData();
+			        		statsContentsFnObj.productTopNChart.target.animateAgain();
 			        	}
 			        }
 			    });

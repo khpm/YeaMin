@@ -54,8 +54,6 @@
 	    	if(ret.result === "ok") {
 	    		var data = ret.data;
 	    		
-	    		console.log(data);
-	    		
 	    		$(".store_name").text(data.store_name);
 	    		$(".store_addr").text(data.store_addr);
 	    		$(".store_tel").text(data.store_tel);
