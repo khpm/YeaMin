@@ -62,6 +62,15 @@ public final class YmUtil {
 		return result;
 	}
 	
+	public final static Map<String, Object> gerResponseRetMap(String result, String msg, Object data) {
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", result);
+		ret.put("msg", msg);
+		ret.put("data", data);
+		
+		return ret;
+	}
+	
 	public final static Map<String, Object> gerResponseRetMap(String result, String msg) {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", result);

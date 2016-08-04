@@ -17,6 +17,7 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.StoreDao;
 import com.yeamin.dto.StoreDto;
 import com.yeamin.dto.StoreImgDto;
+import com.yeamin.util.YmUtil;
 
 @Controller
 public class StoreController {
@@ -42,6 +43,22 @@ public class StoreController {
 		}
 		
 		return mav;
+	}
+	
+	@RequestMapping("/selectStore.json")
+	public @ResponseBody Map<String, Object> selectStore(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		StoreDto dto = storeDao.selectStore();
+		
+		if(dto != null) {
+			result = "ok";
+		} else {
+			result = "error";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg, dto);
 	}
 	
 	@RequestMapping("/insertStore.json")
