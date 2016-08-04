@@ -21,6 +21,14 @@
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
 										<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
+										<input type="hidden" id="user_id" name="user_id" value="${user.user_id}"/>
+										<c:if test="${user.is_admin eq 'N'}">
+			                            	<input type="hidden" id="is_admin" name="is_admin" value="N"/>
+			                            </c:if>
+			                            <c:if test="${user.is_admin eq 'Y'}">
+			                            	<input type="hidden" id="user_name" name="user_name" value="${user.user_name}"/>
+			                            	<input type="hidden" id="is_admin" name="is_admin" value="Y"/>
+			                            </c:if>
 			                       		<div class="ax-rwd-table" style="margin:5px;">
 										<div class="item-group" style="">
 			                                <div class="item">
@@ -51,7 +59,12 @@
 			                                    <label class="item-lable">
 			                                        <span class="th" style="min-width:100px;">이름</span>
 			                                        <span class="td inputText" style="" title="">
-			                                            <input type="text" id="user_name" name="user_name" title="" placeholder="" value="${user.user_name}" class="AXInput av-required W150" />
+			                                        	<c:if test="${user.is_admin == 'N'}">
+			                                            	<input type="text" id="user_name" name="user_name" title="" placeholder="" value="${user.user_name}" class="AXInput av-required W150" />
+			                                        	</c:if>
+			                                        	<c:if test="${user.is_admin == 'Y'}">
+			                                        		${user.user_name}
+			                                        	</c:if>
 			                                        </span>
 			                                        <span id="userNameDuplicationCheckRetMsg" class="ret-msg"></span>
 			                                    </label>
@@ -108,12 +121,6 @@
 			                                <div class="item-clear"></div>
 			                                <div class="group-clear"></div>
 			                            </div>
-			                            <c:if test="${user.is_admin eq 'N'}">
-			                            	<input type="hidden" id="is_admin" name="is_admin" value="N"/>
-			                            </c:if>
-			                            <c:if test="${user.is_admin eq 'Y'}">
-			                            	<input type="hidden" id="is_admin" name="is_admin" value="Y"/>
-			                            </c:if>
 			                        </div>
 			                        <!-- 결과 -->
 			                        <div id="result"></div>
@@ -225,6 +232,7 @@
         },
         userUpdate: function() {
         	var data = $("#form").serialize();
+        	console.log(data);
         	$.ajax({
 		        url: "/YeaMin/updateUser.json",
 		        type: "post",
