@@ -186,7 +186,7 @@
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
             	
-            	trace(searchTarget.getParam());
+            	// trace(searchTarget.getParam());
             	
             	gridTarget.setList({
 				    ajaxUrl: "selectReservationList.json",

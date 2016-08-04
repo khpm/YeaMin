@@ -99,6 +99,9 @@
 			<if test="user_name != null and user_name != ''">
 				AND u.user_name LIKE '%'||#{user_name}||'%'
 			</if>
+			<if test="user_no != null and user_no != ''">
+				AND u.user_no = #{user_no}
+			</if>
 		</where>
 		ORDER BY
     		reservation_time DESC

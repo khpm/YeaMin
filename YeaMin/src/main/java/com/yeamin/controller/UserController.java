@@ -203,4 +203,11 @@ public class UserController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
+	@RequestMapping("/myReservationContents.do")
+	public ModelAndView reservationCapacityContents() {
+		ModelAndView mav = new ModelAndView(AppConstants.TEMPLATE_VIEW_PATH);
+		mav.addObject("contentViewName", "/WEB-INF/jsp/mypage/myReservationContents.jsp");
+		return mav;
+	}
+	
 }
