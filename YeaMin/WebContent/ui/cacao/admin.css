@@ -434,7 +434,7 @@ a:hover {
 }
 #AXPage .ax-body {
   z-index: 100;
-  padding-bottom: 50px;
+  padding-bottom: 120px;
   /* 페이지 본문 패딩 조절용 */
 }
 #AXPage .ax-body .ax-title {
