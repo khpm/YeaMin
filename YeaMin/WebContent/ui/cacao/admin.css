@@ -720,7 +720,7 @@ a:hover {
 }
 #AXPage .ax-footer {
   z-index: 200;
-  height: 40px;
+  height: 80px;
   position: fixed;
   width: 100%;
   bottom: 0px;
