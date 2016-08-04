@@ -108,7 +108,7 @@
                 this.target.setConfig({
                     windowID:"myModalContainer",
                     mediaQuery: {
-                        mx:{min:0, max:767}, dx:{min:767}
+                        mx:{min:0, max:767}, dx:{min:100}
                     },
                     displayLoading:true
                 });
@@ -117,7 +117,7 @@
                 this.target.open({
                     url:"/YeaMin/userLoginModal.do",
                     pars: "",
-                    top:100, width:600,
+                    top:100, width:300,
                     closeByEscKey:true
                 });
             }
