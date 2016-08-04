@@ -33,9 +33,6 @@
 											</button>
 										</div>
 										<div class="right">
-											<button id="btn-insert" type="button" class="AXButton">
-												<i class="axi axi-add"></i> 등록
-											</button>
 											<button id="btn-update" type="button" class="AXButton">
 												<i class="axi axi-edit"></i> 수정
 											</button>
@@ -81,11 +78,6 @@
             // 검색
             axdom("#btn-search").bind("click", function(){
             	fnObj.search.submit();
-            });
-            
-            // 등록
-            axdom("#btn-insert").bind("click", function(){
-            	fnObj.modal.open("INSERT", null);
             });
             
             // 수정
