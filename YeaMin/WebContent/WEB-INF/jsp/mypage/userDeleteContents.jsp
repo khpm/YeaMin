@@ -49,7 +49,6 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                    <button type="button" class="AXButton" onclick="fnObj.userDelete();">탈퇴</button>
-		                    <button type="button" class="AXButton" onclick="fnObj.close();">취소</button>
 		                </div>
 		            </div>
 		            <div class="ax-clear"></div>
