@@ -176,7 +176,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">카테고리 번호</span>
+		                                        <span class="th" style="min-width:130px;">상품 카테고리 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	${dto.product_category_no}
 		                                        </span>
@@ -188,7 +188,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_category_name">
-		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
+		                                        <span class="th" style="min-width:130px;">상품 카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<input type="text" id="product_category_name" name="product_category_name" class="AXInput W150" value="${dto.product_category_name}" />
 		                                        	<span id="productCategoryNameDuplicationCheckRetMsg" class="ret-msg"></span>
@@ -201,7 +201,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_category_order_by">
-		                                        <span class="th" style="min-width:100px;">카테고리 순서</span>
+		                                        <span class="th" style="min-width:130px;">상품 카테고리 순서</span>
 		                                        <span class="td inputText" style="" title="">
 													<input type="tel" id="product_category_order_by" name="product_category_order_by" value="${dto.product_category_order_by}" class="AXInput W50" />
 													<span id="productCategoryOrderByCheckRetMsg" class="ret-msg"></span>

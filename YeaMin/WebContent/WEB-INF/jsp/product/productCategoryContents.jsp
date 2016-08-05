@@ -194,9 +194,9 @@
                         mx:{min:0, max:767}, dx:{min:767}
                     },
                     colGroup: [
-                        {key:"product_category_no", label:"카테고리 번호", width:"120", align:"center"},
-                        {key:"product_category_name", label:"카테고리 이름", width:"200", align:"center"},
-                        {key:"product_category_order_by", label:"카테고리 순서", width:"120", align:"center"},
+                        {key:"product_category_no", label:"상품 카테고리 번호", width:"120", align:"center"},
+                        {key:"product_category_name", label:"상품 카테고리 이름", width:"200", align:"center"},
+                        {key:"product_category_order_by", label:"상품 카테고리 순서", width:"120", align:"center"},
                         {key:"product_category_cnt", label:"상품 수", width:"100", align:"center"}
                     ],
                     body: {
