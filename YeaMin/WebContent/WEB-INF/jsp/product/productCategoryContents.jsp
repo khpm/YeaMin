@@ -156,14 +156,14 @@
                     },
                     rows:[					
  						 {display:true, addClass:"gray", style:"", list:[
- 							{label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"product_category_name", addClass:"secondItem", valueBoxStyle:"", value:"",
+ 							{label:"상품 카테고리 이름", labelWidth:"130", type:"inputText", width:"150", key:"product_category_name", addClass:"secondItem", valueBoxStyle:"", value:"",
  								onChange: function(changedValue){
  									//아래 2개의 값을 사용 하실 수 있습니다.
  									//dialog.push(Object.toJSON(this));
  									//dialog.push(changedValue);//입력란에 적은 텍스트						
  								}
  							},
- 							{label:"상품명", labelWidth:"", type:"inputText", width:"150", key:"product_name", addClass:"secondItem", valueBoxStyle:"", value:"", title:"타이틀정보",
+ 							{label:"상품 이름", labelWidth:"130", type:"inputText", width:"150", key:"product_name", addClass:"secondItem", valueBoxStyle:"", value:"", title:"타이틀정보",
  								onChange: function(){}
  							}
  						]},

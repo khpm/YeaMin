@@ -154,14 +154,14 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"카테고리 이름", labelWidth:"", type:"inputText", width:"150", key:"categoryName", addClass:"secondItem", valueBoxStyle:"", value:"",
+                            {label:"상품 카테고리 이름", labelWidth:"130", type:"inputText", width:"150", key:"categoryName", addClass:"secondItem", valueBoxStyle:"", value:"",
                                   onChange: function(changedValue){
                                       //아래 2개의 값을 사용 하실 수 있습니다.
                                       //dialog.push(Object.toJSON(this));
                                       //dialog.push(changedValue);//입력란에 적은 텍스트						
                                   }
                             },
-                            {label:"상품 이름", labelWidth:"60", type:"inputText", width:"150", key:"productName", addClass:"secondItem", valueBoxStyle:"", value:"", title:"",
+                            {label:"상품 이름", labelWidth:"130", type:"inputText", width:"150", key:"productName", addClass:"secondItem", valueBoxStyle:"", value:"", title:"",
                                   onChange: function(){}
                             }                          
                         ]}
@@ -195,7 +195,7 @@
                     },
                     colGroup: [
                         {key:"product_no", label:"상품 번호", width:"80", align:"center"},
-                        {key:"product_category_name", label:"카테고리 이름", width:"100", align:"center"},
+                        {key:"product_category_name", label:"상품 카테고리 이름", width:"200", align:"center"},
                         {key:"product_name", label:"상품 이름", width:"200", align:"center"},
                         {key:"product_price", label:"상품 가격", width:"200", align:"center", formatter:"money"},
                         {key:"product_desc", label:"상품 소개", width:"200", align:"center"},
