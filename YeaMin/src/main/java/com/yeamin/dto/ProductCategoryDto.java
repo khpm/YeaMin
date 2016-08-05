@@ -8,7 +8,7 @@ public class ProductCategoryDto {
 
 	private Integer product_category_order_by;
 
-	private Integer product_category_cnt;
+	private Integer product_cnt;
 
 	public ProductCategoryDto() {
 		
@@ -38,13 +38,12 @@ public class ProductCategoryDto {
 		this.product_category_order_by = product_category_order_by;
 	}
 
-	public Integer getProduct_category_cnt() {
-		return product_category_cnt;
+	public Integer getProduct_cnt() {
+		return product_cnt;
 	}
 
-	public void setProduct_category_cnt(Integer product_category_cnt) {
-		this.product_category_cnt = product_category_cnt;
+	public void setProduct_cnt(Integer product_cnt) {
+		this.product_cnt = product_cnt;
 	}
-	
 	
 }

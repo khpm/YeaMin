@@ -18,7 +18,7 @@
 	  		FROM
 	  			ym_product p
 	  		WHERE 
-	  			pc.product_category_no = p.product_category_no) AS product_category_cnt
+	  			pc.product_category_no = p.product_category_no) AS product_cnt
 		FROM
 			ym_product_category pc
 		<where>
