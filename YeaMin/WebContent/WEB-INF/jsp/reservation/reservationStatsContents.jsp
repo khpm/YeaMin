@@ -172,9 +172,13 @@
 											<!-- 통계 검색 조건 -->
 											<form id="timeSalesSearchForm" onsubmit="return false;">
 												<div style="display: inline-block; float: right;">
-													<select name="" class="AXSelect">
-									                    <option value=""></option>
-									                    <option value=""></option>
+													기간 : 
+													<input type="text" id="startTimeSales" name="startTimeSales" class="AXInput av-required W100"/>
+													 ~ 
+													<input type="text" id="endTimeSales" name="endTimeSales" class="AXInput av-required W100" style="margin-right: 15px;"/>
+													<select name="reservation_capacity_dw" class="AXSelect">
+									                    <option value="D">주중</option>
+									                    <option value="W">주말</option>
 									                </select>
 													<button type="button" class="AXButton" id="btn-search" onclick="fnObj.timeSalesChart.search()">
 														<i class="axi axi-search"></i> 검색
@@ -207,6 +211,10 @@
 											<!-- 통계 검색 조건 -->
 											<form id="timeReservationCntSearchForm" onsubmit="return false;">
 												<div style="display: inline-block; float: right;">
+													기간 : 
+													<input type="text" id="startReservationTime" name="startReservationTime" class="AXInput av-required W100"/>
+													 ~ 
+													<input type="text" id="endReservationTime" name="endReservationTime" class="AXInput av-required W100" style="margin-right: 15px;"/>						
 													<select name="reservation_capacity_dw" class="AXSelect">
 									                    <option value="D">주중</option>
 									                    <option value="W">주말</option>
@@ -247,8 +255,32 @@
 			fnObj.reviewCntChart.bind();
 			fnObj.productTopNChart.bind();
 			fnObj.ageGroupReservationCntChart.bind();
-			//fnObj.timeSalesChart.bind();
+			fnObj.timeSalesChart.bind();
 			fnObj.timeReservationCntChart.bind();
+			
+			$("#startReservationTime").bindDate({
+				onchange: function(){
+					// trace(Object.toJSON(this));
+				}
+			}).val();
+			
+			$("#endReservationTime").bindDate({
+				onchange: function(){
+					// trace(Object.toJSON(this));
+				}
+			}).val();
+			
+			$("#startTimeSales").bindDate({
+				onchange: function(){
+					// trace(Object.toJSON(this));
+				}
+			}).val();
+			
+			$("#endTimeSales").bindDate({
+				onchange: function(){
+					// trace(Object.toJSON(this));
+				}
+			}).val();
 		},
 		reviewCntChart: {
 			target: null,
@@ -438,13 +470,64 @@
 			target: null,
 			bind: function() {
 				fnObj.timeSalesChart.target = AmCharts.makeChart("timeSalesChart", {
-					
+					"type": "serial",
+					"categoryField": "RESERVATION_CAPACITY_TIME",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[RESERVATION_CAPACITY_TIME]] : [[value]]",
+							"bullet": "round",
+							"id": "AmGraph-1",
+							"title": "graph 1",
+							"valueField": "RESERVATION_SUM_PRICE"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": ""
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": false,
+						"useGraphSettings": false
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"text": ""
+						}
+					],
+					"dataProvider": [
+
+					]
 				});
 				fnObj.timeSalesChart.search();
 			},
 			search: function() {
-				//var data = $("").serialize();
+				var data = $("#timeSalesSearchForm").serialize();
 
+				$.ajax({
+			        url: "/YeaMin/selectTimeSales.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+						console.log(ret.list);
+			        	if(ret.result === "ok") {
+			        		fnObj.timeSalesChart.target.dataProvider = ret.list;
+			        		fnObj.timeSalesChart.target.validateData();
+			        		fnObj.timeSalesChart.target.animateAgain();
+			        	}
+			        }
+			    });
 			}
 		},
 		timeReservationCntChart: {
@@ -494,7 +577,7 @@
 			},
 			search: function() {
 				var data = $("#timeReservationCntSearchForm").serialize();
-				console.log(data);
+
 				$.ajax({
 			        url: "/YeaMin/selectTimeReservationCnt.json",
 			        type: "post",

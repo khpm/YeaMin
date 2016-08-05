@@ -299,5 +299,16 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
+	@RequestMapping("/selectTimeSales.json")
+	public @ResponseBody Map<String, Object> selectTimeSales(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		List<Map<String, Object>> list = statsDao.selectTimeSales(paramMap);
+
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+	}
 	
 }
