@@ -62,7 +62,7 @@
 			ym_product_category
 		<where>
 			<if test="product_category_no != null and product_category_no != ''">
-				ADN product_category_no = #{product_category_no}
+				AND product_category_no = #{product_category_no}
 			</if>
 			<if test="product_category_name != null and product_category_name != ''">
 				AND product_category_name = #{product_category_name}
