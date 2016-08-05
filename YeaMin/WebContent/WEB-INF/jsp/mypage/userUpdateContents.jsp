@@ -44,7 +44,7 @@
 			                            </div>
 			                            <div class="item-group" style="">
 			                                <div class="item">
-			                                    <label class="item-lable">
+			                                    <label class="item-lable" for="user_pw">
 			                                        <span class="th" style="min-width:100px;">비밀번호</span>
 			                                        <span class="td inputText" style="" title="">
 			                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="${user.user_pw}" class="AXInput av-required W150" />
@@ -56,7 +56,7 @@
 			                            </div>
 			                            <div class="item-group" style="">
 			                                <div class="item">
-			                                    <label class="item-lable">
+			                                    <label class="item-lable" for=""user_name>
 			                                        <span class="th" style="min-width:100px;">이름</span>
 			                                        <span class="td inputText" style="" title="">
 			                                        	<c:if test="${user.is_admin == 'N'}">
@@ -74,7 +74,7 @@
 			                            </div>
 			                            <div class="item-group" style="">
 			                                <div class="item">
-			                                    <label class="item-lable">
+			                                    <label class="item-lable" for="user_email">
 			                                        <span class="th" style="min-width:100px;">이메일</span>
 			                                        <span class="td inputText" style="" title="">
 			                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="${user.user_email}" class="AXInput av-required av-email W400" />
@@ -87,7 +87,7 @@
 			                            </div>
 			                            <div class="item-group" style="">
 			                                <div class="item">
-			                                    <label class="item-lable">
+			                                    <label class="item-lable" for="user_hp">
 			                                        <span class="th" style="min-width:100px;">전화번호</span>
 			                                        <span class="td inputText" style="" title="">
 			                                            <input type="text" id="user_hp" name="user_hp" title=""  value="${user.user_hp}" class="AXInput av-required W150"/>
@@ -99,7 +99,7 @@
 			                            </div>
 			                            <div class="item-group" style="">
 			                                <div class="item">
-			                                    <label class="item-lable">
+			                                    <label class="item-lable" for="user_birth_day">
 			                                        <span class="th" style="min-width:100px;">생년월일</span>
 			                                        <span class="td inputText" style="" title="">
 			                                            <input type="text" id="user_birth_day" name="user_birth_day" title="" placeholder="" value="${user.user_birth_day}" class="AXInput av-required W150" />
