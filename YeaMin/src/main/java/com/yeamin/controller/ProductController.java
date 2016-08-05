@@ -17,6 +17,7 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ProductDto;
+import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.util.YmUtil;
 
 
@@ -42,11 +43,15 @@ public class ProductController {
 	//상품 카테고리 조회
 	@RequestMapping("/selectProductCategoryList.json")
 	public @ResponseBody Map<String,Object> selectProductCategoryList(@RequestParam Map<String, Object> paramMap){
-		List<ProductCategoryDto> list=productDao.selectProductCategoryList(paramMap);
-		return getSelectListResult(paramMap,list);
+		String result = "";
+		String msg = "";
+		
+		List<ProductCategoryDto> list = productDao.selectProductCategoryList(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
-	
-	
 	
 	//상품 카테고리 Model
 	@RequestMapping("/productCategoryModal.do")
@@ -214,29 +219,4 @@ public class ProductController {
 		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
-	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
-		int listCount = list.size();
-		int pageCount = 1; // 전체 페이지 개수
-		int pageSize = 100; // 한 페이지에 들어갈 개수
-		int mok = listCount / pageSize;
-		int nmg = listCount % pageSize;
-		
-		if(nmg == 0) {
-			pageCount = mok;
-		} else if(nmg > 0) {
-			pageCount = mok + 1;
-		}
-		
-		Map<String, Object> page = new HashMap<String, Object>();
-		page.put("pageNo", paramMap.get("pageNo"));
-		page.put("pageCount", pageCount);
-		page.put("listCount", listCount);
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("result", "ok");
-		result.put("list", list);
-		result.put("page", page);
-		result.put("msg", "");
-		return result;
-	}
 }

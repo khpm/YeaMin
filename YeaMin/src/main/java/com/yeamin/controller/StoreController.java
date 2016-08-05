@@ -122,29 +122,4 @@ public class StoreController {
 		return ret;
 	}	
 	
-	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {
-		int listCount = list.size();
-		int pageCount = 1; // 전체 페이지 개수
-		int pageSize = 100; // 한 페이지에 들어갈 개수
-		int mok = listCount / pageSize;
-		int nmg = listCount % pageSize;
-		
-		if(nmg == 0) {
-			pageCount = mok;
-		} else if(nmg > 0) {
-			pageCount = mok + 1;
-		}
-		
-		Map<String, Object> page = new HashMap<String, Object>();
-		page.put("pageNo", paramMap.get("pageNo"));
-		page.put("pageCount", pageCount);
-		page.put("listCount", listCount);
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("result", "ok");
-		result.put("list", list);
-		result.put("page", page);
-		result.put("msg", "");
-		return result;
-	}
 }
