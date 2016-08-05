@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
 	<select id="QID_SELECT_RESERVATION_CAPACITY_LIST" resultType="ReservationCapacityDto">
+		<include refid="common.PAGE_HEADER"/>
 		SELECT
 			reservation_capacity_no,
 			reservation_capacity_dw,
@@ -10,13 +11,29 @@
 		FROM
 			ym_reservation_capacity
 		<where>
-			<if test="reservation_capacity_dw != 'all'">
-				AND reservation_capacity_dw = #{reservation_capacity_dw}
-			</if>
+			<include refid="QID_SELECT_RESERVATION_CAPACITY_LIST_CONDITION"/>
 		</where>
 		ORDER BY
+			reservation_capacity_dw ASC,
     		reservation_capacity_time ASC
+    	<include refid="common.PAGE_FOOTER"/>
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_CAPACITY_LIST_CNT" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			ym_reservation_capacity
+		<where>
+			<include refid="QID_SELECT_RESERVATION_CAPACITY_LIST_CONDITION"/>
+		</where>
+	</select>
+	
+	<sql id="QID_SELECT_RESERVATION_CAPACITY_LIST_CONDITION">
+		<if test="reservation_capacity_dw != 'all'">
+			AND reservation_capacity_dw = #{reservation_capacity_dw}
+		</if>
+	</sql>
 	
 	<select id="QID_SELECT_RESERVATION_CAPACITY" resultType="ReservationCapacityDto">
 		SELECT

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dao.StatsDao;
+import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.dto.ReservationDto;
 import com.yeamin.dto.ReservationProductDto;
@@ -67,11 +68,13 @@ public class ReservationController {
 		String result = "";
 		String msg = "";
 		
+		YmUtil.setPagingInfo(paramMap);
 		List<ReservationCapacityDto> list = reservationDao.selectReservationCapacityList(paramMap);
+		Integer totCnt = reservationDao.selectReservationCapacityListCnt(paramMap);
 		
 		result = "ok";
 		
-		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+		return YmUtil.getSelectListResult(result, msg, paramMap, list, totCnt);
 	}
 	
 	@RequestMapping("/selectReservationCapacity.json")

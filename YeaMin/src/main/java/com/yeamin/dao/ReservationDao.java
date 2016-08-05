@@ -11,6 +11,8 @@ public interface ReservationDao {
 	
 	public List<ReservationCapacityDto> selectReservationCapacityList(Map<String, Object> paramMap);
 	
+	public Integer selectReservationCapacityListCnt(Map<String, Object> paramMap);
+	
 	public ReservationCapacityDto selectReservationCapacity(Map<String, Object> paramMap);
 	
 	public Integer insertReservationCapacity(Map<String, Object> paramMap);

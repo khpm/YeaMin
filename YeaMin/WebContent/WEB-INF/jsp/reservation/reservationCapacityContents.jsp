@@ -76,6 +76,8 @@
             this.grid.bind();
             this.modal.bind();
             this.bindEvent();
+            
+            fnObj.search.submit();
         },
         bindEvent: function(){
             // 검색
@@ -154,7 +156,7 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"예약 수용 요일", labelWidth:"100", type:"selectBox", width:"160", key:"reservation_capacity_dw", addClass:"secondItem", valueBoxStyle:"", value:"all",
+                            {label:"예약 수용 요일", labelWidth:"130", type:"selectBox", width:"150", key:"reservation_capacity_dw", addClass:"secondItem", valueBoxStyle:"", value:"all",
                                 options:[
 									{optionValue:"all", optionText:"전체"},
 									{optionValue:"D", optionText:"평일"},
@@ -184,7 +186,7 @@
 				    onLoad: function(){
 				        // trace(this);
 				    }
-				});
+            	}, false, "", "paging");
             }
         },
         grid: {
@@ -215,7 +217,8 @@
                         }
                     },
                     page: {
-                        paging: false
+                        paging: true,
+                        pageNo: 1
                     }
                 });
             }

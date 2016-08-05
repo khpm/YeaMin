@@ -9,6 +9,7 @@ public class QueryConstants {
 	public final static String QID_DELETE_USER = "user.QID_DELETE_USER";
 	
 	public final static String QID_SELECT_RESERVATION_CAPACITY_LIST = "reservation.QID_SELECT_RESERVATION_CAPACITY_LIST";
+	public final static String QID_SELECT_RESERVATION_CAPACITY_LIST_CNT = "reservation.QID_SELECT_RESERVATION_CAPACITY_LIST_CNT";
 	public final static String QID_SELECT_RESERVATION_CAPACITY = "reservation.QID_SELECT_RESERVATION_CAPACITY";
 	public final static String QID_INSERT_RESERVATION_CAPACITY = "reservation.QID_INSERT_RESERVATION_CAPACITY";
 	public final static String QID_UPDATE_RESERVATION_CAPACITY = "reservation.QID_UPDATE_RESERVATION_CAPACITY";
