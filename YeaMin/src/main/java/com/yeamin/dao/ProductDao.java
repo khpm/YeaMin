@@ -17,7 +17,7 @@ public interface ProductDao {
 	public Integer updateProductCategory(Map<String, Object> paramMap);
 	
 	public List<ProductDto> selectProductList(Map<String,Object> paramMap);
-	public List<ProductDto> selectProductListOne(Map<String,Object> paramMap);
+	public Integer selectProductListCnt(Map<String, Object> paramMap);
 	public ProductDto selectProduct(Map<String, Object> paramMap);
 	public Integer insertProduct(Map<String, Object> paramMap);
 	public Integer updateProduct(Map<String, Object> paramMap);

@@ -34,7 +34,7 @@ public class QueryConstants {
 	public final static String QID_UPDATE_PRODUCT_CATEGORY = "product.QID_UPDATE_PRODUCT_CATEGORY";
 	
 	public final static String QID_SELECT_PRODUCT_LIST = "product.QID_SELECT_PRODUCT_LIST";
-	public final static String QID_SELECT_PRODUCT_LIST_ONE = "product.QID_SELECT_PRODUCT_LIST_ONE";
+	public final static String QID_SELECT_PRODUCT_LIST_CNT = "product.QID_SELECT_PRODUCT_LIST_CNT";
 	public final static String QID_SELECT_PRODUCT_MODEL = "product.QID_SELECT_PRODUCT_MODEL";
 	public final static String QID_INSERT_PRODUCT = "product.QID_INSERT_PRODUCT";
 	public final static String QID_UPDATE_PRODUCT = "product.QID_UPDATE_PRODUCT";

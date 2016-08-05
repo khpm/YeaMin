@@ -123,6 +123,21 @@ public class ProductController {
 		return mav;
 	}
 	
+	//상품 정보 조회
+	@RequestMapping("/selectProductList.json")
+	public @ResponseBody Map<String,Object> selectProductList(@RequestParam Map<String, Object> paramMap){
+		String result = "";
+		String msg = "";
+		
+		YmUtil.setPagingInfo(paramMap);
+		List<ProductDto> list = productDao.selectProductList(paramMap);
+		Integer totCnt = productDao.selectProductListCnt(paramMap);
+		
+		result = "ok";
+		
+		return YmUtil.getSelectListResult(result, msg, paramMap, list, totCnt);
+	}
+	
 	//상품 정보 등록
 	@RequestMapping("/insertProduct.json")
 	public @ResponseBody Map<String, Object> insertProduct(@RequestParam Map<String, Object> paramMap) {
@@ -164,22 +179,6 @@ public class ProductController {
 		}
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", "ok");
-		
-		return ret;
-	}
-	
-	//상품 정보 조회
-	@RequestMapping("/selectProductList.json")
-	public @ResponseBody Map<String,Object> selectProductList(@RequestParam Map<String, Object> paramMap){
-		List<ProductDto> list=null;
-		if(paramMap.containsKey("categoryName") || paramMap.containsKey("productName")){
-			list=productDao.selectProductListOne(paramMap);
-		}else{
-			list=productDao.selectProductList(paramMap);
-		}
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("result", "ok");
-		ret.put("list", list);
 		
 		return ret;
 	}
