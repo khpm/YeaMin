@@ -63,6 +63,40 @@
 			user_age_group asc
 	</select>
 	
+	<select id="QID_SELECT_TIME_SALES" resultType="Map">
+		SELECT
+			rc.reservation_capacity_dw,
+			rc.reservation_capacity_time,
+			(SELECT
+				sum(rp.PRODUCT_CNT * (
+					SELECT
+						product_price
+					FROM
+						ym_product p
+					WHERE
+						p.PRODUCT_NO = rp.product_no))
+		  	FROM
+		    	ym_reservation r, ym_reservation_product rp
+		  	<where>
+		    	to_char(reservation_time,'HH24:MI') = rc.reservation_capacity_time
+          		AND r.reservation_no = rp.reservation_no
+          		<if test = "startTimeSales != null and startTimeSales != '' ">
+		    		 AND r.reservation_time &gt;= #{startTimeSales}
+		    	</if>
+		    	<if test = "endTimeSales != null and endTimeSales != '' ">
+		    		 AND r.reservation_time &lt;= #{endTimeSales}
+		    	</if>
+          		) as reservation_sum_price
+          	</where>
+          	
+		FROM
+		  ym_reservation_capacity rc
+		WHERE
+			reservation_capacity_dw = #{reservation_capacity_dw}
+		ORDER BY
+		  rc.reservation_capacity_dw asc, rc.reservation_capacity_time asc
+	</select>
+	
 	<select id="QID_SELECT_TIME_RESERVATIONCNT" resultType="Map">
 		SELECT
 			rc.reservation_capacity_dw,
@@ -70,14 +104,21 @@
 			(SELECT
 				count(*)
 		  	FROM
-		    	ym_reservation
-		  	WHERE
-		    	to_char(reservation_time,'HH24:MI') = rc.reservation_capacity_time) as reservation_cnt
+		    	ym_reservation r
+		  	<where>
+		    	to_char(reservation_time,'HH24:MI') = rc.reservation_capacity_time
+		    	<if test = "startReservationTime != null and startReservationTime != '' ">
+		    		 AND r.reservation_time &gt;= #{startReservationTime}
+		    	</if>
+		    	<if test = "endReservationTime != null and endReservationTime != '' ">
+		    		 AND r.reservation_time &lt;= #{endReservationTime}
+		    	</if>
+		    	) as reservation_cnt
+		    </where>
 		FROM
 		  ym_reservation_capacity rc
-		<where>
+		WHERE
 			reservation_capacity_dw = #{reservation_capacity_dw}
-		</where>
 		ORDER BY
 		  rc.reservation_capacity_dw asc, rc.reservation_capacity_time asc
 	</select>
