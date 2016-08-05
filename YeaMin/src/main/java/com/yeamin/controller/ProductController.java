@@ -21,6 +21,8 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ProductDto;
+import com.yeamin.dto.UserDto;
+import com.yeamin.util.YmUtil;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
@@ -181,6 +183,24 @@ public class ProductController {
 		ret.put("list", list);
 		
 		return ret;
+	}
+	
+	@RequestMapping("/productCategoryNameDuplicationCheck.json")
+	public @ResponseBody Map<String, Object> productCategoryNameDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		ProductCategoryDto dto = productDao.selectProductCategory(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 상품 카테고리 이름입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 상품 카테고리 이름입니다.";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
 	}
 	
 	public Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list) {

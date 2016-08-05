@@ -57,11 +57,41 @@
 					        			if(value == ret.list[i].product_category_order_by){
 					        				$("#productCategoryOrderByCheckRetMsg").show();
 							        		$("#productCategoryOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
+							        		$("#insertBtn").attr("disabled",true);
+							        		$("#updateBtn").attr("disabled",true);
 							        		break;
 					        			}else{
 					        				$("#productCategoryOrderByCheckRetMsg").hide();
+					        				$("#insertBtn").attr("disabled",false);
+							        		$("#updateBtn").attr("disabled",false);
 					        			}
 					        		}
+					        	}
+					        }
+					    });
+					}
+				});
+				
+				$("#product_category_name").bind("keyup", function(event) {
+					if($("#product_category_name").val() != ''){
+						var data = $("#form").serialize();
+			        	
+			        	$.ajax({
+					        url: "/YeaMin/productCategoryNameDuplicationCheck.json",
+					        type: "post",
+					        data: "product_category_name=" + $("#product_category_name").val(),
+					        success: function(data) {
+								var ret = JSON.parse(data);
+					        	
+					        	if(ret.result === "ok") {
+					        		$("#productCategoryNameDuplicationCheckRetMsg").hide();
+					        		$("#insertBtn").attr("disabled",false);
+					        		$("#updateBtn").attr("disabled",false);
+					        	} else if(ret.result === "error") {
+					        		$("#productCategoryNameDuplicationCheckRetMsg").show();
+					        		$("#productCategoryNameDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+					        		$("#insertBtn").attr("disabled",true);
+					        		$("#updateBtn").attr("disabled",true);
 					        	}
 					        }
 					    });
@@ -161,6 +191,7 @@
 		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<input type="text" id="product_category_name" name="product_category_name" class="AXInput W150" value="${dto.product_category_name}" />
+		                                        	<span id="productCategoryNameDuplicationCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -194,10 +225,10 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                	<c:if test="${modalType eq 'INSERT'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
+		                		 <button id="insertBtn" type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+		                		 <button id="updateBtn" type="button" class="AXButton" onclick="fnObj.update()">수정</button>
 		                	</c:if>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>

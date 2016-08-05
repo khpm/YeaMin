@@ -36,8 +36,14 @@
 			*
 		FROM
 			ym_product_category
-		WHERE
-			product_category_no = #{product_category_no}
+		<where>
+			<if test="product_category_no != null and product_category_no != ''">
+				ADN product_category_no = #{product_category_no}
+			</if>
+			<if test="product_category_name != null and product_category_name != ''">
+				AND product_category_name = #{product_category_name}
+			</if>
+		</where>
 	</select>
 	
 	<!-- 상품 카테고리 등록 -->
