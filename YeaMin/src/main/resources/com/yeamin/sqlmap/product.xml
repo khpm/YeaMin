@@ -4,31 +4,55 @@
 
 <!-- 상품 카테고리 정보 -->
 
-	<!-- 전체 카테고리 정보 조회 -->
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 조회
+	-->
 	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST" resultType="ProductCategoryDto">
+		<include refid="common.PAGE_HEADER"/>
 		SELECT
-			y.product_category_no,
-			y.product_category_name,
-			y.product_category_order_by,
+			pc.product_category_no,
+			pc.product_category_name,
+			pc.product_category_order_by,
 	  		(SELECT
 	  			count(*)
 	  		FROM
-	  			ym_product m
+	  			ym_product p
 	  		WHERE 
-	  			y.product_category_no = m.product_category_no) as product_category_cnt		
+	  			pc.product_category_no = p.product_category_no) AS product_category_cnt
 		FROM
-		ym_product_category y
+			ym_product_category pc
 		<where>
-			<if test="product_category_name != null and product_category_name != ''">
-				AND y.product_category_name LIKE '%'||#{product_category_name}||'%'
-			</if>
-			<if test="product_name != null and product_name != ''">
-				AND y.product_category_no in(SELECT m2.product_category_no FROM ym_product m2 WHERE m2.product_name LIKE '%'||#{product_name}||'%')
-			</if>
+			<include refid="QID_SELECT_PRODUCT_CATEGORY_LIST_CONDITION"/>
 		</where>
 		ORDER BY
-			product_category_order_by asc
+			product_category_order_by ASC
+		<include refid="common.PAGE_FOOTER"/>
 	</select>
+	
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 조회 개수
+	-->
+	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST_CNT" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			ym_product_category pc
+		<where>
+			<include refid="QID_SELECT_PRODUCT_CATEGORY_LIST_CONDITION"/>
+		</where>
+	</select>
+	
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 조회 조건
+	-->
+	<sql id="QID_SELECT_PRODUCT_CATEGORY_LIST_CONDITION">
+		<if test="product_category_name != null and product_category_name != ''">
+			AND pc.product_category_name LIKE '%'||#{product_category_name}||'%'
+		</if>
+		<if test="product_name != null and product_name != ''">
+			AND pc.product_category_no IN(SELECT p2.product_category_no FROM ym_product p2 WHERE p2.product_name LIKE '%'||#{product_name}||'%')
+		</if>
+	</sql>
 	
 	<!-- 상품 카테고리 MODEL 등록 -->
 	<select id="QID_DELETE_PRODUCT_CATEGORY_MODEL" resultType="ProductCategoryDto">

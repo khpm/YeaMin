@@ -17,7 +17,6 @@ import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ProductDto;
-import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.util.YmUtil;
 
 
@@ -46,11 +45,13 @@ public class ProductController {
 		String result = "";
 		String msg = "";
 		
+		YmUtil.setPagingInfo(paramMap);
 		List<ProductCategoryDto> list = productDao.selectProductCategoryList(paramMap);
+		Integer totCnt = productDao.selectProductCategoryListCnt(paramMap);
 		
 		result = "ok";
 		
-		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+		return YmUtil.getSelectListResult(result, msg, paramMap, list, totCnt);
 	}
 	
 	//상품 카테고리 Model

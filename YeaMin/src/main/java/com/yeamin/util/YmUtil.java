@@ -37,6 +37,31 @@ public final class YmUtil {
 		return ret;
 	}
 	
+	public static Map<String, Object> getSelectListResult(String result, String msg, Map<String, Object> paramMap, List<?> list, Integer count) {
+		int listCount = count;
+		int pageCount = listCount / 10  + 1; // 전체 페이지 개수
+		int pageSize = 10; // 한 페이지에 들어갈 개수
+		int mok = listCount / pageSize;
+		int nmg = listCount % pageSize;
+		
+		if(nmg == 0) {
+			pageCount = mok;
+		} else if(nmg > 0) {
+			pageCount = mok + 1;
+		}
+		
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("pageCount", pageCount);
+		page.put("listCount", listCount);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", result);
+		ret.put("list", list);
+		ret.put("page", page);
+		ret.put("msg", msg);
+		return ret;
+	}
+	
 	public static Map<String, Object> getSelectListResult(Map<String, Object> paramMap, List<?> list, Integer count) {
 		int listCount = count;
 		int pageCount = listCount / 10  + 1; // 전체 페이지 개수

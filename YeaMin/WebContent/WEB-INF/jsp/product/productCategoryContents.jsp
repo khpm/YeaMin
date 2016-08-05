@@ -76,6 +76,8 @@
             this.grid.bind();
             this.modal.bind();
             this.bindEvent();
+            
+            fnObj.search.submit();
         },
         bindEvent: function(){
             // 검색
@@ -161,7 +163,7 @@
  									//dialog.push(changedValue);//입력란에 적은 텍스트						
  								}
  							},
- 							{label:"상품명", labelWidth:"60", type:"inputText", width:"250", key:"product_name", addClass:"secondItem", valueBoxStyle:"", value:"", title:"타이틀정보",
+ 							{label:"상품명", labelWidth:"", type:"inputText", width:"150", key:"product_name", addClass:"secondItem", valueBoxStyle:"", value:"", title:"타이틀정보",
  								onChange: function(){}
  							}
  						]},
@@ -172,15 +174,13 @@
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
             	
-            	// trace(searchTarget.getParam());
-            	
             	gridTarget.setList({
 				    ajaxUrl: "selectProductCategoryList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				        // trace(this);
 				    }
-				});
+				}, false, "", "paging");
             }
         },
         grid: {
@@ -209,7 +209,8 @@
                         }
                     },
                     page: {
-                        paging: false
+                        paging: true,
+                        pageNo: 1
                     }
                 });
             }

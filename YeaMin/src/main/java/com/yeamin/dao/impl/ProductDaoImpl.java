@@ -1,6 +1,5 @@
 package com.yeamin.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +29,11 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<ProductCategoryDto> selectProductCategoryList(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST, paramMap);
+	}
+	
+	@Override
+	public Integer selectProductCategoryListCnt(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_PRODUCT_CATEGORY_LIST_CNT, paramMap);
 	}
 	
 	@Override
