@@ -260,7 +260,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">상품 번호</span>
+		                                        <span class="th" style="min-width:130px;">상품 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	${dto.product_no}
 		                                        </span>
@@ -272,7 +272,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
+		                                        <span class="th" style="min-width:130px;">상품 카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<%-- <input type="text" name="product_category_name" class="AXInput W150" id="product_category_name" value="${dto.product_category_name}" /> --%>
 		                                        	<select name="product_category_no" class="AXSelect W160">
@@ -289,7 +289,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_name">
-		                                        <span class="th" style="min-width:100px;">상품 이름</span>
+		                                        <span class="th" style="min-width:130px;">상품 이름</span>
 		                                        <span class="td inputText" style="" title="">
 													<input type="tel" id="product_name" name="product_name" value="${dto.product_name}" class="AXInput W150" />
 		                                        	<span id="productNameDuplicationCheckRetMsg" class="ret-msg"></span>
@@ -302,7 +302,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_price">
-		                                        <span class="th" style="min-width:100px;">상품 가격</span>
+		                                        <span class="th" style="min-width:130px;">상품 가격</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<input type="text" id="product_price" name="product_price" class="AXInput W150" value="${dto.product_price}" />
 		                                        </span>
@@ -314,9 +314,9 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_desc">
-		                                        <span class="th" style="min-width:100px;">상품 소개</span>
+		                                        <span class="th" style="min-width:130px;">상품 소개</span>
 		                                        <span class="td inputText" style="" title="">
-		                                        	<textarea id="product_desc" name="product_desc" class="AXInput W150" style="width:400px; height:130px;">${dto.product_desc}</textarea>
+		                                        	<textarea id="product_desc" name="product_desc" class="AXInput W150" style="width:420px; height:130px;">${dto.product_desc}</textarea>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -326,7 +326,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="product_order_by">
-		                                        <span class="th" style="min-width:100px;">상품 순서</span>
+		                                        <span class="th" style="min-width:130px;">상품 순서</span>
 		                                        <span class="td inputText" style="" title="">
 													<input type="tel" id="product_order_by" name="product_order_by" value="${dto.product_order_by}" class="AXInput W50" />
 		                                        	<span id="productOrderByCheckRetMsg" class="ret-msg"></span>	
@@ -339,7 +339,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">상품이미지</span>
+		                                        <span class="th" style="min-width:130px;">상품 이미지</span>
 		                                        <span class="td inputText" style="" title="">																							       
 												    <span class="AXUpload5" id="AXUpload5"></span>										 
 		                                        </span>
