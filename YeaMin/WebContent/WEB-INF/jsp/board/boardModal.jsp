@@ -159,7 +159,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">글 번호</span>
+		                                        <span class="th" style="min-width:130px;">글 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${modalType ne 'REPLY'}">
 		                                        		${dto.board_no}
@@ -177,7 +177,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_name">
-		                                        <span class="th" style="min-width:100px;">작성자</span>
+		                                        <span class="th" style="min-width:130px;">작성자</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        <c:if test="${modalType eq 'INSERT' or modalType eq 'REPLY'}">
 		                                        	${user.user_name}
@@ -194,7 +194,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item fullWidth">
 		                                    <label class="item-lable" for="board_title">
-		                                        <span class="th" style="min-width:100px;">글 제목</span>
+		                                        <span class="th" style="min-width:130px;">글 제목</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT' or modalType eq 'REPLY'}">
 		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" />
@@ -213,7 +213,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="board_content">
-		                                        <span class="th" style="min-width:100px;">글 내용</span>
+		                                        <span class="th" style="min-width:130px;">글 내용</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT' or modalType eq 'REPLY'}">
 		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;">${dto.board_content}</textarea>

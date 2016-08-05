@@ -141,7 +141,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_id">
-		                                        <span class="th" style="min-width:100px;">아이디</span>
+		                                        <span class="th" style="min-width:130px;">아이디</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="" class="AXInput av-required W150" />
 		                                        	<span id="userIdDuplicationCheckRetMsg" class="ret-msg"></span>
@@ -154,7 +154,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_pw">
-		                                        <span class="th" style="min-width:100px;">비밀번호</span>
+		                                        <span class="th" style="min-width:130px;">비밀번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="" class="AXInput av-required W150" />
 		                                        </span>
@@ -166,7 +166,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_name">
-		                                        <span class="th" style="min-width:100px;">이름</span>
+		                                        <span class="th" style="min-width:130px;">이름</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_name" name="user_name" title="" placeholder="" value="" class="AXInput av-required W150" />
 		                                        </span>
@@ -178,7 +178,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item fullWidth">
 		                                    <label class="item-lable" for="user_email">
-		                                        <span class="th" style="min-width:100px;">이메일</span>
+		                                        <span class="th" style="min-width:130px;">이메일</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="" class="AXInput av-required av-email" />
 		                                        </span>
@@ -190,7 +190,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_hp">
-		                                        <span class="th" style="min-width:100px;">전화번호</span>
+		                                        <span class="th" style="min-width:130px;">전화번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_hp" name="user_hp" title=""  value="" class="AXInput av-required W150"/>
 		                                        </span>
@@ -202,7 +202,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_birth_day">
-		                                        <span class="th" style="min-width:100px;">생년월일</span>
+		                                        <span class="th" style="min-width:130px;">생년월일</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_birth_day" name="user_birth_day" title="" placeholder="" value="" class="AXInput av-required W150" />
 		                                        </span>
@@ -214,7 +214,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">성별</span>
+		                                        <span class="th" style="min-width:130px;">성별</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_gender" name="user_gender" title="" placeholder="" value="" class="AXInput av-required W150" />
 		                                        </span>

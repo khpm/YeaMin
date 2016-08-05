@@ -271,7 +271,7 @@
 		                        	<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="reservation_date">
-		                                        <span class="th" style="min-width:100px;">예약자</span>
+		                                        <span class="th" style="min-width:130px;">예약자</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <c:if test="${modalType eq 'INSERT'}">
 								                		 ${user.user_name}
@@ -288,7 +288,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="reservation_date">
-		                                        <span class="th" style="min-width:100px;">예약 날짜</span>
+		                                        <span class="th" style="min-width:130px;">예약 날짜</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<fmt:formatDate var="reservation_date_format" value="${dto.reservation_time}" pattern="yyyy-MM-dd"/>
 		                                            <input type="text" id="reservation_date" name="" title="" placeholder="" value="${reservation_date_format}" class="AXInput av-required W150" />
@@ -301,7 +301,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">예약 시간</span>
+		                                        <span class="th" style="min-width:130px;">예약 시간</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<fmt:formatDate var="reservation_time_format" value="${dto.reservation_time}" pattern="HH:mm"/>
 		                                        	<input type="hidden" id="reservation_time_format" value="${reservation_time_format}"/>
@@ -316,7 +316,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="reservation_people">
-		                                        <span class="th" style="min-width:100px;">예약 인원 수</span>
+		                                        <span class="th" style="min-width:130px;">예약 인원 수</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="reservation_people" name="reservation_people" value="${dto.reservation_people}" class="AXInput W50" />
 		                                        </span>
@@ -328,7 +328,7 @@
    		                            <div class="item-group" style="">
 		                                <div class="item fullWidth">
 		                                    <label class="item-lable" for="reservation_comment">
-		                                        <span class="th" style="min-width:100px;">전달 사항</span>
+		                                        <span class="th" style="min-width:130px;">전달 사항</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<textarea id="reservation_comment" name="reservation_comment" rows="4" cols="" style="height: 200px;">${dto.reservation_comment}</textarea>
 		                                        </span>

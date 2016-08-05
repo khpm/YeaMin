@@ -96,7 +96,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_id">
-		                                        <span class="th" style="min-width:100px;">아이디</span>
+		                                        <span class="th" style="min-width:130px;">아이디</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="user_id" name="user_id" title="" placeholder="" value="admin" class="AXInput av-required W150" />
 		                                        </span>
@@ -108,7 +108,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="user_pw">
-		                                        <span class="th" style="min-width:100px;">비밀번호</span>
+		                                        <span class="th" style="min-width:130px;">비밀번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="password" id="user_pw" name="user_pw" title="" placeholder="" value="admin" class="AXInput av-required W150" />
 		                                        </span>

@@ -148,7 +148,7 @@
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">예약 수용 번호</span>
+		                                        <span class="th" style="min-width:130px;">예약 수용 번호</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            ${dto.reservation_capacity_no}
 		                                        </span>
@@ -160,7 +160,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
-		                                        <span class="th" style="min-width:100px;">예약 수용 요일</span>
+		                                        <span class="th" style="min-width:130px;">예약 수용 요일</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <select name="reservation_capacity_dw" class="AXSelect W160">
 														<option ${(dto.reservation_capacity_dw eq 'D') ? 'selected' : ''} value="D">평일</option>
@@ -175,7 +175,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="reservation_capacity_time">
-		                                        <span class="th" style="min-width:100px;">예약 수용 시간</span>
+		                                        <span class="th" style="min-width:130px;">예약 수용 시간</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="reservation_capacity_time" name="reservation_capacity_time" class="AXInput W150" value="${dto.reservation_capacity_time}" />
 		                                        	<span id="reservationCapacityTimeCheckRetMsg" class="ret-msg"></span>
@@ -188,7 +188,7 @@
 		                            <div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable" for="reservation_capacity_people">
-		                                        <span class="th" style="min-width:100px;">예약 수용 인원 수</span>
+		                                        <span class="th" style="min-width:130px;">예약 수용 인원 수</span>
 		                                        <span class="td inputText" style="" title="">
 		                                            <input type="text" id="reservation_capacity_people" name="reservation_capacity_people" value="${dto.reservation_capacity_people}" class="AXInput W50" />
 		                                        </span>
