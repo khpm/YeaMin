@@ -105,13 +105,15 @@ public final class YmUtil {
 	}
 	
 	public final static void setPagingInfo(Map<String, Object> paramMap) {
-		int pageNo = Integer.parseInt((String)paramMap.get("pageNo"));
-		
-		int start = (pageNo*10)-9;
-		int end = pageNo*10;
-		
-		paramMap.put("start", start);
-		paramMap.put("end", end);
+		if(paramMap.containsKey("pageNo")) {
+			int pageNo = Integer.parseInt((String)paramMap.get("pageNo"));
+			
+			int start = (pageNo*10)-9;
+			int end = pageNo*10;
+			
+			paramMap.put("start", start);
+			paramMap.put("end", end);
+		}
 	}
 	
 }
