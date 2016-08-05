@@ -147,8 +147,14 @@
 			*
 		FROM
 			ym_product
-		WHERE
-			product_no = #{product_no}
+		<where>
+			<if test="product_no != null and product_no != ''">
+				AND product_no = #{product_no}
+			</if>
+			<if test="product_name != null and product_name != ''">
+				AND product_name = #{product_name}
+			</if>
+		</where>
 	</select>
 	
 	<!-- 상품 정보 등록 -->

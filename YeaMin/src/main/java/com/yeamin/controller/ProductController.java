@@ -1,7 +1,5 @@
 package com.yeamin.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,20 +9,15 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ProductDao;
 import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ProductDto;
-import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 
 @Controller
@@ -198,6 +191,24 @@ public class ProductController {
 		} else {
 			result = "error";
 			msg = "중복된 상품 카테고리 이름입니다.";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
+	@RequestMapping("/productNameDuplicationCheck.json")
+	public @ResponseBody Map<String, Object> productNameDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		ProductDto dto = productDao.selectProduct(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 상품 이름입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 상품 이름입니다.";
 		}
 		
 		return YmUtil.gerResponseRetMap(result, msg);

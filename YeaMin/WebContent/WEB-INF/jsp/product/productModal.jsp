@@ -45,7 +45,6 @@
 				$("#product_order_by").bindNumber({
 					min: 1,
 					onChange: function(){
-						trace(orderby[0]);
 						var change = this;
 						var bool = false;
 						for(var i=0;i<orderby.length;i++){
@@ -57,11 +56,43 @@
 						if(bool){
 							$("#productOrderByCheckRetMsg").show();
 			        		$("#productOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
+			        		$("#insertBtn").attr("disabled",true);
+			        		$("#updateBtn").attr("disabled",true);
 						}else{
 							$("#productOrderByCheckRetMsg").hide();
+							$("#insertBtn").attr("disabled",false);
+			        		$("#updateBtn").attr("disabled",false);
 						}
 					}
 				});
+				
+				$("#product_name").bind("keyup", function(event) {
+					if($("#product_name").val() != ''){
+						var data = $("#form").serialize();
+			        	
+			        	$.ajax({
+					        url: "/YeaMin/productNameDuplicationCheck.json",
+					        type: "post",
+					        data: "product_name=" + $("#product_name").val(),
+					        success: function(data) {
+								var ret = JSON.parse(data);
+					        	
+					        	if(ret.result === "ok") {
+					        		$("#productNameDuplicationCheckRetMsg").hide();
+					        		$("#insertBtn").attr("disabled",false);
+					        		$("#updateBtn").attr("disabled",false);
+					        	} else if(ret.result === "error") {
+					        		$("#productNameDuplicationCheckRetMsg").show();
+					        		$("#productNameDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+					        		$("#insertBtn").attr("disabled",true);
+					        		$("#updateBtn").attr("disabled",true);
+					        	}
+					        }
+					    });
+					}
+				});
+				
+				$("#product_price").bindPattern({pattern: "numberint"});
 				
 				fnObj.upload.bind();
 				if(form.product_img_origin_path.value){
@@ -244,7 +275,7 @@
 		                                        <span class="th" style="min-width:100px;">카테고리 이름</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<%-- <input type="text" name="product_category_name" class="AXInput W150" id="product_category_name" value="${dto.product_category_name}" /> --%>
-		                                        	<select name="product_category_no">
+		                                        	<select name="product_category_no" class="AXSelect W160">
 		                                        		<c:forEach var="category" items="${productCategoryList}">
 			                                        		<option value="${category.product_category_no}">${category.product_category_name}</option>
 			                                        	</c:forEach>
@@ -260,7 +291,8 @@
 		                                    <label class="item-lable" for="product_name">
 		                                        <span class="th" style="min-width:100px;">상품 이름</span>
 		                                        <span class="td inputText" style="" title="">
-													<input type="tel" id="product_name" name="product_name" value="${dto.product_name}" class="AXInput W50" />
+													<input type="tel" id="product_name" name="product_name" value="${dto.product_name}" class="AXInput W150" />
+		                                        	<span id="productNameDuplicationCheckRetMsg" class="ret-msg"></span>
 		                                        </span>
 		                                    </label>
 		                                </div>
@@ -330,10 +362,10 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                	<c:if test="${modalType eq 'INSERT'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
+		                		 <button id="insertBtn" type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+		                		 <button id="updateBtn" type="button" class="AXButton" onclick="fnObj.update()">수정</button>
 		                	</c:if>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>
