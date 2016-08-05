@@ -1,7 +1,6 @@
 package com.yeamin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.ReservationDao;
 import com.yeamin.dao.StatsDao;
-import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.ReservationCapacityDto;
 import com.yeamin.dto.ReservationDto;
 import com.yeamin.dto.ReservationProductDto;
-import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
 
 @Controller
@@ -193,11 +190,13 @@ public class ReservationController {
 		String result = "";
 		String msg = "";
 		
+		YmUtil.setPagingInfo(paramMap);
 		List<ReservationDto> list = reservationDao.selectReservationList(paramMap);
+		Integer totCnt = reservationDao.selectReservationListCnt(paramMap);
 		
 		result = "ok";
 		
-		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+		return YmUtil.getSelectListResult(result, msg, paramMap, list, totCnt);
 	}
 	
 	@RequestMapping("/insertReservation.json")

@@ -18,6 +18,7 @@ public class QueryConstants {
 	public final static String QID_SELECT_RESERVATION_NO_SEQ = "reservation.QID_SELECT_RESERVATION_NO_SEQ";
 	
 	public final static String QID_SELECT_RESERVATION_LIST = "reservation.QID_SELECT_RESERVATION_LIST";
+	public final static String QID_SELECT_RESERVATION_LIST_CNT = "reservation.QID_SELECT_RESERVATION_LIST_CNT";
 	public final static String QID_SELECT_RESERVATION = "reservation.QID_SELECT_RESERVATION";
 	public final static String QID_INSERT_RESERVATION = "reservation.QID_INSERT_RESERVATION";
 	public final static String QID_UPDATE_RESERVATION = "reservation.QID_UPDATE_RESERVATION";

@@ -73,6 +73,8 @@
             this.grid.bind();
             this.modal.bind();
             this.bindEvent();
+            
+            fnObj.search.submit();
         },
         bindEvent: function(){
             // 검색
@@ -146,7 +148,7 @@
                     },
                     rows: [
                         {display:true, addClass:"gray", style:"", list:[
-                            {label:"예약 일자", labelWidth:"", type:"inputText", width:"90", key:"reservation_time_start", addClass:"secondItem", valueBoxStyle:"", value:"",
+                            {label:"예약 일자", labelWidth:"130", type:"inputText", width:"90", key:"reservation_time_start", addClass:"secondItem", valueBoxStyle:"", value:"",
                                 onChange: function(){}
                             },
                             {label:"", labelWidth:"", type:"inputText", width:"90", key:"reservation_time_end", addClass:"secondItem", valueBoxStyle:"padding-left:0px;", value:"",
@@ -161,7 +163,7 @@
                             }
                         ]},
                         {display:true, addClass:"", style:"", list:[
-						    {label:"예약자", labelWidth:"", type:"inputText", width:"150", key:"user_name", addClass:"", valueBoxStyle:"", value:"",
+						    {label:"예약자", labelWidth:"130", type:"inputText", width:"150", key:"user_name", addClass:"secondItem", valueBoxStyle:"", value:"",
 								AXBind:{
 									type:"selector", config:{
 										appendable:true,
@@ -186,15 +188,13 @@
             	var searchTarget = fnObj.search.target;
             	var gridTarget = fnObj.grid.target;
             	
-            	// trace(searchTarget.getParam());
-            	
             	gridTarget.setList({
 				    ajaxUrl: "selectReservationList.json",
 				    ajaxPars: searchTarget.getParam(),
 				    onLoad: function(){
 				        // trace(this);
 				    }
-				});
+				}, false, "", "paging");
             }
         },
         grid: {
@@ -230,7 +230,8 @@
                         }
                     },
                     page: {
-                        paging: false
+                        paging: true,
+                        pageNo: 1
                     }
                 });
             }

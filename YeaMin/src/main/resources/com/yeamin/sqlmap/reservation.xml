@@ -85,6 +85,7 @@
 	</delete>
 	
 	<select id="QID_SELECT_RESERVATION_LIST" resultType="ReservationDto">
+		<include refid="common.PAGE_HEADER"/>
 		SELECT
 			r.*,
 			u.user_name,
@@ -106,23 +107,39 @@
 			ym_reservation r,
 			ym_user u
 		<where>
-			r.user_no = u.user_no
-			<if test="reservation_time_start != null and reservation_time_start != ''">
-				AND r.reservation_time &gt;= TO_DATE(#{reservation_time_start}, 'yyyy/mm/dd hh24:mi:ss')
-			</if>
-			<if test="reservation_time_end != null and reservation_time_end != ''">
-				AND r.reservation_time &lt;= TO_DATE(#{reservation_time_end}, 'yyyy/mm/dd hh24:mi:ss')
-			</if>
-			<if test="user_name != null and user_name != ''">
-				AND u.user_name LIKE '%'||#{user_name}||'%'
-			</if>
-			<if test="user_no != null and user_no != ''">
-				AND u.user_no = #{user_no}
-			</if>
+			<include refid="QID_SELECT_RESERVATION_LIST_CONDITION"/>
 		</where>
 		ORDER BY
     		reservation_time DESC
+    	<include refid="common.PAGE_FOOTER"/>
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_LIST_CNT" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			ym_reservation r,
+			ym_user u
+		<where>
+			<include refid="QID_SELECT_RESERVATION_LIST_CONDITION"/>
+		</where>
+	</select>
+	
+	<sql id="QID_SELECT_RESERVATION_LIST_CONDITION">
+		r.user_no = u.user_no
+		<if test="reservation_time_start != null and reservation_time_start != ''">
+			AND r.reservation_time &gt;= TO_DATE(#{reservation_time_start}, 'yyyy/mm/dd hh24:mi:ss')
+		</if>
+		<if test="reservation_time_end != null and reservation_time_end != ''">
+			AND r.reservation_time &lt;= TO_DATE(#{reservation_time_end}, 'yyyy/mm/dd hh24:mi:ss')
+		</if>
+		<if test="user_name != null and user_name != ''">
+			AND u.user_name LIKE '%'||#{user_name}||'%'
+		</if>
+		<if test="user_no != null and user_no != ''">
+			AND u.user_no = #{user_no}
+		</if>
+	</sql>
 	
 	<select id="QID_SELECT_RESERVATION" resultType="ReservationDto">
 		SELECT
