@@ -6,7 +6,7 @@
 			ym_board
 		VALUES
 			(
-			board_seq.nextval,
+			ym_board_no_seq.nextval,
 			#{board_title},
 			#{board_content},
 			0,
@@ -20,7 +20,7 @@
 	
 	<select id="QID_INSERT_BOARD_MAXREF" resultType="Integer">
 		SELECT
-			max(board_re_ref) AS refcnt
+			nvl(max(board_re_ref), 0) AS refcnt
 		FROM
 			ym_board
 		WHERE
@@ -29,7 +29,7 @@
 	
 	<select id="QID_INSERT_BOARD_NOTICE_MAXREF" resultType="Integer">
 		SELECT
-			max(board_re_ref) AS refcnt
+			nvl(max(board_re_ref), 0) AS refcnt
 		FROM
 			ym_board		
 	</select>
@@ -130,7 +130,7 @@
 			ym_board
 		VALUES
 			(
-			board_seq.nextval,
+			ym_board_no_seq.nextval,
 			#{board_title},
 			#{board_content},
 			0,

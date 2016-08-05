@@ -176,8 +176,25 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
+		                                    <label class="item-lable" for="user_name">
+		                                        <span class="th" style="min-width:100px;">작성자</span>
+		                                        <span class="td inputText" style="" title="">
+		                                        <c:if test="${modalType eq 'INSERT' or modalType eq 'REPLY'}">
+		                                        	${user.user_name}
+							                	</c:if>
+							                	<c:if test="${modalType eq 'UPDATE'}">
+							                		${dto.user_name}
+							                	</c:if>
+		                                        </span>
+		                                    </label>
+		                                </div>
+		                                <div class="item-clear"></div>
+		                                <div class="group-clear"></div>
+		                            </div>
+		                            <div class="item-group" style="">
+		                                <div class="item fullWidth">
 		                                    <label class="item-lable" for="board_title">
-		                                        <span class="th" style="min-width:100px;">제목</span>
+		                                        <span class="th" style="min-width:100px;">글 제목</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT' or modalType eq 'REPLY'}">
 		                                        		<input type="text" id="board_title" name="board_title" class="AXInput W200" value="${dto.board_title}" />
@@ -195,24 +212,7 @@
 		                            </div>
 		                            <div class="item-group" style="">
 		                                <div class="item">
-		                                    <label class="item-lable" for="user_name">
-		                                        <span class="th" style="min-width:100px;">작성자</span>
-		                                        <span class="td inputText" style="" title="">
-		                                        <c:if test="${modalType eq 'INSERT' or modalType eq 'REPLY'}">
-							                		 <input type="text" id="user_name" name="user_name" value="${user.user_name}" class="AXInput W70" readonly/>
-							                	</c:if>
-							                	<c:if test="${modalType eq 'UPDATE'}">
-							                		 <input type="text" id="user_name" name="user_name" value="${dto.user_name}" class="AXInput W70" readonly/>
-							                	</c:if>
-		                                        </span>
-		                                    </label>
-		                                </div>
-		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
-		                            </div>		                           
-		                            <div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable" for="user_name">
+		                                    <label class="item-lable" for="board_content">
 		                                        <span class="th" style="min-width:100px;">글 내용</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT' or modalType eq 'REPLY'}">
