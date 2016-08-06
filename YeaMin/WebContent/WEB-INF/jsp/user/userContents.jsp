@@ -69,6 +69,8 @@
             this.grid.bind();
             this.modal.bind();
             this.bindEvent();
+            
+            fnObj.search.submit();
         },
         bindEvent: function(){
             // 검색
@@ -212,7 +214,7 @@
 				    onLoad: function(){
 				        // trace(this);
 				    }
-				});
+            	}, false, "", "paging");
             }
         },
         grid: {
@@ -246,7 +248,8 @@
                         }
                     },
                     page: {
-                        paging: false
+                        paging: true,
+                        pageNo: 1
                     }
                 });
             }

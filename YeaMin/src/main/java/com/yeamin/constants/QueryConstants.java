@@ -3,6 +3,7 @@ package com.yeamin.constants;
 public class QueryConstants {
 	
 	public final static String QID_SELECT_USER_LIST = "user.QID_SELECT_USER_LIST";
+	public final static String QID_SELECT_USER_LIST_CNT = "user.QID_SELECT_USER_LIST_CNT";
 	public final static String QID_SELECT_USER = "user.QID_SELECT_USER";
 	public final static String QID_INSERT_USER = "user.QID_INSERT_USER";
 	public final static String QID_UPDATE_USER = "user.QID_UPDATE_USER";

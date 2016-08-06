@@ -29,7 +29,12 @@ public class UserDaoImpl implements UserDao {
 	public List<UserDto> selectUserList(Map<String, Object> paramMap) {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_USER_LIST, paramMap);
 	}
-
+	
+	@Override
+	public Integer selectUserListCnt(Map<String, Object> paramMap) {
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_USER_LIST_CNT, paramMap);
+	}
+	
 	@Override
 	public UserDto selectUser(Map<String, Object> paramMap) {
 		return sqlSession.selectOne(QueryConstants.QID_SELECT_USER, paramMap);

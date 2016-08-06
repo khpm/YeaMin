@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
+	<!--
+		회원 관리 - 조회
+	-->
 	<select id="QID_SELECT_USER_LIST" resultType="UserDto">
+		<include refid="common.PAGE_HEADER"/>
 		SELECT
 			user_no,
 			user_id,
@@ -15,28 +19,51 @@
 		FROM
 			ym_user
 		<where>
-			<if test="user_id != null and user_id != ''">
-				AND user_id LIKE '%'||#{user_id}||'%'
-			</if>
-			<if test="user_name != null and user_name != ''">
-				AND user_name LIKE '%'||#{user_name}||'%'
-			</if>
-			<if test="user_email != null and user_email != ''">
-				AND user_email LIKE '%'||#{user_email}||'%'
-			</if>
-			<if test="user_hp != null and user_hp != ''">
-				AND user_hp LIKE '%'||#{user_hp}||'%'
-			</if>
-			<if test="user_birth_day != null and user_birth_day != ''">
-				AND user_birth_day = TO_DATE(#{user_birth_day})
-			</if>
-			<if test="user_gender != null and user_gender != 'all'">
-				AND user_gender = #{user_gender}
-			</if>
-			AND is_admin = 'N'
+			<include refid="QID_SELECT_USER_LIST_CONDITION"/>
+		</where>
+		ORDER BY
+			user_name ASC
+		<include refid="common.PAGE_FOOTER"/>
+	</select>
+	
+	<!--
+		회원 관리 - 조회 개수
+	-->
+	<select id="QID_SELECT_USER_LIST_CNT" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			ym_user
+		<where>
+			<include refid="QID_SELECT_USER_LIST_CONDITION"/>
 		</where>
 	</select>
-
+	
+	<!--
+		회원 관리 - 조회 조건
+	-->
+	<sql id="QID_SELECT_USER_LIST_CONDITION">
+		is_admin = 'N'
+		<if test="user_id != null and user_id != ''">
+			AND user_id LIKE '%'||#{user_id}||'%'
+		</if>
+		<if test="user_name != null and user_name != ''">
+			AND user_name LIKE '%'||#{user_name}||'%'
+		</if>
+		<if test="user_email != null and user_email != ''">
+			AND user_email LIKE '%'||#{user_email}||'%'
+		</if>
+		<if test="user_hp != null and user_hp != ''">
+			AND user_hp LIKE '%'||#{user_hp}||'%'
+		</if>
+		<if test="user_birth_day != null and user_birth_day != ''">
+			AND user_birth_day = TO_DATE(#{user_birth_day})
+		</if>
+		<if test="user_gender != null and user_gender != 'all'">
+			AND user_gender = #{user_gender}
+		</if>
+	</sql>
+	
 	<select id="QID_SELECT_USER" resultType="UserDto">
 		SELECT
 			user_no,

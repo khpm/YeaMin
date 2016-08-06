@@ -9,6 +9,8 @@ public interface UserDao {
 	
 	public List<UserDto> selectUserList(Map<String, Object> paramMap);
 	
+	public Integer selectUserListCnt(Map<String, Object> paramMap);
+	
 	public UserDto selectUser(Map<String, Object> paramMap);
 	
 	public Integer insertUser(Map<String, Object> paramMap);

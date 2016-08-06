@@ -19,10 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yeamin.constants.AppConstants;
 import com.yeamin.dao.UserDao;
+import com.yeamin.dto.ProductCategoryDto;
 import com.yeamin.dto.UserDto;
 import com.yeamin.util.YmUtil;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 public class UserController {
@@ -128,18 +127,21 @@ public class UserController {
 	}
 	
 	@RequestMapping("/selectUserList.json")
-	public @ResponseBody Map<String, Object> selectUserList(@RequestParam Map<String, Object> paramMap) throws UnsupportedEncodingException {
+	public @ResponseBody Map<String,Object> selectUserList(@RequestParam Map<String, Object> paramMap) throws UnsupportedEncodingException {
+		paramMap.put("user_name", URLDecoder.decode((String) paramMap.get("user_name"), "UTF-8"));
+		
 		String result = "";
 		String msg = "";
 		
-		paramMap.put("user_name", URLDecoder.decode((String) paramMap.get("user_name"), "UTF-8"));
-		
+		YmUtil.setPagingInfo(paramMap);
 		List<UserDto> list = userDao.selectUserList(paramMap);
+		Integer totCnt = userDao.selectUserListCnt(paramMap);
 		
 		result = "ok";
 		
-		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
+		return YmUtil.getSelectListResult(result, msg, paramMap, list, totCnt);
 	}
+	
 	
 	@RequestMapping("/insertUser.json")
 	public @ResponseBody Map<String, Object> insertUser(@RequestParam Map<String, Object> paramMap) {
