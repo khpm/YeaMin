@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
+	<!--
+		가게 관리 - 조회
+	-->
 	<select id="QID_SELECT_STORE" resultType="StoreDto">
 		SELECT
 			store_name,
@@ -13,18 +16,25 @@
 			ym_store
 	</select>
 	
+	<!--
+		가게 관리 - 등록
+	-->
 	<insert id="QID_INSERT_STORE">
 		INSERT INTO
 			ym_store
-		VALUES (#{store_name},
-				#{store_tel},
-				#{store_addr},
-				#{store_desc},
-				#{store_week_business_time},
-				#{store_weekend_business_time}
-				)
+		VALUES (
+			#{store_name},
+			#{store_tel},
+			#{store_addr},
+			#{store_desc},
+			#{store_week_business_time},
+			#{store_weekend_business_time}
+		)
 	</insert>
 	
+	<!--
+		가게 관리 - 수정
+	-->
 	<update id="QID_UPDATE_STORE">
 		UPDATE
 			ym_store
@@ -37,15 +47,9 @@
 			store_weekend_business_time = #{store_weekend_business_time}
 	</update>
 	
-	<insert id="QID_INSERT_STORE_IMG">
-		INSERT INTO
-			ym_store_img
-		VALUES(
-			#{store_img_system_path},
-			#{store_img_origin_path}
-			)
-	</insert>
-	
+	<!--
+		가게 관리 - 이미지 조회
+	-->
 	<select id="QID_SELECT_STORE_IMG" resultType="StoreImgDto">
 		SELECT
 			store_img_system_path,
@@ -54,6 +58,21 @@
 			ym_store_img
 	</select>
 	
+	<!--
+		가게 관리 - 이미지 등록
+	-->
+	<insert id="QID_INSERT_STORE_IMG">
+		INSERT INTO
+			ym_store_img
+		VALUES (
+			#{store_img_system_path},
+			#{store_img_origin_path}
+		)
+	</insert>
+	
+	<!--
+		가게 관리 - 이미지 삭제
+	-->
 	<delete id="QID_DELETE_STORE_IMG">
 		DELETE
 		FROM

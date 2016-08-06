@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
+	<!--
+		예약 관리 - 예약 수용력 관리 - 리스트 조회
+	-->
 	<select id="QID_SELECT_RESERVATION_CAPACITY_LIST" resultType="ReservationCapacityDto">
 		<include refid="common.PAGE_HEADER"/>
 		SELECT
@@ -19,6 +22,9 @@
     	<include refid="common.PAGE_FOOTER"/>
 	</select>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 리스트 조회 개수
+	-->
 	<select id="QID_SELECT_RESERVATION_CAPACITY_LIST_CNT" resultType="Integer">
 		SELECT
 			COUNT(*)
@@ -29,12 +35,18 @@
 		</where>
 	</select>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 리스트 조회 조건
+	-->
 	<sql id="QID_SELECT_RESERVATION_CAPACITY_LIST_CONDITION">
 		<if test="reservation_capacity_dw != 'all'">
 			AND reservation_capacity_dw = #{reservation_capacity_dw}
 		</if>
 	</sql>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 조회
+	-->
 	<select id="QID_SELECT_RESERVATION_CAPACITY" resultType="ReservationCapacityDto">
 		SELECT
 			reservation_capacity_no,
@@ -53,6 +65,9 @@
 		</where>
 	</select>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 등록
+	-->
 	<insert id="QID_INSERT_RESERVATION_CAPACITY">
 		INSERT INTO ym_reservation_capacity (
 			reservation_capacity_no,
@@ -67,6 +82,9 @@
 		)
 	</insert>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 수정
+	-->
 	<update id="QID_UPDATE_RESERVATION_CAPACITY">
 		UPDATE ym_reservation_capacity
 		SET
@@ -77,6 +95,9 @@
 			reservation_capacity_no = #{reservation_capacity_no}
 	</update>
 	
+	<!--
+		예약 관리 - 예약 수용력 관리 - 삭제
+	-->
 	<delete id="QID_DELETE_RESERVATION_CAPACITY">
 		DELETE
 			ym_reservation_capacity
@@ -84,6 +105,20 @@
 			reservation_capacity_no = #{reservation_capacity_no}
 	</delete>
 	
+	<!--
+		예약 번호 SEQ 조회
+	-->
+	<select id="QID_SELECT_RESERVATION_NO_SEQ" resultType="Integer">
+		SELECT
+			ym_reservation_no_seq.nextval
+		FROM
+			dual
+	</select>
+	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 리스트 조회
+		마이페이지 - 예약 이력 및 현황 - 리스트 조회
+	-->
 	<select id="QID_SELECT_RESERVATION_LIST" resultType="ReservationDto">
 		<include refid="common.PAGE_HEADER"/>
 		SELECT
@@ -114,6 +149,10 @@
     	<include refid="common.PAGE_FOOTER"/>
 	</select>
 	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 리스트 조회 개수
+		마이페이지 - 예약 이력 및 현황 - 리스트 조회 개수
+	-->
 	<select id="QID_SELECT_RESERVATION_LIST_CNT" resultType="Integer">
 		SELECT
 			COUNT(*)
@@ -125,6 +164,10 @@
 		</where>
 	</select>
 	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 리스트 조회 조건
+		마이페이지 - 예약 이력 및 현황 - 리스트 조회 조건
+	-->
 	<sql id="QID_SELECT_RESERVATION_LIST_CONDITION">
 		r.user_no = u.user_no
 		<if test="reservation_time_start != null and reservation_time_start != ''">
@@ -141,6 +184,10 @@
 		</if>
 	</sql>
 	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 조회
+		마이페이지 - 예약 이력 및 현황 - 조회
+	-->
 	<select id="QID_SELECT_RESERVATION" resultType="ReservationDto">
 		SELECT
 			r.*,
@@ -167,13 +214,10 @@
 			and reservation_no = #{reservation_no}
 	</select>
 	
-	<select id="QID_SELECT_RESERVATION_NO_SEQ" resultType="Integer">
-		SELECT
-			ym_reservation_no_seq.nextval
-		FROM
-			dual
-	</select>
-	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 등록
+		마이페이지 - 예약 이력 및 현황 - 등록
+	-->
 	<insert id="QID_INSERT_RESERVATION">
 		INSERT INTO ym_reservation (
 			reservation_no,
@@ -190,6 +234,10 @@
 		)
 	</insert>
 	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 수정
+		마이페이지 - 예약 이력 및 현황 - 수정
+	-->
 	<update id="QID_UPDATE_RESERVATION">
 		UPDATE ym_reservation
 		SET
@@ -200,6 +248,10 @@
 			reservation_no = #{reservation_no}
 	</update>
 	
+	<!--
+		예약 관리 - 예약 이력 및 현황 - 삭제
+		마이페이지 - 예약 이력 및 현황 - 삭제
+	-->
 	<delete id="QID_DELETE_RESERVATION">
 		DELETE
 			ym_reservation
@@ -207,18 +259,9 @@
 			reservation_no = #{reservation_no}
 	</delete>
 	
-	<insert id="QID_INSERT_RESERVATION_PRODUCT">
-		INSERT INTO ym_reservation_product (
-			reservation_no,
-			product_no,
-			product_cnt
-		) VALUES (
-			#{reservation_no},
-			#{product_no},
-			#{product_cnt}
-		)
-	</insert>
-	
+	<!--
+		예약 상품 - 리스트 조회
+	-->
 	<select id="QID_SELECT_RESERVATION_PRODUCT_LIST" resultType="ReservationProductDto">
 		SELECT
 			r.reservation_no,
@@ -243,9 +286,24 @@
 			p.product_order_by ASC
 	</select>
 	
+	<!--
+		예약 상품 - 등록
+	-->
+	<insert id="QID_INSERT_RESERVATION_PRODUCT">
+		INSERT INTO ym_reservation_product (
+			reservation_no,
+			product_no,
+			product_cnt
+		) VALUES (
+			#{reservation_no},
+			#{product_no},
+			#{product_cnt}
+		)
+	</insert>
+	
 	<select id="QID_SELECT_RESERVATION_PEOPLE" resultType="ReservationDto">
 		SELECT
-			to_char(reservation_time,'YYYY-MM-DD HH:MI') AS reservation_time_format,
+			TO_CHAR(reservation_time,'YYYY-MM-DD HH:MI') AS reservation_time_format,
 			reservation_people
 		FROM
 			ym_reservation

@@ -16,14 +16,13 @@ public class QueryConstants {
 	public final static String QID_UPDATE_RESERVATION_CAPACITY = "reservation.QID_UPDATE_RESERVATION_CAPACITY";
 	public final static String QID_DELETE_RESERVATION_CAPACITY = "reservation.QID_DELETE_RESERVATION_CAPACITY";
 	
-	public final static String QID_SELECT_RESERVATION_NO_SEQ = "reservation.QID_SELECT_RESERVATION_NO_SEQ";
-	
 	public final static String QID_SELECT_RESERVATION_LIST = "reservation.QID_SELECT_RESERVATION_LIST";
 	public final static String QID_SELECT_RESERVATION_LIST_CNT = "reservation.QID_SELECT_RESERVATION_LIST_CNT";
 	public final static String QID_SELECT_RESERVATION = "reservation.QID_SELECT_RESERVATION";
 	public final static String QID_INSERT_RESERVATION = "reservation.QID_INSERT_RESERVATION";
 	public final static String QID_UPDATE_RESERVATION = "reservation.QID_UPDATE_RESERVATION";
 	public final static String QID_DELETE_RESERVATION = "reservation.QID_DELETE_RESERVATION";
+	public final static String QID_SELECT_RESERVATION_NO_SEQ = "reservation.QID_SELECT_RESERVATION_NO_SEQ";
 	public final static String QID_SELECT_RESERVATION_PEOPLE = "reservation.QID_SELECT_RESERVATION_PEOPLE";
 	
 	public final static String QID_SELECT_RESERVATION_PRODUCT_LIST = "reservation.QID_SELECT_RESERVATION_PRODUCT_LIST";
@@ -31,24 +30,23 @@ public class QueryConstants {
 	
 	public final static String QID_SELECT_PRODUCT_CATEGORY_LIST = "product.QID_SELECT_PRODUCT_CATEGORY_LIST";
 	public final static String QID_SELECT_PRODUCT_CATEGORY_LIST_CNT = "product.QID_SELECT_PRODUCT_CATEGORY_LIST_CNT";
+	public final static String QID_SELECT_PRODUCT_CATEGORY = "product.QID_SELECT_PRODUCT_CATEGORY";
 	public final static String QID_DELETE_PRODUCT_CATEGORY = "product.QID_DELETE_PRODUCT_CATEGORY";
-	public final static String QID_DELETE_PRODUCT_CATEGORY_MODEL = "product.QID_DELETE_PRODUCT_CATEGORY_MODEL";
 	public final static String QID_INSERT_PRODUCT_CATEGORY = "product.QID_INSERT_PRODUCT_CATEGORY";
 	public final static String QID_UPDATE_PRODUCT_CATEGORY = "product.QID_UPDATE_PRODUCT_CATEGORY";
 	
 	public final static String QID_SELECT_PRODUCT_LIST = "product.QID_SELECT_PRODUCT_LIST";
 	public final static String QID_SELECT_PRODUCT_LIST_CNT = "product.QID_SELECT_PRODUCT_LIST_CNT";
-	public final static String QID_SELECT_PRODUCT_MODEL = "product.QID_SELECT_PRODUCT_MODEL";
+	public final static String QID_SELECT_PRODUCT = "product.QID_SELECT_PRODUCT";
 	public final static String QID_INSERT_PRODUCT = "product.QID_INSERT_PRODUCT";
 	public final static String QID_UPDATE_PRODUCT = "product.QID_UPDATE_PRODUCT";
 	public final static String QID_DELETE_PRODUCT = "product.QID_DELETE_PRODUCT";
-	public final static String QID_SELECT_PRODUCT_MAIN = "product.QID_SELECT_PRODUCT_MAIN";
 	
 	public final static String QID_SELECT_STORE = "store.QID_SELECT_STORE";
 	public final static String QID_INSERT_STORE = "store.QID_INSERT_STORE";
 	public final static String QID_UPDATE_STORE = "store.QID_UPDATE_STORE";
-	public final static String QID_INSERT_STORE_IMG = "store.QID_INSERT_STORE_IMG";
 	public final static String QID_SELECT_STORE_IMG = "store.QID_SELECT_STORE_IMG";
+	public final static String QID_INSERT_STORE_IMG = "store.QID_INSERT_STORE_IMG";
 	public final static String QID_DELETE_STORE_IMG = "store.QID_DELETE_STORE_IMG";
 	
 	public final static String QID_INSERT_BOARD = "board.QID_INSERT_BOARD";
@@ -64,13 +62,12 @@ public class QueryConstants {
 	public final static String QID_INSERT_BOARD_REPLY = "board.QID_INSERT_BOARD_REPLY";
 	public final static String QID_SELETE_BOARD_DELETE_CHECK = "board.QID_SELETE_BOARD_DELETE_CHECK";
 	
-	
-	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
-	public final static String QID_INSERT_REVIEW = "review.QID_INSERT_REVIEW";
 	public final static String QID_SELECT_REVIEW_LIST = "review.QID_SELECT_REVIEW_LIST";
+	public final static String QID_SELETE_REVIEW = "review.QID_SELETE_REVIEW";
+	public final static String QID_INSERT_REVIEW = "review.QID_INSERT_REVIEW";
 	public final static String QID_UPDATE_REVIEW = "review.QID_UPDATE_REVIEW";
 	public final static String QID_DELETE_REVIEW = "review.QID_DELETE_REVIEW";
-	public final static String QID_SELETE_REVIEW_ONE = "review.QID_SELETE_REVIEW_ONE";
+	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
 	public final static String QID_INSERT_REVIEW_ANSWER = "review.QID_INSERT_REVIEW_ANSWER";
 	
 	public final static String QID_SELECT_REVIEW_CNT = "stats.QID_SELECT_REVIEW_CNT";

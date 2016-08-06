@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	<!--
-		회원 관리 - 조회
+		회원 관리 - 리스트 조회
 	-->
 	<select id="QID_SELECT_USER_LIST" resultType="UserDto">
 		<include refid="common.PAGE_HEADER"/>
@@ -27,7 +27,7 @@
 	</select>
 	
 	<!--
-		회원 관리 - 조회 개수
+		회원 관리 - 리스트 조회 개수
 	-->
 	<select id="QID_SELECT_USER_LIST_CNT" resultType="Integer">
 		SELECT
@@ -40,7 +40,7 @@
 	</select>
 	
 	<!--
-		회원 관리 - 조회 조건
+		회원 관리 - 리스트 조회 조건
 	-->
 	<sql id="QID_SELECT_USER_LIST_CONDITION">
 		is_admin = 'N'
@@ -64,6 +64,9 @@
 		</if>
 	</sql>
 	
+	<!--
+		회원 관리 - 조회
+	-->
 	<select id="QID_SELECT_USER" resultType="UserDto">
 		SELECT
 			user_no,
@@ -87,6 +90,9 @@
 		</where>
 	</select>
 	
+	<!--
+		회원 관리 - 등록
+	-->
 	<insert id="QID_INSERT_USER">
 		INSERT INTO ym_user (
 			user_no,
@@ -98,7 +104,7 @@
 			user_birth_day,
 			user_gender,
 			is_admin
-		) VALUES(
+		) VALUES (
 			ym_user_no_seq.nextval,
 			#{user_id},
 			#{user_pw},
@@ -111,8 +117,12 @@
 		)
 	</insert>
 
+	<!--
+		회원 관리 - 수정
+	-->
 	<update id="QID_UPDATE_USER">
-		UPDATE ym_user
+		UPDATE
+			ym_user
 		SET
 			user_id = #{user_id},
 			user_pw = #{user_pw},
@@ -126,6 +136,9 @@
 			user_no = #{user_no}
 	</update>
 	
+	<!--
+		회원 관리 - 삭제
+	-->
 	<delete id="QID_DELETE_USER">
 		DELETE
 			ym_user

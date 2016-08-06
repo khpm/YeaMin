@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-	
-	<select id="QID_SELECT_REVIEW_MAXREF" resultType="String">
-		SELECT
-			max(review_re_ref)
-		FROM
-			ym_review
-	</select>
-	
-	<insert id="QID_INSERT_REVIEW">
-		INSERT INTO
-			ym_review
-		VALUES(
-			ym_review_no_seq.nextval,
-			#{review_content},
-			sysdate,
-			#{review_re_ref},
-			0,
-			0,
-			#{user_no}
-		)
-	</insert>
-	
+	<!--
+		리뷰 - 조회 리스트
+	-->
 	<select id="QID_SELECT_REVIEW_LIST" resultType="ReviewDto">
 		SELECT
 			r.review_no,
@@ -44,24 +25,10 @@
 			review_re_step asc
 	</select>
 	
-	<update id="QID_UPDATE_REVIEW">
-		UPDATE
-			ym_review
-		SET
-			review_content = #{review_content}
-		WHERE
-			review_no = #{review_no}
-	</update>
-	
-	<delete id="QID_DELETE_REVIEW">
-		DELETE
-		FROM
-			ym_review
-		WHERE
-			review_no = #{review_no}
-	</delete>
-	
-	<select id="QID_SELETE_REVIEW_ONE" resultType="ReviewDto">
+	<!--
+		리뷰 - 조회
+	-->
+	<select id="QID_SELETE_REVIEW" resultType="ReviewDto">
 		SELECT
 			review_no,
 			review_content,
@@ -76,10 +43,57 @@
 			review_no = #{review_no}			
 	</select>
 	
+	<!--
+		리뷰 - 등록
+	-->
+	<insert id="QID_INSERT_REVIEW">
+		INSERT INTO
+			ym_review
+		VALUES (
+			ym_review_no_seq.nextval,
+			#{review_content},
+			sysdate,
+			#{review_re_ref},
+			0,
+			0,
+			#{user_no}
+		)
+	</insert>
+	
+	<!--
+		리뷰 - 수정
+	-->
+	<update id="QID_UPDATE_REVIEW">
+		UPDATE
+			ym_review
+		SET
+			review_content = #{review_content}
+		WHERE
+			review_no = #{review_no}
+	</update>
+	
+	<!--
+		리뷰 - 삭제
+	-->
+	<delete id="QID_DELETE_REVIEW">
+		DELETE
+		FROM
+			ym_review
+		WHERE
+			review_no = #{review_no}
+	</delete>
+	
+	<select id="QID_SELECT_REVIEW_MAXREF" resultType="String">
+		SELECT
+			max(review_re_ref)
+		FROM
+			ym_review
+	</select>
+	
 	<insert id="QID_INSERT_REVIEW_ANSWER">
 		INSERT INTO
 			ym_review
-		VALUES(
+		VALUES (
 			ym_review_no_seq.nextval,
 			#{review_content},
 			sysdate,

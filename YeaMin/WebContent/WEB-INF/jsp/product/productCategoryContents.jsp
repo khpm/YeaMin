@@ -126,7 +126,7 @@
 					data[fnObj.primaryKey] = selectedItem.item[fnObj.primaryKey];
 					
 					$.ajax({
-				        url: "/YeaMin/deleteproductCategoryList.json",
+				        url: "/YeaMin/deleteProductCategory.json",
 				        type: "post",
 				        data: data,
 				        success: function(data) {

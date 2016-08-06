@@ -37,19 +37,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public Integer deleteproductCategoryList(Map<String,Object> paramMap) {
-		Integer result=sqlSession.delete(QueryConstants.QID_DELETE_PRODUCT_CATEGORY, paramMap);
-		if(result==0){
-			System.out.println("삭제 실패");
-		}else{
-			System.out.println("삭제 성공");
-		}
-		return result;
-	}
-	
-	@Override
 	public ProductCategoryDto selectProductCategory(Map<String, Object> paramMap) {
-		return sqlSession.selectOne(QueryConstants.QID_DELETE_PRODUCT_CATEGORY_MODEL,paramMap);
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_PRODUCT_CATEGORY,paramMap);
 	}
 	
 	@Override
@@ -73,6 +62,17 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
+	public Integer deleteProductCategory(Map<String,Object> paramMap) {
+		Integer result=sqlSession.delete(QueryConstants.QID_DELETE_PRODUCT_CATEGORY, paramMap);
+		if(result==0){
+			System.out.println("삭제 실패");
+		}else{
+			System.out.println("삭제 성공");
+		}
+		return result;
+	}
+	
+	@Override
 	public List<ProductDto> selectProductList(Map<String,Object> paramMap){
 		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_LIST, paramMap);
 	}
@@ -84,7 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public ProductDto selectProduct(Map<String, Object> paramMap){
-		return sqlSession.selectOne(QueryConstants.QID_SELECT_PRODUCT_MODEL,paramMap);
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_PRODUCT,paramMap);
 	}
 	
 	@Override
@@ -120,8 +120,4 @@ public class ProductDaoImpl implements ProductDao {
 		return result;
 	}
 	
-	@Override
-	public List<ProductDto> selectProductMain(Map<String,Object> paramMap){
-		return sqlSession.selectList(QueryConstants.QID_SELECT_PRODUCT_MAIN, paramMap);
-	}
 }

@@ -89,9 +89,9 @@ public class ProductController {
 	}
 	
 	//상품 카테고리 삭제
-	@RequestMapping("/deleteproductCategoryList.json")
-	public @ResponseBody Map<String,Object> deleteproductCategoryList(@RequestParam Map<String, Object> paramMap){
-		Integer sqlResult = productDao.deleteproductCategoryList(paramMap);
+	@RequestMapping("/deleteProductCategory.json")
+	public @ResponseBody Map<String,Object> deleteProductCategory(@RequestParam Map<String, Object> paramMap){
+		Integer sqlResult = productDao.deleteProductCategory(paramMap);
 		
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("result", "ok");

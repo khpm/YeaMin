@@ -76,7 +76,7 @@ public class ReviewController {
 	
 	@RequestMapping("/insertReviewAnswerInputForm.json")
 	public @ResponseBody Map<String, Object> insertReviewAnswerInputForm(@RequestParam Map<String, Object> paramMap) {
-		ReviewDto dto = reviewDao.selectReviewOne(paramMap);
+		ReviewDto dto = reviewDao.selectReview(paramMap);
 		if(dto != null){
 			int review_re_ref = dto.getReview_re_ref();
 			

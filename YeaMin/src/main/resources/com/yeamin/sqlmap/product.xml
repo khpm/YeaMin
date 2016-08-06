@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
-
-<!-- 상품 카테고리 정보 -->
-
 	<!--
-		가게 관리 - 상품 카테고리 정보 관리 - 조회
+		가게 관리 - 상품 카테고리 정보 관리 - 리스트 조회
 	-->
 	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST" resultType="ProductCategoryDto">
 		<include refid="common.PAGE_HEADER"/>
@@ -30,7 +27,7 @@
 	</select>
 	
 	<!--
-		가게 관리 - 상품 카테고리 정보 관리 - 조회 개수
+		가게 관리 - 상품 카테고리 정보 관리 - 리스트 조회 개수
 	-->
 	<select id="QID_SELECT_PRODUCT_CATEGORY_LIST_CNT" resultType="Integer">
 		SELECT
@@ -43,7 +40,7 @@
 	</select>
 	
 	<!--
-		가게 관리 - 상품 카테고리 정보 관리 - 조회 조건
+		가게 관리 - 상품 카테고리 정보 관리 - 리스트 조회 조건
 	-->
 	<sql id="QID_SELECT_PRODUCT_CATEGORY_LIST_CONDITION">
 		<if test="product_category_name != null and product_category_name != ''">
@@ -54,8 +51,10 @@
 		</if>
 	</sql>
 	
-	<!-- 상품 카테고리 MODEL 등록 -->
-	<select id="QID_DELETE_PRODUCT_CATEGORY_MODEL" resultType="ProductCategoryDto">
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 조회
+	-->
+	<select id="QID_SELECT_PRODUCT_CATEGORY" resultType="ProductCategoryDto">
 		SELECT
 			*
 		FROM
@@ -70,18 +69,22 @@
 		</where>
 	</select>
 	
-	<!-- 상품 카테고리 등록 -->
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 등록
+	-->
 	<insert id="QID_INSERT_PRODUCT_CATEGORY">
 		INSERT INTO
 			ym_product_category
-		VALUES(
+		VALUES (
 			ym_product_category_no_seq.nextval,
 			#{product_category_name},
 			#{product_category_order_by}
-			)
+		)
 	</insert>
 	
-	<!-- 상품 카테고리 수정 -->
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 수정
+	-->
 	<update id="QID_UPDATE_PRODUCT_CATEGORY">
 		UPDATE
 			YM_PRODUCT_CATEGORY
@@ -92,7 +95,9 @@
 			product_category_no = #{product_category_no}
 	</update>
 	
-	<!-- 상품 카테고리 삭제 -->
+	<!--
+		가게 관리 - 상품 카테고리 정보 관리 - 삭제
+	-->
 	<delete id="QID_DELETE_PRODUCT_CATEGORY">
 		DELETE
 		FROM
@@ -101,11 +106,8 @@
 			product_category_no = #{product_category_no}
 	</delete>
 	
-
-<!-- 상품 정보 -->
-	
 	<!--
-		가게 관리 - 상품 정보 관리 - 조회
+		가게 관리 - 상품 정보 관리 - 리스트 조회
 	-->
 	<select id="QID_SELECT_PRODUCT_LIST" resultType="ProductDto">
 		<include refid="common.PAGE_HEADER"/>
@@ -132,7 +134,7 @@
 	</select>
 	
 	<!--
-		가게 관리 - 상품 정보 관리 - 조회 개수
+		가게 관리 - 상품 정보 관리 - 리스트 조회 개수
 	-->
 	<select id="QID_SELECT_PRODUCT_LIST_CNT" resultType="Integer">
 		SELECT
@@ -146,7 +148,7 @@
 	</select>
 	
 	<!--
-		가게 관리 - 상품 정보 관리 - 조회 조건
+		가게 관리 - 상품 정보 관리 - 리스트 조회 조건
 	-->
 	<sql id="QID_SELECT_PRODUCT_LIST_CONDITION">
 		p.product_category_no = pc.product_category_no
@@ -158,21 +160,10 @@
 		</if>
 	</sql>
 	
-	<!-- 메인에서 메뉴판(카테고리NO)을 통해 상품 조회 -->
-	<select id="QID_SELECT_PRODUCT_MAIN" resultType="ProductDto">
-		SELECT
-			*
-		FROM
-			ym_product
-		<where>
-			<if test="product_category_no != '' and product_category_no != null">
-				AND product_category_no = #{product_category_no}
-			</if>
-		</where>
-	</select>
-	
-	<!-- Modal 수정시 해당 로우를 불러오기 -->
-	<select id="QID_SELECT_PRODUCT_MODEL" resultType="ProductDto">
+	<!--
+		가게 관리 - 상품 정보 관리 - 조회
+	-->
+	<select id="QID_SELECT_PRODUCT" resultType="ProductDto">
 		SELECT
 			*
 		FROM
@@ -187,7 +178,9 @@
 		</where>
 	</select>
 	
-	<!-- 상품 정보 등록 -->
+	<!--
+		가게 관리 - 상품 정보 관리 - 등록
+	-->
 	<insert id="QID_INSERT_PRODUCT">
 		INSERT INTO
 			ym_product
@@ -203,7 +196,9 @@
 		)
 	</insert>
 	
-	<!-- 상품 정보 수정 -->
+	<!--
+		가게 관리 - 상품 정보 관리 - 수정
+	-->
 	<update id="QID_UPDATE_PRODUCT">
 		UPDATE 
 			ym_product
@@ -219,7 +214,9 @@
 			product_no = #{product_no}
 	</update>
 	
-	<!-- 상품 정보 삭제 -->
+	<!--
+		가게 관리 - 상품 정보 관리 - 삭제
+	-->
 	<delete id="QID_DELETE_PRODUCT">
 		DELETE
 		FROM

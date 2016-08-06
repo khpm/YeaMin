@@ -26,18 +26,18 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public Integer insertReview(Map<String, Object> paramMap){
-		return sqlSession.insert(QueryConstants.QID_INSERT_REVIEW, paramMap);
-	}
-	
-	@Override
-	public String selectReviewMaxRef(){
-		return sqlSession.selectOne(QueryConstants.QID_SELECT_REVIEW_MAXREF);
-	}
-	
-	@Override
 	public List<ReviewDto> selectReviewList(){
 		return sqlSession.selectList(QueryConstants.QID_SELECT_REVIEW_LIST);
+	}
+	
+	@Override
+	public ReviewDto selectReview(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELETE_REVIEW, paramMap);
+	}
+	
+	@Override
+	public Integer insertReview(Map<String, Object> paramMap){
+		return sqlSession.insert(QueryConstants.QID_INSERT_REVIEW, paramMap);
 	}
 	
 	@Override
@@ -51,8 +51,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public ReviewDto selectReviewOne(Map<String, Object> paramMap){
-		return sqlSession.selectOne(QueryConstants.QID_SELETE_REVIEW_ONE, paramMap);
+	public String selectReviewMaxRef(){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_REVIEW_MAXREF);
 	}
 	
 	@Override

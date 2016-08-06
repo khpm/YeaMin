@@ -26,7 +26,6 @@ public class StoreDaoImpl implements StoreDao {
 		
 	}
 	
-	
 	@Override
 	public StoreDto selectStore(){
 		return sqlSession.selectOne(QueryConstants.QID_SELECT_STORE);
@@ -43,13 +42,13 @@ public class StoreDaoImpl implements StoreDao {
 	}
 	
 	@Override
-	public Integer insertStoreImg(Map<String, Object> paramMap){
-		return sqlSession.insert(QueryConstants.QID_INSERT_STORE_IMG, paramMap);
+	public List<StoreImgDto> selectStoreImg(Map<String, Object> paramMap){
+		return sqlSession.selectList(QueryConstants.QID_SELECT_STORE_IMG, paramMap);
 	}
 	
 	@Override
-	public List<StoreImgDto> selectStoreImg(Map<String, Object> paramMap){
-		return sqlSession.selectList(QueryConstants.QID_SELECT_STORE_IMG, paramMap);
+	public Integer insertStoreImg(Map<String, Object> paramMap){
+		return sqlSession.insert(QueryConstants.QID_INSERT_STORE_IMG, paramMap);
 	}
 	
 	@Override
