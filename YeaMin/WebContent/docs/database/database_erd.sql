@@ -76,7 +76,7 @@ CREATE TABLE YM_PRODUCT
 	-- 상품 설명
 	PRODUCT_DESC varchar2(1000) NOT NULL,
 	-- 상품 이미지 경로 ( 원본 )
-	PRODUCT_IMG_ORIGIN_PATH varchar2(20) NOT NULL,
+	PRODUCT_IMG_ORIGIN_PATH varchar2(254) NOT NULL,
 	-- 상품 이미지 경로 ( 시스템 )
 	PRODUCT_IMG_SYSTEM_PATH varchar2(20) NOT NULL UNIQUE,
 	-- 상품 정렬 순서
