@@ -39,6 +39,7 @@
 		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 	    
 		<script type="text/javascript">
+		var authNum = 0;
 		var fnObj = {
 			pageStart: function(){
 				// 아이디
@@ -113,6 +114,38 @@
 			        }
 			    });
 	        },
+	        sendAuthNum: function() {
+	        	var data = $("#form").serialize();
+	        	
+	        	$.ajax({
+			        url: "/YeaMin/mailService.json",
+			        type: "post",
+			        data: data,
+			        success: function(data) {
+						var ret = JSON.parse(data);
+			        	
+			        	if(ret.result === "ok") {
+			        		authNum = ret.authNumber;
+			        		$("#sendAuthBtn").hide();
+			        		$("#confirmAuthBtn").show();
+			        	} else if(ret.result === "error") {
+
+			        	}
+			        }
+			    });
+	        },
+	        checkAuthNum: function() {
+	        	if(authNum == $("#authNum").val()){
+	        		dialog.push("인증완료");
+	        		$("#user_email").attr("readonly",true);
+	        		$("#authNum").attr("readonly",true);
+	        		$("#authNumCheckRetMsg").html("인증이 완료되었습니다.");
+	        		$("#confirmAuthBtn").hide();
+	        		$("#userInsertBtn").attr("disabled", false);
+	        	}else{
+	        		dialog.push("인증번호가 틀립니다");
+	        	}
+	        },
 	        close: function() {
 	        	parent.userInsertModal.close();
 	        }
@@ -176,12 +209,17 @@
 		                                <div class="group-clear"></div>
 		                            </div>
 		                            <div class="item-group" style="">
-		                                <div class="item fullWidth">
+		                                <div class="item">
 		                                    <label class="item-lable" for="user_email">
 		                                        <span class="th" style="min-width:130px;">이메일</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="" class="AXInput av-required av-email" />
-		                                        </span>
+		                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="" class="AXInput av-required av-email W300"/>
+		                                            <br/>
+		                                        	<input type="text" id="authNum" name="authNum" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                        	<input id="sendAuthBtn" type="button" class="AXButton" value="인증번호발송" onclick="fnObj.sendAuthNum()">
+		                                        	<input id="confirmAuthBtn" type="button" class="AXButton" value="인증하기" onclick="fnObj.checkAuthNum()" style="display: none;">
+		                                        	<span id="authNumCheckRetMsg" class="ret-msg"></span>
+		                                        </span>		                                     
 		                                    </label>
 		                                </div>
 		                                <div class="item-clear"></div>
@@ -237,7 +275,7 @@
 		        <div class="ax-wrap">
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
-		                    <button type="button" id="userInsertBtn" class="AXButton" onclick="fnObj.userInsert();">회원가입</button>
+		                    <button type="button" id="userInsertBtn" class="AXButton" onclick="fnObj.userInsert();" disabled>회원가입</button>
 		                    <button type="button" class="AXButton" onclick="fnObj.close();">취소</button>
 		                </div>
 		            </div>

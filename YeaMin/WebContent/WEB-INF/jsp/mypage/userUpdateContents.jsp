@@ -78,6 +78,11 @@
 			                                        <span class="th" style="min-width:100px;">이메일</span>
 			                                        <span class="td inputText" style="" title="">
 			                                            <input type="text" id="user_email" name="user_email" title="" placeholder="" value="${user.user_email}" class="AXInput av-required av-email W400" />
+			                                            <br/>
+		                                        		<input type="text" id="authNum" name="authNum" title="" placeholder="" value="" class="AXInput av-required W150" />
+		                                        		<input id="sendAuthBtn" type="button" class="AXButton" value="인증번호발송" onclick="fnObj.sendAuthNum()" disabled>
+		                                        		<input id="confirmAuthBtn" type="button" class="AXButton" value="인증하기" onclick="fnObj.checkAuthNum()" style="display: none;">
+		                                        		<span id="authNumCheckRetMsg" class="ret-msg"></span>
 			                                        </span>
 			                                        <span id="userEmailDuplicationCheckRetMsg" class="ret-msg"></span>
 			                                    </label>
@@ -136,7 +141,7 @@
 		        <div class="ax-wrap">
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
-		                    <button type="button" class="AXButton" onclick="fnObj.userUpdate();">수정</button>
+		                    <button type="button" id="updateBtn" class="AXButton" onclick="fnObj.userUpdate();">수정</button>
 		                </div>
 		            </div>
 		            <div class="ax-clear"></div>
@@ -155,6 +160,7 @@
 <script type="text/javascript">
 	var fnObj = {
 		pageStart: function(){
+			var currentEmail = form.user_email.value;
 			// 아이디
 			$("#user_id").bind("keyup", function(event) {
 				//var data = $("#form").serialize();
@@ -194,6 +200,14 @@
 				}else{
 					$("#userEmailDuplicationCheckRetMsg").show();
 					$("#userEmailDuplicationCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "이메일 형식에 맞지 않습니다.");
+				}
+				
+				if(currentEmail != form.user_email.value){
+					$("#updateBtn").attr("disabled", true);
+					$("#sendAuthBtn").attr("disabled", false);
+				}else{
+					$("#updateBtn").attr("disabled", false);
+					$("#sendAuthBtn").attr("disabled", true);
 				}
 	        	
 			});
@@ -250,6 +264,40 @@
 		        	}
 		        }
 		    });
+        },
+        sendAuthNum: function() {
+        	var data = $("#form").serialize();
+        	
+        	$.ajax({
+		        url: "/YeaMin/mailService.json",
+		        type: "post",
+		        data: data,
+		        success: function(data) {
+					var ret = JSON.parse(data);
+		        	
+		        	if(ret.result === "ok") {
+		        		authNum = ret.authNumber;
+		        		$("#sendAuthBtn").hide();
+		        		$("#confirmAuthBtn").show();
+		        	} else if(ret.result === "error") {
+
+		        	}
+		        }
+		    });
+        },
+        checkAuthNum: function() {
+        	if(authNum == $("#authNum").val()){
+        		dialog.push("인증완료");
+        		$("#user_email").attr("readonly",true);
+        		$("#authNum").attr("readonly",true);
+        		$("#authNumCheckRetMsg").show();
+        		$("#authNumCheckRetMsg").html("인증이 완료되었습니다.");
+        		$("#confirmAuthBtn").hide();
+        		$("#userInsertBtn").attr("disabled", false);
+        		$("#updateBtn").attr("disabled", false);
+        	}else{
+        		dialog.push("인증번호가 틀립니다");
+        	}
         },
         close: function() {
         	
