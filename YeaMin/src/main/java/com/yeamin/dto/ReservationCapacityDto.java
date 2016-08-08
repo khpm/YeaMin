@@ -10,6 +10,8 @@ public class ReservationCapacityDto {
 	
 	private Integer reservation_capacity_people;
 	
+	private Integer reservation_remaining_people;
+	
 	public ReservationCapacityDto() {
 		
 	}
@@ -45,5 +47,14 @@ public class ReservationCapacityDto {
 	public void setReservation_capacity_people(Integer reservation_capacity_people) {
 		this.reservation_capacity_people = reservation_capacity_people;
 	}
+
+	public Integer getReservation_remaining_people() {
+		return reservation_remaining_people;
+	}
+
+	public void setReservation_remaining_people(Integer reservation_remaining_people) {
+		this.reservation_remaining_people = reservation_remaining_people;
+	}
+	
 	
 }

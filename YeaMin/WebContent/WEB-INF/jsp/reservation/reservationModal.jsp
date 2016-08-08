@@ -40,6 +40,8 @@
 		<script type="text/javascript" src="/YeaMin/js/yeamin.js"></script>
 	    
 		<script type="text/javascript">
+		var reservation_remaining_people = 0;	//잔여 인원
+		
 		var fnObj = {
 			pageStart: function() {
 				reservation_date.bind();
@@ -74,7 +76,13 @@
 				$("#reservation_people").bindNumber({
 					min: 1,
 					onChange: function(){
-						// trace(this);
+						if(reservation_remaining_people < this.value){
+							$("#reservationInsertBtn").attr("disabled", true);
+							$("#reservationUpdateBtn").attr("disabled", true);
+						}else{
+							$("#reservationInsertBtn").attr("disabled", false);
+							$("#reservationUpdateBtn").attr("disabled", false);
+						}
 					}
 				});
 			},
@@ -173,28 +181,20 @@
 		            setValue: $("#reservation_time_format").val(),
 		            onChange: function(){
 	                    if(this.value != ""){
-			            	var reservation_capacity_time = this.value;	//현재 지정한 시간
-			            	var reservation_capacity_people = this.optionData;	//현재 지정한 날짜 전체 인원
-			            	var reservation_date = $("#reservation_date").val(); // 현재 지정한 날짜
-			            	var selectedDate = reservation_date + " " + reservation_capacity_time;
-			            	
+			            	var reservation_capacity_time = this.value;	//선택된 시간 (HH:MI형식)
+							var reservation_date = $("#reservation_date").val() +" "+reservation_capacity_time;
+			            	 
 			            	$.ajax({
 						        url: "/YeaMin/selectReservationPeople.json",
 						        type: "post",
-						        data: null,
+						        data: "reservation_capacity_time=" + reservation_capacity_time + "&reservation_capacity_dw=" + reservation_capacity_dw + "&reservation_date=" + reservation_date,
 						        success: function(data) {
 									var ret = JSON.parse(data);
 									
-						        	if(ret.result === "ok") {
-						        		var reservationPeople = 0;	// 해당 날짜에 예약된 인원 수
-						        		for(var i=0;i<ret.list.length;i++){
-						        			var item = ret.list[i];
-						        			if(selectedDate == item.reservation_time_format){
-						        				reservationPeople += item.reservation_people;
-						        			}
-						        		}
+						        	if(ret.result === "ok") {		        							        		
 						        		$("#reservationPeopleCheckRetMsg").show();
-						        		$("#reservationPeopleCheckRetMsg").html("잔여 인원 : "+ (reservation_capacity_people - reservationPeople) +" / 총 인원 : "+reservation_capacity_people);
+						        		$("#reservationPeopleCheckRetMsg").html("잔여 인원 : "+ ret.list[0].reservation_remaining_people +" / 총 인원 : "+ret.list[0].reservation_capacity_people);
+						        		reservation_remaining_people = ret.list[0].reservation_remaining_people;
 						        	}
 						        }
 						    });
@@ -359,10 +359,10 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                	<c:if test="${modalType eq 'INSERT'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
+		                		 <button id="reservationInsertBtn" type="button" class="AXButton" onclick="fnObj.insert()">등록</button>
 		                	</c:if>
 		                	<c:if test="${modalType eq 'UPDATE'}">
-		                		 <button type="button" class="AXButton" onclick="fnObj.update()">수정</button>
+		                		 <button id="reservationUpdateBtn" type="button" class="AXButton" onclick="fnObj.update()">수정</button>
 		                	</c:if>
 		                    <button type="button" class="AXButton" onclick="fnObj.close()">닫기</button>
 		                </div>

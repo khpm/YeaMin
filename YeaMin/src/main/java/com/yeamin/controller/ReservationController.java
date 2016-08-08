@@ -270,7 +270,7 @@ public class ReservationController {
 		String result = "";
 		String msg = "";
 		
-		List<ReservationDto> list = reservationDao.selectReservationPeople(paramMap);
+		List<ReservationCapacityDto> list = reservationDao.selectReservationPeople(paramMap);
 		
 		result = "ok";
 		

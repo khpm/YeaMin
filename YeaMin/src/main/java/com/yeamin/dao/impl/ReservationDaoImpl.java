@@ -103,7 +103,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 	
 	@Override
-	public List<ReservationDto> selectReservationPeople(Map<String, Object> paramMap){
+	public List<ReservationCapacityDto> selectReservationPeople(Map<String, Object> paramMap){
 		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_PEOPLE, paramMap);
 	}
 	

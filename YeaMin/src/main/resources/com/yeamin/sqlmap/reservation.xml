@@ -304,11 +304,23 @@
 		)
 	</insert>
 	
-	<select id="QID_SELECT_RESERVATION_PEOPLE" resultType="ReservationDto">
+	<select id="QID_SELECT_RESERVATION_PEOPLE" resultType="ReservationCapacityDto">
 		SELECT
-			TO_CHAR(reservation_time,'YYYY-MM-DD HH:MI') AS reservation_time_format,
-			reservation_people
+			reservation_capacity_no,
+			reservation_capacity_dw,
+			reservation_capacity_time,
+			reservation_capacity_people,
+			reservation_capacity_people
+		  	- (SELECT
+		      		nvl(sum(reservation_people),0)
+		   	   FROM
+		      		ym_reservation
+		       WHERE
+		      		to_char(reservation_time ,'YYYY-MM-DD HH:MI')= #{reservation_date}
+		     ) AS reservation_remaining_people
 		FROM
-			ym_reservation
+		  ym_reservation_capacity
+		WHERE
+		  reservation_capacity_dw= #{reservation_capacity_dw} AND reservation_capacity_time= #{reservation_capacity_time}
 	</select>
 </mapper>
