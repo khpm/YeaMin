@@ -67,7 +67,7 @@
 							            <!-- 가게 지도 END -->
 							            
 							            <!-- 가게 정보 START -->
-							            <div class="ax-rwd-table" style="width: 50%; height:500px; display: inline-block;">
+							            <div class="ax-rwd-table" style="width: 50%; height:auto; display: inline-block;">
 								            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
 				                                    <label class="item-lable">
@@ -136,7 +136,7 @@
 				                            <div class="item-group" style="font-size: 16px;">
 				                                <div class="item">
 				                                    <label class="item-lable">
-				                                        <span class="th">가게 소개</span>
+				                                        <span class="th" style="height: 294px;">가게 소개</span>
 				                                        <span class="td inputText" style="" title="">		                                        
 				                                            <label>
 				                                            	${dto.store_desc}
@@ -146,10 +146,11 @@
 				                                </div>
 				                                <div class="item-clear"></div>
 				                                <div class="group-clear"></div>
-				                            </div>	                            
+				                            </div>
 			                            </div>
 			                            <!-- 가게 정보 END -->
 									</div>
+									<div style="clear: both;"></div>
 									<!-- 가게 지도와 가게 정보 END -->
 									
 									<!-- 통계 START -->
