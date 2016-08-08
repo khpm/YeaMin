@@ -45,24 +45,25 @@
 				$("#product_order_by").bindNumber({
 					min: 1,
 					onChange: function(){
-						var change = this;
-						var bool = false;
-						for(var i=0;i<orderby.length;i++){
-							if(change.value == orderby[i]){
-								bool = true;
-								break;
-							}
-						}
-						if(bool){
-							$("#productOrderByCheckRetMsg").show();
-			        		$("#productOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
-			        		$("#insertBtn").attr("disabled",true);
-			        		$("#updateBtn").attr("disabled",true);
-						}else{
-							$("#productOrderByCheckRetMsg").hide();
-							$("#insertBtn").attr("disabled",false);
-			        		$("#updateBtn").attr("disabled",false);
-						}
+						$.ajax({
+			        		url: "/YeaMin/productOrderByDuplicationCheck.json",
+					        type: "post",
+					        data: "product_order_by="+$("#product_order_by").val(),
+					        success: function(data) {
+								var ret = JSON.parse(data);
+								
+								if(ret.result === "ok") {
+			        				$("#productOrderByCheckRetMsg").hide();
+					        		$("#insertBtn").attr("disabled",false);
+					        		$("#updateBtn").attr("disabled",false);
+					        	} else {
+					        		$("#productOrderByCheckRetMsg").show();
+					        		$("#productOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+			        				$("#insertBtn").attr("disabled",true);
+					        		$("#updateBtn").attr("disabled",true);
+					        	}
+					        }
+					    });
 					}
 				});
 				

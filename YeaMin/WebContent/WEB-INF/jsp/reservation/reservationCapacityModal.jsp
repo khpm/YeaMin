@@ -51,13 +51,16 @@
 				
 				$("#reservation_capacity_time").keyup(function() {
 					if($("#reservation_capacity_time").val().length == 5){
+						var reservation_capacity_dw = $("#reservation_capacity_dw option:selected").val();
+						var reservation_capacity_time = $("#reservation_capacity_time").val();
+
 						$.ajax({
 					        url: "/YeaMin/selectReservationCapacity.json",
 					        type: "post",
-					        data: "reservation_capacity_time=" + $("#reservation_capacity_time").val(),
+					        data: "reservation_capacity_time=" + reservation_capacity_time + "&reservation_capacity_dw=" + reservation_capacity_dw,
 					        success: function(data) {
 								var ret = JSON.parse(data);
-								
+
 								if(ret.result === "ok") {
 					        		$("#reservationCapacityTimeCheckRetMsg").hide();
 					        		$("#insertBtn").attr("disabled",false);
@@ -79,19 +82,19 @@
 	        	
 	        	var data = $("#form").serialize();
 	        	
-	        	$.ajax({
-			        url: "/YeaMin/insertReservationCapacity.json",
-			        type: "post",
-			        data: data,
-			        success: function(data) {
-						var ret = JSON.parse(data);
+ 	        	$.ajax({
+ 			        url: "/YeaMin/insertReservationCapacity.json",
+ 			        type: "post",
+ 			        data: data,
+ 			        success: function(data) {
+ 						var ret = JSON.parse(data);
 			        	
-			        	if(ret.result === "ok") {
-			        		parent.fnObj.search.submit();
-			        		fnObj.close();
-			        	}
-			        }
-			    });
+ 			        	if(ret.result === "ok") {
+ 			        		parent.fnObj.search.submit();
+ 			        		fnObj.close();
+ 			        	}
+ 			        }
+ 			    });
 	        },
 	        update: function() {
 	        	if(emptyRequiredValueCheck()) return;
@@ -162,7 +165,7 @@
 		                                    <label class="item-lable">
 		                                        <span class="th" style="min-width:130px;">예약 수용 요일</span>
 		                                        <span class="td inputText" style="" title="">
-		                                            <select name="reservation_capacity_dw" class="AXSelect W160">
+		                                            <select id="reservation_capacity_dw" name="reservation_capacity_dw" class="AXSelect W160">
 														<option ${(dto.reservation_capacity_dw eq 'D') ? 'selected' : ''} value="D">평일</option>
 														<option ${(dto.reservation_capacity_dw eq 'W') ? 'selected' : ''} value="W">주말</option>
 		                                            </select>

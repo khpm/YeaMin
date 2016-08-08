@@ -62,6 +62,9 @@
 			<if test="reservation_capacity_time != null and reservation_capacity_time != ''">
 				AND reservation_capacity_time = #{reservation_capacity_time}
 			</if>
+			<if test="reservation_capacity_dw != null and reservation_capacity_dw != ''">
+				AND reservation_capacity_dw = #{reservation_capacity_dw}
+			</if>
 		</where>
 	</select>
 	

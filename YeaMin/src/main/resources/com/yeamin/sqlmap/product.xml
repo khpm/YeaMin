@@ -66,6 +66,9 @@
 			<if test="product_category_name != null and product_category_name != ''">
 				AND product_category_name = #{product_category_name}
 			</if>
+			<if test="product_category_order_by != null and product_category_order_by != ''">
+				AND product_category_order_by = #{product_category_order_by}
+			</if>
 		</where>
 	</select>
 	
@@ -174,6 +177,9 @@
 			</if>
 			<if test="product_name != null and product_name != ''">
 				AND product_name = #{product_name}
+			</if>
+			<if test="product_order_by != null and product_order_by != ''">
+				AND product_order_by = #{product_order_by}
 			</if>
 		</where>
 	</select>

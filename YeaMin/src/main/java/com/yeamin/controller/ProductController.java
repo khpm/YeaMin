@@ -183,6 +183,42 @@ public class ProductController {
 		return ret;
 	}
 	
+	@RequestMapping("/productCategoryOrderByDuplicationCheck.json")
+	public @ResponseBody Map<String, Object> productCategoryOrderByDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		ProductCategoryDto dto = productDao.selectProductCategory(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 상품 카테고리 순서입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 상품 카테고리 순서입니다.";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+
+	@RequestMapping("/productOrderByDuplicationCheck.json")
+	public @ResponseBody Map<String, Object> productOrderByDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		ProductDto dto = productDao.selectProduct(paramMap);
+		
+		if(dto == null) {
+			result = "ok";
+			msg = "사용 가능한 상품 순서입니다.";
+		} else {
+			result = "error";
+			msg = "중복된 상품 순서입니다.";
+		}
+		
+		return YmUtil.gerResponseRetMap(result, msg);
+	}
+	
 	@RequestMapping("/productCategoryNameDuplicationCheck.json")
 	public @ResponseBody Map<String, Object> productCategoryNameDuplicationCheck(@RequestParam Map<String, Object> paramMap) {
 		String result = "";

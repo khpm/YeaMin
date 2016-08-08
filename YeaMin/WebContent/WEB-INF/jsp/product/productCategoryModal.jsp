@@ -45,27 +45,21 @@
 					min: 1,
 					onChange: function(){
 						$.ajax({
-			        		url: "/YeaMin/selectProductCategoryList.json",
+			        		url: "/YeaMin/productCategoryOrderByDuplicationCheck.json",
 					        type: "post",
-					        data: "",
+					        data: "product_category_order_by="+$("#product_category_order_by").val(),
 					        success: function(data) {
 								var ret = JSON.parse(data);
-								var value = form.product_category_order_by.value;
 								
 								if(ret.result === "ok") {
-					        		for(var i = 0; i<ret.list.length; i++){
-					        			if(value == ret.list[i].product_category_order_by){
-					        				$("#productCategoryOrderByCheckRetMsg").show();
-							        		$("#productCategoryOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + "해당 순서는 사용할 수 없습니다.");
-							        		$("#insertBtn").attr("disabled",true);
-							        		$("#updateBtn").attr("disabled",true);
-							        		break;
-					        			}else{
-					        				$("#productCategoryOrderByCheckRetMsg").hide();
-					        				$("#insertBtn").attr("disabled",false);
-							        		$("#updateBtn").attr("disabled",false);
-					        			}
-					        		}
+			        				$("#productCategoryOrderByCheckRetMsg").hide();
+					        		$("#insertBtn").attr("disabled",false);
+					        		$("#updateBtn").attr("disabled",false);
+					        	} else {
+					        		$("#productCategoryOrderByCheckRetMsg").show();
+					        		$("#productCategoryOrderByCheckRetMsg").html("<i class='axi axi-exclamation-triangle'></i> " + ret.msg);
+			        				$("#insertBtn").attr("disabled",true);
+					        		$("#updateBtn").attr("disabled",true);
 					        	}
 					        }
 					    });
