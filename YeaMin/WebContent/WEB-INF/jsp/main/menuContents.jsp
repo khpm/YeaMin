@@ -5,7 +5,7 @@
 <!-- 메뉴 예비 폼 -->
 <div style='float: none; display: none;'>
 	<div style='float: left;'>
-		<div class='ax-rwd-table' style='margin: 30px; border: 3px solid yellow; border-radius: 5px; border-style:outset;'>
+		<div class='ax-rwd-table' style='margin: 30px; border: 3px solid #EFEFEF; border-radius: 5px; border-style:outset;'>
 			<div class='item-group'>
              	<div class='item'>
              		<div class='item-lable'>
@@ -191,7 +191,7 @@
 			        					$("#product_category_no_"+item.product_category_no).html()
 			        					+"<div style='float: none;'>"
 										+	"<div style='float: left;'>"
-										+		"<div class='ax-rwd-table' style='margin: 30px; border: 3px solid yellow; border-radius: 5px; border-style:outset;'>"
+										+		"<div class='ax-rwd-table' style='margin: 30px; border: 3px solid #EFEFEF; border-radius: 5px; border-style:outset;'>"
 										+			"<div class='item-group'>"
 										+             	"<div class='item'>"
 										+             		"<div class='item-lable'>"
