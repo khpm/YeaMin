@@ -193,7 +193,7 @@
 	<c:if test="${startPage + reviewSize < allPage}">
 		<a href="#" onclick="reviewFnObj.changeView(${startPage + reviewSize})">▷</a>
 	</c:if>
-	<c:if test="${pageNo ne allPage}">
+	<c:if test="${pageNo ne allPage and allPage ne 0}">
 		<a href="#" onclick="reviewFnObj.changeView(${allPage})">▶</a>
 	</c:if>
 
