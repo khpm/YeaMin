@@ -56,7 +56,9 @@
 		    	WHERE
 		    		user_no = u.user_no) AS reservation_cnt
 		  	FROM
-		    	ym_user u)
+		    	ym_user u
+		    WHERE
+		    	u.is_admin = 'N')
 		GROUP BY
 			user_age_group
 		ORDER BY

@@ -21,7 +21,7 @@
 							<div class="ax-unit">
 								<div class="ax-box">
 									<!-- 게시판 출력 부분 -->							
-									<div id="AXGridTarget" style="margin:5px; height:400px;"></div>
+									<div id="AXGridTarget" style="margin:5px; height:375px;"></div>
 									<!-- 게시판 출력 부분 -->	
 								</div>
 							</div>
@@ -74,7 +74,7 @@
       	},
       	boardSearch: function() {		
       		var data = $("#searchForm").serialize();
-      		
+
       		fnObj.boardList.target.setData(
    				fnObj.boardList.target.setList({
            			ajaxUrl: "selectBoardList.json",
@@ -166,7 +166,7 @@
       	                 pageNo:1,
       	                 onchange: function(pageNo) {
       	                	var data = $("#searchForm").serialize();
-      	                	console.log(pageNo);
+
      	                	 fnObj.boardList.target.setData(
      	          				fnObj.boardList.target.setList({
      	                 			ajaxUrl: "selectBoardList.json",

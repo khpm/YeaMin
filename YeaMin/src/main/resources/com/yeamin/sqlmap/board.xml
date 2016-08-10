@@ -44,7 +44,7 @@
 			AND user_name LIKE '%'||#{searchMsg}||'%'
 		</if>
 		<if test="searchType == '제목+내용'">
-			AND board_title LIKE '%'||#{searchMsg}||'%' AND AND board_content LIKE '%'||#{searchMsg}||'%'
+			AND board_title LIKE '%'||#{searchMsg}||'%' AND board_content LIKE '%'||#{searchMsg}||'%'
 		</if>
 	</sql>
 	
@@ -71,8 +71,10 @@
 		SELECT
 			count(*)
 		FROM
-			ym_board
+			ym_board b,
+			ym_user u
 		<where>
+			b.user_no = u.user_no
 			<include refid="SELECT_BOARD_LIST_CONDITION"/>
 		</where>
 	</select>

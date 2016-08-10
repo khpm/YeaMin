@@ -106,7 +106,7 @@
 											<!-- 통계 검색 조건 -->
 											<form id="ageGroupReservationCntSearchForm" onsubmit="return false;">
 												<div style="display: inline-block; float: right;">
-													<button type="button" class="AXButton" id="btn-search" onclick="fnObj.reviewCntChart3.search()">
+													<button type="button" class="AXButton" id="btn-search" onclick="fnObj.ageGroupReservationCntChart.search()">
 														<i class="axi axi-search"></i> 검색
 													</button>
 												</div>
@@ -483,7 +483,8 @@
 							"bullet": "round",
 							"id": "AmGraph-1",
 							"title": "graph 1",
-							"valueField": "RESERVATION_SUM_PRICE"
+							"valueField": "RESERVATION_SUM_PRICE",
+							"lineColor": "#00D8FF"
 						}
 					],
 					"guides": [],
@@ -547,7 +548,8 @@
 							"bullet": "round",
 							"id": "AmGraph-1",
 							"title": "graph 1",
-							"valueField": "RESERVATION_CNT"
+							"valueField": "RESERVATION_CNT",
+							"lineColor": "#FFBB00"
 						}
 					],
 					"guides": [],

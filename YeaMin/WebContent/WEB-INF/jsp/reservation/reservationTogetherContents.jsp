@@ -23,15 +23,15 @@
 								<div class="ax-box">
 								
 									<div id="stepTab"></div>
-									<div id="calendar" class="reservationTogetherContent"></div>
+									<div id="calendar" class="reservationTogetherContent" style="width: 68%;"></div>
 									<div id="menu" class="reservationTogetherContent">
 										<jsp:include page="/WEB-INF/jsp/main/menuContents.jsp"/>
 									</div>
 									
-									<div style="height: 100%; width: 500px; float: left;">
+									<div style="height: 100%; width: 30%; float: left;">
 									
 										<!-- 그룹 영역 -->
-										<div id="reservationTogetherGroupController" class="grayBox" style="height: 90px;">
+										<div id="reservationTogetherGroupController" class="grayBox" style="height: 80px;">
 											<div class="ax-rwd-table" style="margin:5px;">
 												<div class="item-group">
 					                                <div class="item">
@@ -60,7 +60,7 @@
 										</div>
 									
 										<!-- 일정 영역 -->
-										<div id="scheduleController" class="grayBox" style="height: 190px;">
+										<div id="scheduleController" class="grayBox" style="height: 180px;">
 											<div class="ax-rwd-table" style="margin:5px;">
 												<div class="item-group">
 					                                <div class="item">
@@ -115,7 +115,7 @@
 										</div>
 										
 										<!-- 채팅 영역 -->
-										<div id="chat" class="grayBox" style="height: 340px;">
+										<div id="chat" class="grayBox" style="height: 280px;">
 											<textarea id="groupChatDisplayTa" style="width: 97%; height: 80%;" readonly="readonly"></textarea>
 											<div style="width: 100%; height: 17%;">
 												<textarea id="groupChatWriteTa" style="width: 72%; height: 97%; float: left; margin-right: 5px;" placeholder="채팅 내용을 입력하세요."></textarea>

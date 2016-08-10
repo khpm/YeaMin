@@ -20,19 +20,19 @@
 							<div class="ax-unit">
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
+									<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
 		                       		<div class="ax-rwd-table">
 									<div class="item-group" style="">
 		                                <div class="item">
 		                                    <label class="item-lable">
 		                                        <span class="td inputText" style="" title="">
-		                                        <input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
+		                                        
 		                                        </span>
 		                                    </label>		                 
 		                                </div>
 		                                <div class="item-clear"></div>
-		                                <div class="group-clear"></div>
 		                            </div>
-		                            <div style="font-size:20; text-align:center;"> [ ${user.user_name} ] 님 정말로 탈퇴 하시겠습니까? </div>		                            		                            		                            		                          	                            		                            
+		                            <div style="font-size:20px; text-align:center;"> [ ${user.user_name} ] 님 정말로 탈퇴 하시겠습니까? </div>		                            		                            		                            		                          	                            		                            
 		                        </div>
 		                        <!-- 결과 -->
 		                        <div id="result"></div>
