@@ -216,11 +216,11 @@
 		                                        <span class="th" style="min-width:130px;">글 내용</span>
 		                                        <span class="td inputText" style="" title="">
 		                                        	<c:if test="${user.user_name == dto.user_name or modalType eq 'INSERT' or modalType eq 'REPLY'}">
-		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;">${dto.board_content}</textarea>
+		                                        		<textarea id="board_content" name="board_content" class="AXInput W150" style="width:415px; height:130px;">${dto.board_content}</textarea>
 		                                        	</c:if>
 		                                        	<c:if test="${user.user_name != dto.user_name}">
 		                                        		<c:if test="${modalType eq 'UPDATE'}">
-		                                        			<textarea id="board_content" name="board_content" class="AXInput W150" style="width:450px; height:130px;" readonly>${dto.board_content}</textarea>
+		                                        			<textarea id="board_content" name="board_content" class="AXInput W150" style="width:415px; height:130px;" readonly>${dto.board_content}</textarea>
 		                                        		</c:if>
 		                                        	</c:if>
 		                                        </span>

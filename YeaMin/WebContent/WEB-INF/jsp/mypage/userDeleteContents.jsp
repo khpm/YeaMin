@@ -21,26 +21,26 @@
 								<div class="ax-box">							
 									<form id="form" method="get" onsubmit="return false;">
 									<input type="hidden" id="user_no" name="user_no" value="${user.user_no}"/>
-		                       		<div class="ax-rwd-table">
-									<div class="item-group" style="">
-		                                <div class="item">
-		                                    <label class="item-lable">
-		                                        <span class="td inputText" style="" title="">
-		                                        
-		                                        </span>
-		                                    </label>		                 
-		                                </div>
-		                                <div class="item-clear"></div>
-		                            </div>
-		                            <div style="font-size:20px; text-align:center;"> [ ${user.user_name} ] 님 정말로 탈퇴 하시겠습니까? </div>		                            		                            		                            		                          	                            		                            
-		                        </div>
-		                        <!-- 결과 -->
-		                        <div id="result"></div>
-		                    </form>
+			                       		<div class="ax-rwd-table" style="margin: 5px;">
+											<div class="item-group" style="">
+				                                <div class="item">
+				                                    <label class="item-lable">
+				                                        <span class="th" style="min-width:100px;">리뷰 수</span>
+					                                    <span class="td inputText" style="" title="">
+					                                    	<!-- 리뷰 수가 들어갈 자리 -->
+					                                    </span>					                                    
+				                                    </label>
+				                                </div>
+				                                <div class="item-clear"></div>
+				                                <div class="group-clear"></div>
+				                            </div>              		                            		                            		                            		                          	                            		                            
+			                        	</div>
+		                    		</form>
+		                    		<br/>
+		                    		<div style="font-size:20px; text-align:center;"> [ ${user.user_name} ] 님 정말로 탈퇴 하시겠습니까? </div>
 								</div>
 							</div>
 						</div>
-							<div class="ax-clear"></div>
 					</div>
 				</div>
 				<!-- e.CXPage -->					
