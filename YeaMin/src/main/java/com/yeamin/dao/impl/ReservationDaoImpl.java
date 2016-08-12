@@ -107,4 +107,9 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sqlSession.selectList(QueryConstants.QID_SELECT_RESERVATION_PEOPLE, paramMap);
 	}
 	
+	@Override
+	public Integer selectReservationCnt(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_RESERVATION_CNT, paramMap);
+	}
+	
 }

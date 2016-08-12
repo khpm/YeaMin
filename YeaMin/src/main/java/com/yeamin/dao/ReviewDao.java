@@ -20,4 +20,6 @@ public interface ReviewDao {
 	public String selectReviewMaxRef();
 	
 	public Integer insertReviewAnswerInputForm(Map<String, Object> paramMap);
+	
+	public Integer selectReviewCnt2(Map<String, Object> paramMap);
 }

@@ -155,4 +155,13 @@
 			AND board_re_level &gt; #{board_re_level}
 	</select>
 	
+	<select id="QID_SELECT_BOARD_CNT" resultType="Integer">
+		SELECT
+			nvl(count(*), 0)
+		FROM
+			ym_board
+		WHERE
+			user_no = #{user_no}
+	</select>
+	
 </mapper>

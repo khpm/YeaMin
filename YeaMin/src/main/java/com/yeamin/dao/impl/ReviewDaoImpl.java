@@ -59,4 +59,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	public Integer insertReviewAnswerInputForm(Map<String, Object> paramMap){
 		return sqlSession.insert(QueryConstants.QID_INSERT_REVIEW_ANSWER, paramMap);
 	}
+	
+	@Override
+	public Integer selectReviewCnt2(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_REVIEW_CNT2, paramMap);
+	}
 }

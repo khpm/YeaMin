@@ -142,6 +142,7 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                    <button type="button" id="updateBtn" class="AXButton" onclick="fnObj.userUpdate();">수정</button>
+		                	<button type="button" id="deleteBtn" class="AXButton" onclick="fnObj.userDeleteModal.open();">삭제</button>
 		                </div>
 		            </div>
 		            <div class="ax-clear"></div>
@@ -240,9 +241,10 @@
 					// toast.push(Object.toJSON({targetID:this.targetID, options:this.options, selectedIndex:this.selectedIndex, selectedOption:this.selectedOption}));
 				}
 			});
+			fnObj.userDeleteModal.bind();
 		},
         pageResize: function(){
-            parent.userInsertModal.resize();
+            
         },
         userUpdate: function() {
         	var data = $("#form").serialize();
@@ -298,6 +300,28 @@
         	}else{
         		dialog.push("인증번호가 틀립니다");
         	}
+        },
+        userDeleteModal: {
+            target: new AXModal(),
+            get: function(){ return this.target },
+            bind: function(){
+                window.userDeleteModal = this.target;
+                this.target.setConfig({
+                    windowID:"myModalContainer",
+                    mediaQuery: {
+                        mx:{min:0, max:767}, dx:{min:100}
+                    },
+                    displayLoading:true
+                });
+            },
+            open: function(){
+                this.target.open({
+                    url:"/YeaMin/userDeleteModal.do",
+                    pars: "",
+                    top:100, width:300,
+                    closeByEscKey:true
+                });
+            }
         },
         close: function() {
         	

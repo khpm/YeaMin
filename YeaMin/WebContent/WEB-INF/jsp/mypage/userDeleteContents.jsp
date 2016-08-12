@@ -66,12 +66,12 @@
 
 <script type="text/javascript">
 	var fnObj = {
-		pageStart: function(){				
-		},
-	       pageResize: function(){
+			pageStart: function(){				
+			},
+	       	pageResize: function(){
 	           parent.userInsertModal.resize();
-	       },
-	       userDelete: function() {
+	       	},
+	      	userDelete: function() {
 	       	var data = $("#form").serialize();
 	       	$.ajax({
 		        url: "/YeaMin/deleteUser.json",
@@ -89,9 +89,9 @@
 		        	}
 		        }
 		    });
-	       },
-	       close: function() {
+	       	},
+	       	close: function() {
 	       	
-	       }
+	       	}
 	};
 </script>

@@ -323,4 +323,13 @@
 		WHERE
 		  reservation_capacity_dw= #{reservation_capacity_dw} AND reservation_capacity_time= #{reservation_capacity_time}
 	</select>
+	
+	<select id="QID_SELECT_RESERVATION_CNT" resultType="Integer">
+		SELECT
+			nvl(count(*), 0)
+		FROM
+		 	ym_reservation
+		WHERE
+			user_no = #{user_no}
+	</select>
 </mapper>

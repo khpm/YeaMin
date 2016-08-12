@@ -103,4 +103,13 @@
 			#{user_no}
 		)
 	</insert>
+	
+	<select id="QID_SELECT_REVIEW_CNT2" resultType="Integer">
+		SELECT
+			nvl(count(*), 0)
+		FROM
+			ym_review
+		WHERE
+			user_no = #{user_no}
+	</select>
 </mapper>

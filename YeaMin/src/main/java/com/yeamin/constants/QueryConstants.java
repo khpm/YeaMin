@@ -24,6 +24,7 @@ public class QueryConstants {
 	public final static String QID_DELETE_RESERVATION = "reservation.QID_DELETE_RESERVATION";
 	public final static String QID_SELECT_RESERVATION_NO_SEQ = "reservation.QID_SELECT_RESERVATION_NO_SEQ";
 	public final static String QID_SELECT_RESERVATION_PEOPLE = "reservation.QID_SELECT_RESERVATION_PEOPLE";
+	public final static String QID_SELECT_RESERVATION_CNT = "reservation.QID_SELECT_RESERVATION_CNT";
 	
 	public final static String QID_SELECT_RESERVATION_PRODUCT_LIST = "reservation.QID_SELECT_RESERVATION_PRODUCT_LIST";
 	public final static String QID_INSERT_RESERVATION_PRODUCT = "reservation.QID_INSERT_RESERVATION_PRODUCT";
@@ -61,6 +62,7 @@ public class QueryConstants {
 	public final static String QID_UPDATE_BOARD_REPLY_STEP = "board.QID_UPDATE_BOARD_REPLY_STEP";
 	public final static String QID_INSERT_BOARD_REPLY = "board.QID_INSERT_BOARD_REPLY";
 	public final static String QID_SELETE_BOARD_DELETE_CHECK = "board.QID_SELETE_BOARD_DELETE_CHECK";
+	public final static String QID_SELECT_BOARD_CNT = "board.QID_SELECT_BOARD_CNT";
 	
 	public final static String QID_SELECT_REVIEW_LIST = "review.QID_SELECT_REVIEW_LIST";
 	public final static String QID_SELETE_REVIEW = "review.QID_SELETE_REVIEW";
@@ -69,6 +71,7 @@ public class QueryConstants {
 	public final static String QID_DELETE_REVIEW = "review.QID_DELETE_REVIEW";
 	public final static String QID_SELECT_REVIEW_MAXREF = "review.QID_SELECT_REVIEW_MAXREF";
 	public final static String QID_INSERT_REVIEW_ANSWER = "review.QID_INSERT_REVIEW_ANSWER";
+	public final static String QID_SELECT_REVIEW_CNT2 = "review.QID_SELECT_REVIEW_CNT2";
 	
 	public final static String QID_SELECT_REVIEW_CNT = "stats.QID_SELECT_REVIEW_CNT";
 	public final static String QID_SELECT_PRODUCT_TOP5 = "stats.QID_SELECT_PRODUCT_TOP5";

@@ -313,4 +313,15 @@ public class ReservationController {
 		return YmUtil.gerResponseRetMap(result, msg, paramMap, list);
 	}
 	
+	@RequestMapping("/selectReservationCnt.json")
+	public @ResponseBody Map<String, Object> selectReservationCnt(@RequestParam Map<String, Object> paramMap) {
+		String result = "";
+		String msg = "";
+		
+		Integer reservationCnt = reservationDao.selectReservationCnt(paramMap);
+
+		result = "ok";
+		
+		return YmUtil.gerResponseRetMap(result, msg, reservationCnt);
+	}
 }

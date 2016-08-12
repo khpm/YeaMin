@@ -185,4 +185,14 @@ public class BoardController {
 		return ret;
 	}
 	
+	@RequestMapping("/selectBoardCnt.json")
+	public @ResponseBody Map<String, Object> selectBoardCnt(@RequestParam Map<String, Object> paramMap) {
+		Integer boardCnt = boardDao.selectBoardCnt(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("boardCnt", boardCnt);
+		ret.put("result", "ok");
+		
+		return ret;
+	}
 }

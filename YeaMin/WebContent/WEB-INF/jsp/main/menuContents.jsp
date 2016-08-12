@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- 메뉴 예비 폼 -->
-<div style='float: none; display: none;'>
+<!-- <div style='float: none; display: none;'>
 	<div style='float: left;'>
 		<div class='ax-rwd-table' style='margin: 30px; border: 3px solid #EFEFEF; border-radius: 5px; border-style:outset;'>
 			<div class='item-group'>
@@ -47,7 +47,7 @@
       	</div>
 	</div>
 </div>
-<div style='clear:both;'></div>
+<div style='clear:both;'></div> -->
 <!-- 메뉴 예비 폼 -->
 
 

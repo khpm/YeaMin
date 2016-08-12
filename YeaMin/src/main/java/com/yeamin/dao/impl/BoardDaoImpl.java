@@ -91,4 +91,9 @@ public class BoardDaoImpl implements BoardDao {
 	public Integer selectBoardDeleteCheck(Map<String, Object> paramMap){
 		return sqlSession.selectOne(QueryConstants.QID_SELETE_BOARD_DELETE_CHECK, paramMap);
 	}
+	
+	@Override
+	public Integer selectBoardCnt(Map<String, Object> paramMap){
+		return sqlSession.selectOne(QueryConstants.QID_SELECT_BOARD_CNT, paramMap);
+	}
 }

@@ -94,4 +94,15 @@ public class ReviewController {
 		}
 		return ret;
 	}	
+	
+	@RequestMapping("/selectReviewCnt2.json")
+	public @ResponseBody Map<String, Object> selectReviewCnt2(@RequestParam Map<String, Object> paramMap) {
+		Integer reviewCnt = reviewDao.selectReviewCnt2(paramMap);
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("result", "ok");
+		ret.put("reviewCnt", reviewCnt);
+
+		return ret;
+	}
 }

@@ -41,4 +41,6 @@ public interface ReservationDao {
 	
 	public List<ReservationCapacityDto> selectReservationPeople(Map<String, Object> paramMap);
 	
+	public Integer selectReservationCnt(Map<String, Object> paramMap);
+	
 }

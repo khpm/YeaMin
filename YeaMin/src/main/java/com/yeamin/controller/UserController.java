@@ -47,6 +47,12 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("/userDeleteModal.do")
+	public ModelAndView userDeleteModal() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/jsp/mypage/userDeleteModal.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/userLogin.json")
 	public @ResponseBody Map<String, Object> userLogin(@RequestParam Map<String, Object> paramMap, HttpServletRequest request) {
 		String result = "ok";
