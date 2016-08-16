@@ -21,7 +21,10 @@ public class ReviewDto {
 	private String user_name;
 	
 	private Integer review_answer_cnt;
-
+	
+	private String is_admin;
+	
+	private String user_gender;
 	public ReviewDto() {
 		
 	}
@@ -97,5 +100,20 @@ public class ReviewDto {
 	public void setReview_answer_cnt(Integer review_answer_cnt) {
 		this.review_answer_cnt = review_answer_cnt;
 	}
-	
+
+	public String getIs_admin() {
+		return is_admin;
+	}
+
+	public void setIs_admin(String is_admin) {
+		this.is_admin = is_admin;
+	}
+
+	public String getUser_gender() {
+		return user_gender;
+	}
+
+	public void setUser_gender(String user_gender) {
+		this.user_gender = user_gender;
+	}
 }

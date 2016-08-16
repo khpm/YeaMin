@@ -14,6 +14,8 @@
 			r.review_re_level,
 			r.user_no,
 			u.user_name,
+			u.user_gender,
+			u.is_admin,
       		(SELECT count(*) from ym_review where review_re_ref = r.review_re_ref and review_re_step > r.review_re_step) AS review_answer_cnt
 		FROM
 			ym_review r,

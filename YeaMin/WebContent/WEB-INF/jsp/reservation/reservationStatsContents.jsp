@@ -121,7 +121,7 @@
 							</div>
 						</div>
 						
-						<div class="ax-col-6">
+						<div class="ax-col-6" style="display:none;">
 							<div class="ax-unit">
 								<div class="ax-box sample-01">
 									<div class="ax-box-wrap">

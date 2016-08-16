@@ -6,7 +6,7 @@
 <div class="ax-rwd-table" style="margin:5px; display: none;">
 	<div class="item-group" style="text-align: center;">
 	<div style="display: inline-block; float: left; width: 10%; height: 110px">
-    	<img src="images/user.PNG" width="100" height="110" >
+    	<img src="images/Male.png" width="100" height="110" >
     </div>
 		<div class="item" style="display: inline-block; float:left; width: 90%;">
 			<div class="item-lable">
@@ -46,7 +46,7 @@
 	<div class="ax-rwd-table" style="margin:5px;">
 		<div class="item-group" style="text-align: center;">
 		<div style="display: inline-block; float: left; width: 10%; height: 110px">
-    		<img src="images/user.PNG" width="100" height="110" >
+    		<img src="images/Admin.png" width="100" height="110" >
     	</div>
 		<div class="item" style="display: inline-block; float:left; width: 90%;">
 			<div class="item-lable">
@@ -85,7 +85,12 @@
        	<div class="ax-rwd-table" style="margin:5px;">
 			<div class="item-group" style="text-align: center;">
 			<div style="display: inline-block; float: left; width: 10%; height: 110px">
-		    	<img src="images/user.PNG" width="100" height="110" >
+	    		<c:if test="${user.is_admin eq 'N' and user.user_gender eq 'M'}">
+	    			<img src="images/Male.png" width="100" height="110" >
+	    		</c:if>
+	    		<c:if test="${user.is_admin eq 'N' and user.user_gender eq 'F'}">
+	    			<img src="images/Female.png" width="100" height="110" >
+	    		</c:if>
 		    </div>
 				<div class="item" style="display: inline-block; float:left; width: 90%;">
 					<div class="item-lable">
@@ -124,7 +129,15 @@
 		<div id="review_no_${item.review_no}" class="item-group" style="text-align: center">
 		<div class="item-group" style="text-align: center;">
 		<div style="display: inline-block; float: left; width: 10%; height: 100px">
-	    	<img src="images/user.PNG" width="100" height="100" >
+			<c:if test="${item.is_admin eq 'Y'}">
+	    		<img src="images/Admin.png" width="100" height="100" >
+	    	</c:if>
+	    	<c:if test="${item.is_admin eq 'N' and item.user_gender eq 'M'}">
+	    		<img src="images/Male.png" width="100" height="100" >
+	    	</c:if>
+	    	<c:if test="${item.is_admin eq 'N' and item.user_gender eq 'F'}">
+	    		<img src="images/Female.png" width="100" height="100" >
+	    	</c:if>
 	    </div>
 			<div class="item" style="display: inline-block; float:left; width: 90%;">
 				<div class="item-lable">
@@ -179,7 +192,7 @@
 <!-- 리뷰 리스트 END -->
 
 <div align="center" style="min-height: 30px; font-size: 15px;">
-	<c:if test="${page ne 1}">
+	<c:if test="${pageNo ne 1}">
 		<a href="#" onclick="reviewFnObj.changeView(1)">◀</a>
 	</c:if>
 	<c:if test="${startPage - reviewSize > 0}">
