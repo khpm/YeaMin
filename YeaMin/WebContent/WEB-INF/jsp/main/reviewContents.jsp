@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 예비 폼 -->
 <div class="ax-rwd-table" style="margin:5px; display: none;">
@@ -16,7 +17,8 @@
 				</div>
 				<div style="display: inline-block; float: right; width: 45%;">
 					<span class="th" style="min-width:100px;">작성일</span>
-					<span class="td inputText"> ${item.review_reg_time} </span>
+					<fmt:formatDate var="reviewTime" value="${item.review_reg_time}" pattern="YYYY-MM-dd HH24:MI"/>
+					<span class="td inputText"> ${reviewTime} </span>
 				</div>
 			</div>
 			<div class="item-clear"></div>
@@ -147,7 +149,8 @@
 					</div>
 					<div style="display: inline-block; float: right; width: 45%;">
 						<span class="th" style="min-width:100px;">작성일</span>
-						<span class="td inputText"> ${item.review_reg_time} </span>
+						<fmt:formatDate var="reviewTime" value="${item.review_reg_time}" pattern="YYYY-MM-dd"/>
+						<span class="td inputText"> ${reviewTime} </span>
 					</div>
 				</div>
 				<div class="item-clear"></div>
