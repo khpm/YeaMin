@@ -142,7 +142,7 @@
 		            <div class="ax-col-12">
 		                <div class="ax-unit center">
 		                    <button type="button" id="updateBtn" class="AXButton" onclick="fnObj.userUpdate();">수정</button>
-		                	<button type="button" id="deleteBtn" class="AXButton" onclick="fnObj.userDeleteModal.open();">삭제</button>
+		                	<button type="button" id="deleteBtn" class="AXButton" onclick="fnObj.userDeleteModal.open();">탈퇴</button>
 		                </div>
 		            </div>
 		            <div class="ax-clear"></div>

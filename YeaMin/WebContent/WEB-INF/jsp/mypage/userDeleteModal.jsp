@@ -110,7 +110,7 @@
 
 			        	if(ret.result === "ok") {
 			        		//삭제 성공
-			        		fnHeaderObj.goMain();
+			        		parent.fnHeaderObj.goMain();
 			        	} else if(ret.result === "error") {
 			        		//식제 실패
 			        	}
