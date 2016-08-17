@@ -471,13 +471,16 @@
         },
         menu: {
         	showMenuTabHeadersHandler: function(optionValue) {
-        		console.log("showMenuTabHeadersHandler");
         		if($("#groupId").val() != "") {
-        			var req = new Object();
-            		req.type = "RESERVATION_TOGETHER_GROUP_MENU_TAB_CHANGE";
-            		req.groupId = parseInt($("#groupId").val());
-            		req.optionValue = optionValue;
-           			fnObj.webSocket.send(JSON.stringify(req));
+        			setTimeout(function() {
+        				console.log("showMenuTabHeadersHandler");
+        				
+        				var req = new Object();
+                		req.type = "RESERVATION_TOGETHER_GROUP_MENU_TAB_CHANGE";
+                		req.groupId = parseInt($("#groupId").val());
+                		req.optionValue = optionValue;
+               			fnObj.webSocket.send(JSON.stringify(req));
+        			}, 200);
         		}
         	},
         	changeCountHandler: function(productList) {
