@@ -88,10 +88,10 @@ public class BoardController {
 			refcnt = refcnt + 1;
 		}else{
 			refcnt = boardDao.getNoticeMaxRef();
-			if(refcnt > 1000){
-				refcnt = refcnt + 1;
-			}else{
+			if(refcnt < 1000){
 				refcnt = 1000;
+			}else{
+				refcnt = refcnt + 1;
 			}
 			
 		}
