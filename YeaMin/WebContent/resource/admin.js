@@ -64,7 +64,6 @@ var sideMenu_data_board = [
 
 var sideMenu_data_mypage_user = [
 	{_id: "m07", label: '<i class="axi axi-home2"></i> 회원 정보 수정', url: "/YeaMin/userUpdateContents.do", target: "_self"},
-	{_id: "m08", label: '<i class="axi axi-home2"></i> 회원 탈퇴', url: "/YeaMin/userDeleteContents.do", target: "_self"},
 	{_id: "m09", label: '<i class="axi axi-home2"></i> 예약 이력 및 현황', url: "/YeaMin/myReservationContents.do", target: "_self"}
 ];
 
