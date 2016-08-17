@@ -11,7 +11,7 @@
 			<div class="ax-clear"></div>
 		</div>
 		<div class="ax-layer">
-			<div class="ax-col-12 ax-content" >
+			<div class="ax-col-12 ax-content">
 				<div id="AXPage">
 					<div class="ax-layer">
 						<div class="ax-col-12">
