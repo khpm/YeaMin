@@ -1,0 +1,16 @@
+1. 데이터 베이스
+	- database_schema.sql을 실행합니다.
+	- database_data.sql을 실행합니다.
+
+2. 웹
+	- YeaMin.war를 import하여 프로젝트를 생성합니다.
+	- 컴파이을 합니다.
+
+3. 메인 및 사용자
+	- http://localhost:8080/YeaMin/main.do로 접속합니다.
+	※ 이미지가 뜨지 않는다면 "서버 - 우 클릭 - Clean..."을 하십시오.
+	- 사용자 데이터는 다음과 같습니다.
+		- admin/admin
+		- user/123
+		- user_fxx/123 : xx에 20, 30, 40, 50, 60를 포함시키세요.
+		- user_mxx/123 : xx에 20, 30, 40, 50, 60를 포함시키세요.

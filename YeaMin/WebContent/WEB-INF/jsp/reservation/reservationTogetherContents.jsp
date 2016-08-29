@@ -485,6 +485,12 @@
         	},
         	changeCountHandler: function(productList) {
         		if($("#groupId").val() != "") {
+        			
+        			for(var index in productList) {
+        				var productItem = productList[index];
+        				delete productItem.priduct_desc;
+        			}
+        			
         			var req = new Object();
             		req.type = "RESERVATION_TOGETHER_GROUP_MENU_COUNT_CHANGE";
             		req.groupId = parseInt($("#groupId").val());
